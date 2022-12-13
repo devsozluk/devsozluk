@@ -1,8 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: "Poppins",
+      },
+      colors: {
+        background: "#181A1B",
+        primary: "#7158E2",
+        secondary: "#ABA398",
+      },
+    },
   },
   plugins: [],
 };
