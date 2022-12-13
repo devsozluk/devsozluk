@@ -8,8 +8,10 @@ module.exports = {
       },
       colors: {
         background: "#181A1B",
+        placeholder: "#9F9F9F",
         primary: "#7158E2",
         secondary: "#ABA398",
+        tertiary: "#909090",
       },
     },
   },
