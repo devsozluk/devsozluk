@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "altogic": "^2.3.8",
     "classnames": "^2.3.2",
     "formik": "^2.2.9",
     "path": "^0.12.7",
