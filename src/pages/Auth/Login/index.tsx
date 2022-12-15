@@ -1,17 +1,32 @@
 import React from "react";
+import { LoginFormData } from "@/types/index";
 import Input from "@/components/UI/Input";
-import Icon from "@/components/UI/Icon";
 import Button from "@/components/UI/Button";
 import { Formik, Form } from "formik";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuthContext } from "@/context/Auth";
 import { LoginSchema } from "@/validations/index";
-import { LoginFormData } from "@/types/index";
+import altogic from "@/libs/altogic";
+
+import { RiMailLine, RiLockPasswordLine } from "react-icons/ri";
 
 const Login: React.FC = () => {
+  const { setUser, setSession } = useAuthContext();
   const initialValues: LoginFormData = { email: "", password: "" };
 
-  const handleLogin = ({ email, password }: LoginFormData, { setSubmitting }: any) => {
-    console.log(email, password);
+  const navigate = useNavigate();
 
+  const handleLogin = async ({ email, password }: LoginFormData, { setSubmitting }: any) => {
+    const { user, session, errors } = await altogic.auth.signInWithEmail(email, password);
+    if (user) {
+      setUser(user);
+      setSession(session);
+      toast.success("login you are redirected to the successful homepage");
+      navigate("/");
+    } else {
+      toast.error(errors?.items[0].message);
+    }
     setSubmitting(false);
   };
 
@@ -22,8 +37,14 @@ const Login: React.FC = () => {
           <>
             <Form className="space-y-8 w-[400px]">
               <div className="space-y-4">
-                <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<Icon icon="user" width={24} height={24} />} />
-                <Input name="password" errorText={errors.password} placeholder="Şifre" renderLeftIcon={<Icon icon="lock" width={24} height={24} />} />
+                <Input name="email" type="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+                <Input
+                  name="password"
+                  type="password"
+                  errorText={errors.password}
+                  placeholder="Şifre"
+                  renderLeftIcon={<RiLockPasswordLine size={24} />}
+                />
               </div>
               <Button loading={isSubmitting} type="submit" disabled={!isValid}>
                 Giriş
