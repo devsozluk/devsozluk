@@ -16,7 +16,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icomoon": "^2.5.4",
+    "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5",
+    "react-toastify": "^9.1.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
