@@ -5,6 +5,7 @@ import AuthLayout from "@/layouts/auth";
 import Home from "@/pages/Home/index";
 
 import Login from "@/pages/Auth/Login/index";
+import Register from "@/pages/Auth/Register";
 
 export default createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export default createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
