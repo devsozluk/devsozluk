@@ -9,7 +9,7 @@ interface Props {
   renderRigthIcon?: React.ReactNode;
   children: React.ReactNode;
   disabled?: boolean;
-  loading: boolean;
+  loading?: boolean;
 }
 
 const Button: React.FC<Props> = ({ type = "button", loading, disabled, children, renderLeftIcon, renderRigthIcon }) => {
@@ -17,7 +17,7 @@ const Button: React.FC<Props> = ({ type = "button", loading, disabled, children,
     <button
       disabled={disabled}
       type={type}
-      className="w-full bg-primary text-white py-4 px-6 rounded-lg flex items-center justify-center text-xl font-medium disabled:opacity-50"
+      className="w-full bg-primary text-white py-3 px-6 rounded-lg flex items-center justify-center text-lg font-medium disabled:opacity-50"
     >
       {renderLeftIcon}
       {loading ? <Spinner /> : children}
