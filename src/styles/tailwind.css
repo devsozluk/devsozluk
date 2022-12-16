@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.w-md-editor-toolbar {
+  background: transparent;
+}
+
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
