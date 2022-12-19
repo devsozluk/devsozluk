@@ -1,46 +1,60 @@
+import Spinner from "@/components/Spinner";
 import Button from "@/components/UI/Button";
 import Input from "@/components/UI/Input";
 import { useAuthContext } from "@/context/AuthContext";
-import altogic from "@/libs/altogic";
+import userService from "@/services/user";
 import type { UpdateProfileData } from "@/types";
 import { CreateTopicSchema } from "@/validations";
+import classNames from "classnames";
 import { Form, Formik } from "formik";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { RiImageEditFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const Profile = () => {
-  const { user } = useAuthContext();
+  const { user, setUser } = useAuthContext();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const initialValues: UpdateProfileData = { name: user?.name };
 
   const onSelectPhoto = async (e: ChangeEvent<HTMLInputElement>) => {
-    // if (!e.target.files) return;
-    // const [file] = e.target.files;
-    // const { data, errors: uploadErrors } = await altogic.storage.root.upload(file.name, file, {
-    //   isPublic: true,
-    //   onProgress() {},
-    // });
-    // await altogic.db.model("users").object(user?._id).update({ profilePicture: data.publicPath });
-    // console.log(data);
+    if (!e.target.files) return;
+    const [file] = e.target.files;
+    setIsLoading(true);
+    const updatedUser = await userService.UserChangePhoto(user?._id as string, file);
+    if (updatedUser) {
+      setUser(updatedUser);
+      toast.success("Profil fotoğrafınız başarılı bir şekilde güncellendi.");
+    }
+    setIsLoading(false);
   };
 
   const updateProfile = () => {};
 
   return (
     <div className="h-full w-sm flex flex-col gap-y-5 items-center justify-center">
-      <div className="relative">
+      <div className="relative ">
         <input
           type="file"
           id="changePhoto"
           onChange={onSelectPhoto}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300"
+          className={classNames("absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300", { "pointer-events-none": isLoading })}
         />
-        <img className="w-60 h-60 rounded-lg" src={user?.profilePicture} alt="" />
+        <img className={classNames("w-60 h-60 rounded-lg", { "opacity-30 ": isLoading })} src={user?.profilePicture} alt="" />
         <label
           htmlFor="changePhoto"
-          className="bg-tertiary cursor-pointer mx-auto w-28 h-8 absolute bottom-0 left-0 right-0 mb-2 opacity-70 rounded-md flex items-center justify-center gap-x-1 text-white font-medium text-sm hover:opacity-100 transition-all"
+          className={classNames(
+            "bg-tertiary cursor-pointer mx-auto w-28 h-8 absolute bottom-0 left-0 right-0 mb-2 opacity-70 rounded-md flex items-center justify-center gap-x-1 text-white font-medium text-sm hover:opacity-100 transition-all",
+            { "w-30 gap-x-0 pointer-events-none": isLoading }
+          )}
         >
-          <RiImageEditFill size={20} />
-          değiştir
+          {isLoading ? (
+            <Spinner className="mr-1" />
+          ) : (
+            <>
+              <RiImageEditFill size={20} />
+              değiştir
+            </>
+          )}
         </label>
       </div>
       <Formik validationSchema={CreateTopicSchema} initialValues={initialValues} onSubmit={updateProfile}>
@@ -48,7 +62,7 @@ const Profile = () => {
           <>
             <Form className="space-y-8 w-[700px]">
               <div className="space-y-4">
-                <Input name="username" placeholder="Değiştirmek istediğiniz kullanıcı adını yazınız." label="Kullanıcı Adı" errorText={errors.name} />
+                <Input name="name" placeholder="Değiştirmek istediğiniz kullanıcı adını yazınız." label="Kullanıcı Adı" errorText={errors.name} />
                 <Input name="password" placeholder="Değiştirmek istediğiniz şifreyi yazın." label="Şifre" errorText={errors.name} />
                 <Input
                   name="changePassword"

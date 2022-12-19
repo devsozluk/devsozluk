@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import type { Session, User } from "altogic";
 import altogic from "@/libs/altogic";
 
@@ -14,7 +14,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<AuthContextData["user"]>(altogic.auth.getUser());
+  const [user, setUser] = useState<AuthContextData["user"]>(altogic.auth.getUser() as User);
   const [session, setSession] = useState<AuthContextData["session"]>(altogic.auth.getSession());
 
   const isloggedIn = !!user;
