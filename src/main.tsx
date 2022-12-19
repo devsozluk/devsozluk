@@ -10,7 +10,7 @@ import "@/styles/tailwind.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <AuthProvider>
-    <ToastContainer theme="dark" position="top-center" />
+    <ToastContainer theme="dark" position="bottom-center" />
     <RouterProvider router={Router} />
   </AuthProvider>
 );
