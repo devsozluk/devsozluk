@@ -25,7 +25,7 @@ const Entry: React.FC<Props> = ({ entry }) => {
             <h5 className="text-primary font-bold text-sm">{entry.author.name}</h5>
             <p className="text-xs">{new Date(entry.createdAt).toLocaleString()}</p>
           </div>
-          <img className="w-8 h-8 rounded-lg" src="https://osmandlsmn.me/images/avatar.png" alt="" />
+          <img className="w-8 h-8 rounded-lg" src={entry.author.profilePicture} alt="" />
         </div>
       </div>
     </div>
