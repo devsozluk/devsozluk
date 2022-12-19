@@ -12,7 +12,7 @@ const Spinner: React.FC = () => (
         fill="currentColor"
       />
     </svg>
-    Loading...
+    Bekleyiniz...
   </div>
 );
 
