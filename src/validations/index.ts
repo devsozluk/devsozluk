@@ -21,3 +21,7 @@ export const UpdateProfile = Yup.object().shape({
   password: Yup.string().min(5, "Şifreniz en az 5 karekter olması gerekmektedir.").required("Şifrenizi giriniz."),
   passwordConfirm: Yup.string().min(5, "Şifreniz en az 5 karekter olması gerekmektedir.").required("Şifrenizi giriniz."),
 });
+
+export const AddEntrySchema = Yup.object().shape({
+  content: Yup.string().required("Entry içeriği yazmalısınız.").min(5, "Entry içeriği en az 5 karekter olmalıdır."),
+});

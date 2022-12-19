@@ -1,7 +1,7 @@
 import Button from "@/components/UI/Button";
 import Input from "@/components/UI/Input";
 import { useAuthContext } from "@/context/AuthContext";
-import altogic from "@/libs/altogic";
+import TopicService from "@/services/topic";
 import { CreateTopicData } from "@/types";
 import { CreateTopicSchema } from "@/validations";
 import MDEditor from "@uiw/react-md-editor";
@@ -10,7 +10,6 @@ import { Formik } from "formik";
 import React from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import slugify from "slugify";
 
 const CreateTopic: React.FC = () => {
   const { user } = useAuthContext();
@@ -18,7 +17,7 @@ const CreateTopic: React.FC = () => {
   const initialValues: CreateTopicData = { title: "", content: "" };
 
   const handleCreate = async ({ title, content }: CreateTopicData, { setSubmitting }: any) => {
-    const { data, errors } = (await altogic.db.model("topics").create({ title, content, user: user?._id, slug: slugify(title) })) as any;
+    const { data, errors } = await TopicService.CreateTopic(user?._id as string, { title, content });
 
     if (data) {
       toast.success("konu oluşturuldu yönlendiriliyorsunuz...");
@@ -27,7 +26,6 @@ const CreateTopic: React.FC = () => {
       if (errors?.items[0].code === "not_unique" && errors.items[0].details?.field === "title") return toast.error("bu başlıkta bir konu var zaten.");
       toast.error(errors?.items[0].message);
     }
-
     setSubmitting(false);
   };
 
