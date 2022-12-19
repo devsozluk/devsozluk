@@ -13,17 +13,14 @@ const Profile = () => {
   const initialValues: UpdateProfileData = { name: user?.name };
 
   const onSelectPhoto = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    const [file] = e.target.files;
-
-    const { data, errors: uploadErrors } = await altogic.storage.root.upload(file.name, file, {
-      isPublic: true,
-      onProgress() {},
-    });
-
-    await altogic.db.model("users").object(user?._id).update({ profilePicture: data.publicPath });
-
-    console.log(data);
+    // if (!e.target.files) return;
+    // const [file] = e.target.files;
+    // const { data, errors: uploadErrors } = await altogic.storage.root.upload(file.name, file, {
+    //   isPublic: true,
+    //   onProgress() {},
+    // });
+    // await altogic.db.model("users").object(user?._id).update({ profilePicture: data.publicPath });
+    // console.log(data);
   };
 
   const updateProfile = () => {};
