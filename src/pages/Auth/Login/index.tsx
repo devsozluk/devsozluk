@@ -1,15 +1,15 @@
-import React from "react";
-import { LoginFormData } from "@/types/index";
-import Input from "@/components/UI/Input";
 import Button from "@/components/UI/Button";
-import { Formik, Form } from "formik";
+import Input from "@/components/UI/Input";
+import { useAuthContext } from "@/context/AuthContext";
+import altogic from "@/libs/altogic";
+import { LoginFormData } from "@/types/index";
+import { LoginSchema } from "@/validations/index";
+import { Form, Formik } from "formik";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuthContext } from "@/context/Auth";
-import { LoginSchema } from "@/validations/index";
-import altogic from "@/libs/altogic";
 
-import { RiMailLine, RiLockPasswordLine } from "react-icons/ri";
+import { RiLockPasswordLine, RiMailLine } from "react-icons/ri";
 
 const Login: React.FC = () => {
   const { setUser, setSession } = useAuthContext();
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     if (user) {
       setUser(user);
       setSession(session);
-      toast.success("login you are redirected to the successful homepage");
+      toast.success("Giriş başarılı, ana sayfaya yönlendiriliyorsunuz.");
       navigate("/");
     } else {
       toast.error(errors?.items[0].message);

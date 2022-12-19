@@ -1,14 +1,14 @@
-import React from "react";
-import Input from "@/components/UI/Input";
 import Button from "@/components/UI/Button";
-import { Formik, Form } from "formik";
-import { useNavigate } from "react-router-dom";
-import { RegisterSchema } from "@/validations/index";
-import { RegisterFormData } from "@/types/index";
-import { useAuthContext } from "@/context/Auth";
+import Input from "@/components/UI/Input";
+import { useAuthContext } from "@/context/AuthContext";
 import altogic from "@/libs/altogic";
+import { RegisterFormData } from "@/types/index";
+import { RegisterSchema } from "@/validations/index";
+import { Form, Formik } from "formik";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import { RiUser3Line, RiLockPasswordLine, RiMailLine } from "react-icons/ri";
+import { RiLockPasswordLine, RiMailLine, RiUser3Line } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 const Register: React.FC = () => {
@@ -22,7 +22,7 @@ const Register: React.FC = () => {
     if (user) {
       setUser(user);
       setSession(session);
-      toast.success("registration is successful you are redirected to the main page");
+      toast.success("Kayıt başarılı, ana sayfaya yönlendiriliyorsunuz.");
       navigate("/");
     } else {
       toast.error(errors?.items[0].message);
