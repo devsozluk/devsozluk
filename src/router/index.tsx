@@ -1,14 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
-
+import { useAuthContext } from "@/context/AuthContext";
 import Layout from "@/layouts/default";
-import AuthLayout from "@/layouts/auth";
-import Login from "@/pages/Auth/Login/index";
+import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
-
-import Home from "@/pages/Home/index";
-
-import DashboardLayout from "@/layouts/dashboard";
 import CreateTopic from "@/pages/CreateTopic";
+import Home from "@/pages/Home/";
+import Profile from "@/pages/Profile";
+import Topic from "@/pages/Topic";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 export default createBrowserRouter([
   {
@@ -19,30 +17,62 @@ export default createBrowserRouter([
         path: "",
         element: <Home />,
       },
-    ],
-  },
-  {
-    path: "/auth/",
-    element: <AuthLayout />,
-    children: [
       {
-        path: "login",
-        element: <Login />,
+        path: "konu/:slug",
+        element: <Topic />,
       },
       {
-        path: "register",
-        element: <Register />,
+        path: "giris",
+        element: (
+          <GuestOnly>
+            <Login />
+          </GuestOnly>
+        ),
       },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [
       {
-        path: "create-topic",
-        element: <CreateTopic />,
+        path: "kayit",
+        element: (
+          <GuestOnly>
+            <Register />
+          </GuestOnly>
+        ),
+      },
+      {
+        path: "/panel/profil",
+        element: (
+          <AuthOnly>
+            <Profile />
+          </AuthOnly>
+        ),
+      },
+      {
+        path: "panel/konu-olustur",
+        element: (
+          <AuthOnly>
+            <CreateTopic />
+          </AuthOnly>
+        ),
       },
     ],
   },
 ]);
+
+function AuthOnly({ children }: { children: JSX.Element }) {
+  const { user, session } = useAuthContext();
+
+  if (!user || !session) {
+    return <Navigate to="/giris" />;
+  }
+
+  return children;
+}
+
+function GuestOnly({ children }: { children: JSX.Element }) {
+  const { user, session } = useAuthContext();
+
+  if (user && session) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
+}
