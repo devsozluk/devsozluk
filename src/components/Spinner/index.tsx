@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 
-const Spinner: React.FC<{ className: string }> = ({ className }) => (
+const Spinner: React.FC<{ className?: string }> = ({ className }) => (
   <div role="status">
     <svg
       role="status"
