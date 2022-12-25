@@ -15,12 +15,15 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({ name, type = "text", errorText, renderLeftIcon, label, placeholder, ...props }) => {
   return (
-    <div className="w-full">
+    <div className="w-full group">
       <p className="mb-1">{label}</p>
       <div
-        className={classnames("flex items-center border-tertiary border-[1px] rounded-lg py-4 px-3 space-x-2", {
-          "border-red-500": errorText,
-        })}
+        className={classnames(
+          "flex items-center border-placeholder border rounded py-4 px-3 space-x-3 text-placeholder focus-within:border-tertiary transition-all",
+          {
+            "!border-red-500": errorText,
+          }
+        )}
       >
         {renderLeftIcon}
         <Field

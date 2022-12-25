@@ -1,4 +1,4 @@
-import Markdown from "@/components/Markdown";
+import Markdown from "@/components/Elements/Markdown";
 import type { IEntry } from "@/types";
 import React from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
