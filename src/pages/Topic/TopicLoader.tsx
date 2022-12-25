@@ -1,5 +1,5 @@
+import EntryLoader from "@/components/Elements/Entry/EntryLoader";
 import React from "react";
-import EntryLoader from "@/components/Entry/EntryLoader";
 
 const TopicLoader: React.FC = () => {
   return (
