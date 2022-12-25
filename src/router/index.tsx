@@ -1,11 +1,12 @@
-import { useAuthContext } from "@/context/AuthContext";
-import Layout from "@/layouts/default";
+import AuthLayout from "@/components/Layouts/AuthLayout";
+import Layout from "@/components/Layouts/MainLayout";
 import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import CreateTopic from "@/pages/CreateTopic";
 import Home from "@/pages/Home/";
 import Profile from "@/pages/Profile";
 import Topic from "@/pages/Topic";
+import { useAppSelector } from "@/utils/hooks";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 export default createBrowserRouter([
@@ -20,22 +21,6 @@ export default createBrowserRouter([
       {
         path: "konu/:slug",
         element: <Topic />,
-      },
-      {
-        path: "giris",
-        element: (
-          <GuestOnly>
-            <Login />
-          </GuestOnly>
-        ),
-      },
-      {
-        path: "kayit",
-        element: (
-          <GuestOnly>
-            <Register />
-          </GuestOnly>
-        ),
       },
       {
         path: "/panel/profil",
@@ -55,12 +40,34 @@ export default createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "giris",
+        element: (
+          <GuestOnly>
+            <Login />
+          </GuestOnly>
+        ),
+      },
+      {
+        path: "kayit",
+        element: (
+          <GuestOnly>
+            <Register />
+          </GuestOnly>
+        ),
+      },
+    ],
+  },
 ]);
 
 function AuthOnly({ children }: { children: JSX.Element }) {
-  const { user, session } = useAuthContext();
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
 
-  if (!user || !session) {
+  if (!isLoggedIn) {
     return <Navigate to="/giris" />;
   }
 
@@ -68,9 +75,9 @@ function AuthOnly({ children }: { children: JSX.Element }) {
 }
 
 function GuestOnly({ children }: { children: JSX.Element }) {
-  const { user, session } = useAuthContext();
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
 
-  if (user && session) {
+  if (isLoggedIn) {
     return <Navigate to="/" />;
   }
 
