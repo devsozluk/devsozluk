@@ -1,7 +1,6 @@
 import Button from "@/components/Elements/Button";
 import Entry from "@/components/Elements/Entry";
 import altogic from "@/libs/altogic";
-import EntryService from "@/services/entry";
 import type { IEntry, ITopic } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
 import { AddEntrySchema } from "@/utils/schemas";
@@ -45,11 +44,11 @@ const Topic: React.FC = () => {
   }, [, location]);
 
   const handleAddEntry = async ({ content }: addEntryData, { setSubmitting }: any) => {
-    setIsLoading(true);
-    await EntryService.CreateEntry(user?._id as string, { content, topic: topic._id });
-    const { data } = (await EntryService.FetchEntries(topic._id)) as { data: IEntry[] };
-    setEntries(data);
-    setIsLoading(false);
+    // setIsLoading(true);
+    // await EntryService.CreateEntry(user?._id as string, { content, topic: topic._id });
+    // const { data } = (await EntryService.FetchEntries(topic._id)) as { data: IEntry[] };
+    // setEntries(data);
+    // setIsLoading(false);
   };
 
   if (isLoading) return <TopicLoader />;
@@ -70,7 +69,7 @@ const Topic: React.FC = () => {
       {entries?.map((entry, index) => (
         <Entry entry={entry} key={index} />
       ))}
-      {isloggedIn && (
+      {isLoggedIn && (
         <Formik validationSchema={AddEntrySchema} initialValues={initialValues} onSubmit={handleAddEntry}>
           {({ isSubmitting, errors, isValid, setFieldValue, values, handleSubmit }) => (
             <>
