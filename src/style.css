@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.min-width {
+  min-width: -moz-available;
+  min-width: -webkit-fill-available;
+}
+
 .w-md-editor-toolbar {
   background: transparent;
 }
