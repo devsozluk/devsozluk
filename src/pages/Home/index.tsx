@@ -1,4 +1,4 @@
-import Entry from "@/components/Entry";
+import Entry from "@/components/Elements/Entry";
 import altogic from "@/libs/altogic";
 import type { IEntry } from "@/types";
 import { removeUnique } from "@/utils";

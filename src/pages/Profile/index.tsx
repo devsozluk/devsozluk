@@ -1,31 +1,29 @@
-import Spinner from "@/components/Spinner";
-import Button from "@/components/UI/Button";
-import Input from "@/components/UI/Input";
-import { useAuthContext } from "@/context/AuthContext";
-import userService from "@/services/user";
+import Button from "@/components/Elements/Button";
+import Spinner from "@/components/Elements/Spinner";
+import Input from "@/components/Form/Input";
 import type { UpdateProfileData } from "@/types";
-import { CreateTopicSchema } from "@/validations";
+import { useAppSelector } from "@/utils/hooks";
+import { CreateTopicSchema } from "@/utils/schemas";
 import classNames from "classnames";
 import { Form, Formik } from "formik";
 import { ChangeEvent, useState } from "react";
 import { RiImageEditFill } from "react-icons/ri";
-import { toast } from "react-toastify";
 
 const Profile = () => {
-  const { user, setUser } = useAuthContext();
+  const { user } = useAppSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const initialValues: UpdateProfileData = { name: user?.name };
 
   const onSelectPhoto = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    const [file] = e.target.files;
-    setIsLoading(true);
-    const updatedUser = await userService.UserChangePhoto(user?._id as string, file);
-    if (updatedUser) {
-      setUser(updatedUser);
-      toast.success("Profil fotoğrafınız başarılı bir şekilde güncellendi.");
-    }
-    setIsLoading(false);
+    // if (!e.target.files) return;
+    // const [file] = e.target.files;
+    // setIsLoading(true);
+    // const updatedUser = await userService.UserChangePhoto(user?._id as string, file);
+    // if (updatedUser) {
+    //   setUser(updatedUser);
+    //   toast.success("Profil fotoğrafınız başarılı bir şekilde güncellendi.");
+    // }
+    // setIsLoading(false);
   };
 
   const updateProfile = () => {};

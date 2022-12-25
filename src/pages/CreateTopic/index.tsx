@@ -1,32 +1,29 @@
-import Button from "@/components/UI/Button";
-import Input from "@/components/UI/Input";
-import { useAuthContext } from "@/context/AuthContext";
-import TopicService from "@/services/topic";
+import Button from "@/components/Elements/Button";
+import Input from "@/components/Form/Input";
 import { CreateTopicData } from "@/types";
-import { CreateTopicSchema } from "@/validations";
+import { useAppSelector } from "@/utils/hooks";
+import { CreateTopicSchema } from "@/utils/schemas";
 import MDEditor from "@uiw/react-md-editor";
 import classNames from "classnames";
 import { Formik } from "formik";
 import React from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const CreateTopic: React.FC = () => {
-  const { user } = useAuthContext();
+  const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const initialValues: CreateTopicData = { title: "", content: "" };
 
   const handleCreate = async ({ title, content }: CreateTopicData, { setSubmitting }: any) => {
-    const { data, errors } = await TopicService.CreateTopic(user?._id as string, { title, content });
-
-    if (data) {
-      toast.success("konu oluşturuldu yönlendiriliyorsunuz...");
-      navigate("/konu/" + data.slug);
-    } else {
-      if (errors?.items[0].code === "not_unique" && errors.items[0].details?.field === "title") return toast.error("bu başlıkta bir konu var zaten.");
-      toast.error(errors?.items[0].message);
-    }
-    setSubmitting(false);
+    // const { data, errors } = await TopicService.CreateTopic(user?._id as string, { title, content });
+    // if (data) {
+    //   toast.success("konu oluşturuldu yönlendiriliyorsunuz...");
+    //   navigate("/konu/" + data.slug);
+    // } else {
+    //   if (errors?.items[0].code === "not_unique" && errors.items[0].details?.field === "title") return toast.error("bu başlıkta bir konu var zaten.");
+    //   toast.error(errors?.items[0].message);
+    // }
+    // setSubmitting(false);
   };
 
   return (
