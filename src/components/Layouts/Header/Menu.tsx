@@ -7,8 +7,12 @@ import { Link } from "react-router-dom";
 import { links } from "./Links.constant";
 
 const ProfileMenu: React.FC = () => {
-  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  const { isLoggedIn, user } = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(authLogout());
+  };
 
   return (
     <>
@@ -21,12 +25,12 @@ const ProfileMenu: React.FC = () => {
         <Menu>
           <Menu.Button>
             <button className="py-2 px-4 rounded-lg text-secondary font-bold flex items-center justify-center gap-x-2">
-              <img className="w-6 h-6 rounded" src={user?.profilePicture} alt="" />
+              <img className="w-6 h-6 rounded" src={user?.profilePicture} />
               {user?.name}
             </button>
           </Menu.Button>
           <Menu.Items className="absolute top-14 w-[140px] bg-gray-800 rounded font-medium text-center text-secondary py-2 flex flex-col gap-y-2">
-            {links.map((link) => (
+            {links.map(link => (
               <Menu.Item key={link.href} as={Fragment}>
                 <Link to={link.href} className="">
                   {link.label}
@@ -34,7 +38,7 @@ const ProfileMenu: React.FC = () => {
               </Menu.Item>
             ))}
             <Menu.Item>
-              <button onClick={() => dispatch(authLogout())} className="flex items-center text-red-500 justify-center p-1 gap-x-1 rounded">
+              <button onClick={handleLogout} className="flex items-center text-red-500 justify-center p-1 gap-x-1 rounded">
                 <MdLogout size={18} />
                 çıkış
               </button>
