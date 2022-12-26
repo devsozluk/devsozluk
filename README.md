@@ -29,16 +29,22 @@
 <hr/>
 </div>
 
-### **About**
+### 📔 **About**
 
 **DevSözlük**, is a platform created for software developers to ask, answer, share knowledge,
 and communicate with each other. In this project, I have created a structure where other software developers can also contribute.
 This platform allows software developers to share their ideas, answer questions, and help each other.
 
-### **Technologies;**
+### 💻 **Tech Stack**
 
-* React
-* Redux
-* TypeScript
-* TailwindCSS
-* Altogic
+ - [Vite](https://vitejs.dev/)
+ - [React](https://reactjs.org/)
+ - [React-Router](https://reactrouter.com/en/main)
+ - [React-Redux](https://react-redux.js.org/)
+ - [TypeScript](https://www.typescriptlang.org/)
+ - [TailwindCSS](https://tailwindcss.com/)
+ - [Altogic](https://www.altogic.com/)
+
+### 📜 **Tasks**
+
+- [x] Added role-based authentication.
