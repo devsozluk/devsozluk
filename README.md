@@ -17,7 +17,7 @@
   </p>
   <p>
     <b>
-      Open source dictionary platform for developers.
+      Open source social platform for developers.
     </b>
   </p>
 
