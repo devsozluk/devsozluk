@@ -1,10 +1,9 @@
-import Entry from "@/components/Entry";
-import Button from "@/components/UI/Button";
-import { useAuthContext } from "@/context/AuthContext";
+import Button from "@/components/Elements/Button";
+import Entry from "@/components/Elements/Entry";
 import altogic from "@/libs/altogic";
-import EntryService from "@/services/entry";
 import type { IEntry, ITopic } from "@/types";
-import { AddEntrySchema } from "@/validations";
+import { useAppSelector } from "@/utils/hooks";
+import { AddEntrySchema } from "@/utils/schemas";
 import MDEditor from "@uiw/react-md-editor";
 import classNames from "classnames";
 import { Formik } from "formik";
@@ -25,7 +24,7 @@ const Topic: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [topic, setTopic] = useState<ITopic>({} as ITopic);
   const [entries, setEntries] = useState<IEntry[] | null>(null);
-  const { user, isloggedIn } = useAuthContext();
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const initialValues: addEntryData = { content: "" };
 
   useEffect(() => {
@@ -45,11 +44,11 @@ const Topic: React.FC = () => {
   }, [, location]);
 
   const handleAddEntry = async ({ content }: addEntryData, { setSubmitting }: any) => {
-    setIsLoading(true);
-    await EntryService.CreateEntry(user?._id as string, { content, topic: topic._id });
-    const { data } = (await EntryService.FetchEntries(topic._id)) as { data: IEntry[] };
-    setEntries(data);
-    setIsLoading(false);
+    // setIsLoading(true);
+    // await EntryService.CreateEntry(user?._id as string, { content, topic: topic._id });
+    // const { data } = (await EntryService.FetchEntries(topic._id)) as { data: IEntry[] };
+    // setEntries(data);
+    // setIsLoading(false);
   };
 
   if (isLoading) return <TopicLoader />;
@@ -70,7 +69,7 @@ const Topic: React.FC = () => {
       {entries?.map((entry, index) => (
         <Entry entry={entry} key={index} />
       ))}
-      {isloggedIn && (
+      {isLoggedIn && (
         <Formik validationSchema={AddEntrySchema} initialValues={initialValues} onSubmit={handleAddEntry}>
           {({ isSubmitting, errors, isValid, setFieldValue, values, handleSubmit }) => (
             <>

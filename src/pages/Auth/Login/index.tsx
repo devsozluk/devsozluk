@@ -1,42 +1,38 @@
-import Button from "@/components/UI/Button";
-import Input from "@/components/UI/Input";
-import { useAuthContext } from "@/context/AuthContext";
-import altogic from "@/libs/altogic";
+import Button from "@/components/Elements/Button";
+import Input from "@/components/Form/Input";
+import StatusMessage from "@/components/Form/StatusMessage";
+import { authLogin } from "@/store/auth/authThunk";
 import { LoginFormData } from "@/types/index";
-import { LoginSchema } from "@/validations/index";
+import { useAppDispatch } from "@/utils/hooks";
+import { LoginSchema } from "@/utils/schemas";
 import { Form, Formik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-
+import React, { useCallback } from "react";
 import { RiLockPasswordLine, RiMailLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
-  const { setUser, setSession } = useAuthContext();
   const initialValues: LoginFormData = { email: "", password: "" };
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const handleLogin = async ({ email, password }: LoginFormData, { setSubmitting }: any) => {
-    const { user, session, errors } = await altogic.auth.signInWithEmail(email, password);
-    if (user) {
-      setUser(user);
-      setSession(session);
-      toast.success("Giriş başarılı, ana sayfaya yönlendiriliyorsunuz.");
-      navigate("/");
-    } else {
-      toast.error(errors?.items[0].message);
-    }
-    setSubmitting(false);
-  };
+  const handleSubmit = useCallback(
+    async (values: LoginFormData, formikActions: any) => {
+      const { payload } = await dispatch<any>(authLogin({ values, formikActions }));
+      if (payload.user) navigate("/");
+    },
+    [dispatch]
+  );
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <Formik validationSchema={LoginSchema} initialValues={initialValues} onSubmit={handleLogin}>
+    <div className="h-full flex flex-col items-center justify-center gap-y-10">
+      <h1 className="text-4xl font-extrabold">Giriş</h1>
+      <Formik validationSchema={LoginSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting, errors, isValid }) => (
           <>
-            <Form className="space-y-8 w-[400px]">
-              <div className="space-y-4">
+            <Form className="space-y-6 w-[400px]">
+              {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
+              <div className="space-y-6">
                 <Input name="email" type="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
                 <Input
                   name="password"

@@ -3,12 +3,14 @@ import type { User } from "altogic";
 export interface LoginFormData {
   email: string;
   password: string;
+  responseMessage?: string;
 }
 
 export interface RegisterFormData {
-  name: string;
+  username: string;
   email: string;
   password: string;
+  responseMessage?: string;
 }
 
 export interface CreateTopicData {
@@ -39,4 +41,8 @@ export interface IEntry {
   topic: ITopic;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IUser extends User {
+  username: string;
 }
