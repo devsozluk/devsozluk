@@ -1,7 +1,7 @@
-import Header from "@/components/Layouts/Header";
-import Sidebar from "@/components/Layouts/Sidebar";
+import Sidebar from "@/components/Layout/Sidebar";
 import * as React from "react";
 import { Outlet } from "react-router-dom";
+import Header from "./Header";
 
 const MainLayout: React.FC = () => {
   return (

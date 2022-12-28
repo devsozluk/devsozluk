@@ -1,12 +1,12 @@
-import AuthLayout from "@/components/Layouts/AuthLayout";
-import Layout from "@/components/Layouts/MainLayout";
+import Layout from "@/components/Layout";
+import MainLayout from "@/components/Layout/MainLayout";
 import EmailVerification from "@/pages/Auth/EmailVerification";
 import Login from "@/pages/Auth/Login";
 import Redirect from "@/pages/Auth/Redirect";
 import Register from "@/pages/Auth/Register";
 import CreateTopic from "@/pages/CreateTopic";
 import NotFound from "@/pages/Errors/NotFound";
-import Home from "@/pages/Home/";
+import Home from "@/pages/Home";
 import Profile from "@/pages/Profile";
 import Topic from "@/pages/Topic";
 import { useAppSelector } from "@/utils/hooks";
@@ -14,15 +14,15 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 
 export default createBrowserRouter([
   {
-    path: "/",
-    element: <Layout />,
+    path: "",
+    element: <MainLayout />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <Home />,
       },
       {
-        path: "konu/:slug",
+        path: "/konu/:slug",
         element: <Topic />,
       },
       {
@@ -34,7 +34,7 @@ export default createBrowserRouter([
         ),
       },
       {
-        path: "panel/konu-olustur",
+        path: "/panel/konu-olustur",
         element: (
           <AuthOnly>
             <CreateTopic />
@@ -44,11 +44,11 @@ export default createBrowserRouter([
     ],
   },
   {
-    path: "/uyelik/",
-    element: <AuthLayout />,
+    path: "",
+    element: <Layout />,
     children: [
       {
-        path: "giris",
+        path: "uyelik/giris",
         element: (
           <GuestOnly>
             <Login />
@@ -56,7 +56,7 @@ export default createBrowserRouter([
         ),
       },
       {
-        path: "kayit",
+        path: "uyelik/kayit",
         element: (
           <GuestOnly>
             <Register />
@@ -64,7 +64,7 @@ export default createBrowserRouter([
         ),
       },
       {
-        path: "email-dogrula",
+        path: "uyelik/email-dogrula",
         element: (
           <GuestOnly>
             <EmailVerification />
@@ -72,18 +72,18 @@ export default createBrowserRouter([
         ),
       },
       {
-        path: "dogrulama",
+        path: "uyelik/dogrulama",
         element: <Redirect />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
-  {
-    path: "*",
-    element: <NotFound />,
-  }
 ]);
 
-function AuthOnly({ children }: { children: JSX.Element; }) {
+function AuthOnly({ children }: { children: JSX.Element }) {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
 
   if (!isLoggedIn) {
@@ -93,7 +93,7 @@ function AuthOnly({ children }: { children: JSX.Element; }) {
   return children;
 }
 
-function GuestOnly({ children }: { children: JSX.Element; }) {
+function GuestOnly({ children }: { children: JSX.Element }) {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
 
   if (isLoggedIn) {
