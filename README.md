@@ -48,3 +48,6 @@ This platform allows software developers to share their ideas, answer questions,
 ### 📜 **Tasks**
 
 - [x] Added role-based authentication.
+- [x] Mail Verification system will be added.
+- [ ] User profile pages will be added.
+- [ ] Badge system will be added for users.
