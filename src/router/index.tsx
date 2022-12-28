@@ -1,6 +1,8 @@
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import Layout from "@/components/Layouts/MainLayout";
+import EmailVerification from "@/pages/Auth/EmailVerification";
 import Login from "@/pages/Auth/Login";
+import Redirect from "@/pages/Auth/Redirect";
 import Register from "@/pages/Auth/Register";
 import CreateTopic from "@/pages/CreateTopic";
 import Home from "@/pages/Home/";
@@ -41,7 +43,7 @@ export default createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "/uyelik/",
     element: <AuthLayout />,
     children: [
       {
@@ -60,6 +62,18 @@ export default createBrowserRouter([
           </GuestOnly>
         ),
       },
+      {
+        path: "email-dogrula",
+        element: (
+          <GuestOnly>
+            <EmailVerification />
+          </GuestOnly>
+        ),
+      },
+      {
+        path: "dogrulama",
+        element: <Redirect />,
+      },
     ],
   },
 ]);
@@ -68,7 +82,7 @@ function AuthOnly({ children }: { children: JSX.Element }) {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
 
   if (!isLoggedIn) {
-    return <Navigate to="/giris" />;
+    return <Navigate to="/uyelik/giris" />;
   }
 
   return children;
