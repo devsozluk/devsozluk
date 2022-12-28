@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { Form, Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import TopicLoader from "./TopicLoader";
+import TopicLoader from "../../components/Loading/topic";
 
 interface addEntryData {
   content: string;

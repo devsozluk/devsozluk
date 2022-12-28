@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { links } from "./Links.constant";
 
 const ProfileMenu: React.FC = () => {
-  const { isLoggedIn, user } = useAppSelector(state => state.auth);
+  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -18,8 +18,8 @@ const ProfileMenu: React.FC = () => {
     <>
       {!isLoggedIn ? (
         <>
-          <Link to="/giris">giriş</Link>
-          <Link to="/kayit">kaydol</Link>
+          <Link to="/uyelik/giris">giriş</Link>
+          <Link to="/uyelik/kayit">kaydol</Link>
         </>
       ) : (
         <Menu>
@@ -30,7 +30,7 @@ const ProfileMenu: React.FC = () => {
             </button>
           </Menu.Button>
           <Menu.Items className="absolute top-14 w-[140px] bg-gray-800 rounded font-medium text-center text-secondary py-2 flex flex-col gap-y-2">
-            {links.map(link => (
+            {links.map((link) => (
               <Menu.Item key={link.href} as={Fragment}>
                 <Link to={link.href} className="">
                   {link.label}
