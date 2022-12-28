@@ -1,8 +1,8 @@
+import TopicLoader from "@/components/Loading/sidebar";
 import altogic from "@/libs/altogic";
 import { ITopic } from "@/types";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import TopicLoader from "./TopicLoader";
 
 const Sidebar: React.FC = () => {
   const [topics, setTopics] = useState<ITopic[] | null>(null);

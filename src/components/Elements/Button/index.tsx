@@ -1,4 +1,4 @@
-import Spinner from "@/components/Elements/Spinner";
+import Spinner from "@/components/Loading";
 import React from "react";
 
 type HTMLButtonTypeAttribute = "button" | "submit" | "reset";

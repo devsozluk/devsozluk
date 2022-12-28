@@ -18,7 +18,7 @@ const Register: React.FC = () => {
   const handleSubmit = useCallback(
     async (values: RegisterFormData, formikActions: any) => {
       const { payload } = await dispatch(authRegister({ values, formikActions }));
-      if (payload) navigate("/");
+      if (payload) navigate(`/uyelik/email-dogrula`);
     },
     [dispatch]
   );
