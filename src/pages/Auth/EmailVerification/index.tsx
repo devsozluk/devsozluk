@@ -1,5 +1,5 @@
-import animationData from "@/lotties/4541-mail-verification.json";
 import { useAppSelector } from "@/utils/hooks";
+import animationData from "@/lotties/mailVerification.json";
 import Lottie from "lottie-react-web";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
