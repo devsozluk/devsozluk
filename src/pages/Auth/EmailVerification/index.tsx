@@ -1,6 +1,6 @@
-import animationData from "@/lotties/4541-mail-verification.json";
 import { useAppSelector } from "@/utils/hooks";
-import { Player } from "@lottiefiles/react-lottie-player";
+import animationData from "@/lotties/mailVerification.json";
+import Lottie from "lottie-react-web";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const EmailVerification: React.FC = () => {
   return (
     <div className="h-full flex flex-col items-center justify-center space-y-6  text-center">
       <div className="w-48 h-48">
-        <Player autoplay loop src={animationData} />
+        <Lottie options={{ animationData }} />
       </div>
       <h1 className="text-4xl font-extrabold">E-postanı kontrol et</h1>
       <div className="text-placeholder space-y-5">

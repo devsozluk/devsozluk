@@ -5,6 +5,7 @@ import Login from "@/pages/Auth/Login";
 import Redirect from "@/pages/Auth/Redirect";
 import Register from "@/pages/Auth/Register";
 import CreateTopic from "@/pages/CreateTopic";
+import NotFound from "@/pages/Errors/NotFound";
 import Home from "@/pages/Home/";
 import Profile from "@/pages/Profile";
 import Topic from "@/pages/Topic";
@@ -76,9 +77,13 @@ export default createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <NotFound />,
+  }
 ]);
 
-function AuthOnly({ children }: { children: JSX.Element }) {
+function AuthOnly({ children }: { children: JSX.Element; }) {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
 
   if (!isLoggedIn) {
@@ -88,7 +93,7 @@ function AuthOnly({ children }: { children: JSX.Element }) {
   return children;
 }
 
-function GuestOnly({ children }: { children: JSX.Element }) {
+function GuestOnly({ children }: { children: JSX.Element; }) {
   const { isLoggedIn } = useAppSelector((state) => state.auth);
 
   if (isLoggedIn) {
