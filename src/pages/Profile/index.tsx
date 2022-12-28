@@ -1,6 +1,6 @@
 import Button from "@/components/Elements/Button";
-import Spinner from "@/components/Elements/Spinner";
 import Input from "@/components/Form/Input";
+import Spinner from "@/components/Loading";
 import type { UpdateProfileData } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
 import { CreateTopicSchema } from "@/utils/schemas";
