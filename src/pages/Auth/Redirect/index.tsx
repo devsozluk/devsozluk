@@ -1,3 +1,4 @@
+import Spinner from "@/components/Loading";
 import { getAuthGrant } from "@/store/auth/authThunk";
 import { useAppDispatch } from "@/utils/hooks";
 import React, { useEffect } from "react";
@@ -11,7 +12,11 @@ const Redirect: React.FC = () => {
     dispatch(getAuthGrant()).then(() => navigate("/"));
   }, []);
 
-  return <></>;
+  return (
+    <div className="h-full flex justify-center items-center">
+      <Spinner size="md" />
+    </div>
+  );
 };
 
 export default Redirect;
