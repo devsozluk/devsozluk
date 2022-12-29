@@ -20,7 +20,7 @@ const Sidebar: React.FC = () => {
   }, [, location]);
 
   return (
-    <div className="hidden md:flex flex-col w-[250px] lg:w-[300px] space-y-3 ml-8 fixed h-screen overflow-y-auto">
+    <div className="hidden md:flex flex-col w-[250px] px-5 lg:w-[300px] space-y-3 ml-8 scrollbar scrollbar-w-2 scrollbar-thumb-primary scrollbar-track-slate-700  scrollbar-thumb-rounded  fixed h-screen overflow-y-auto hover:scrollbar-thumb-buttonPrimary rounded">
       {isLoading ? (
         <div className="space-y-5">
           <TopicLoader />
