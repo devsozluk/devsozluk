@@ -25,22 +25,6 @@ export default createBrowserRouter([
         path: "/konu/:slug",
         element: <Topic />,
       },
-      {
-        path: "/panel/profil",
-        element: (
-          <AuthOnly>
-            <Profile />
-          </AuthOnly>
-        ),
-      },
-      {
-        path: "/panel/konu-olustur",
-        element: (
-          <AuthOnly>
-            <CreateTopic />
-          </AuthOnly>
-        ),
-      },
     ],
   },
   {
@@ -74,6 +58,22 @@ export default createBrowserRouter([
       {
         path: "uyelik/dogrulama",
         element: <Redirect />,
+      },
+      {
+        path: "/panel/profil",
+        element: (
+          <AuthOnly>
+            <Profile />
+          </AuthOnly>
+        ),
+      },
+      {
+        path: "/panel/konu-olustur",
+        element: (
+          <AuthOnly>
+            <CreateTopic />
+          </AuthOnly>
+        ),
       },
       {
         path: "*",
