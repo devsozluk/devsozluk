@@ -1,13 +1,13 @@
-import Header from "@/components/Layouts/Header";
 import * as React from "react";
 import { Outlet } from "react-router-dom";
+import Header from "./Header";
 
 const AuthLayout: React.FC = () => {
   return (
     <div className="h-screen">
       <Header />
       <main className="flex justify-between py-5 h-[calc(100%-70px)] overflow-auto space-x-20">
-        <div className="h-full w-full">
+        <div className="h-full w-full px-20">
           <Outlet />
         </div>
       </main>

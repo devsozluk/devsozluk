@@ -18,7 +18,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col max-w-3xl gap-y-10 pb-10 divide-tertiary divide-opacity-50 divide-y-[1px]">
+    <div className="flex flex-col max-w-3xl  gap-y-10 pb-10 divide-tertiary divide-opacity-50 divide-y-[1px]">
       {entries?.map((entry, index) => (
         <div key={index} className="flex flex-col max-w-3xl gap-y-5 pt-3">
           <div className="flex justify-between items-center">
