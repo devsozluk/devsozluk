@@ -32,13 +32,13 @@ const Topic: React.FC = () => {
     getBySlugTopic();
   }, [, location]);
 
-  const handleAddEntry = async ({ content }: addEntryData, { setSubmitting }: any) => {
-    // setIsLoading(true);
-    // await EntryService.CreateEntry(user?._id as string, { content, topic: topic._id });
-    // const { data } = (await EntryService.FetchEntries(topic._id)) as { data: IEntry[] };
-    // setEntries(data);
-    // setIsLoading(false);
-  };
+  // const handleAddEntry = async ({ content }: any, { setSubmitting }: any) => {
+  //   // setIsLoading(true);
+  //   // await EntryService.CreateEntry(user?._id as string, { content, topic: topic._id });
+  //   // const { data } = (await EntryService.FetchEntries(topic._id)) as { data: IEntry[] };
+  //   // setEntries(data);
+  //   // setIsLoading(false);
+  // };
 
   if (isLoading) return <TopicLoader />;
 

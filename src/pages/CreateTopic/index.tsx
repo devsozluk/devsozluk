@@ -1,4 +1,5 @@
 import Button from "@/components/Elements/Button";
+import { MarkdownEditor } from "@/components/Elements/Markdown";
 import Input from "@/components/Form/Input";
 import { CreateTopicData } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
@@ -34,17 +35,13 @@ const CreateTopic: React.FC = () => {
             <Form className="space-y-8 w-[700px]">
               <div className="space-y-4">
                 <Input name="title" placeholder="Konu başlığını yazınız." label="Konu Başlığı" errorText={errors.title} />
-                <div>
-                  <label className="mb-1">Konu İçeriği</label>
-                  <MDEditor
-                    height={300}
-                    className={classNames("bg-transparent rounded-lg border-tertiary border-[1px]", { "border-red-500": errors.content })}
-                    value={values.content}
-                    onChange={(value) => setFieldValue("content", value)}
-                    preview="edit"
-                  />
-                  {errors.content && <p className="pt-1 text-sm text-red-500">{errors.content}</p>}
-                </div>
+                <MarkdownEditor
+                  name="content"
+                  errorText={errors.content}
+                  label="Konu İçeriği"
+                  value={values.content}
+                  onChange={(value) => setFieldValue("content", value)}
+                />
               </div>
               <Button loading={isSubmitting} click={handleSubmit} disabled={!isValid}>
                 Yayınla

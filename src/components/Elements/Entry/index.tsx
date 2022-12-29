@@ -1,7 +1,7 @@
-import Markdown from "@/components/Elements/Markdown";
 import type { IEntry } from "@/types";
 import React from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { MarkdownPreview } from "@/components/Elements/Markdown";
 
 interface Props {
   entry: IEntry;
@@ -10,7 +10,7 @@ interface Props {
 const Entry: React.FC<Props> = ({ entry }) => {
   return (
     <div>
-      <Markdown content={entry.content} />
+      <MarkdownPreview content={entry.content} />
       <div className="flex justify-between">
         <div className="flex gap-x-3 text-xs font-bold mt-5 h-full">
           <button className="flex items-center rounded p-1 gap-x-1 hover:bg-primary hover:text-white">
