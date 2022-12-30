@@ -14,3 +14,11 @@ export const getBySlugTopic = createAsyncThunk("topic/getBySlug", async (payload
 
   return topicData;
 });
+
+export const getPopularTopics = createAsyncThunk("topic/getPopular", async () => {
+  const endpoint = "/topics?sort=viewCount:desc";
+
+  const { data: topicData } = await altogic.endpoint.get(endpoint);
+
+  return topicData;
+});
