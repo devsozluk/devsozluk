@@ -11,7 +11,7 @@ export const authLogin = createAsyncThunk("auth/login", async (payload: { values
   if (user) {
     return { user, session };
   } else {
-    return payload.formikActions.setErrors({ responseMessage: getErrorTranslation(errors?.items[0].code) });
+    return payload.formikActions.setErrors({ responseMessage: getErrorTranslation(errors) });
   }
 });
 
@@ -22,7 +22,7 @@ export const getAuthGrant = createAsyncThunk("auth/getGrant", async (payload, { 
     toast.success("Mail adresiniz doğrulandı.");
     return { user, session };
   } else {
-    toast.error(getErrorTranslation(errors?.items[0].code));
+    toast.error(getErrorTranslation(errors));
     return rejectWithValue("Error getting auth grant");
   }
 });
@@ -33,12 +33,13 @@ export const authRegister = createAsyncThunk(
     const { user, errors } = await altogic.auth.signUpWithEmail(payload.values.email, payload.values.password, {
       name: payload.values.username,
       username: payload.values.username,
-    } as IUser);
+    } as IUser) as any;
 
     if (user) {
       return { user };
     } else {
-      return payload.formikActions.setErrors({ responseMessage: getErrorTranslation(errors?.items[0].code) });
+      payload.formikActions.setErrors({ responseMessage: getErrorTranslation(errors) });
+      rejectWithValue("Error registering");
     }
   }
 );

@@ -35,8 +35,7 @@ const authSlice = createSlice({
       state.session = action.payload.session;
     });
     builder.addCase(authRegister.fulfilled, (state, action) => {
-      state.isLoggedIn = !!action.payload.session;
-      state.user = action.payload.user;
+      state.user = action.payload?.user;
     });
     builder.addCase(authLogout.pending, (state, action) => {
       state.user = null;
