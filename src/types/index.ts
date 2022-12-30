@@ -16,6 +16,7 @@ export interface RegisterFormData {
 export interface CreateTopicData {
   title: string;
   content: string;
+  responseMessage?: string;
 }
 
 export interface UpdateProfileData {
@@ -50,8 +51,8 @@ export interface IUser extends User {
 interface Item extends ErrorEntry {
   details?: {
     field?: string;
-  }
-} 
+  };
+}
 
 export interface ResponseError extends APIError {
   items: Item[];

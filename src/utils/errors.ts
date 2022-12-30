@@ -33,10 +33,18 @@ const errors = [
     code: "not_unique",
     field: "username",
     message: "Bu kullanıcı adı zaten kullanımda. Lütfen başka bir kullanıcı adı deneyin.",
-  }
+  },
+  {
+    code: "not_unique",
+    field: "title",
+    message: "Bu konu başlığı zaten mevcut..",
+  },
 ];
 
 export default function (responseError: ResponseError | null) {
-  const error = errors.find((error) => error.code === responseError?.items[0].code) || errors.find((error) => error.field === responseError?.items[0].details?.field);
+  const error =
+    errors.find((error) => error.code === responseError?.items[0].code && error.field === responseError?.items[0].details?.field) ||
+    errors.find((error) => error.code === responseError?.items[0].code);
+
   return error?.message;
 }
