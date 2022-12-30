@@ -1,6 +1,5 @@
 import MDEditor, { ContextStore } from "@uiw/react-md-editor";
 import classNames from "classnames";
-import { ErrorMessage, Field } from "formik";
 import React, { HTMLInputTypeAttribute } from "react";
 
 interface InputProps {
@@ -16,11 +15,11 @@ interface InputProps {
 
 const Editor: React.FC<InputProps> = ({ name, type = "text", errorText, renderLeftIcon, label, placeholder, ...props }) => {
   return (
-    <div className="w-full group">
+    <div className="group w-full">
       <p className="mb-1">{label}</p>
       <MDEditor
         height={300}
-        className={classNames("bg-transparent rounded-lg border-tertiary border-[1px]", { "border-red-500": errorText })}
+        className={classNames("rounded-lg border-[1px] border-tertiary bg-transparent", { "border-red-500": errorText })}
         preview="edit"
         {...props}
       />
