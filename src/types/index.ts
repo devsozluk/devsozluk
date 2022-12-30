@@ -1,4 +1,4 @@
-import type { User } from "altogic";
+import type { APIError, ErrorEntry, User } from "altogic";
 
 export interface LoginFormData {
   email: string;
@@ -45,4 +45,14 @@ export interface IEntry {
 
 export interface IUser extends User {
   username: string;
+}
+
+interface Item extends ErrorEntry {
+  details?: {
+    field?: string;
+  }
+} 
+
+export interface ResponseError extends APIError {
+  items: Item[];
 }

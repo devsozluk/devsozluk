@@ -1,3 +1,5 @@
+import type { ResponseError } from "@/types";
+
 const errors = [
   {
     code: "email_not_verified",
@@ -27,9 +29,14 @@ const errors = [
     code: "missing_access_token",
     message: "Erişim belirteci tanımlanamıyor",
   },
+  {
+    code: "not_unique",
+    field: "username",
+    message: "Bu kullanıcı adı zaten kullanımda. Lütfen başka bir kullanıcı adı deneyin.",
+  }
 ];
 
-export default function (code?: string) {
-  const error = errors.find((error) => error.code === code);
+export default function (responseError: ResponseError | null) {
+  const error = errors.find((error) => error.code === responseError?.items[0].code) || errors.find((error) => error.field === responseError?.items[0].details?.field);
   return error?.message;
 }
