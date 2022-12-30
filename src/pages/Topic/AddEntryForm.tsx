@@ -1,9 +1,8 @@
 import { useAppSelector } from "@/utils/hooks";
 import { AddEntrySchema } from "@/utils/schemas";
-import MDEditor from "@uiw/react-md-editor";
-import classNames from "classnames";
 import { Formik } from "formik";
 import Button from "@/components/Elements/Button";
+import { MarkdownEditor } from "@/components/Elements/Markdown";
 
 interface addEntryData {
   content: string;
@@ -15,20 +14,16 @@ const AddEntryForm = () => {
 
   if (isLoggedIn)
     return (
-      <Formik validationSchema={AddEntrySchema} initialValues={initialValues}>
+      <Formik validationSchema={AddEntrySchema} initialValues={initialValues} onSubmit={() => {}}>
         {({ isSubmitting, errors, isValid, setFieldValue, values, handleSubmit }) => (
           <>
             <form className="mt-10 space-y-8 w-full">
-              <div>
-                <MDEditor
-                  height={200}
-                  className={classNames("bg-transparent rounded-lg border-tertiary border-[1px]", { "border-red-500": errors.content })}
-                  value={values.content}
-                  onChange={(value) => setFieldValue("content", value)}
-                  preview="edit"
-                />
-                {errors.content && <p className="pt-1 text-sm text-red-500">{errors.content}</p>}
-              </div>
+              <MarkdownEditor
+                name="content"
+                errorText={errors.content}
+                value={values.content}
+                onChange={(value) => setFieldValue("content", value)}
+              />
               <Button loading={isSubmitting} click={handleSubmit} disabled={!isValid}>
                 Gönder
               </Button>
@@ -37,6 +32,8 @@ const AddEntryForm = () => {
         )}
       </Formik>
     );
+
+  return <></>;
 };
 
 export default AddEntryForm;
