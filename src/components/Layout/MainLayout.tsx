@@ -7,9 +7,9 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="flex md:justify-between py-7 mt-40 md:mt-14">
+      <main className="mt-40 flex py-7 md:mt-14 md:justify-between">
         <Sidebar />
-        <div className="w-full h-full md:ml-[300px] mx-8 md:mr-8 lg:ml-[440px]">
+        <div className="mx-8 h-full w-full md:ml-[300px] md:mr-8 lg:ml-[440px]">
           <Outlet />
         </div>
       </main>

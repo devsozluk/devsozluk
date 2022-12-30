@@ -6,7 +6,7 @@ const AuthLayout: React.FC = () => {
   return (
     <div className="h-screen">
       <Header />
-      <main className="flex justify-between py-5 h-[calc(100%-70px)] overflow-auto space-x-20">
+      <main className="flex h-[calc(100%-10px)] justify-between space-x-20 overflow-auto py-5">
         <div className="h-full w-full px-20">
           <Outlet />
         </div>
