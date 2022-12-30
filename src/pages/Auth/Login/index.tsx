@@ -25,15 +25,15 @@ const Login: React.FC = () => {
   );
 
   return (
-    <div className="h-full flex flex-col items-center justify-center gap-y-10">
+    <div className="flex h-full flex-col items-center justify-center gap-y-10">
       <h1 className="text-4xl font-extrabold">Giriş</h1>
       <Formik validationSchema={LoginSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting, errors, isValid }) => (
           <>
-            <Form className="space-y-6 w-[400px]">
+            <Form className="w-[400px] space-y-6">
               {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
               <div className="space-y-6">
-                <Input name="email" type="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+                <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
                 <Input
                   name="password"
                   type="password"

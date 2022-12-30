@@ -33,7 +33,7 @@ const Register: React.FC = () => {
               {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
               <div className="space-y-6">
                 <Input name="username" errorText={errors.username} placeholder="username" renderLeftIcon={<RiUser3Line size={24} />} />
-                <Input name="email" type="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+                <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
                 <Input
                   name="password"
                   type="password"
