@@ -33,7 +33,7 @@ export const authRegister = createAsyncThunk(
     const { user, errors } = await altogic.auth.signUpWithEmail(payload.values.email, payload.values.password, {
       name: payload.values.username,
       username: payload.values.username,
-    } as IUser);
+    } as IUser) as any;
 
     if (user) {
       return { user };
