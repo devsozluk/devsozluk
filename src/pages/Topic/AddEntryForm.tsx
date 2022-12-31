@@ -1,8 +1,9 @@
+import Button from "@/components/Elements/Button";
+import { MarkdownEditor } from "@/components/Elements/Markdown";
 import { useAppSelector } from "@/utils/hooks";
 import { AddEntrySchema } from "@/utils/schemas";
 import { Formik } from "formik";
-import Button from "@/components/Elements/Button";
-import { MarkdownEditor } from "@/components/Elements/Markdown";
+import { Form } from "react-router-dom";
 
 interface addEntryData {
   content: string;
@@ -17,17 +18,17 @@ const AddEntryForm = () => {
       <Formik validationSchema={AddEntrySchema} initialValues={initialValues} onSubmit={() => {}}>
         {({ isSubmitting, errors, isValid, setFieldValue, values, handleSubmit }) => (
           <>
-            <form className="mt-10 space-y-8 w-full">
+            <Form className="mt-10 w-full space-y-8">
               <MarkdownEditor
                 name="content"
                 errorText={errors.content}
                 value={values.content}
                 onChange={(value) => setFieldValue("content", value)}
               />
-              <Button loading={isSubmitting} click={handleSubmit} disabled={!isValid}>
+              <Button className="w-full" type="button" loading={isSubmitting} onClick={() => handleSubmit()} disabled={!isValid}>
                 Gönder
               </Button>
-            </form>
+            </Form>
           </>
         )}
       </Formik>

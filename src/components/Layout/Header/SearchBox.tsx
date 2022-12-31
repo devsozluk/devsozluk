@@ -15,13 +15,13 @@ const SearchBox: React.FC = () => {
       <div className="flex items-center gap-x-2 rounded-md bg-gray-800 py-2 px-4 text-placeholder">
         <BsSearch size={20} />
         <input
-          className="w-full bg-transparent outline-none transition-all placeholder:text-placeholder group-focus:border-white"
+          className="t group-focus:border-whi w-full bg-transparent outline-none transition-all placeholder:text-placeholder"
           placeholder="Aramak istediğiniz konuyu yazın."
         />
       </div>
       <div
         tabIndex={5}
-        className="absolute top-16 z-10 hidden h-60 w-[400px] items-center justify-center rounded bg-gray-800 group-focus-within:flex"
+        className="absolute top-16 z-10 hidden h-60 w-[400px] items-center justify-center rounded bg-gray-800 transition-all group-focus-within:flex"
       >
         <Spinner variant="primary" size="md" />
       </div>

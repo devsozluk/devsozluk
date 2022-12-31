@@ -10,9 +10,7 @@ const topicSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(createEntry.fulfilled, (state, action) => {
-      console.log("hello world");
-    });
+    builder.addCase(createEntry.fulfilled, (state, action) => {});
   },
 });
 

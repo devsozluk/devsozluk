@@ -24,12 +24,12 @@ const Register: React.FC = () => {
   );
 
   return (
-    <div className="h-full flex flex-col items-center justify-center gap-y-10">
+    <div className="flex h-full flex-col items-center justify-center gap-y-10">
       <h1 className="text-4xl font-extrabold">Kaydol</h1>
       <Formik validationSchema={RegisterSchema} initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting, errors }) => (
           <>
-            <Form className="space-y-6 w-[400px]">
+            <Form className="w-[400px] space-y-6">
               {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
               <div className="space-y-6">
                 <Input name="username" errorText={errors.username} placeholder="username" renderLeftIcon={<RiUser3Line size={24} />} />
@@ -42,7 +42,7 @@ const Register: React.FC = () => {
                   renderLeftIcon={<RiLockPasswordLine size={24} />}
                 />
               </div>
-              <Button loading={isSubmitting} type="submit">
+              <Button className="w-full" loading={isSubmitting} type="submit">
                 Kaydol
               </Button>
             </Form>

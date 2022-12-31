@@ -40,7 +40,7 @@ const CreateTopic: React.FC = () => {
                   onChange={(value) => setFieldValue("content", value)}
                 />
               </div>
-              <Button loading={isSubmitting} click={handleSubmit} disabled={!isValid}>
+              <Button className="w-full" size="lg" loading={isSubmitting} onClick={() => handleSubmit()} disabled={!isValid}>
                 Yayınla
               </Button>
             </Form>

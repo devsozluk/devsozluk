@@ -24,12 +24,12 @@ const ProfileMenu: React.FC = () => {
       ) : (
         <Menu>
           <Menu.Button>
-            <button className="py-2 px-4 rounded-lg text-secondary font-bold flex items-center justify-center gap-x-2">
-              <img className="w-6 h-6 rounded" src={user?.profilePicture} />
+            <button className="flex items-center justify-center gap-x-2 rounded-lg py-2 px-4 font-bold text-secondary">
+              <img className="h-6 w-6 rounded" src={user?.profilePicture} />
               {user?.name}
             </button>
           </Menu.Button>
-          <Menu.Items className="absolute top-14 w-[140px] bg-gray-800 rounded font-medium text-center text-secondary py-2 flex flex-col gap-y-2">
+          <Menu.Items className="absolute top-14 flex w-[140px] flex-col gap-y-2 rounded bg-gray-800 py-2 text-center font-medium text-secondary">
             {links.map((link) => (
               <Menu.Item key={link.href} as={Fragment}>
                 <Link to={link.href} className="">
@@ -38,7 +38,7 @@ const ProfileMenu: React.FC = () => {
               </Menu.Item>
             ))}
             <Menu.Item>
-              <button onClick={handleLogout} className="flex items-center text-red-500 justify-center p-1 gap-x-1 rounded">
+              <button onClick={handleLogout} className="flex items-center justify-center gap-x-1 rounded p-1 text-red-500">
                 <MdLogout size={18} />
                 çıkış
               </button>

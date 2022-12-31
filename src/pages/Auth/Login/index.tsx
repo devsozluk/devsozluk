@@ -42,7 +42,7 @@ const Login: React.FC = () => {
                   renderLeftIcon={<RiLockPasswordLine size={24} />}
                 />
               </div>
-              <Button loading={isSubmitting} type="submit" disabled={!isValid}>
+              <Button className="w-full" loading={isSubmitting} type="submit" disabled={!isValid}>
                 Giriş
               </Button>
             </Form>
