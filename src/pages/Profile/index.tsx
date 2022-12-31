@@ -29,20 +29,20 @@ const Profile = () => {
   const updateProfile = () => {};
 
   return (
-    <div className="h-full w-sm flex flex-col gap-y-5 items-center justify-center">
+    <div className="w-sm flex h-full flex-col items-center justify-center gap-y-5">
       <div className="relative ">
         <input
           type="file"
           id="changePhoto"
           onChange={onSelectPhoto}
-          className={classNames("absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300", { "pointer-events-none": isLoading })}
+          className={classNames("absolute inset-0 h-full w-full cursor-pointer border-gray-300 opacity-0", { "pointer-events-none": isLoading })}
         />
-        <img className={classNames("w-60 h-60 rounded-lg", { "opacity-30 ": isLoading })} src={user?.profilePicture} alt="" />
+        <img className={classNames("h-60 w-60 rounded-lg", { "opacity-30 ": isLoading })} src={user?.profilePicture} alt="" />
         <label
           htmlFor="changePhoto"
           className={classNames(
-            "bg-tertiary cursor-pointer mx-auto w-28 h-8 absolute bottom-0 left-0 right-0 mb-2 opacity-70 rounded-md flex items-center justify-center gap-x-1 text-white font-medium text-sm hover:opacity-100 transition-all",
-            { "w-30 gap-x-0 pointer-events-none": isLoading }
+            "absolute bottom-0 left-0 right-0 mx-auto mb-2 flex h-8 w-28 cursor-pointer items-center justify-center gap-x-1 rounded-md bg-tertiary text-sm font-medium text-white opacity-70 transition-all hover:opacity-100",
+            { "w-30 pointer-events-none gap-x-0": isLoading }
           )}
         >
           {isLoading ? (
@@ -58,7 +58,7 @@ const Profile = () => {
       <Formik validationSchema={CreateTopicSchema} initialValues={initialValues} onSubmit={updateProfile}>
         {({ isSubmitting, errors, isValid, handleSubmit }) => (
           <>
-            <Form className="space-y-8 w-[700px]">
+            <Form className="w-[700px] space-y-8">
               <div className="space-y-4">
                 <Input name="name" placeholder="Değiştirmek istediğiniz kullanıcı adını yazınız." label="Kullanıcı Adı" errorText={errors.name} />
                 <Input name="password" placeholder="Değiştirmek istediğiniz şifreyi yazın." label="Şifre" errorText={errors.name} />
@@ -69,7 +69,7 @@ const Profile = () => {
                   errorText={errors.name}
                 />
               </div>
-              <Button loading={isSubmitting} click={handleSubmit} disabled={!isValid}>
+              <Button loading={isSubmitting} onClick={() => handleSubmit()} disabled={!isValid}>
                 Güncelle
               </Button>
             </Form>
