@@ -20,12 +20,20 @@ export const getBySlugTopic = createAsyncThunk("topic/getBySlug", async (payload
   return topicData;
 });
 
-export const getPopularTopics = createAsyncThunk("topic/getPopular", async () => {
-  const endpoint = "/topics?sort=viewCount:desc";
+export const getPopularTopics = createAsyncThunk("topic/getLatest", async () => {
+  const endpoint = "/topics?sort=createdAt:desc";
 
-  const { data: topicData } = await altogic.endpoint.get(endpoint);
+  const { data: topicData, errors } = await altogic.endpoint.get(endpoint);
 
   return topicData;
+});
+
+export const getLatestEntries = createAsyncThunk("topic/getLatestEntries", async () => {
+  const endpoint = "/entry?sort=createdAt:desc";
+
+  const { data: entriesData } = await altogic.endpoint.get(endpoint);
+
+  return entriesData;
 });
 
 export const createTopic = createAsyncThunk("topic/createTopic", async (payload: { values: CreateTopicData; formikActions: any }, thunkAPI) => {
@@ -47,10 +55,8 @@ export const createTopic = createAsyncThunk("topic/createTopic", async (payload:
 });
 
 const createEntry = createAsyncThunk("topic/createEntry", async (payload: any) => {
-  console.log(payload);
-
   const { data: entryData, errors } = await altogic.endpoint.post("/entry", payload);
   if (errors) return { errors };
 
-  return { test: "asd" };
+  return entryData;
 });

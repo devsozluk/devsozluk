@@ -1,10 +1,11 @@
-import { ITopic } from "@/types";
+import { IEntry, ITopic } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { createTopic, getBySlugTopic, getPopularTopics } from "./topicThunk";
+import { createTopic, getBySlugTopic, getLatestEntries, getPopularTopics } from "./topicThunk";
 
 const initialState = {
   topic: {} as ITopic,
   topics: [] as ITopic[],
+  entries: [] as IEntry[],
   isLoading: false,
   isOpenTopicModal: false,
 };
@@ -34,6 +35,13 @@ const topicSlice = createSlice({
     });
     builder.addCase(getPopularTopics.fulfilled, (state, action) => {
       state.topics = action.payload.result;
+      state.isLoading = false;
+    });
+    builder.addCase(getLatestEntries.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getLatestEntries.fulfilled, (state, action) => {
+      state.entries = action.payload.result;
       state.isLoading = false;
     });
     builder.addCase(createTopic.fulfilled, (state, action) => {
