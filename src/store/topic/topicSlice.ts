@@ -6,12 +6,17 @@ const initialState = {
   topic: {} as ITopic,
   topics: [] as ITopic[],
   isLoading: false,
+  isOpenTopicModal: false,
 };
 
 const topicSlice = createSlice({
   name: "topic",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleTopicModal(state) {
+      state.isOpenTopicModal = !state.isOpenTopicModal;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getBySlugTopic.pending, (state) => {
       state.isLoading = true;
@@ -32,9 +37,10 @@ const topicSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(createTopic.fulfilled, (state, action) => {
-      console.log(action);
+      state.isOpenTopicModal = false;
     });
   },
 });
 
 export default topicSlice.reducer;
+export const { toggleTopicModal } = topicSlice.actions;
