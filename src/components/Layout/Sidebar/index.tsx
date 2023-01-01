@@ -20,10 +20,10 @@ const Sidebar: React.FC = () => {
         topics?.map((topic, index) => (
           <Link
             key={index}
-            className="flex items-center justify-between break-words rounded px-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white"
+            className="flex items-center justify-between break-words rounded px-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
             to={"/konu/" + topic.slug}
           >
-            {topic.title}
+            <p className="truncate">{topic.title}</p>
             <span className="ml-5 text-sm">{topic?.entryCount}</span>
           </Link>
         ))
