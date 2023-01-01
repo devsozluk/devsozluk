@@ -19,7 +19,10 @@ const Editor: React.FC<InputProps> = ({ name, type = "text", errorText, renderLe
       <p className="mb-1">{label}</p>
       <MDEditor
         height={300}
-        className={classNames("rounded-lg border-[1px] border-tertiary bg-transparent", { "border-red-500": errorText })}
+        className={classNames("rounded-lg border-[1px]  bg-transparent focus-within:border-tertiary", {
+          "border-red-500": errorText,
+          "border-placeholder": !errorText,
+        })}
         preview="edit"
         {...props}
       />
