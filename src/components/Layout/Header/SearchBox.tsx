@@ -1,4 +1,3 @@
-import Spinner from "@/components/Loading";
 import React, { useEffect, useState } from "react";
 
 import { BsSearch } from "react-icons/bs";
@@ -19,12 +18,12 @@ const SearchBox: React.FC = () => {
           placeholder="Aramak istediğiniz konuyu yazın."
         />
       </div>
-      <div
+      {/* <div
         tabIndex={5}
         className="absolute top-16 z-10 hidden h-60 w-[400px] items-center justify-center rounded bg-gray-800 transition-all group-focus-within:flex"
       >
         <Spinner variant="primary" size="md" />
-      </div>
+      </div> */}
     </div>
   );
 };

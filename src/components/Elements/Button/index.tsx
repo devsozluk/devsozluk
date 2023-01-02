@@ -5,6 +5,7 @@ import React from "react";
 const variants = {
   primary: "border-buttonPrimary bg-buttonPrimary text-white hover:bg-transparent hover:text-buttonPrimary",
   danger: "border-red-500 bg-red-500 text-white hover:bg-transparent hover:text-red-500",
+  link: "border-transparent bg-transparent text-white hover:bg-buttonPrimary hover:text-white",
 };
 
 const sizes = {

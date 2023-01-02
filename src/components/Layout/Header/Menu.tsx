@@ -1,18 +1,39 @@
+import Button from "@/components/Elements/Button";
 import { authLogout } from "@/store/auth/authThunk";
+import { toggleTopicModal } from "@/store/topic/topicSlice";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
-import { Menu } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
-import { MdLogout } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { links } from "./Links.constant";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProfileMenu: React.FC = () => {
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(authLogout());
   };
+
+  const openTopicModal = async (e: any) => {
+    e.preventDefault();
+    dispatch(toggleTopicModal());
+  };
+
+  const userNavigations = [
+    {
+      name: "Hesap Ayarları",
+      onClick: () => navigate("/hesap/ayarlar"),
+    },
+    {
+      name: "Konu Oluştur",
+      onClick: openTopicModal,
+    },
+    {
+      name: "Çıkış",
+      onClick: handleLogout,
+    },
+  ];
 
   return (
     <>
@@ -29,21 +50,25 @@ const ProfileMenu: React.FC = () => {
               {user?.name}
             </button>
           </Menu.Button>
-          <Menu.Items className="absolute top-14 flex w-[140px] flex-col gap-y-2 rounded bg-gray-800 py-2 text-center font-medium text-secondary">
-            {links.map((link) => (
-              <Menu.Item key={link.href} as={Fragment}>
-                <Link to={link.href} className="">
-                  {link.label}
-                </Link>
-              </Menu.Item>
-            ))}
-            <Menu.Item>
-              <button onClick={handleLogout} className="flex items-center justify-center gap-x-1 rounded p-1 text-red-500">
-                <MdLogout size={18} />
-                çıkış
-              </button>
-            </Menu.Item>
-          </Menu.Items>
+          <Transition
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-75 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+            className="absolute top-40 flex w-[160px] rounded bg-gray-800 md:top-14 md:w-[140px]"
+          >
+            <Menu.Items className="flex w-full flex-col gap-y-2 space-y-2 rounded text-center font-medium">
+              {userNavigations.map((nav, index) => (
+                <Menu.Item key={index} as={Fragment}>
+                  <Button size="sm" variant="link" onClick={nav.onClick}>
+                    {nav.name}
+                  </Button>
+                </Menu.Item>
+              ))}
+            </Menu.Items>
+          </Transition>
         </Menu>
       )}
     </>
