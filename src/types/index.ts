@@ -33,6 +33,7 @@ export interface ITopic {
   updatedAt: Date;
   viewCount: number;
   entryCount: number;
+  isPublic: boolean;
 }
 
 export interface IEntry {
@@ -42,6 +43,7 @@ export interface IEntry {
   topic: ITopic;
   createdAt: Date;
   updatedAt: Date;
+  isPublic: boolean;
 }
 
 export interface IUser extends User {
