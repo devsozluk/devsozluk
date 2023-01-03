@@ -26,13 +26,14 @@ const CreateTopicModal = () => {
     [dispatch]
   );
 
-  const closeTopicModal = async () => {
+  const closeTopicModal = async (event: any) => {
+    event.preventDefault();
     dispatch(toggleTopicModal());
   };
 
   return (
     <Transition.Root show={isOpenTopicModal} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeTopicModal}>
+      <Dialog as="div" className="relative z-50" onClose={closeTopicModal}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -47,10 +48,10 @@ const CreateTopicModal = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-xl pt-5">
+                <Dialog.Panel className="pointer-events-auto z-50 w-screen max-w-xl pt-5">
                   <div className="flex-1">
                     {/* Header */}
-                    <div className="px-4 py-6 sm:px-6">
+                    <div className="z-50 px-4 py-6 sm:px-6">
                       <div className="flex items-start justify-between space-x-3">
                         <div className="space-y-1">
                           <Dialog.Title className="text-lg font-medium text-white">Konu Oluştur</Dialog.Title>

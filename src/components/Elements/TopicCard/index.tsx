@@ -1,12 +1,16 @@
 import newTopic from "@/assets/lotties/new-topic.json";
 import Button from "@/components/Elements/Button";
 import { toggleTopicModal } from "@/store/topic/topicSlice";
-import { useAppDispatch } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import Lottie from "lottie-react-web";
+import { toast } from "react-toastify";
 
 const TopicCard = () => {
   const dispatch = useAppDispatch();
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
+
   const openTopicModal = async () => {
+    if (!isLoggedIn) return toast.error("Konu oluşturmak için giriş yapmanız gerekmektedir.");
     dispatch(toggleTopicModal());
   };
 
