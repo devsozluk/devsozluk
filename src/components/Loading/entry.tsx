@@ -3,14 +3,14 @@ import React from "react";
 const TopicLoader: React.FC = () => {
   return (
     <div role="status" className="max-w-2xl animate-pulse">
-      <div className="mt-5 h-20 bg-gray-700 mb-2.5"></div>
-      <div className="flex items-center justify-end mt-8 space-x-1">
+      <div className="mt-5 mb-2.5 h-20 bg-gray-700"></div>
+      <div className="mt-8 flex items-center justify-end space-x-1">
         <div className="">
-          <div className="h-4 bg-gray-700 mb-2"></div>
-          <div className="w-48 h-2 bg-gray-700"></div>
+          <div className="mb-2 h-4 bg-gray-700"></div>
+          <div className="h-2 w-48 bg-gray-700"></div>
         </div>
         <svg
-          className="w-14 h-14 text-gray-200 dark:text-gray-700"
+          className="h-14 w-14 text-gray-200 dark:text-gray-700"
           aria-hidden="true"
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -22,7 +22,7 @@ const TopicLoader: React.FC = () => {
             clipRule="evenodd"
           ></path>
         </svg>
-      </div>{" "}
+      </div>
     </div>
   );
 };

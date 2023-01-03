@@ -1,35 +1,24 @@
 import Entry from "@/components/Elements/Entry";
-import altogic from "@/libs/altogic";
-import type { IEntry, ITopic } from "@/types";
-import React, { useEffect, useState } from "react";
+import StatusMessage from "@/components/Form/StatusMessage";
+import TopicLoader from "@/components/Loading/topic";
+import { getBySlugTopic } from "@/store/topic/topicThunk";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import React, { useEffect } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import TopicLoader from "@/components/Loading/topic";
 import AddEntryForm from "./AddEntryForm";
-import { toast } from "react-toastify";
 
 const Topic: React.FC = () => {
   const { slug } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>();
-  const [topic, setTopic] = useState<ITopic>({} as ITopic);
-  const [entries, setEntries] = useState<IEntry[] | null>(null);
+  const dispatch = useAppDispatch();
+  const { isLoading, topic } = useAppSelector((state) => state.topic);
 
   useEffect(() => {
-    const getBySlugTopic = async () => {
-      setIsLoading(true);
-      const { data: topicData, errors } = await altogic.endpoint.get(`/topics/bySlug?slug=${slug}`);
-      if (!topicData) {
-        toast.warning("Aradığınız konu yok veya silinmiş.");
-        return navigate("/");
-      }
-      const { data: entriesData } = await altogic.endpoint.get(`/entry?filter=this.topic._id == '${topicData._id}'`);
-      setTopic(topicData);
-      setEntries(entriesData.result);
-      setIsLoading(false);
-    };
-    getBySlugTopic();
+    dispatch(getBySlugTopic({ slug })).then((result: any) => {
+      if (result.error) navigate("/");
+    });
   }, [, location]);
 
   // const handleAddEntry = async ({ content }: any, { setSubmitting }: any) => {
@@ -43,19 +32,20 @@ const Topic: React.FC = () => {
   if (isLoading) return <TopicLoader />;
 
   return (
-    <div className="flex flex-col max-w-3xl gap-y-5 pb-10">
-      <div className="flex justify-between items-center">
-        <Link to={"/konu/" + topic.slug} className="text-primary font-bold text-lg mb-1">
+    <div className="flex max-w-3xl flex-col gap-y-5 pb-10">
+      {!topic.isPublic && <StatusMessage status="warning">Bu konu henüz onaylanmamış.</StatusMessage>}
+      <div className="flex items-center justify-between">
+        <Link to={"/konu/" + topic.slug} className="mb-1 text-lg font-bold text-primary">
           {topic.title}
         </Link>
-        <div className="flex gap-x-3 text-xs font-bold mt-2">
+        <div className="mt-2 flex gap-x-3 text-xs font-bold">
           <span className="flex items-center gap-x-1">
             <AiOutlineEye size={16} />
             {topic.viewCount}
           </span>
         </div>
       </div>
-      {entries?.map((entry, index) => (
+      {topic.entries?.map((entry, index) => (
         <Entry entry={entry} key={index} />
       ))}
       <AddEntryForm />

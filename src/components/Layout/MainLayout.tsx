@@ -1,3 +1,4 @@
+import CreateTopicModal from "@/components/CreateTopicModal";
 import Sidebar from "@/components/Layout/Sidebar";
 import * as React from "react";
 import { Outlet } from "react-router-dom";
@@ -7,9 +8,10 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="flex md:justify-between py-7 mt-40 md:mt-14">
+      <CreateTopicModal />
+      <main className="mt-40 flex py-7 md:mt-14">
         <Sidebar />
-        <div className="w-full h-full md:ml-[300px] mx-8 md:mr-8 lg:ml-[440px]">
+        <div className="mx-8 h-full w-full md:ml-[300px] md:mr-8 lg:ml-[360px]">
           <Outlet />
         </div>
       </main>

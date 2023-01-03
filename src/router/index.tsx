@@ -4,7 +4,6 @@ import EmailVerification from "@/pages/Auth/EmailVerification";
 import Login from "@/pages/Auth/Login";
 import Redirect from "@/pages/Auth/Redirect";
 import Register from "@/pages/Auth/Register";
-import CreateTopic from "@/pages/CreateTopic";
 import NotFound from "@/pages/Errors/NotFound";
 import Home from "@/pages/Home";
 import Profile from "@/pages/Profile";
@@ -60,18 +59,10 @@ export default createBrowserRouter([
         element: <Redirect />,
       },
       {
-        path: "/panel/profil",
+        path: "/hesap/ayarlar",
         element: (
           <AuthOnly>
             <Profile />
-          </AuthOnly>
-        ),
-      },
-      {
-        path: "/panel/konu-olustur",
-        element: (
-          <AuthOnly>
-            <CreateTopic />
           </AuthOnly>
         ),
       },

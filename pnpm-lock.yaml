@@ -15,6 +15,7 @@ specifiers:
   path: ^0.12.7
   postcss: ^8.4.20
   prettier: ^2.8.1
+  prettier-plugin-organize-imports: ^3.2.1
   prettier-plugin-tailwindcss: ^0.2.1
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -43,6 +44,7 @@ dependencies:
   lottie-react-web: 2.2.2_react@18.2.0
   path: 0.12.7
   prettier: 2.8.1
+  prettier-plugin-organize-imports: 3.2.1_2gbcgqmzq2pxiocqw2qs7hdeqe
   prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2045,6 +2047,23 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
+  /prettier-plugin-organize-imports/3.2.1_2gbcgqmzq2pxiocqw2qs7hdeqe:
+    resolution: {integrity: sha512-bty7C2Ecard5EOXirtzeCAqj4FU4epeuWrQt/Z+sh8UVEpBlBZ3m3KNPz2kFu7KgRTQx/C9o4/TdquPD1jOqjQ==}
+    peerDependencies:
+      '@volar/vue-language-plugin-pug': ^1.0.4
+      '@volar/vue-typescript': ^1.0.4
+      prettier: '>=2.0'
+      typescript: '>=2.9'
+    peerDependenciesMeta:
+      '@volar/vue-language-plugin-pug':
+        optional: true
+      '@volar/vue-typescript':
+        optional: true
+    dependencies:
+      prettier: 2.8.1
+      typescript: 4.9.4
+    dev: false
+
   /prettier-plugin-tailwindcss/0.2.1_prettier@2.8.1:
     resolution: {integrity: sha512-aIO8IguumORyRsmT+E7JfJ3A9FEoyhqZR7Au7TBOege3VZkgMvHJMkufeYp4zjnDK2iq4ktkvGMNOQR9T8lisQ==}
     engines: {node: '>=12.17.0'}
@@ -2613,7 +2632,6 @@ packages:
     resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /unified/10.1.2:
     resolution: {integrity: sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==}

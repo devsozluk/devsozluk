@@ -16,6 +16,7 @@ export interface RegisterFormData {
 export interface CreateTopicData {
   title: string;
   content: string;
+  responseMessage?: string;
 }
 
 export interface UpdateProfileData {
@@ -32,6 +33,7 @@ export interface ITopic {
   updatedAt: Date;
   viewCount: number;
   entryCount: number;
+  isPublic: boolean;
 }
 
 export interface IEntry {
@@ -41,6 +43,7 @@ export interface IEntry {
   topic: ITopic;
   createdAt: Date;
   updatedAt: Date;
+  isPublic: boolean;
 }
 
 export interface IUser extends User {
@@ -50,8 +53,8 @@ export interface IUser extends User {
 interface Item extends ErrorEntry {
   details?: {
     field?: string;
-  }
-} 
+  };
+}
 
 export interface ResponseError extends APIError {
   items: Item[];

@@ -1,5 +1,5 @@
+import animationData from "@/assets/lotties/mailVerification.json";
 import { useAppSelector } from "@/utils/hooks";
-import animationData from "@/lotties/mailVerification.json";
 import Lottie from "lottie-react-web";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,12 +13,12 @@ const EmailVerification: React.FC = () => {
   }, []);
 
   return (
-    <div className="h-full flex flex-col items-center justify-center space-y-6  text-center">
-      <div className="w-48 h-48">
+    <div className="flex h-full flex-col items-center justify-center space-y-6  text-center">
+      <div className="h-48 w-48">
         <Lottie options={{ animationData }} />
       </div>
       <h1 className="text-4xl font-extrabold">E-postanı kontrol et</h1>
-      <div className="text-placeholder space-y-5">
+      <div className="space-y-5 text-placeholder">
         <p>
           <span className="font-bold">{user?.email}</span> adresine bir doğrulama bağlantısı gönderdik
         </p>
