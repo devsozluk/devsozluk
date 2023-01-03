@@ -2,8 +2,12 @@ import { IEntry, ITopic } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { createTopic, getBySlugTopic, getLatestEntries, getPopularTopics } from "./topicThunk";
 
+interface ITopicState extends ITopic {
+  entries: IEntry[];
+}
+
 const initialState = {
-  topic: {} as ITopic,
+  topic: {} as ITopicState,
   topics: [] as ITopic[],
   entries: [] as IEntry[],
   isLoading: false,
