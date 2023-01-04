@@ -6,6 +6,7 @@ export const LoginSchema = Yup.object().shape({
 });
 
 export const RegisterSchema = Yup.object().shape({
+  name: Yup.string().required("Adını yaz."),
   username: Yup.string().required("Kullanıcı adınızı yazınız."),
   email: Yup.string().email("Yazdığınız bir mail adresi değil.").required("Mail adresinizi girin."),
   password: Yup.string().min(5, "Şifreniz en az 5 karekter olması gerekmektedir.").required("Şifrenizi giriniz."),

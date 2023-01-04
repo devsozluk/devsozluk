@@ -1,6 +1,7 @@
 import Button from "@/components/Elements/Button";
 import Input from "@/components/Form/Input";
 import StatusMessage from "@/components/Form/StatusMessage";
+import AuthLayout, { AuthLayoutDescription, AuthLayoutTitle } from "@/components/Layout/AuthLayout";
 import { authRegister } from "@/store/auth/authThunk";
 import { RegisterFormData } from "@/types/index";
 import { useAppDispatch } from "@/utils/hooks";
@@ -11,45 +12,49 @@ import { RiLockPasswordLine, RiMailLine, RiUser3Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
-  const initialValues: RegisterFormData = { username: "", email: "", password: "" };
+  const initialValues: RegisterFormData = { name: "", username: "", email: "", password: "" };
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     async (values: RegisterFormData, formikActions: any) => {
-      const { payload } = await dispatch(authRegister({ values, formikActions }));
-      if (payload) navigate(`/uyelik/email-dogrula`);
+      const { payload } = await dispatch<any>(authRegister({ values, formikActions }));
+      if (payload.user) navigate(`/uyelik/email-dogrula`);
     },
     [dispatch]
   );
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-y-10">
-      <h1 className="text-4xl font-extrabold">Kaydol</h1>
-      <Formik validationSchema={RegisterSchema} initialValues={initialValues} onSubmit={handleSubmit}>
+    <AuthLayout>
+      <AuthLayoutTitle>Yeni hesap oluştur</AuthLayoutTitle>
+      <AuthLayoutDescription link="/uyelik/giris" linkText="Giriş Yap">
+        Zaten hesabınız var mı?
+      </AuthLayoutDescription>
+      <Formik validationSchema={RegisterSchema} initialValues={initialValues} onSubmit={handleSubmit} validateOnChange={false} validateOnBlur={false}>
         {({ isSubmitting, errors }) => (
-          <>
-            <Form className="w-[400px] space-y-6">
-              {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
-              <div className="space-y-6">
-                <Input name="username" errorText={errors.username} placeholder="username" renderLeftIcon={<RiUser3Line size={24} />} />
-                <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
-                <Input
-                  name="password"
-                  type="password"
-                  errorText={errors.password}
-                  placeholder="Şifre"
-                  renderLeftIcon={<RiLockPasswordLine size={24} />}
-                />
+          <Form className="space-y-6">
+            {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
+            <div className="space-y-6">
+              <div className="flex space-x-6">
+                <Input name="name" errorText={errors.name} placeholder="İsim" renderLeftIcon={<RiUser3Line size={24} />} />
+                <Input name="username" errorText={errors.username} placeholder="Kullanıcı Adı" renderLeftIcon={<RiUser3Line size={24} />} />
               </div>
-              <Button className="w-full" loading={isSubmitting} type="submit">
-                Kaydol
-              </Button>
-            </Form>
-          </>
+              <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+              <Input
+                name="password"
+                type="password"
+                errorText={errors.password}
+                placeholder="Şifre"
+                renderLeftIcon={<RiLockPasswordLine size={24} />}
+              />
+            </div>
+            <Button className="w-full" loading={isSubmitting} type="submit">
+              Kaydol
+            </Button>
+          </Form>
         )}
       </Formik>
-    </div>
+    </AuthLayout>
   );
 };
 
