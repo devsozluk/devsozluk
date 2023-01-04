@@ -24,6 +24,8 @@ const Register: React.FC = () => {
     [dispatch]
   );
 
+  const checkUsername = (username: string) => username.replace(/[^a-zA-Z0-9]/g, "").replace(/([A-Z])/g, (match) => match.toLowerCase());
+
   return (
     <AuthLayout>
       <AuthLayoutTitle>Yeni hesap oluştur</AuthLayoutTitle>
@@ -31,20 +33,27 @@ const Register: React.FC = () => {
         Zaten hesabınız var mı?
       </AuthLayoutDescription>
       <Formik validationSchema={RegisterSchema} initialValues={initialValues} onSubmit={handleSubmit} validateOnChange={false} validateOnBlur={false}>
-        {({ isSubmitting, errors }) => (
+        {({ isSubmitting, errors, setFieldValue }) => (
           <Form className="space-y-6">
             {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
             <div className="space-y-6">
               <div className="flex space-x-6">
                 <Input name="name" errorText={errors.name} placeholder="İsim" renderLeftIcon={<RiUser3Line size={24} />} />
-                <Input name="username" errorText={errors.username} placeholder="Kullanıcı Adı" renderLeftIcon={<RiUser3Line size={24} />} />
+                <Input
+                  name="username"
+                  errorText={errors.username}
+                  placeholder="Kullanıcı Adı"
+                  onChange={(event) => setFieldValue("username", checkUsername(event.target.value))}
+                  renderLeftIcon={<RiUser3Line size={24} />}
+                />
               </div>
-              <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+              <Input name="email" autoComplete="on" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
               <Input
                 name="password"
                 type="password"
                 errorText={errors.password}
                 placeholder="Şifre"
+                autoComplete="new-password"
                 renderLeftIcon={<RiLockPasswordLine size={24} />}
               />
             </div>

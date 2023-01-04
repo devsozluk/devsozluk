@@ -32,15 +32,16 @@ const Login: React.FC = () => {
         Hesabınız yok mu?
       </AuthLayoutDescription>
       <Formik validationSchema={LoginSchema} initialValues={initialValues} onSubmit={handleSubmit} validateOnChange={false} validateOnBlur={false}>
-        {({ isSubmitting, errors, isValid }) => (
+        {({ isSubmitting, errors }) => (
           <Form className="space-y-6">
             {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
-            <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+            <Input name="email" autoComplete="off" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
             <Input
               name="password"
               type="password"
               errorText={errors.password}
               placeholder="Şifre"
+              autoComplete="current-password"
               renderLeftIcon={<RiLockPasswordLine size={24} />}
             />
             <Button className="w-full" loading={isSubmitting} type="submit">
