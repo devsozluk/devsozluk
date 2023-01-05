@@ -41,6 +41,10 @@ const errors = [
     code: "oauth2Error",
     message: "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
   },
+  {
+    code: "already_oauth2_email",
+    message: "Bu e-posta adresi ile zaten kayıt olunmuş. Lütfen giriş yapın.",
+  },
 ];
 
 export default function (code: string | undefined, field?: string | undefined) {

@@ -17,11 +17,12 @@ export const authLogin = createAsyncThunk("auth/login", async (payload: { values
 
 export const getAuthGrant = createAsyncThunk("auth/getGrant", async (payload, { rejectWithValue }): Promise<any> => {
   const params = new URLSearchParams(window.location.search);
+
   const error = params.get("error");
   const action = params.get("action");
 
   if (error) {
-    toast.error(getErrorTranslation("oauth2Error"));
+    toast.error(getErrorTranslation("already_oauth2_email"));
     return rejectWithValue("Error getting auth grant");
   }
 

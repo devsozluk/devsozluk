@@ -15,7 +15,7 @@ const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <p className="text-placeholder">veya</p>
         <button
           onClick={githubLogin}
-          className="text-md flex h-14 w-full items-center justify-center rounded bg-[#21262d] font-medium text-[#c9d1d9] shadow-lg"
+          className="text-md flex h-14 w-full items-center justify-center rounded bg-[#21262d] font-medium text-[#c9d1d9] shadow-lg transition duration-200 ease-in-out focus:outline-none   hover:shadow-2xl"
         >
           <AiFillGithub size={24} color="#c9d1d9" className="mr-2" />
           Github ile giriş yap
