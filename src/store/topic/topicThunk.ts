@@ -1,8 +1,7 @@
 import altogic from "@/libs/altogic";
-import { CreateTopicData, ITopic } from "@/types";
+import { CreateTopicData, ITopic, ResponseError } from "@/types";
 import getErrorTranslation from "@/utils/errors";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { APIError } from "altogic";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import { RootState } from "..";
@@ -44,7 +43,7 @@ export const createTopic = createAsyncThunk("topic/createTopic", async (payload:
     ...payload.values,
     slug: slugify(payload.values.title),
     author: auth.user?._id,
-  })) as { data: ITopic; errors: APIError | null };
+  })) as { data: ITopic; errors: ResponseError | null };
 
   if (topic) {
     const entry = await thunkAPI.dispatch(createEntry({ ...payload.values, topic: topic._id, author: auth.user?._id }));
@@ -52,7 +51,7 @@ export const createTopic = createAsyncThunk("topic/createTopic", async (payload:
     thunkAPI.dispatch(getPopularTopics());
     return { topic };
   } else {
-    payload.formikActions.setErrors({ responseMessage: getErrorTranslation(errors) });
+    payload.formikActions.setErrors({ responseMessage: getErrorTranslation(errors?.items[0].code, errors?.items[0].details?.field) });
     thunkAPI.rejectWithValue("Error creating topic");
   }
 });

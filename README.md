@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://www.devsozluk.net">
     <img
-      src="./logo.png"
+      src="https://github.com/devsozluk/website/blob/main/src/assets/images/logo.png?raw=true"
       alt="DevSozluk Logo"
       height="64"
     />
@@ -17,13 +17,40 @@
 <hr/>
 </div>
 
-### 📔 **About**
+## **About**
 
-**DevSözlük**, is a platform created for software developers to ask, answer, share knowledge,
-and communicate with each other. In this project, I have created a structure where other software developers can also contribute.
-This platform allows software developers to share their ideas, answer questions, and help each other.
+**DevSözlük**, The project I have created is a platform that aims to facilitate communication, knowledge sharing, and question and answer opportunities among software developers. In this project, I have built a structure that allows other software developers to contribute as well. This platform enables software developers to share their ideas, answer questions, and help each other.
 
-### 💻 **Tech Stack**
+## **Folder Structure**
+
+```sh
+├── devsozluk/
+    └── src/ # Source files
+        ├── assets/ # Static files
+        ├── components/ # React components
+        │   ├── Elements/ # Basic components
+        │   ├── Form/ # Form components
+        │   ├── Layout/ # Layout components
+        │   └── Loading/ # Loading components
+        ├── libs/ # Libraries
+        ├── pages/ # Pages
+        │   ├── auth/ # Authentication pages
+        │   │   ├── Login # Login page
+        │   │   ├── Register # Register page
+        │   │   ├── Redirect # Redirect page
+        │   │   └── EmailVerification # Email verification page
+        │   ├── errors/ # Error pages
+        │   │   └── NotFound # Not found page
+        │   ├── Home # Home page
+        │   ├── Profile # Profile page
+        │   └── Topic # Topic page
+        ├── router/ # React router
+        ├── store/ # Redux store
+        ├── types/ # Typescript types
+        └── utils/ # Utilities
+```
+
+## **Tech Stack**
 
  - [`Vite`](https://vitejs.dev/)
  - [`React`](https://reactjs.org/)
@@ -33,7 +60,8 @@ This platform allows software developers to share their ideas, answer questions,
  - [`TailwindCSS`](https://tailwindcss.com/)
  - [`Altogic`](https://www.altogic.com/)
 
-### 📜 **Tasks**
+
+## **Tasks**
 
 - [x] Added role-based authentication.
 - [x] Mail Verification system will be added.

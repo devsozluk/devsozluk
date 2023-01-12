@@ -1,6 +1,7 @@
 import Button from "@/components/Elements/Button";
 import Input from "@/components/Form/Input";
 import StatusMessage from "@/components/Form/StatusMessage";
+import AuthLayout, { AuthLayoutDescription, AuthLayoutTitle } from "@/components/Layout/AuthLayout";
 import { authLogin } from "@/store/auth/authThunk";
 import { LoginFormData } from "@/types/index";
 import { useAppDispatch } from "@/utils/hooks";
@@ -25,31 +26,31 @@ const Login: React.FC = () => {
   );
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-y-10">
-      <h1 className="text-4xl font-extrabold">Giriş</h1>
-      <Formik validationSchema={LoginSchema} initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ isSubmitting, errors, isValid }) => (
-          <>
-            <Form className="w-[400px] space-y-6">
-              {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
-              <div className="space-y-6">
-                <Input name="email" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
-                <Input
-                  name="password"
-                  type="password"
-                  errorText={errors.password}
-                  placeholder="Şifre"
-                  renderLeftIcon={<RiLockPasswordLine size={24} />}
-                />
-              </div>
-              <Button className="w-full" loading={isSubmitting} type="submit" disabled={!isValid}>
-                Giriş
-              </Button>
-            </Form>
-          </>
+    <AuthLayout>
+      <AuthLayoutTitle>Giriş yap</AuthLayoutTitle>
+      <AuthLayoutDescription link="/uyelik/kayit" linkText="Kayıt Ol">
+        Hesabınız yok mu?
+      </AuthLayoutDescription>
+      <Formik validationSchema={LoginSchema} initialValues={initialValues} onSubmit={handleSubmit} validateOnChange={false} validateOnBlur={false}>
+        {({ isSubmitting, errors }) => (
+          <Form className="space-y-6">
+            {errors.responseMessage && <StatusMessage>{errors.responseMessage}</StatusMessage>}
+            <Input name="email" autoComplete="off" errorText={errors.email} placeholder="Email" renderLeftIcon={<RiMailLine size={24} />} />
+            <Input
+              name="password"
+              type="password"
+              errorText={errors.password}
+              placeholder="Şifre"
+              autoComplete="current-password"
+              renderLeftIcon={<RiLockPasswordLine size={24} />}
+            />
+            <Button className="w-full" loading={isSubmitting} type="submit">
+              Giriş
+            </Button>
+          </Form>
         )}
       </Formik>
-    </div>
+    </AuthLayout>
   );
 };
 
