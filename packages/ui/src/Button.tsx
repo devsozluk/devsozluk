@@ -28,7 +28,7 @@ const buttonStyles = cva(
 );
 
 type ButtonBaseProps = VariantProps<typeof buttonStyles>;
-interface Props
+export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     ButtonBaseProps {
   renderLeftIcon?: React.ReactNode;
@@ -36,7 +36,7 @@ interface Props
   loading?: boolean;
 }
 
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<ButtonProps> = ({
   loading,
   children,
   renderLeftIcon,
