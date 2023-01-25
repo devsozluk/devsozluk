@@ -1,0 +1,54 @@
+import React from "react";
+import { cva, VariantProps } from "class-variance-authority";
+
+const buttonStyles = cva(
+  [
+    "flex items-center justify-center rounded border-2 text-lg font-medium transition-all disabled:opacity-50",
+  ],
+  {
+    variants: {
+      variant: {
+        primary:
+          "border-buttonPrimary bg-buttonPrimary text-white hover:bg-transparent hover:text-buttonPrimary",
+        danger:
+          "border-red-500 bg-red-500 text-white hover:bg-transparent hover:text-red-500",
+        link: "border-transparent bg-transparent text-white hover:bg-buttonPrimary hover:text-white",
+      },
+      size: {
+        sm: "py-2 px-4 text-sm",
+        md: "py-2 px-6 text-md",
+        lg: "py-3 px-8 text-lg",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "lg",
+    },
+  }
+);
+
+type ButtonBaseProps = VariantProps<typeof buttonStyles>;
+interface Props
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    ButtonBaseProps {
+  renderLeftIcon?: React.ReactNode;
+  renderRigthIcon?: React.ReactNode;
+  loading?: boolean;
+}
+
+export const Button: React.FC<Props> = ({
+  loading,
+  children,
+  renderLeftIcon,
+  renderRigthIcon,
+  variant,
+  size,
+  className,
+  ...props
+}) => {
+  return (
+    <button className={buttonStyles({ className, variant, size })} {...props}>
+      {children}
+    </button>
+  );
+};
