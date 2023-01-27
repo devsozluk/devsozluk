@@ -1,5 +1,6 @@
 import React from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import { Spinner } from "../Spinner/Spinner";
 
 const buttonStyles = cva(
   [
@@ -39,8 +40,6 @@ export interface ButtonProps
 export const Button: React.FC<ButtonProps> = ({
   loading,
   children,
-  renderLeftIcon,
-  renderRigthIcon,
   variant,
   size,
   className,
@@ -48,7 +47,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button className={buttonStyles({ className, variant, size })} {...props}>
-      {children}
+      {loading ? <Spinner /> : children}
     </button>
   );
 };
