@@ -5,7 +5,7 @@ import { ComponentMeta } from "@storybook/react";
 import { Spinner, SpinnerProps } from "@devsozluk/ui/src";
 
 export default {
-  title: "Spinner",
+  title: "components/Spinner",
   component: Spinner,
   argTypes: {
     variant: {

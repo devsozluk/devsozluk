@@ -5,7 +5,7 @@ import { ComponentMeta } from "@storybook/react";
 import { Button, ButtonProps } from "@devsozluk/ui/src";
 
 export default {
-  title: "Button",
+  title: "components/Button",
   component: Button,
   argTypes: {
     disabled: {
@@ -41,14 +41,14 @@ Primary.args = {
   variant: "primary",
 };
 
+export const Outline = Template.bind({});
+
+Outline.args = {
+  variant: "outline",
+};
+
 export const Danger = Template.bind({});
 
 Danger.args = {
   variant: "danger",
-};
-
-export const Link = Template.bind({});
-
-Link.args = {
-  variant: "link",
 };
