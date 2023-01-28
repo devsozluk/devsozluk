@@ -11,9 +11,10 @@ const buttonStyles = cva(
       variant: {
         primary:
           "border-buttonPrimary bg-buttonPrimary text-white hover:bg-transparent hover:text-buttonPrimary",
+        outline:
+          "border-buttonPrimary bg-transparent text-buttonPrimary hover:bg-buttonPrimary hover:text-white",
         danger:
           "border-red-500 bg-red-500 text-white hover:bg-transparent hover:text-red-500",
-        link: "border-transparent bg-transparent text-white hover:bg-buttonPrimary hover:text-white",
       },
       size: {
         sm: "py-2 px-4 text-sm",
