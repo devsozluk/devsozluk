@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "../../packages/ui/src/**/*.tsx",
+    "../../apps/web/src/**/*.{tsx,ts}",
   ],
   theme: {
     extend: {
