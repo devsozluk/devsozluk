@@ -4,10 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "start-storybook -p 6006",
-    "build": "build-storybook --docs",
+    "build": "build-storybook",
     "preview-storybook": "serve storybook-static",
-    "watch:css": "npx tailwindcss -i ./styles/tailwind.css -o ./public/tailwind.css --watch",
-    "build:css": "npx tailwindcss -i ./styles/tailwind.css -o ./public/htailwind.css",
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
