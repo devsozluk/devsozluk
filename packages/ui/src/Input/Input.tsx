@@ -26,7 +26,7 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="group w-full">
-      <p className="mb-1 text-white">{label}</p>
+      <p className="block mb-2 text-sm font-medium text-white">{label}</p>
       <div
         className={errorMessage ? cx(baseClasses, errorClasses) : baseClasses}
       >

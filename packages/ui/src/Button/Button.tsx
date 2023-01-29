@@ -4,15 +4,15 @@ import { Spinner } from "../Spinner/Spinner";
 
 const buttonStyles = cva(
   [
-    "flex items-center justify-center rounded border-2 text-lg font-medium transition-all disabled:opacity-50",
+    "flex items-center justify-center gap-x-2 rounded border-2 text-lg font-medium transition-all disabled:opacity-50",
   ],
   {
     variants: {
       variant: {
         primary:
-          "border-buttonPrimary bg-buttonPrimary text-white hover:bg-transparent hover:text-buttonPrimary",
+          "border-blue-700 bg-blue-700 text-white hover:bg-blue-800 hover:border-blue-800",
         outline:
-          "border-buttonPrimary bg-transparent text-buttonPrimary hover:bg-buttonPrimary hover:text-white",
+          "border-blue-700 bg-transparent text-blue-700 hover:bg-blue-700 hover:text-white",
         danger:
           "border-red-500 bg-red-500 text-white hover:bg-transparent hover:text-red-500",
       },
@@ -44,11 +44,17 @@ export const Button: React.FC<ButtonProps> = ({
   variant,
   size,
   className,
+  disabled,
   ...props
 }) => {
   return (
-    <button className={buttonStyles({ className, variant, size })} {...props}>
-      {loading ? <Spinner /> : children}
+    <button
+      disabled={disabled || loading}
+      className={buttonStyles({ className, variant, size })}
+      {...props}
+    >
+      {loading && <Spinner variant="light" size="sm" />}
+      {children}
     </button>
   );
 };
