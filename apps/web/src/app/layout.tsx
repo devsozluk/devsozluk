@@ -1,6 +1,7 @@
 import Header from "@/components/Layout/Header";
 import Sidebar from "@/components/Layout/Sidebar/Sidebar";
 import "@/style.css";
+import { Fragment } from "react";
 import Head from "./head";
 
 export default function RootLayout({
@@ -9,15 +10,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <Fragment>
       <Head />
       <Header />
-      <main className="mt-40 flex py-7 md:mt-14">
+      <main className="mt-40 flex py-10 md:mt-14">
         <Sidebar />
         <div className="mx-8 h-full w-full md:ml-[300px] md:mr-8 lg:ml-[360px]">
           {children}
         </div>
       </main>
-    </>
+    </Fragment>
   );
 }

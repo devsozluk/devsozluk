@@ -22,14 +22,18 @@ export const Input: React.FC<InputProps> = ({
   renderLeftIcon,
   label,
   errorMessage,
+  className,
   ...props
 }) => {
+  const InputClasses = cx(
+    className,
+    errorMessage ? cx(baseClasses, errorClasses) : baseClasses
+  );
+
   return (
     <div className="group w-full">
       <p className="block mb-2 text-sm font-medium text-white">{label}</p>
-      <div
-        className={errorMessage ? cx(baseClasses, errorClasses) : baseClasses}
-      >
+      <div className={InputClasses}>
         {renderLeftIcon}
         <input
           className="w-full bg-transparent text-placeholder outline-none placeholder:text-placeholder"

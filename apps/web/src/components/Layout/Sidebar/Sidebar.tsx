@@ -1,10 +1,11 @@
 import { getPopularTopics } from "@/store/topic/topicThunk";
+import { ITopic } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import TopicLoader from "./Sidebar.loader";
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   const dispatch = useAppDispatch();
   const { isLoading, topics } = useAppSelector((state) => state.topic);
 
@@ -17,19 +18,25 @@ const Sidebar: React.FC = () => {
       {isLoading ? (
         <TopicLoader />
       ) : (
-        topics?.map((topic, index) => (
-          <Link
-            key={index}
-            className="flex items-center justify-between break-words rounded px-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
-            href={"/konu/" + topic.slug}
-          >
-            <p className="truncate">{topic.title}</p>
-            <span className="ml-5 text-sm">{topic?.entryCount}</span>
-          </Link>
-        ))
+        topics?.map((topic) => <Sidebar.Item topic={topic} />)
       )}
     </div>
   );
 };
+
+const SiderbarItem = ({ topic }: { topic: ITopic }) => {
+  return (
+    <Link
+      key={topic._id}
+      className="flex items-center justify-between break-words rounded px-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
+      href={"/konu/" + topic.slug}
+    >
+      <p className="truncate">{topic.title}</p>
+      <span className="ml-5 text-sm">{topic?.entryCount}</span>
+    </Link>
+  );
+};
+
+Sidebar.Item = SiderbarItem;
 
 export default Sidebar;

@@ -22,7 +22,7 @@ export const getBySlugTopic = createAsyncThunk("topic/getBySlug", async (payload
 });
 
 export const getPopularTopics = createAsyncThunk("topic/getLatest", async () => {
-  const endpoint = "/topics?filter=this.isPublic==true&sort=createdAt:desc";
+  const endpoint = "/topics?sort=createdAt:desc";
 
   const { data: topicData } = await altogic.endpoint.get(endpoint);
 
