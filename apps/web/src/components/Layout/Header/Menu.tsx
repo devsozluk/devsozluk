@@ -6,10 +6,9 @@ import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import Link from "next/link";
 
-const ProfileMenu: React.FC = () => {
+const ProfileMenu = () => {
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(authLogout());
@@ -74,5 +73,7 @@ const ProfileMenu: React.FC = () => {
     </>
   );
 };
+
+ProfileMenu.Navigations = () => {};
 
 export default ProfileMenu;
