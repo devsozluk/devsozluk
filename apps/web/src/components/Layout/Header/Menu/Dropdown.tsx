@@ -1,22 +1,9 @@
 import { Button } from "@devsozluk/ui";
-import { authLogout } from "@/store/auth/authThunk";
-import { toggleTopicModal } from "@/store/topic/topicSlice";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 
 const Dropdown = () => {
-  const { user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
-
-  const handleLogout = () => {
-    dispatch(authLogout());
-  };
-
-  const openTopicModal = async (e: any) => {
-    e.preventDefault();
-    dispatch(toggleTopicModal());
-  };
+  const handleLogout = () => {};
 
   const userNavigations = [
     {
@@ -24,7 +11,6 @@ const Dropdown = () => {
     },
     {
       name: "Konu Oluştur",
-      onClick: openTopicModal,
     },
     {
       name: "Çıkış",
@@ -36,7 +22,7 @@ const Dropdown = () => {
     <Menu>
       <Menu.Button>
         <button className="flex items-center justify-center gap-x-2 rounded-lg py-2 px-4 font-bold text-secondary">
-          {user?.name}
+          ali osman
         </button>
       </Menu.Button>
       <Transition
