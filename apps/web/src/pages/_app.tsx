@@ -1,22 +1,28 @@
 import RootLayout from "@/app/layout";
+import MainLayout from "@/components/Layout/MainLayout";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { Spinner } from "@devsozluk/ui";
+import { Fragment } from "react";
+import type { Page } from "../types/page";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
+type Props = AppProps & {
+  Component: Page;
+};
+const MyApp = ({ Component, pageProps }: Props) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+  const Layout = Component.layout ?? Fragment;
+
+  if (Component.layout)
+    return (
+      <RootLayout>
+        <Layout>{getLayout(<Component {...pageProps} />)}</Layout>
+      </RootLayout>
+    );
 
   return (
-    <div className="h-screen bg-background text-secondary font-poppins">
-      {loading ? (
-        <Spinner />
-      ) : (
-        <RootLayout>
-          <Component {...pageProps} />
-        </RootLayout>
-      )}
-    </div>
+    <MainLayout>
+      <Component {...pageProps} />
+    </MainLayout>
   );
-}
+};
+
+export default MyApp;

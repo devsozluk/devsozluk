@@ -10,9 +10,9 @@ const Menu = () => {
 };
 
 const Navigations = () => (
-  <div>
-    <Link href="/uyelik/giris">giriş</Link>
-    <Link href="/uyelik/kayit">kaydol</Link>
+  <div className="flex space-x-2 ">
+    <Link href="/auth/login">giriş</Link>
+    <Link href="/auth/register">kaydol</Link>
   </div>
 );
 

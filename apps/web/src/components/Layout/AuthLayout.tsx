@@ -1,5 +1,3 @@
-/* eslint-disable react/display-name */
-import altogic from "@/libs/altogic";
 import Link from "next/link";
 import * as React from "react";
 import { AiFillGithub } from "react-icons/ai";
@@ -15,9 +13,7 @@ interface AuthLayoutDescription {
 }
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
-  const githubLogin = () => {
-    altogic.auth.signInWithProvider("github");
-  };
+  const githubLogin = () => {};
 
   return (
     <div className="flex h-full flex-col items-center md:justify-center  ">
