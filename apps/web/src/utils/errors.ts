@@ -1,15 +1,18 @@
 const errors = [
   {
     code: "email_not_verified",
-    message: "E-posta adresiniz doğrulanmamış. Lütfen e-posta adresinizi doğrulayın.",
+    message:
+      "E-posta adresiniz doğrulanmamış. Lütfen e-posta adresinizi doğrulayın.",
   },
   {
-    code: "invalid_credentials",
-    message: "E-posta adresiniz veya şifreniz hatalı. Lütfen bilgilerinizi kontrol edin.",
+    code: "invalid_grant",
+    message:
+      "E-posta adresiniz veya şifreniz hatalı. Lütfen bilgilerinizi kontrol edin.",
   },
   {
     code: "email_not_unique",
-    message: "Bu e-posta adresi zaten kullanımda. Lütfen başka bir e-posta adresi deneyin.",
+    message:
+      "Bu e-posta adresi zaten kullanımda. Lütfen başka bir e-posta adresi deneyin.",
   },
   {
     code: "missing_required_field_value",
@@ -47,8 +50,13 @@ const errors = [
   },
 ];
 
-export default function (code: string | undefined, field?: string | undefined) {
-  const error = errors.find((error) => error.code === code && error.field === field) || errors.find((error) => error.code === code);
+export default function getErrorTranslation(
+  code: string | undefined,
+  field?: string | undefined
+): string {
+  const error =
+    errors.find((error) => error.code === code && error.field === field) ||
+    errors.find((error) => error.code === code);
 
-  return error?.message;
+  return error?.message as string;
 }

@@ -2,7 +2,7 @@ import AuthLayout from "@/components/Layout/AuthLayout";
 import OnlyGuard from "@/middlewares/OnlyGuard";
 import { authLogin } from "@/store/auth/authThunk";
 import { LoginFormData } from "@/types";
-import { useAppDispatch } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { LoginSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
@@ -10,7 +10,11 @@ import { useCallback } from "react";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const initialValues: LoginFormData = { email: "", password: "" };
+  const { isLoading } = useAppSelector((state) => state.auth);
+  const initialValues: LoginFormData = {
+    email: "deneme@gmail.com",
+    password: "deneme",
+  };
 
   const handleSubmit = useCallback(
     async (values: LoginFormData, formikActions: any) => {
@@ -27,7 +31,7 @@ const Login = () => {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ isSubmitting, errors, setFieldValue }) => (
+      {({ errors, setFieldValue }) => (
         <Form className="space-y-6">
           <Input
             name="email"
@@ -44,7 +48,7 @@ const Login = () => {
             placeholder="Şifre"
             autoComplete="current-password"
           />
-          <Button className="w-full" loading={isSubmitting} type="submit">
+          <Button className="w-full" loading={isLoading} type="submit">
             Giriş
           </Button>
         </Form>

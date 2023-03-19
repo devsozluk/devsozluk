@@ -39,8 +39,6 @@ export const Spinner = ({
     }`
   );
 
-  console.log(classes);
-
   return (
     <div className={classes}>
       <svg

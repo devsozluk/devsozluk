@@ -1,7 +1,8 @@
 import AuthLayout from "@/components/Layout/AuthLayout";
+import OnlyGuard from "@/middlewares/OnlyGuard";
 import { authLogin, authRegister } from "@/store/auth/authThunk";
 import { LoginFormData, RegisterFormData } from "@/types";
-import { useAppDispatch } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { RegisterSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
@@ -9,6 +10,7 @@ import { useCallback } from "react";
 
 const Register = () => {
   const dispatch = useAppDispatch();
+  const { isLoading } = useAppSelector((state) => state.auth);
   const initialValues: RegisterFormData = {
     name: "",
     username: "",
@@ -31,7 +33,7 @@ const Register = () => {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ isSubmitting, errors, setFieldValue }) => (
+      {({ errors, setFieldValue }) => (
         <Form className="space-y-6">
           <div className="space-y-6">
             <div className="flex space-x-6">
@@ -68,7 +70,7 @@ const Register = () => {
               autoComplete="new-password"
             />
           </div>
-          <Button className="w-full" loading={isSubmitting} type="submit">
+          <Button className="w-full" loading={isLoading} type="submit">
             Kaydol
           </Button>
         </Form>
@@ -79,13 +81,15 @@ const Register = () => {
 
 Register.getLayout = (page: React.ReactElement) => {
   return (
-    <AuthLayout>
-      <AuthLayout.Title>Yeni hesap oluştur</AuthLayout.Title>
-      <AuthLayout.Description link="/auth/login" linkText="Giriş Yap">
-        Zaten hesabınız var mı?
-      </AuthLayout.Description>
-      {page}
-    </AuthLayout>
+    <OnlyGuard>
+      <AuthLayout>
+        <AuthLayout.Title>Yeni hesap oluştur</AuthLayout.Title>
+        <AuthLayout.Description link="/auth/login" linkText="Giriş Yap">
+          Zaten hesabınız var mı?
+        </AuthLayout.Description>
+        {page}
+      </AuthLayout>
+    </OnlyGuard>
   );
 };
 
