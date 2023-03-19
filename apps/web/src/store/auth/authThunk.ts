@@ -1,3 +1,5 @@
+import Toast from "react-hot-toast";
+import getErrorTranslation from "@/utils/errors";
 import supabase from "@/libs/supabase";
 import { LoginFormData, RegisterFormData } from "@/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -13,22 +15,18 @@ export const authLogin = createAsyncThunk(
       email,
       password,
     });
-    payload.formikActions.setSubmitting(false);
-    console.log(data);
 
-    if (data) {
-      return { data };
+    if (data.user) {
+      return data;
     } else {
+      Toast.error(getErrorTranslation("invalid_grant"));
     }
   }
 );
 
 export const authRegister = createAsyncThunk(
   "auth/register",
-  async (
-    payload: { values: RegisterFormData; formikActions: any },
-    { rejectWithValue }
-  ) => {
+  async (payload: { values: RegisterFormData; formikActions: any }) => {
     const { email, password, name, username } = payload.values;
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -40,11 +38,11 @@ export const authRegister = createAsyncThunk(
         },
       },
     });
-    payload.formikActions.setSubmitting(false);
 
-    if (data) {
-      return { data };
+    if (data.user) {
+      return data;
     } else {
+      Toast.error(error?.message as string);
     }
   }
 );
