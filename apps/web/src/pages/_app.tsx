@@ -1,28 +1,32 @@
 import RootLayout from "@/app/layout";
+import store from "@/app/store";
+import EmptyLayout from "@/components/Layout/EmptyLayout";
 import MainLayout from "@/components/Layout/MainLayout";
 import type { AppProps } from "next/app";
-import { Fragment } from "react";
+import { Provider } from "react-redux";
 import type { Page } from "../types/page";
 
 type Props = AppProps & {
   Component: Page;
 };
-const MyApp = ({ Component, pageProps }: Props) => {
-  const getLayout = Component.getLayout ?? ((page) => page);
-  const Layout = Component.layout ?? Fragment;
 
-  if (Component.layout)
-    return (
-      <RootLayout>
-        <Layout>{getLayout(<Component {...pageProps} />)}</Layout>
-      </RootLayout>
-    );
+const getRootLayout = (Component: any) => {
+  return Component.getLayout ? EmptyLayout : MainLayout;
+};
+
+const App = ({ Component, pageProps }: Props) => {
+  const getLayout = Component.getLayout ?? ((page: any) => page);
+  const ComponentLayout = getRootLayout(Component);
 
   return (
-    <MainLayout>
-      <Component {...pageProps} />
-    </MainLayout>
+    <Provider store={store}>
+      <RootLayout>
+        <ComponentLayout>
+          {getLayout(<Component {...pageProps} />)}
+        </ComponentLayout>
+      </RootLayout>
+    </Provider>
   );
 };
 
-export default MyApp;
+export default App;

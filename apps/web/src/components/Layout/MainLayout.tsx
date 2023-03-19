@@ -1,12 +1,7 @@
 import Header from "@/components/Layout/Header";
-import "@/style.css";
-import { Fragment } from "react";
+import { Fragment, PropsWithChildren } from "react";
 
-export default function MainLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <Fragment>
       <div className="h-screen bg-background text-secondary font-poppins">

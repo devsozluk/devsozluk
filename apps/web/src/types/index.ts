@@ -1,5 +1,3 @@
-import type { APIError, ErrorEntry, User } from "altogic";
-
 export interface LoginFormData {
   email: string;
   password: string;
@@ -31,7 +29,6 @@ export interface ITopic {
   title: string;
   slug: string;
   content: string;
-  author?: User;
   createdAt: Date;
   updatedAt: Date;
   viewCount: number;
@@ -42,24 +39,8 @@ export interface ITopic {
 export interface IEntry {
   _id: string;
   content: string;
-  author: User;
   topic: ITopic;
   createdAt: Date;
   updatedAt: Date;
   isPublic: boolean;
-}
-
-export interface IUser extends User {
-  username: string;
-  profilePicture?: string;
-}
-
-interface Item extends ErrorEntry {
-  details?: {
-    field?: string;
-  };
-}
-
-export interface ResponseError extends APIError {
-  items: Item[];
 }
