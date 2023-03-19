@@ -1,7 +1,4 @@
-import { Button, Spinner } from "@devsozluk/ui";
-import React from "react";
-
-const Home = ({ test }: any) => {
+const Home = () => {
   return <div>Home</div>;
 };
 

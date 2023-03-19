@@ -1,3 +1,4 @@
+import supabase from "@/libs/supabase";
 import Link from "next/link";
 import * as React from "react";
 import { AiFillGithub } from "react-icons/ai";
@@ -13,7 +14,11 @@ interface AuthLayoutDescription {
 }
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
-  const githubLogin = () => {};
+  const githubLogin = () => {
+    supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  };
 
   return (
     <div className="flex h-full flex-col items-center md:justify-center  ">

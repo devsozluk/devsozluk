@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authLogin, authRegister, checkSession } from "./authThunk";
+import { authRegister, checkSession, logout } from "./authThunk";
 import type { User, Session } from "@supabase/supabase-js";
-import supabase from "@/libs/supabase";
 
 interface AuthState {
+  isLoading: boolean;
   user: User | null;
   session: Session | null;
   isLoggedIn: boolean;
 }
 
 const initialState: AuthState = {
+  isLoading: false,
   user: null,
   session: null,
   isLoggedIn: !!null,
@@ -26,11 +27,20 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(checkSession.pending, (state, action) => {
+      state.isLoading = true;
+    });
     builder.addCase(checkSession.fulfilled, (state, action) => {
+      state.isLoading = false;
       if (!action?.payload?.session) return;
       state.user = action.payload!.user;
-      state.session = action.payload!.session.data.session;
+      state.session = action.payload!.session;
       state.isLoggedIn = true;
+    });
+    builder.addCase(logout.pending, (state, action) => {
+      state.user = null;
+      state.session = null;
+      state.isLoggedIn = false;
     });
   },
 });

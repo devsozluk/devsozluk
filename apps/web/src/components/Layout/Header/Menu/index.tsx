@@ -1,11 +1,13 @@
+import { useAppSelector } from "@/utils/hooks";
 import Link from "next/link";
 import { Fragment } from "react";
+import Dropdown from "./Dropdown";
 
 const Menu = () => {
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
   return (
-    <Fragment>
-      <Menu.Navigations />
-    </Fragment>
+    <Fragment>{isLoggedIn ? <Dropdown /> : <Menu.Navigations />}</Fragment>
   );
 };
 

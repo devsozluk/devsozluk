@@ -1,9 +1,16 @@
+import { logout } from "@/store/auth/authThunk";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { Button } from "@devsozluk/ui";
 import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 
 const Dropdown = () => {
-  const handleLogout = () => {};
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   const userNavigations = [
     {
@@ -22,7 +29,7 @@ const Dropdown = () => {
     <Menu>
       <Menu.Button>
         <button className="flex items-center justify-center gap-x-2 rounded-lg py-2 px-4 font-bold text-secondary">
-          ali osman
+          {user?.user_metadata.name}
         </button>
       </Menu.Button>
       <Transition

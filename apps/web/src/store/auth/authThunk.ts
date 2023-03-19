@@ -52,22 +52,30 @@ export const authRegister = createAsyncThunk(
 export const checkSession = createAsyncThunk(
   "auth/checkSession",
   async (payload, { rejectWithValue }) => {
-    const session = await supabase.auth.getSession();
+    const { data } = await supabase.auth.getSession();
 
-    if (session) {
+    if (data.session) {
       const {
         data: { user },
         error,
-      } = await supabase.auth.getUser(session.data.session?.access_token);
+      } = await supabase.auth.getUser(data.session?.access_token);
 
       if (error) {
         console.log(error.message);
       } else {
         return {
-          session,
+          session: data.session,
           user,
         };
       }
     }
+  }
+);
+
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (payload, { rejectWithValue }) => {
+    const response = await supabase.auth.signOut();
+    return response;
   }
 );

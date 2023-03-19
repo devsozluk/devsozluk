@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-types": "npx supabase gen types typescript --project-id 'hbtqnagzrlfxnfdugkvr' --schema public > src/types/supabase.ts"
   },
   "engines": {
     "node": "16.x"
@@ -15,7 +16,6 @@
     "@devsozluk/config": "workspace:0.0.0",
     "@devsozluk/ui": "workspace:0.0.0",
     "@headlessui/react": "^1.7.9",
-    "@next/font": "13.1.6",
     "@reduxjs/toolkit": "^1.9.2",
     "@supabase/supabase-js": "^2.11.0",
     "@types/node": "18.11.18",
@@ -23,9 +23,9 @@
     "@types/react-dom": "18.0.10",
     "eslint": "8.33.0",
     "eslint-config-devsozluk": "workspace:0.0.0",
-    "eslint-config-next": "13.1.6",
+    "eslint-config-next": "13.2.4",
     "formik": "^2.2.9",
-    "next": "13.1.6",
+    "next": "13.2.4",
     "nprogress": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
