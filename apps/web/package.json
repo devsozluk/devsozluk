@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@devsozluk/config": "workspace:0.0.0",
     "@devsozluk/ui": "workspace:0.0.0",
