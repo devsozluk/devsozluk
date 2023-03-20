@@ -1,12 +1,13 @@
 import AuthLayout from "@/components/Layout/AuthLayout";
-import OnlyGuard from "@/middlewares/OnlyGuard";
-import { authLogin, authRegister } from "@/store/auth/authThunk";
-import { LoginFormData, RegisterFormData } from "@/types";
+import OnlyGuest from "@/middlewares/OnlyGuest";
+import { authRegister } from "@/store/auth/authThunk";
+import { RegisterFormData } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { RegisterSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
 import { useCallback } from "react";
+import { RiLockPasswordLine, RiMailLine, RiUser3Line } from "react-icons/ri";
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -46,6 +47,7 @@ const Register = () => {
                 name="name"
                 errorMessage={errors.name}
                 value={values.name}
+                renderLeftIcon={<RiUser3Line size={24} />}
                 onChange={(event) => setFieldValue("name", event.target.value)}
                 placeholder="İsim"
               />
@@ -53,6 +55,7 @@ const Register = () => {
                 name="username"
                 errorMessage={errors.username}
                 value={values.username}
+                renderLeftIcon={<RiUser3Line size={24} />}
                 onChange={(event) =>
                   setFieldValue("username", checkUsername(event.target.value))
                 }
@@ -64,6 +67,7 @@ const Register = () => {
               autoComplete="on"
               errorMessage={errors.email}
               value={values.email}
+              renderLeftIcon={<RiMailLine size={24} />}
               onChange={(event) => setFieldValue("email", event.target.value)}
               placeholder="Email"
             />
@@ -74,6 +78,7 @@ const Register = () => {
               onChange={(event) =>
                 setFieldValue("password", event.target.value)
               }
+              renderLeftIcon={<RiLockPasswordLine size={24} />}
               errorMessage={errors.password}
               placeholder="Şifre"
               autoComplete="new-password"
@@ -90,7 +95,7 @@ const Register = () => {
 
 Register.getLayout = (page: React.ReactElement) => {
   return (
-    <OnlyGuard>
+    <OnlyGuest>
       <AuthLayout>
         <AuthLayout.Title>Yeni hesap oluştur</AuthLayout.Title>
         <AuthLayout.Description link="/auth/login" linkText="Giriş Yap">
@@ -98,7 +103,7 @@ Register.getLayout = (page: React.ReactElement) => {
         </AuthLayout.Description>
         {page}
       </AuthLayout>
-    </OnlyGuard>
+    </OnlyGuest>
   );
 };
 

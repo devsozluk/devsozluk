@@ -22,7 +22,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
 
   return (
     <div className="flex h-full flex-col items-center md:justify-center  ">
-      <div className="mt-36 flex w-full flex-col  items-center justify-center space-y-5  md:mt-0 md:w-[500px]">
+      <div className="flex w-full flex-col  items-center justify-center px-5  md:mx-0  space-y-5 md:w-[500px]">
         <div className="w-full">{children}</div>
         <p className="text-placeholder">veya</p>
         <button
