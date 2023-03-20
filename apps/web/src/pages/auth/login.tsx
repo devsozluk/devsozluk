@@ -11,10 +11,7 @@ import { useCallback } from "react";
 const Login = () => {
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.auth);
-  const initialValues: LoginFormData = {
-    email: "deneme@gmail.com",
-    password: "deneme",
-  };
+  const initialValues: LoginFormData = { email: "", password: "" };
 
   const handleSubmit = useCallback(
     async (values: LoginFormData, formikActions: any) => {
@@ -31,12 +28,13 @@ const Login = () => {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ errors, setFieldValue }) => (
+      {({ errors, values, setFieldValue }) => (
         <Form className="space-y-6">
           <Input
             name="email"
             autoComplete="off"
             errorMessage={errors.email}
+            value={values.email}
             onChange={(event) => setFieldValue("email", event.target.value)}
             placeholder="Email"
           />
@@ -44,6 +42,7 @@ const Login = () => {
             name="password"
             type="password"
             errorMessage={errors.password}
+            value={values.password}
             onChange={(event) => setFieldValue("password", event.target.value)}
             placeholder="Şifre"
             autoComplete="current-password"

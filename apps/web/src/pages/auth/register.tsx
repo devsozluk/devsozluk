@@ -25,6 +25,11 @@ const Register = () => {
     [dispatch]
   );
 
+  const checkUsername = (username: string) =>
+    username
+      .replace(/[^a-zA-Z0-9]/g, "")
+      .replace(/([A-Z])/g, (match) => match.toLowerCase());
+
   return (
     <Formik
       validationSchema={RegisterSchema}
@@ -33,21 +38,23 @@ const Register = () => {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ errors, setFieldValue }) => (
+      {({ errors, values, setFieldValue }) => (
         <Form className="space-y-6">
           <div className="space-y-6">
             <div className="flex space-x-6">
               <Input
                 name="name"
                 errorMessage={errors.name}
+                value={values.name}
                 onChange={(event) => setFieldValue("name", event.target.value)}
                 placeholder="İsim"
               />
               <Input
                 name="username"
                 errorMessage={errors.username}
+                value={values.username}
                 onChange={(event) =>
-                  setFieldValue("username", event.target.value)
+                  setFieldValue("username", checkUsername(event.target.value))
                 }
                 placeholder="Kullanıcı Adı"
               />
@@ -56,12 +63,14 @@ const Register = () => {
               name="email"
               autoComplete="on"
               errorMessage={errors.email}
+              value={values.email}
               onChange={(event) => setFieldValue("email", event.target.value)}
               placeholder="Email"
             />
             <Input
               name="password"
               type="password"
+              value={values.password}
               onChange={(event) =>
                 setFieldValue("password", event.target.value)
               }
