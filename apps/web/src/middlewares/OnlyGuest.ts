@@ -4,15 +4,13 @@ import { useRouter } from "next/router";
 
 export default function OnlyGuard({ children }: PropsWithChildren): any {
   const router = useRouter();
-  const { checkSessionLoading, isLoggedIn } = useAppSelector(
-    (state) => state.auth
-  );
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!checkSessionLoading && isLoggedIn) {
+    if (isLoggedIn) {
       router.push("/");
     }
-  }, [isLoggedIn, router, checkSessionLoading]);
+  }, [isLoggedIn]);
 
   return children;
 }
