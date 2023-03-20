@@ -9,10 +9,10 @@ const Header: React.FC = () => {
       <Link href="/">
         <h1 className="text-3xl font-bold text-primary">DevSözlük.</h1>
       </Link>
-      <div className="w-full md:w-[400px]">
+      <div className="absolute w-96 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <SearchBox />
       </div>
-      <div className="space-x-2">
+      <div>
         <Menu />
       </div>
     </div>
