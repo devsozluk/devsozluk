@@ -5,12 +5,12 @@ const errors = [
       "E-posta adresiniz doğrulanmamış. Lütfen e-posta adresinizi doğrulayın.",
   },
   {
-    code: "invalid_grant",
+    code: "Invalid login credentials",
     message:
       "E-posta adresiniz veya şifreniz hatalı. Lütfen bilgilerinizi kontrol edin.",
   },
   {
-    code: "email_not_unique",
+    code: "User already registered",
     message:
       "Bu e-posta adresi zaten kullanımda. Lütfen başka bir e-posta adresi deneyin.",
   },
@@ -32,13 +32,11 @@ const errors = [
   },
   {
     code: "not_unique",
-    field: "username",
     message: "Bu kullanıcı adı zaten kullanımda.",
   },
   {
-    code: "not_unique",
-    field: "title",
-    message: "Bu konu başlığı zaten mevcut..",
+    code: 'duplicate key value violates unique constraint "profiles_username_key"',
+    message: "Bu kullanıcı adı zaten kullanılıyor.",
   },
   {
     code: "oauth2Error",
@@ -50,12 +48,9 @@ const errors = [
   },
 ];
 
-export default function getErrorTranslation(
-  code: string | undefined,
-  field?: string | undefined
-): string {
+export default function getErrorTranslation(code: string | undefined): string {
   const error =
-    errors.find((error) => error.code === code && error.field === field) ||
+    errors.find((error) => error.code === code) ||
     errors.find((error) => error.code === code);
 
   return error?.message as string;

@@ -19,7 +19,7 @@ export const authLogin = createAsyncThunk(
     if (data.user) {
       return data;
     } else {
-      Toast.error(getErrorTranslation("invalid_grant"));
+      Toast.error(getErrorTranslation(error?.message));
     }
   }
 );
@@ -35,6 +35,7 @@ export const authRegister = createAsyncThunk(
         data: {
           name,
           user_name: username,
+          avatar_url: `https://avatars.dicebear.com/api/big-ears-neutral/default.svg`,
         },
       },
     });
@@ -42,7 +43,7 @@ export const authRegister = createAsyncThunk(
     if (data.user) {
       return data;
     } else {
-      Toast.error(error?.message as string);
+      Toast.error(getErrorTranslation(error?.message));
     }
   }
 );
