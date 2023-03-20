@@ -15,8 +15,10 @@ const buttonStyles = cva(
           "border-blue-700 bg-transparent text-blue-700 hover:bg-blue-700 hover:text-white",
         danger:
           "border-red-500 bg-red-500 text-white hover:bg-transparent hover:text-red-500",
+        link: "border-transparent bg-transparent text-white hover:bg-buttonPrimary hover:text-white",
       },
       size: {
+        xs: "py px text-sm",
         sm: "py-2 px-4 text-sm",
         md: "py-2 px-6 text-md",
         lg: "py-3 px-8 text-lg",
