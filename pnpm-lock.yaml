@@ -128,6 +128,7 @@ importers:
       '@types/react-dom': 18.0.10
       '@typescript-eslint/parser': ^5.49.0
       autoprefixer: ^10.4.13
+      classnames: ^2.3.2
       eslint: 8.33.0
       eslint-config-devsozluk: workspace:0.0.0
       eslint-config-next: 13.2.4
@@ -139,6 +140,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-hot-toast: ^2.4.0
+      react-icons: ^4.7.1
       react-redux: ^8.0.5
       redux: ^4.2.1
       slugify: ^1.6.5
@@ -154,6 +156,7 @@ importers:
       '@types/node': 18.11.18
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
+      classnames: 2.3.2
       eslint: 8.33.0
       eslint-config-devsozluk: link:../../packages/eslint-config-devsozluk
       eslint-config-next: 13.2.4_zkdaqh7it7uc4cvz2haft7rc6u
@@ -163,6 +166,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
+      react-icons: 4.7.1_react@18.2.0
       react-redux: 8.0.5_r7hvvldj6g2s5chfsdsflfq664
       redux: 4.2.1
       slugify: 1.6.5
@@ -6578,6 +6582,10 @@ packages:
         optional: true
     dependencies:
       typescript: 4.9.3
+    dev: false
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
 
   /clean-css/4.2.4:
