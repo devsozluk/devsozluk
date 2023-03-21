@@ -1,10 +1,9 @@
+import { authApi } from "@/services/auth";
 import { createSlice } from "@reduxjs/toolkit";
-import { authLogin, authRegister, checkSession, logout } from "./authThunk";
 import type { User, Session } from "@supabase/supabase-js";
 
 interface AuthState {
   isLoading: boolean;
-  checkSessionLoading: boolean;
   user: User | null;
   session: Session | null;
   isLoggedIn: boolean;
@@ -12,7 +11,6 @@ interface AuthState {
 
 const initialState: AuthState = {
   isLoading: false,
-  checkSessionLoading: true,
   user: null,
   session: null,
   isLoggedIn: !!null,
@@ -29,41 +27,39 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(checkSession.pending, (state, action) => {
-      state.checkSessionLoading = true;
-    });
-    builder.addCase(authLogin.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(authLogin.fulfilled, (state, action) => {
-      state.isLoading = false;
-      if (!action.payload?.session) return;
-      state.user = action.payload!.user;
-      state.session = action.payload!.session;
-      state.isLoggedIn = true;
-    });
-    builder.addCase(authRegister.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(authRegister.fulfilled, (state, action) => {
-      state.isLoading = false;
-      if (!action.payload?.user) return;
-      state.user = action.payload!.user;
-      state.session = action.payload!.session;
-      state.isLoggedIn = true;
-    });
-    builder.addCase(checkSession.fulfilled, (state, action) => {
-      state.checkSessionLoading = false;
-      if (!action?.payload?.session) return;
-      state.user = action.payload!.user;
-      state.session = action.payload!.session;
-      state.isLoggedIn = true;
-    });
-    builder.addCase(logout.pending, (state, action) => {
-      state.user = null;
-      state.session = null;
-      state.isLoggedIn = false;
-    });
+    builder.addMatcher(
+      authApi.endpoints.getUserMe.matchFulfilled,
+      (state, action) => {
+        if (!action.payload.user) return;
+        state.user = action.payload.user;
+        state.session = action.payload.session;
+        state.isLoggedIn = true;
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.authRegister.matchFulfilled,
+      (state, action) => {
+        state.user = action.payload.user;
+        state.session = action.payload.session;
+        state.isLoggedIn = true;
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.authLogin.matchFulfilled,
+      (state, action) => {
+        state.user = action.payload.user;
+        state.session = action.payload.session;
+        state.isLoggedIn = true;
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.logout.matchFulfilled,
+      (state, action) => {
+        state.user = null;
+        state.session = null;
+        state.isLoggedIn = false;
+      }
+    );
   },
 });
 

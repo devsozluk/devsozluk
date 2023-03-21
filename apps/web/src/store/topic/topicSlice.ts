@@ -7,21 +7,17 @@ interface ITopicState extends ITopic {
 
 const initialState = {
   topic: {} as ITopicState,
-  topics: [] as ITopic[],
+  topics: [] as any,
   entries: [] as IEntry[],
   isLoading: false,
-  isOpenTopicModal: false,
 };
 
 const topicSlice = createSlice({
   name: "topic",
   initialState,
-  reducers: {
-    toggleTopicModal(state) {
-      state.isOpenTopicModal = !state.isOpenTopicModal;
-    },
-  },
+  reducers: {},
+  extraReducers: (builder) => {},
 });
 
 export default topicSlice.reducer;
-export const { toggleTopicModal } = topicSlice.actions;
+export const {} = topicSlice.actions;
