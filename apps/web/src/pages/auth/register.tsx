@@ -1,17 +1,17 @@
 import AuthLayout from "@/components/Layout/AuthLayout";
 import OnlyGuest from "@/middlewares/OnlyGuest";
-import { authRegister } from "@/store/auth/authThunk";
+import { useAuthRegisterMutation } from "@/services/auth";
 import { RegisterFormData } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import getErrorTranslation from "@/utils/errors";
+import { getErrorFromPayload } from "@/utils/hooks";
 import { RegisterSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { RiLockPasswordLine, RiMailLine, RiUser3Line } from "react-icons/ri";
 
 const Register = () => {
-  const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector((state) => state.auth);
   const initialValues: RegisterFormData = {
     name: "",
     username: "",
@@ -19,12 +19,21 @@ const Register = () => {
     password: "",
   };
 
-  const handleSubmit = useCallback(
-    async (values: RegisterFormData, formikActions: any) => {
-      dispatch(authRegister({ values, formikActions }));
-    },
-    [dispatch]
-  );
+  const [handleAuthRegister, { isLoading, status, data, error, isError }] =
+    useAuthRegisterMutation({});
+
+  useEffect(() => {
+    if (status === "fulfilled") {
+      toast.success("Kayıt başarılı, yönlendiriliyorsunuz.");
+    } else if (status === "rejected") {
+      const errorMessage = getErrorFromPayload(error);
+      toast.error(getErrorTranslation(errorMessage));
+    }
+  }, [status]);
+
+  const handleSubmit = useCallback(async (values: RegisterFormData) => {
+    handleAuthRegister(values);
+  }, []);
 
   const checkUsername = (username: string) =>
     username

@@ -1,22 +1,34 @@
 import AuthLayout from "@/components/Layout/AuthLayout";
 import OnlyGuest from "@/middlewares/OnlyGuest";
-import { authLogin } from "@/store/auth/authThunk";
+import { useAuthLoginMutation } from "@/services/auth";
 import { LoginFormData } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import getErrorTranslation from "@/utils/errors";
+import { getErrorFromPayload, useAppDispatch } from "@/utils/hooks";
 import { LoginSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { RiLockPasswordLine, RiMailLine } from "react-icons/ri";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector((state) => state.auth);
   const initialValues: LoginFormData = { email: "", password: "" };
+  const [handleAuthLogin, { isLoading, status, data, error, isError }] =
+    useAuthLoginMutation({});
+
+  useEffect(() => {
+    if (status === "fulfilled") {
+      toast.success("Giriş başarılı, yönlendiriliyorsunuz.");
+    } else if (status === "rejected") {
+      const errorMessage = getErrorFromPayload(error);
+      toast.error(getErrorTranslation(errorMessage));
+    }
+  }, [status]);
 
   const handleSubmit = useCallback(
     async (values: LoginFormData, formikActions: any) => {
-      dispatch(authLogin({ values, formikActions }));
+      handleAuthLogin(values);
     },
     [dispatch]
   );
