@@ -1,21 +1,19 @@
-import { checkSession } from "@/store/auth/authThunk";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useGetUserMeMutation } from "@/services/auth";
+import "@/style.css";
+import { Spinner } from "@devsozluk/ui";
 import { Fragment, PropsWithChildren, useEffect } from "react";
 import Head from "./head";
-import { Spinner } from "@devsozluk/ui";
-import "@/style.css";
 
 export default function RootLayout({ children }: PropsWithChildren) {
-  const { checkSessionLoading } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+  const [getUserMe, { isLoading }] = useGetUserMeMutation();
 
   useEffect(() => {
-    dispatch(checkSession());
-  }, [dispatch]);
+    getUserMe("");
+  }, []);
 
   return (
     <div className="h-screen bg-background text-secondary font-poppins">
-      {checkSessionLoading ? (
+      {isLoading ? (
         <Spinner size="md" isFullScreen={true} />
       ) : (
         <Fragment>

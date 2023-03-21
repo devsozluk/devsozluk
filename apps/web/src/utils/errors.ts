@@ -39,12 +39,12 @@ const errors = [
     message: "Bu kullanıcı adı zaten kullanılıyor.",
   },
   {
-    code: "oauth2Error",
-    message: "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+    code: "23502",
+    message: "Konu oluşturulurken bir sorun çıktı.",
   },
   {
-    code: "already_oauth2_email",
-    message: "Bu e-posta adresi ile zaten kayıt olunmuş. Lütfen giriş yapın.",
+    code: "42501",
+    message: "Konu oluşturmak için giriş yapmalısınız",
   },
 ];
 
