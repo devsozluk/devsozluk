@@ -1,4 +1,3 @@
-import { logout } from "@/store/auth/authThunk";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { Button } from "@devsozluk/ui";
 import { Menu, Transition } from "@headlessui/react";
@@ -52,8 +51,6 @@ Dropdown.Item = ({ id, title, onClick, link }: IMenu) => {
   const router = useRouter();
 
   const handleClick = () => {
-    console.log(onClick);
-
     if (link) {
       router.push(link);
     } else onClick!();

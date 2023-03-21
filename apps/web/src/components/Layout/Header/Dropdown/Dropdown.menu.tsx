@@ -1,5 +1,4 @@
-import { logout } from "@/store/auth/authThunk";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useLogoutMutation } from "@/services/auth";
 
 export type IMenu = {
   id: number;
@@ -11,11 +10,10 @@ export type IMenu = {
 };
 
 export default function Dropdown(): IMenu[] {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.user);
+  const [logout] = useLogoutMutation();
 
   const handleLogout = () => {
-    dispatch(logout());
+    logout("");
   };
 
   return [
