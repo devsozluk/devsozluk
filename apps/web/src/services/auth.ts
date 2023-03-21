@@ -68,7 +68,7 @@ export const authApi = createApi({
         });
 
         if (data.user) {
-          return data;
+          return { data };
         } else {
           return { error };
         }
