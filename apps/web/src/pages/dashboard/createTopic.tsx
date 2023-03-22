@@ -31,7 +31,7 @@ const CreateTopic = () => {
   }, [status]);
 
   const handleCreate = useCallback(async (values: CreateTopicData) => {
-    handleAddTopic({ ...values, userId: user?.id });
+    handleAddTopic({ ...values, author: user?.id });
   }, []);
 
   return (
@@ -41,6 +41,7 @@ const CreateTopic = () => {
         initialValues={initialValues}
         onSubmit={handleCreate}
         validateOnBlur={false}
+        validateOnChange={false}
       >
         {({ errors, setFieldValue, values, handleSubmit }) => (
           <>
