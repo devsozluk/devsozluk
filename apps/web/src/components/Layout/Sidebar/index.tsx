@@ -1,11 +1,17 @@
 import SidebarLoader from "@/components/Loading/sidebar";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import type { ITopic } from "@/types";
-import { useGetLatestTopicsQuery } from "@/services/topic";
+import { useGetLatestTopicsMutation } from "@/services/topic";
+import { useRouter } from "next/router";
 
 const Sidebar = () => {
-  const { data, isLoading } = useGetLatestTopicsQuery("");
+  const router = useRouter()
+  const [getLatestTopics, { data, isLoading }] = useGetLatestTopicsMutation();
+
+  useEffect(() => {
+    getLatestTopics("")
+  }, [router])
 
   return (
     <div className="fixed hidden h-screen w-[250px] flex-col space-y-3 overflow-y-auto rounded px-5 scrollbar scrollbar-track-slate-700  scrollbar-thumb-primary  scrollbar-thumb-rounded scrollbar-w-2 hover:scrollbar-thumb-buttonPrimary md:flex lg:w-[300px]">
