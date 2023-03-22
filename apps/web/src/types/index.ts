@@ -13,7 +13,13 @@ export interface RegisterFormData {
 export interface CreateTopicData {
   title: string;
   content: string;
-  userId?: string;
+  author?: string;
+}
+
+export interface AddEntryData {
+  content: string;
+  topic?: number;
+  author?: string;
 }
 
 export interface UpdateProfileData {
