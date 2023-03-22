@@ -41,6 +41,7 @@ const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
 
   return (
     <div className="flex max-w-3xl flex-col gap-y-5 pb-10">
+      <div>div</div>
       <div className="flex items-center justify-between">
         <Link href={"/konu/" + topic.slug} className="mb-1 text-lg font-bold text-primary">
           {topic.title}

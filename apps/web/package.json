@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^1.9.2",
     "@supabase/supabase-js": "^2.11.0",
     "@types/node": "18.11.18",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "classnames": "^2.3.2",
