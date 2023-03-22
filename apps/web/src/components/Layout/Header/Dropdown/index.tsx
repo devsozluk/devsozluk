@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppSelector } from "@/utils/hooks";
 import { Button } from "@devsozluk/ui";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";

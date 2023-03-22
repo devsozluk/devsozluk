@@ -1,16 +1,14 @@
 import SidebarLoader from "@/components/Loading/sidebar";
 import Link from "next/link";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import type { ITopic } from "@/types";
 import { useGetLatestTopicsQuery } from "@/services/topic";
 
 const Sidebar = () => {
   const { data, isLoading } = useGetLatestTopicsQuery("");
 
-  useEffect(() => { }, []);
-
   return (
-    <div className="fixed  hidden h-screen w-[250px] flex-col space-y-3 overflow-y-auto rounded px-5 scrollbar scrollbar-track-slate-700  scrollbar-thumb-primary  scrollbar-thumb-rounded scrollbar-w-2 hover:scrollbar-thumb-buttonPrimary md:flex lg:w-[300px]">
+    <div className="fixed hidden h-screen w-[250px] flex-col space-y-3 overflow-y-auto rounded px-5 scrollbar scrollbar-track-slate-700  scrollbar-thumb-primary  scrollbar-thumb-rounded scrollbar-w-2 hover:scrollbar-thumb-buttonPrimary md:flex lg:w-[300px]">
       {isLoading ? (
         <SidebarLoader />
       ) : (
