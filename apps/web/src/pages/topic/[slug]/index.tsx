@@ -50,7 +50,7 @@ const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
   }, [router])
 
   return (
-    <div className="flex max-w-3xl flex-col gap-y-5 pb-10">
+    <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 v">
       <div className="flex items-center justify-between">
         <Link href={"/konu/" + topic.slug} className="text-lg font-bold text-primary">
           {topic.title}

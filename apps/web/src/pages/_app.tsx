@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import type { Page } from "../types/page";
 import moment from "moment";
 import 'moment/locale/tr';
+moment.locale("tr");
 import "@/style.css";
-moment.locale("tr")
 
 type Props = AppProps & {
   Component: Page;
