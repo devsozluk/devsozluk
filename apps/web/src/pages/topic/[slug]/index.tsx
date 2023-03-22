@@ -7,7 +7,8 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
+import { MdComment } from "react-icons/md";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
@@ -51,13 +52,19 @@ const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
   return (
     <div className="flex max-w-3xl flex-col gap-y-5 pb-10">
       <div className="flex items-center justify-between">
-        <Link href={"/konu/" + topic.slug} className="mb-1 text-lg font-bold text-primary">
+        <Link href={"/konu/" + topic.slug} className="text-lg font-bold text-primary">
           {topic.title}
         </Link>
+        <div className="mt-2 flex gap-x-3 text-xs font-bold">
+          <span className="flex items-center gap-x-1">
+            <MdComment size={16} />
+            {topic.entryCount}
+          </span>
+        </div>
       </div>
       <Topic.Entries />
       <Topic.AddEntry />
-    </div>
+    </div >
   )
 };
 
@@ -65,11 +72,11 @@ Topic.Entries = () => {
   const { entries } = useAppSelector(state => state.topic)
 
   return (
-    <Fragment>
+    <div className="flex flex-col divide-y-2 divide-opacity-50 divide-gray-800">
       {entries?.map((entry, index) => (
         <Entry {...entry} key={index} />
       ))}
-    </Fragment>
+    </div>
   )
 }
 
