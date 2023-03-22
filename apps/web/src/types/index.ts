@@ -32,11 +32,11 @@ export interface ITopic {
 }
 
 export interface IEntry {
-  _id: string;
+  id: string;
   content: string;
+  author: Profile;
   topic: ITopic;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
   isPublic: boolean;
 }
 
@@ -44,6 +44,6 @@ export interface Profile {
   id: string /* primary key */;
   created_at?: string;
   username?: string;
-  avatar_url?: string;
+  avatar_url: string;
   name?: string;
 }

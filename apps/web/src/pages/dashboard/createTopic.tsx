@@ -2,7 +2,6 @@ import { CreateTopicData } from "@/types";
 import getErrorTranslation from "@/utils/errors";
 import {
   getErrorFromPayload,
-  useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks";
 import { CreateTopicSchema } from "@/utils/schemas";
@@ -24,7 +23,7 @@ const CreateTopic = () => {
   useEffect(() => {
     if (status === "fulfilled") {
       toast.success("Konu oluşturuldu, yönlendiriliyorsunuz.");
-      router.push(`/topic/${data.slug}`);
+      router.push(`/topic/${data.topic.slug}`);
     } else if (status === "rejected") {
       const errorMessage = getErrorFromPayload(error);
       toast.error(getErrorTranslation(errorMessage));
@@ -46,7 +45,7 @@ const CreateTopic = () => {
         {({ errors, setFieldValue, values, handleSubmit }) => (
           <>
             <Form className="px-4">
-              <div className="space-y-6">
+              <div className="space-y-66">
                 <Input
                   name="title"
                   placeholder="Konu başlığını yazınız."
