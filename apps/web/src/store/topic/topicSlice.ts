@@ -1,3 +1,4 @@
+import { topicApi } from "@/services/topic";
 import { IEntry, ITopic } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -15,9 +16,21 @@ const initialState = {
 const topicSlice = createSlice({
   name: "topic",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {},
+  reducers: {
+    setTopic(state, action) {
+      state.topic = action.payload.topic;
+      state.entries = action.payload.entries;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      topicApi.endpoints.addEntry.matchFulfilled,
+      (state, action) => {
+        state.entries = action.payload.entries;
+      }
+    );
+  },
 });
 
 export default topicSlice.reducer;
-export const {} = topicSlice.actions;
+export const { setTopic } = topicSlice.actions;

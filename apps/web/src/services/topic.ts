@@ -1,18 +1,13 @@
-import { CreateTopicData } from "./../types/index";
+import { AddEntryData, CreateTopicData } from "@/types/index";
 import supabase from "@/libs/supabase";
-import {
-  BaseQueryFn,
-  createApi,
-  FetchArgs,
-  fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
 
 export const topicApi = createApi({
   reducerPath: "topicApi",
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
-    getLatestTopics: builder.query({
+    getLatestTopics: builder.mutation({
       queryFn: async () => {
         const { data, error } = await supabase
           .from("topics")
@@ -24,21 +19,21 @@ export const topicApi = createApi({
     }),
     addTopic: builder.mutation({
       queryFn: async (body: CreateTopicData): Promise<any> => {
-        const { title, userId } = body;
+        const { title, author } = body;
 
-        const slug = slugify(title);
+        const slug = slugify(title, { lower: true });
         const { error, data } = await supabase
           .from("topics")
           .insert({
             title,
-            author: userId as string,
             slug,
+            author,
           })
           .select("*")
           .single();
 
         const { data: entryData } = await supabase.from("entries").insert({
-          author: userId as string,
+          author,
           topic: data?.id,
           content: body.content,
         });
@@ -50,7 +45,33 @@ export const topicApi = createApi({
         }
       },
     }),
+    addEntry: builder.mutation({
+      queryFn: async (body: AddEntryData): Promise<any> => {
+        const { content, topic, author } = body;
+
+        const { data, error } = await supabase.from("entries").insert({
+          author,
+          topic,
+          content,
+        });
+
+        const { data: entries } = await supabase
+          .from("entries")
+          .select("*, author(*)")
+          .eq("topic", topic);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data: { entries } };
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetLatestTopicsQuery, useAddTopicMutation } = topicApi;
+export const {
+  useGetLatestTopicsMutation,
+  useAddTopicMutation,
+  useAddEntryMutation,
+} = topicApi;
