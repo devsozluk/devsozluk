@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 const SearchBox: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
 
-  useEffect(() => {}, [searchValue]);
+  useEffect(() => { }, [searchValue]);
 
   return (
     <Input
@@ -14,7 +14,7 @@ const SearchBox: React.FC = () => {
       onChange={(e) => setSearchValue(e.target.value)}
       placeholder="Aramak istediğiniz kelimeyi girin."
       renderLeftIcon={<BsSearch size={20} />}
-      className="h-10"
+      className="h-10 border-opacity-50"
     />
   );
 };
