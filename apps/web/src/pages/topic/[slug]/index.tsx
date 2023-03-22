@@ -1,9 +1,13 @@
-import Entry from "@/components/Elements/Entry";
+import TopicAddEntry from "@/components/Topic/AddEntry";
+import Entry from "@/components/Topic/Entry";
 import supabase from "@/libs/supabase";
+import { setTopic } from "@/store/topic/topicSlice";
 import { IEntry, ITopic } from "@/types";
-import { Button, TextArea } from "@devsozluk/ui";
-import { GetServerSidePropsContext, NextApiHandler } from "next";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Fragment, useEffect } from "react";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
@@ -37,26 +41,38 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
-  console.log(entries);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setTopic({ topic, entries }));
+  }, [router])
 
   return (
     <div className="flex max-w-3xl flex-col gap-y-5 pb-10">
-      <div>div</div>
       <div className="flex items-center justify-between">
         <Link href={"/konu/" + topic.slug} className="mb-1 text-lg font-bold text-primary">
           {topic.title}
         </Link>
       </div>
-      {entries?.map((entry, index) => (
-        <Entry {...entry} key={index} />
-      ))}
-      <TextArea placeholder="Göndermek istediğin mesajı yaz." rows={4} >
-        <TextArea.Actions>
-          <Button className="ml-auto" size="sm">Gönder</Button>
-        </TextArea.Actions>
-      </TextArea>
+      <Topic.Entries />
+      <Topic.AddEntry />
     </div>
   )
 };
+
+Topic.Entries = () => {
+  const { entries } = useAppSelector(state => state.topic)
+
+  return (
+    <Fragment>
+      {entries?.map((entry, index) => (
+        <Entry {...entry} key={index} />
+      ))}
+    </Fragment>
+  )
+}
+
+Topic.AddEntry = TopicAddEntry;
 
 export default Topic;
