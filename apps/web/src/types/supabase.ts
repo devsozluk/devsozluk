@@ -9,6 +9,29 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      entries: {
+        Row: {
+          author: string | null
+          content: string | null
+          created_at: string | null
+          id: number
+          topic: number | null
+        }
+        Insert: {
+          author?: string | null
+          content?: string | null
+          created_at?: string | null
+          id?: number
+          topic?: number | null
+        }
+        Update: {
+          author?: string | null
+          content?: string | null
+          created_at?: string | null
+          id?: number
+          topic?: number | null
+        }
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -34,27 +57,27 @@ export interface Database {
       }
       topics: {
         Row: {
-          author: string
-          created_at: string
+          author: string | null
+          created_at: string | null
           entryCount: number | null
           id: number
-          slug: string
+          slug: string | null
           title: string | null
         }
         Insert: {
-          author: string
-          created_at?: string
+          author?: string | null
+          created_at?: string | null
           entryCount?: number | null
           id?: number
-          slug: string
+          slug?: string | null
           title?: string | null
         }
         Update: {
-          author?: string
-          created_at?: string
+          author?: string | null
+          created_at?: string | null
           entryCount?: number | null
           id?: number
-          slug?: string
+          slug?: string | null
           title?: string | null
         }
       }
