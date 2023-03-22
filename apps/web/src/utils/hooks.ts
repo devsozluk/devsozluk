@@ -1,4 +1,4 @@
-import { AppDispatch, RootState } from "@/app/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { SerializedError } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 

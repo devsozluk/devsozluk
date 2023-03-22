@@ -1,8 +1,7 @@
 import { useGetUserMeMutation } from "@/services/auth";
-import "@/style.css";
 import { Spinner } from "@devsozluk/ui";
 import { Fragment, PropsWithChildren, useEffect } from "react";
-import Head from "./head";
+import Head from "../components/head";
 
 export default function RootLayout({ children }: PropsWithChildren) {
   const [getUserMe, { isLoading }] = useGetUserMeMutation();

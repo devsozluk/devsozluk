@@ -1,11 +1,12 @@
-import RootLayout from "@/app/layout";
-import store from "@/app/store";
+import RootLayout from "@/components/layout";
+import store from "@/store/store";
 import EmptyLayout from "@/components/Layout/EmptyLayout";
 import MainLayout from "@/components/Layout/MainLayout";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import type { Page } from "../types/page";
+import "@/style.css";
 
 type Props = AppProps & {
   Component: Page;
