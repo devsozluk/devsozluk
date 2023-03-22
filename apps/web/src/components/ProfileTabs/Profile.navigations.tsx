@@ -1,3 +1,6 @@
+import { ImProfile } from "react-icons/im"
+import { TfiWrite } from "react-icons/tfi"
+
 export type Navigation = {
   id: number;
   title: string;
@@ -12,11 +15,13 @@ export default function Navigations(): Navigation[] {
     {
       id: 0,
       link: "settings",
+      icon: <ImProfile />,
       title: "Hesap Ayarları",
     },
     {
       id: 1,
       link: "createTopic",
+      icon: <TfiWrite />,
       title: "Konu Oluştur",
     },
   ];

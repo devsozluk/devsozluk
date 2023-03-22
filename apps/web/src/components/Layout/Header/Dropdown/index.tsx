@@ -14,7 +14,7 @@ const Dropdown = () => {
   return (
     <Menu>
       <Menu.Button>
-        <button className="flex items-center border border-placeholder justify-between px-2 text-sm rounded py-1.5 w-60  font-semibold  text-secondary">
+        <button className="flex items-center border border-placeholder border-opacity-50  justify-between px-2 text-sm rounded py-1.5 w-60  font-semibold  text-secondary">
           <div className="flex items-center gap-x-2">
             <Image
               width={0}

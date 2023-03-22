@@ -16,13 +16,13 @@ const ProfileTabs = () => {
   );
 };
 
-ProfileTabs.Item = ({ title, link, id, onClick }: Navigation) => {
+ProfileTabs.Item = ({ title, link, id, onClick, icon }: Navigation) => {
   const router = useRouter();
 
   const isFocus = router.pathname.includes(link as string);
 
   const classes = classNames({
-    "hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300":
+    "hover:text-gray-600 hover:border--300 dark:hover:text-gray-300":
       !isFocus,
     "active dark:text-blue-500 dark:border-blue-500 border-blue-600 text-blue-600 ":
       isFocus,
@@ -34,15 +34,17 @@ ProfileTabs.Item = ({ title, link, id, onClick }: Navigation) => {
     } else onClick!();
   };
 
+
   return (
     <li className="mr-2 cursor-pointer" key={id}>
       <a
         onClick={handleClick}
         className={classNames(
-          "inline-flex p-4 border-b-2 border-transparent rounded-t-lg group",
+          "inline-flex p-4 border-b-2 items-center justify-center  gap-x-2 border-transparent rounded-t-lg group",
           classes
         )}
       >
+        {icon}
         {title}
       </a>
     </li>
