@@ -37,10 +37,16 @@ export const topicApi = createApi({
           .select("*")
           .single();
 
+        const { data: entryData } = await supabase.from("entries").insert({
+          author: userId as string,
+          topic: data?.id,
+          content: body.content,
+        });
+
         if (error) {
           return { error };
         } else {
-          return { data };
+          return { data: { topic: data, entry: entryData } };
         }
       },
     }),
