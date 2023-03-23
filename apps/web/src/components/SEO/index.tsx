@@ -62,6 +62,7 @@ export default function CustomHead() {
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:title" content="DevSözlük" />
       <meta property="og:image" content="/logo.png" />
       <title>Dev Sözlük</title>
     </Head>

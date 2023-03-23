@@ -59,7 +59,7 @@ const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
       </Head>
       <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10">
         <div className="flex items-center justify-between">
-          <Link href={"/konu/" + topic.slug} className="text-lg font-bold text-primary">
+          <Link href={"/topic/" + topic.slug} className="text-lg font-bold text-primary">
             {topic.title}
           </Link>
           <div className="mt-2 flex gap-x-3 text-xs font-bold">
