@@ -7,12 +7,12 @@ export const topicApi = createApi({
   reducerPath: "topicApi",
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
-    getLatestTopics: builder.mutation({
+    getPopularTopics: builder.mutation({
       queryFn: async () => {
         const { data, error } = await supabase
           .from("topics")
           .select("*")
-          .order("created_at", { ascending: false });
+          .order("entryCount", { ascending: false });
 
         return { data };
       },
@@ -71,7 +71,7 @@ export const topicApi = createApi({
 });
 
 export const {
-  useGetLatestTopicsMutation,
+  useGetPopularTopicsMutation,
   useAddTopicMutation,
   useAddEntryMutation,
 } = topicApi;

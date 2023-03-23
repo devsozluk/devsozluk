@@ -2,15 +2,15 @@ import SidebarLoader from "@/components/Loading/sidebar";
 import Link from "next/link";
 import React, { Fragment, useEffect } from "react";
 import type { ITopic } from "@/types";
-import { useGetLatestTopicsMutation } from "@/services/topic";
+import { useGetPopularTopicsMutation } from "@/services/topic";
 import { useRouter } from "next/router";
 
 const Sidebar = () => {
   const router = useRouter()
-  const [getLatestTopics, { data, isLoading }] = useGetLatestTopicsMutation();
+  const [getPopularTopics, { data, isLoading }] = useGetPopularTopicsMutation();
 
   useEffect(() => {
-    getLatestTopics("")
+    getPopularTopics("")
   }, [router])
 
   return (
