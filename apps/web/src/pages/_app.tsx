@@ -1,7 +1,8 @@
-import RootLayout from "@/components/layout";
+import RootLayout from "@/components/Layout/Layout";
 import store from "@/store/store";
 import EmptyLayout from "@/components/Layout/EmptyLayout";
 import MainLayout from "@/components/Layout/MainLayout";
+import Head from "@/components/SEO"
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
@@ -24,14 +25,16 @@ const App = ({ Component, pageProps }: Props) => {
   const ComponentLayout = getRootLayout(Component);
 
   return (
-    <Provider store={store}>
-      <RootLayout>
-        <ComponentLayout>
-          {getLayout(<Component {...pageProps} />)}
-        </ComponentLayout>
-      </RootLayout>
-      <Toaster />
-    </Provider>
+    <>
+      <Head />
+      <Provider store={store}>
+        <RootLayout>
+          <ComponentLayout>
+            {getLayout(<Component {...pageProps} />)}
+          </ComponentLayout>
+        </RootLayout>
+        <Toaster />
+      </Provider></>
   );
 };
 

@@ -5,9 +5,10 @@ import { setTopic } from "@/store/topic/topicSlice";
 import { IEntry, ITopic } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { MdComment } from "react-icons/md";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -50,21 +51,28 @@ const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
   }, [router])
 
   return (
-    <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 v">
-      <div className="flex items-center justify-between">
-        <Link href={"/konu/" + topic.slug} className="text-lg font-bold text-primary">
-          {topic.title}
-        </Link>
-        <div className="mt-2 flex gap-x-3 text-xs font-bold">
-          <span className="flex items-center gap-x-1">
-            <MdComment size={16} />
-            {topic.entryCount}
-          </span>
+    <>
+      <Head>
+        <title>DevSözlük - {topic.title}</title>
+        <meta property="og:title" content={topic.title} />
+        <meta property="og:description" content={entries[0].content} />
+      </Head>
+      <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10">
+        <div className="flex items-center justify-between">
+          <Link href={"/konu/" + topic.slug} className="text-lg font-bold text-primary">
+            {topic.title}
+          </Link>
+          <div className="mt-2 flex gap-x-3 text-xs font-bold">
+            <span className="flex items-center gap-x-1">
+              <MdComment size={16} />
+              {topic.entryCount}
+            </span>
+          </div>
         </div>
+        <Topic.Entries />
+        <Topic.AddEntry />
       </div>
-      <Topic.Entries />
-      <Topic.AddEntry />
-    </div >
+    </>
   )
 };
 

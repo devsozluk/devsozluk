@@ -5,7 +5,7 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ["avatars.githubusercontent.com", "api.dicebear.com"], formats: ['image/webp'],
+    domains: ["avatars.githubusercontent.com", "api.dicebear.com", "avatars.dicebear.com"], formats: ['image/webp'],
   }
 }
 
