@@ -62,7 +62,7 @@ export const authApi = createApi({
             data: {
               name,
               user_name: username,
-              avatar_url: `https://avatars.dicebear.com/api/big-ears-neutral/default.svg`,
+              avatar_url: `https://api.dicebear.com/5.x/initials/svg?seed=${username}&radius=5&randomizeIds=true&fontWeight=300`,
             },
           },
         });

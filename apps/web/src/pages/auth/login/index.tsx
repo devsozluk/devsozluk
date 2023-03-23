@@ -1,4 +1,4 @@
-import AuthLayout from "@/components/Layout/AuthLayout";
+import AuthLayout from "../layout";
 import OnlyGuest from "@/middlewares/OnlyGuest";
 import { useAuthLoginMutation } from "@/services/auth";
 import { LoginFormData } from "@/types";
@@ -10,9 +10,11 @@ import { Form, Formik } from "formik";
 import { useCallback, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { RiLockPasswordLine, RiMailLine } from "react-icons/ri";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const initialValues: LoginFormData = { email: "", password: "" };
   const [handleAuthLogin, { isLoading, status, data, error, isError }] =
     useAuthLoginMutation({});
@@ -20,6 +22,7 @@ const Login = () => {
   useEffect(() => {
     if (status === "fulfilled") {
       toast.success("Giriş başarılı, yönlendiriliyorsunuz.");
+      router.push("/")
     } else if (status === "rejected") {
       const errorMessage = getErrorFromPayload(error);
       toast.error(getErrorTranslation(errorMessage));

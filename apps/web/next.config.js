@@ -4,7 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["avatars.githubusercontent.com"], formats: ['image/webp'],
+    dangerouslyAllowSVG: true,
+    domains: ["avatars.githubusercontent.com", "api.dicebear.com"], formats: ['image/webp'],
   }
 }
 
