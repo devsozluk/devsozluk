@@ -62,6 +62,9 @@ export default function CustomHead() {
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="twitter:image" content="https://dev.devsozluk.net/logo.png" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:domain" content="dev.devsozluk.net" />
       <meta property="og:title" content="DevSözlük" />
       <meta property="og:image" content="/logo.png" />
       <title>Dev Sözlük</title>

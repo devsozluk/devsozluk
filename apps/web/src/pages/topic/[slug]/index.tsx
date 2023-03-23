@@ -56,6 +56,9 @@ const Topic = ({ topic, entries }: { topic: ITopic, entries: IEntry[] }) => {
         <title>DevSözlük - {topic.title}</title>
         <meta property="og:title" content={topic.title} />
         <meta property="og:description" content={entries[0].content} />
+        <meta property="twitter:url" content={"https://dev.devsozluk.net/topic/" + topic.slug} />
+        <meta name="twitter:title" content={topic.title} />
+        <meta name="twitter:description" content={entries[0].content} />
       </Head>
       <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10">
         <div className="flex items-center justify-between">
