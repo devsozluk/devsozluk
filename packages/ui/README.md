@@ -6,7 +6,6 @@
       height="64"
     />
   </a>
-  </div>
   
 <h3 align="center">
   @devsozluk/ui
@@ -18,6 +17,8 @@
 ![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)
 [![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://github/devsozluk/website/commit)
 ![GitHub contributors](https://img.shields.io/github/contributors/devsozluk/website?logo=github)
+
+</div>
 
 
 This library is a React component library developed for the user interface of the DevSozluk project. The library includes many useful components such as Alert, Button, IconButton, Input, Spinner, and TextArea components.
