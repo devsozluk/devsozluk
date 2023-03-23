@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { User, Session } from "@supabase/supabase-js";
 
 interface AuthState {
+  checkSessionloading: boolean;
   isLoading: boolean;
   user: User | null;
   session: Session | null;
@@ -10,6 +11,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
+  checkSessionloading: true,
   isLoading: false,
   user: null,
   session: null,
@@ -30,6 +32,7 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.getUserMe.matchFulfilled,
       (state, action) => {
+        state.checkSessionloading = false;
         if (!action.payload.user) return;
         state.user = action.payload.user;
         state.session = action.payload.session;
