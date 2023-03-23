@@ -36,7 +36,7 @@ export const Input: React.FC<InputProps> = ({
       <div className={InputClasses}>
         {renderLeftIcon}
         <input
-          className="w-full bg-transparent text-placeholder outline-none placeholder:text-placeholder"
+          className="w-full bg-transparent text-white outline-none placeholder:text-placeholder"
           {...props}
         />
       </div>
