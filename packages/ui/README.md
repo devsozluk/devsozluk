@@ -6,6 +6,7 @@
       height="64"
     />
   </a>
+  </div>
   
 <h3 align="center">
   @devsozluk/ui
@@ -28,7 +29,6 @@ You can use npm or yarn package managers for installation:
 ```
 npm install @devsozluk/ui
 ```
-veya
 ```
 yarn add @devsozluk/ui
 ```
@@ -36,7 +36,7 @@ yarn add @devsozluk/ui
 
 ## Usage
 
-BEach component in this library can be imported separately. For example, for the Button component:
+Each component in this library can be imported separately. For example, for the Button component:
 
 ```jsx
 import { Button } from '@devsozluk/ui';
