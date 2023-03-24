@@ -1,3 +1,4 @@
+import { userApi } from "./../services/user";
 import { authApi } from "../services/auth";
 import { configureStore } from "@reduxjs/toolkit";
 
@@ -10,11 +11,13 @@ const store = configureStore({
     auth: authReducer,
     topic: topicReducer,
     [topicApi.reducerPath]: topicApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat([
       topicApi.middleware,
+      userApi.middleware,
       authApi.middleware,
     ]),
 });

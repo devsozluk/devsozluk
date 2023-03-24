@@ -20,10 +20,10 @@ const Dropdown = () => {
               width={0}
               height={0}
               className="h-7 w-7"
-              src={user?.user_metadata.avatar_url}
-              alt={user?.user_metadata.avatar_url}
+              src={user?.user_metadata?.avatar_url}
+              alt={user?.user_metadata?.avatar_url}
             />
-            {user?.user_metadata.name}
+            {user?.user_metadata?.name}
           </div>
           <AiFillCaretDown />
         </button>

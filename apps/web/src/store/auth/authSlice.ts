@@ -27,6 +27,9 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.session = action.payload.session;
     },
+    setUser(state, action) {
+      state.user = action.payload.user;
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -67,4 +70,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { setAuth } = authSlice.actions;
+export const { setAuth, setUser } = authSlice.actions;

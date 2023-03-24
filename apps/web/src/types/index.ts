@@ -23,7 +23,7 @@ export interface AddEntryData {
 }
 
 export interface UpdateProfileData {
-  username?: string;
+  name?: string;
   password?: string;
   passwordConfirmation?: string;
 }
