@@ -119,6 +119,7 @@ importers:
   apps/web:
     specifiers:
       '@devsozluk/config': workspace:0.0.0
+      '@devsozluk/tsconfig': workspace:^0.0.0
       '@devsozluk/ui': workspace:0.0.0
       '@headlessui/react': ^1.7.9
       '@reduxjs/toolkit': ^1.9.2
@@ -127,6 +128,7 @@ importers:
       '@types/nprogress': ^0.2.0
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
+      '@types/uuid': ^9.0.1
       '@typescript-eslint/parser': ^5.49.0
       autoprefixer: ^10.4.13
       classnames: ^2.3.2
@@ -149,9 +151,11 @@ importers:
       tailwind-scrollbar: ^3.0.0
       tailwindcss: ^3.2.4
       typescript: 4.9.4
+      uuid: ^9.0.0
       yup: ^0.32.11
     dependencies:
       '@devsozluk/config': link:../../packages/config
+      '@devsozluk/tsconfig': link:../../packages/tsconfig
       '@devsozluk/ui': link:../../packages/ui
       '@headlessui/react': 1.7.9_biqbaboplfbrettd7655fr4n2y
       '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
@@ -160,6 +164,7 @@ importers:
       '@types/nprogress': 0.2.0
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
+      '@types/uuid': 9.0.1
       classnames: 2.3.2
       eslint: 8.33.0
       eslint-config-devsozluk: link:../../packages/eslint-config-devsozluk
@@ -177,6 +182,7 @@ importers:
       slugify: 1.6.5
       tailwind-scrollbar: 3.0.0_tailwindcss@3.2.4
       typescript: 4.9.4
+      uuid: 9.0.0
       yup: 0.32.11
     devDependencies:
       '@typescript-eslint/parser': 5.49.0_zkdaqh7it7uc4cvz2haft7rc6u
@@ -221,10 +227,12 @@ importers:
       eslint: ^8.15.0
       eslint-config-devsozluk: workspace:*
       react: ^18.1.0
+      react-library.json: link:@devsozluk/tsconfig/react-library.json
       tsup: ^5.10.1
       typescript: ^4.5.3
     dependencies:
       class-variance-authority: 0.4.0_typescript@4.9.3
+      react-library.json: link:@devsozluk/tsconfig/react-library.json
     devDependencies:
       '@devsozluk/tsconfig': link:../tsconfig
       '@types/react': 18.0.26
@@ -4712,6 +4720,10 @@ packages:
 
   /@types/use-sync-external-store/0.0.3:
     resolution: {integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==}
+    dev: false
+
+  /@types/uuid/9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: false
 
   /@types/webpack-env/1.18.0:
@@ -16065,6 +16077,11 @@ packages:
     deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
     hasBin: true
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /uvu/0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}
