@@ -9,7 +9,7 @@
   <br />
   <br/>
 
-[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.dev.devsozluk.net/)
+[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://dev.devsozluk.net/)
 [![Storybook](https://img.shields.io/website?url=https://www.devsozluk.net)](https://storybook.devsozluk.net/)
 ![GitHub stars](https://img.shields.io/github/stars/devsozluk/website?logo=github)
 ![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)
