@@ -15,7 +15,7 @@
   "dependencies": {
     "@devsozluk/config": "workspace:0.0.0",
     "@devsozluk/tsconfig": "workspace:^0.0.0",
-    "@devsozluk/ui": "workspace:0.0.0",
+    "@devsozluk/ui": "workspace:*",
     "@headlessui/react": "^1.7.9",
     "@reduxjs/toolkit": "^1.9.2",
     "@supabase/supabase-js": "^2.11.0",
