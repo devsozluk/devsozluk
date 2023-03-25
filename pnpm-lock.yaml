@@ -227,12 +227,10 @@ importers:
       eslint: ^8.15.0
       eslint-config-devsozluk: workspace:*
       react: ^18.1.0
-      react-library.json: link:@devsozluk/tsconfig/react-library.json
       tsup: ^5.10.1
       typescript: ^4.5.3
     dependencies:
       class-variance-authority: 0.4.0_typescript@4.9.3
-      react-library.json: link:@devsozluk/tsconfig/react-library.json
     devDependencies:
       '@devsozluk/tsconfig': link:../tsconfig
       '@types/react': 18.0.26
