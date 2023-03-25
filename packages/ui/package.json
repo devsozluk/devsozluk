@@ -1,7 +1,7 @@
 {
   "name": "@devsozluk/ui",
   "description": "This library is a React component library developed for the user interface of the DevSozluk project",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
