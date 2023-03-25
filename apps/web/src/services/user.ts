@@ -27,6 +27,13 @@ export const userApi = createApi({
           data: { avatar_url: publicUrl },
         });
 
+        await supabase
+          .from("profiles")
+          .update({
+            avatar_url: publicUrl,
+          })
+          .eq("id", user.user?.id);
+
         return { data: { user } };
       },
     }),
