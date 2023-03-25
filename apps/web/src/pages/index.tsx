@@ -9,11 +9,11 @@ export async function getServerSideProps() {
     .from("entries")
     .select("*, author(*), topic(slug, title, entryCount)")
     .order("created_at", { ascending: false })
-    .limit(10)
+    .limit(10);
 
   return {
     props: {
-      entries: data
+      entries: data,
     },
   };
 }
@@ -22,10 +22,12 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
   return (
     <div className="flex justify-evenly">
       <div className="flex w-full max-w-3xl flex-col  gap-y-10 divide-y-[1px] divide-tertiary divide-opacity-50 pb-10">
-        {entries?.map((entry) => <Home.EntryCard {...entry} />)}
+        {entries?.map((entry) => (
+          <Home.EntryCard {...entry} />
+        ))}
       </div>
     </div>
-  )
+  );
 };
 
 Home.EntryCard = (entry: IEntry) => {
@@ -33,7 +35,10 @@ Home.EntryCard = (entry: IEntry) => {
   return (
     <div key={id} className="flex w-full flex-col gap-y-5 pt-3">
       <div className="flex items-center justify-between">
-        <Link href={"/topic/" + topic.slug} className="mb-1 text-lg font-bold text-primary">
+        <Link
+          href={"/topic/" + topic.slug}
+          className="mb-1 text-lg font-bold text-primary"
+        >
           {topic.title}
         </Link>
         <div className="mt-2 flex gap-x-3 text-xs font-bold">
@@ -45,7 +50,7 @@ Home.EntryCard = (entry: IEntry) => {
       </div>
       <Entry {...entry} />
     </div>
-  )
-}
+  );
+};
 
 export default Home;
