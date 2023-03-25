@@ -67,6 +67,22 @@ export const topicApi = createApi({
         }
       },
     }),
+    searchTopics: builder.mutation({
+      queryFn: async (body: { text: string }): Promise<any> => {
+        const { text } = body;
+
+        const { data, error } = await supabase
+          .from("topics")
+          .select("*")
+          .textSearch("title", text);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
   }),
 });
 
@@ -74,4 +90,5 @@ export const {
   useGetPopularTopicsMutation,
   useAddTopicMutation,
   useAddEntryMutation,
+  useSearchTopicsMutation,
 } = topicApi;

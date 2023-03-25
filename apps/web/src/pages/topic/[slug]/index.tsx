@@ -25,9 +25,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     .select("*, author(*)")
     .eq("topic", data?.id)
 
-  console.log(data);
-
-
   if (error && !data) {
     return {
       redirect: {
