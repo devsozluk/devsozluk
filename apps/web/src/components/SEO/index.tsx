@@ -66,6 +66,11 @@ export default function CustomHead() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="dev.devsozluk.net" />
       <meta property="og:image" content="/logo.png" />
+      <meta property="og:title" content="DevSözlük" />
+      <meta
+        property="og:description"
+        content="Geliştiriciler için açık kaynaklı sosyal platform."
+      />
       <title>Dev Sözlük</title>
     </Head>
   );
