@@ -9,8 +9,8 @@
   <br />
   <br/>
 
+<a href="https://storybook.devsozluk.net/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
 [![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://dev.devsozluk.net/)
-[![Storybook](https://img.shields.io/website?url=https://www.devsozluk.net)](https://storybook.devsozluk.net/)
 ![GitHub stars](https://img.shields.io/github/stars/devsozluk/website?logo=github)
 ![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)
 [![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://github/devsozluk/website/commit)
