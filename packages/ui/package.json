@@ -1,14 +1,28 @@
 {
   "name": "@devsozluk/ui",
-  "version": "0.0.0",
+  "description": "This library is a React component library developed for the user interface of the DevSozluk project",
+  "version": "0.0.5",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
+  "keywords": [
+    "react",
+    "uikit",
+    "opensource",
+    "tailwindcss",
+    "vite",
+    "turbo",
+    "next"
+  ],
   "files": [
+    "README.md",
     "dist/**"
   ],
+  "repository": {
+    "url": "git@github.com:devsozluk/website.git"
+  },
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
     "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",

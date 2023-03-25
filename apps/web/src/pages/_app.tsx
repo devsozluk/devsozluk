@@ -1,11 +1,16 @@
-import RootLayout from "@/app/layout";
-import store from "@/app/store";
+import RootLayout from "@/components/Layout/Layout";
+import store from "@/store/store";
 import EmptyLayout from "@/components/Layout/EmptyLayout";
 import MainLayout from "@/components/Layout/MainLayout";
+import Head from "@/components/SEO"
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import type { Page } from "../types/page";
+import moment from "moment";
+import 'moment/locale/tr';
+moment.locale("tr");
+import "@/style.css";
 
 type Props = AppProps & {
   Component: Page;
@@ -20,14 +25,16 @@ const App = ({ Component, pageProps }: Props) => {
   const ComponentLayout = getRootLayout(Component);
 
   return (
-    <Provider store={store}>
-      <RootLayout>
-        <ComponentLayout>
-          {getLayout(<Component {...pageProps} />)}
-        </ComponentLayout>
-      </RootLayout>
-      <Toaster />
-    </Provider>
+    <>
+      <Head />
+      <Provider store={store}>
+        <RootLayout>
+          <ComponentLayout>
+            {getLayout(<Component {...pageProps} />)}
+          </ComponentLayout>
+        </RootLayout>
+        <Toaster />
+      </Provider></>
   );
 };
 

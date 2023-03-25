@@ -1,7 +1,6 @@
 export interface LoginFormData {
   email: string;
   password: string;
-  responseMessage?: string;
 }
 
 export interface RegisterFormData {
@@ -9,38 +8,48 @@ export interface RegisterFormData {
   username: string;
   email: string;
   password: string;
-  responseMessage?: string;
 }
 
 export interface CreateTopicData {
   title: string;
   content: string;
-  responseMessage?: string;
+  author?: string;
+}
+
+export interface AddEntryData {
+  content: string;
+  topic?: number;
+  author?: string;
 }
 
 export interface UpdateProfileData {
-  username?: string;
+  name?: string;
   password?: string;
   passwordConfirmation?: string;
 }
 
 export interface ITopic {
-  _id: string;
-  title: string;
+  id: number;
+  created_at: string;
+  title?: string;
+  author: Profile;
   slug: string;
-  content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  viewCount: number;
-  entryCount: number;
-  isPublic: boolean;
+  entryCount?: number;
 }
 
 export interface IEntry {
-  _id: string;
+  id: string;
   content: string;
+  author: Profile;
   topic: ITopic;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
   isPublic: boolean;
+}
+
+export interface Profile {
+  id: string /* primary key */;
+  created_at?: string;
+  username?: string;
+  avatar_url: string;
+  name?: string;
 }

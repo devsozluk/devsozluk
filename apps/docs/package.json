@@ -9,7 +9,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
-    "@devsozluk/ui": "workspace:0.0.0",
+    "@devsozluk/ui": "workspace:*",
     "@uiw/react-md-editor": "^3.20.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
