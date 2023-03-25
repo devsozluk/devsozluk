@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://www.devsozluk.net">
     <img
-      src="https://github.com/devsozluk/website/blob/main/src/assets/images/logo.png?raw=true"
+      src="https://raw.githubusercontent.com/devsozluk/website/main/apps/web/src/assets/images/logo.png"
       alt="DevSozluk Logo"
       height="64"
     />
@@ -9,10 +9,11 @@
   <br />
   <br/>
 
-[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.devsozluk.net/)
+[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.dev.devsozluk.net/)
+[![Storybook](https://img.shields.io/website?url=https://www.devsozluk.net)](https://storybook.devsozluk.net/)
 ![GitHub stars](https://img.shields.io/github/stars/devsozluk/website?logo=github)
 ![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)
-[![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://GitHub.com/devsozluk/commit)
+[![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://github/devsozluk/website/commit)
 ![GitHub contributors](https://img.shields.io/github/contributors/devsozluk/website?logo=github)
 <hr/>
 </div>
@@ -23,47 +24,57 @@
 
 ## **Folder Structure**
 
-```sh
-├── devsozluk/
-    └── src/ # Source files
-        ├── assets/ # Static files
-        ├── components/ # React components
-        │   ├── Elements/ # Basic components
-        │   ├── Form/ # Form components
-        │   ├── Layout/ # Layout components
-        │   └── Loading/ # Loading components
-        ├── libs/ # Libraries
-        ├── pages/ # Pages
-        │   ├── auth/ # Authentication pages
-        │   │   ├── Login # Login page
-        │   │   ├── Register # Register page
-        │   │   ├── Redirect # Redirect page
-        │   │   └── EmailVerification # Email verification page
-        │   ├── errors/ # Error pages
-        │   │   └── NotFound # Not found page
-        │   ├── Home # Home page
-        │   ├── Profile # Profile page
-        │   └── Topic # Topic page
-        ├── router/ # React router
-        ├── store/ # Redux store
-        ├── types/ # Typescript types
-        └── utils/ # Utilities
+```devsozluk/
+  ├── apps/
+  │   ├── web/                # Web application codebase.
+  │   ├── docs/               # Documentation codebase.
+  ├── packages/
+  │   ├── ui/                 # Reusable UI component library.
+  │   ├── config/             # Configuration files and utilities.
+  │   ├── eslint-config-devsozluk/  # Custom ESLint configuration.
+  │   ├── tsconfig/           # Shared TypeScript configuration.
+  ├── .github/
+  │   ├── workflows/
+  │   │   └── devsozluk-ui-publish.yml  # GitHub Actions workflow for publishing the UI package.
+  ├── .env.example             # Example configuration file for .env.
+  ├── .gitignore               # List of files to be ignored by Git.
+  ├── LICENSE                  # Project's license file.
+  ├── package.json             # JSON file containing project's dependencies and scripts.
+  ├── README.md                # Markdown file containing information about the project.
+  ├── pnpm-lock.yaml           # Lock file for pnpm package manager.
+  ├── pnpm-workspace.yaml      # Workspace configuration for pnpm.
+  ├── prettierrc.json          # Configuration file for Prettier code formatter.
+  └── turbo.json               # Configuration file for Turbo, a tool for managing monorepos.
 ```
 
-## **Tech Stack**
+## Teechnologies
 
- - [`Vite`](https://vitejs.dev/)
- - [`React`](https://reactjs.org/)
- - [`React-Router`](https://reactrouter.com/en/main)
- - [`React-Redux`](https://react-redux.js.org/)
- - [`TypeScript`](https://www.typescriptlang.org/)
- - [`TailwindCSS`](https://tailwindcss.com/)
- - [`Altogic`](https://www.altogic.com/)
+- **React**: A JavaScript library for building user interfaces.
+- **Next.js**: A React framework for building server-side rendered and static web applications.
+- **TypeScript**: A statically typed superset of JavaScript that provides enhanced code reliability and scalability.
+- **Tailwind** CSS: A utility-first CSS framework for rapidly building custom user interfaces.
+- **PNPM**: A fast, disk space-efficient package manager that uses hard links and deduplication to reduce disk usage.
+- **Storybook**: An open-source tool for building and testing UI components in isolation.
+- **Supabase**: An open-source alternative to Firebase that provides a set of tools and services for building scalable backend applications.
 
+## Getting Started
 
-## **Tasks**
+To get started with the DevSözlük project, follow these steps:
 
-- [x] Added role-based authentication.
-- [x] Mail Verification system will be added.
-- [ ] User profile pages will be added.
-- [ ] Badge system will be added for users.
+- Clone the repository: `git clone git@github.com:devsozluk/website.git`
+- Navigate to the project root directory: `cd website`
+- Install the required packages using pnpm: `pnpm install`
+- Go to the apps/web directory: `cd apps/web`
+- Create a copy of the .env.example file and rename it to .env, then update the file with your Supabase API keys.
+- Go back to the project root directory: `cd ../..`
+- Start the web application: `pnpm run dev:web`
+
+This will start the web application using the Next.js framework in the `apps/web` directory, as well as the UI components in the `packages/ui` directory.
+
+## Contributors
+
+Thank you for your contributions! We appreciate all the contributions from the community.
+
+<a href="https://github.com/devsozluk/website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=devsozluk/website" />
+</a>
