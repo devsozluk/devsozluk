@@ -31,8 +31,8 @@ const errors = [
     message: "Erişim belirteci tanımlanamıyor",
   },
   {
-    code: "not_unique",
-    message: "Bu kullanıcı adı zaten kullanımda.",
+    code: 'duplicate key value violates unique constraint "topics_slug_key"',
+    message: "Zaten aynı başlıklı bir konu oluşturulmuş.",
   },
   {
     code: 'duplicate key value violates unique constraint "profiles_username_key"',

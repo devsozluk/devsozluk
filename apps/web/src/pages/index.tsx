@@ -23,7 +23,7 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
     <div className="flex justify-evenly">
       <div className="flex w-full max-w-3xl flex-col  gap-y-10 divide-y-[1px] divide-tertiary divide-opacity-50 pb-10">
         {entries?.map((entry) => (
-          <Home.EntryCard {...entry} />
+          <Home.EntryCard key={entry.id} {...entry} />
         ))}
       </div>
     </div>
