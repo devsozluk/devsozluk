@@ -25,7 +25,7 @@ const App = ({ Component, pageProps }: Props) => {
   const ComponentLayout = getRootLayout(Component);
 
   return (
-    <>
+    <div>
       <Head />
       <Provider store={store}>
         <RootLayout>
@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }: Props) => {
         </RootLayout>
         <Toaster />
       </Provider>
-    </>
+    </div>
   );
 };
 

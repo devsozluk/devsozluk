@@ -52,7 +52,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
   }, [router]);
 
   return (
-    <>
+    <div>
       <Head>
         <title>DevSözlük - {topic.title}</title>
         <meta property="og:title" content={topic.title} />
@@ -82,7 +82,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
         <Topic.Entries />
         {isLoggedIn && <Topic.AddEntry />}
       </div>
-    </>
+    </div>
   );
 };
 

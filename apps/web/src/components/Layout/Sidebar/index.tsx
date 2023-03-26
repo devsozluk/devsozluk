@@ -6,12 +6,12 @@ import { useGetPopularTopicsMutation } from "@/services/topic";
 import { useRouter } from "next/router";
 
 const Sidebar = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [getPopularTopics, { data, isLoading }] = useGetPopularTopicsMutation();
 
   useEffect(() => {
-    getPopularTopics("")
-  }, [router])
+    getPopularTopics("");
+  }, [router]);
 
   return (
     <div className="fixed hidden h-screen w-[250px] flex-col space-y-3 overflow-y-auto rounded px-5 scrollbar scrollbar-track-slate-700  scrollbar-thumb-primary  scrollbar-thumb-rounded scrollbar-w-2 hover:scrollbar-thumb-buttonPrimary md:flex lg:w-[300px]">
@@ -20,7 +20,7 @@ const Sidebar = () => {
       ) : (
         <Fragment>
           {data?.map((topic: any) => (
-            <Sidebar.Item {...topic} />
+            <Sidebar.Item key={topic.id} {...topic} />
           ))}
         </Fragment>
       )}
