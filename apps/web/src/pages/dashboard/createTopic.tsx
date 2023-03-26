@@ -1,9 +1,6 @@
 import { CreateTopicData } from "@/types";
 import getErrorTranslation from "@/utils/errors";
-import {
-  getErrorFromPayload,
-  useAppSelector,
-} from "@/utils/hooks";
+import { getErrorFromPayload, useAppSelector } from "@/utils/hooks";
 import { CreateTopicSchema } from "@/utils/schemas";
 import { Button, Input, TextArea } from "@devsozluk/ui";
 import { Form, Formik } from "formik";

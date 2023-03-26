@@ -32,17 +32,15 @@ export const topicApi = createApi({
           .select("*")
           .single();
 
+        if (error) return { error };
+
         const { data: entryData } = await supabase.from("entries").insert({
           author,
           topic: data?.id,
           content: body.content,
         });
 
-        if (error) {
-          return { error };
-        } else {
-          return { data: { topic: data, entry: entryData } };
-        }
+        return { data: { topic: data, entry: entryData } };
       },
     }),
     addEntry: builder.mutation({

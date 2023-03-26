@@ -2,13 +2,13 @@ import RootLayout from "@/components/Layout/Layout";
 import store from "@/store/store";
 import EmptyLayout from "@/components/Layout/EmptyLayout";
 import MainLayout from "@/components/Layout/MainLayout";
-import Head from "@/components/SEO"
+import Head from "@/components/SEO";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import type { Page } from "../types/page";
 import moment from "moment";
-import 'moment/locale/tr';
+import "moment/locale/tr";
 moment.locale("tr");
 import "@/style.css";
 
@@ -34,7 +34,8 @@ const App = ({ Component, pageProps }: Props) => {
           </ComponentLayout>
         </RootLayout>
         <Toaster />
-      </Provider></>
+      </Provider>
+    </>
   );
 };
 
