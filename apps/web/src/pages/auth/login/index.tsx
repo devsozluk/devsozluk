@@ -45,14 +45,13 @@ const Login = () => {
       validateOnBlur={false}
     >
       {({ errors, values, setFieldValue }) => (
-        <Form className="space-y-6">
+        <Form className="space-y-2">
           <Input
             name="email"
             autoComplete="off"
             errorMessage={errors.email}
             value={values.email}
             onChange={(event) => setFieldValue("email", event.target.value)}
-            renderLeftIcon={<RiMailLine size={24} />}
             placeholder="Email"
           />
           <Input
@@ -61,11 +60,10 @@ const Login = () => {
             errorMessage={errors.password}
             value={values.password}
             onChange={(event) => setFieldValue("password", event.target.value)}
-            renderLeftIcon={<RiLockPasswordLine size={24} />}
             placeholder="Şifre"
             autoComplete="current-password"
           />
-          <Button className="w-full" loading={isLoading} type="submit">
+          <Button className="w-full !mt-4" loading={isLoading} type="submit">
             Giriş
           </Button>
         </Form>

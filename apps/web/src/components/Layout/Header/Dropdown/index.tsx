@@ -14,7 +14,7 @@ const Dropdown = () => {
   return (
     <Menu>
       <Menu.Button>
-        <button className="flex items-center border border-placeholder border-opacity-50  justify-between px-2 text-sm rounded py-1.5 w-60  font-semibold  text-secondary">
+        <button className="flex items-center  justify-between px-2 text-sm rounded py-1.5 w-40 font-semibold text-secondary">
           <div className="flex items-center gap-x-2">
             <Image
               width={0}
@@ -35,7 +35,7 @@ const Dropdown = () => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute top-44 flex rounded bg-gray-800 md:top-[70px] w-60 !m-0"
+        className="absolute top-44 flex rounded bg-gray-800 md:top-[70px] w-40 !m-0"
       >
         <Menu.Items className="flex w-full flex-col space-y-2 rounded text-center font-medium">
           {navigations.map((nav, index) => (

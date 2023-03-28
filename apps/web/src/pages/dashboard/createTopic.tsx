@@ -43,7 +43,7 @@ const CreateTopic = () => {
         {({ errors, setFieldValue, values, handleSubmit }) => (
           <>
             <Form className="px-4">
-              <div className="space-y-66">
+              <div className="space-y-4">
                 <Input
                   name="title"
                   placeholder="Konu başlığını yazınız."
