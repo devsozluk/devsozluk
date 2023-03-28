@@ -22,7 +22,7 @@ const Login = () => {
   useEffect(() => {
     if (status === "fulfilled") {
       toast.success("Giriş başarılı, yönlendiriliyorsunuz.");
-      router.push("/")
+      router.push("/");
     } else if (status === "rejected") {
       const errorMessage = getErrorFromPayload(error);
       toast.error(getErrorTranslation(errorMessage));

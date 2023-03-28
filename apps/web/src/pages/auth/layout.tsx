@@ -1,4 +1,5 @@
 import supabase from "@/libs/supabase";
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { AiFillGithub } from "react-icons/ai";
@@ -21,8 +22,13 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
   };
 
   return (
-    <div className="flex h-full flex-col items-center md:justify-center  ">
-      <div className="flex w-full flex-col  items-center justify-center px-5  md:mx-0  space-y-5 md:w-[500px]">
+    <div className="flex h-full flex-col items-center md:justify-center">
+      <div className="fixed top-0 left-0 right-0 z-30 flex flex-col items-center bg-background py-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:flex-row md:justify-center md:space-y-0">
+        <Link href="/">
+          <Image width={170} height={80} src="/logo.png" alt="DevSözlük Logo" />
+        </Link>
+      </div>
+      <div className="flex w-full flex-col  items-center justify-center px-5 mt-20 md:mt-0 md:mx-0  space-y-5 md:w-[500px]">
         <div className="w-full">{children}</div>
         <p className="text-placeholder">veya</p>
         <button
