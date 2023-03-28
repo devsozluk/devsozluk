@@ -1,4 +1,6 @@
 import { Button } from "@devsozluk/ui";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 
@@ -35,6 +37,15 @@ const Error404 = () => {
   );
 };
 
-Error404.getLayout = (page: React.ReactElement) => <Fragment>{page}</Fragment>;
+Error404.getLayout = (page: React.ReactElement) => (
+  <div className="flex h-full flex-col items-center md:justify-center">
+    <div className="fixed top-0 left-0 right-0 z-30 flex flex-col items-center bg-background py-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:flex-row md:justify-center md:space-y-0">
+      <Link href="/">
+        <Image width={170} height={80} src="/logo.png" alt="DevSözlük Logo" />
+      </Link>
+    </div>
+    {page}
+  </div>
+);
 
 export default Error404;
