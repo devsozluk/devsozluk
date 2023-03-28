@@ -24,7 +24,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-secondary font-poppins h-32">
+    <div className="min-h-screen bg-background text-secondary font-poppins h-full">
       {isLoading ? (
         <Spinner size="md" isFullScreen={true} />
       ) : (
