@@ -6,6 +6,7 @@ import Head from "@/components/SEO";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
+import { Analytics } from "@vercel/analytics/react";
 import type { Page } from "../types/page";
 import moment from "moment";
 import "moment/locale/tr";
@@ -35,6 +36,7 @@ const App = ({ Component, pageProps }: Props) => {
         </RootLayout>
         <Toaster />
       </Provider>
+      <Analytics />
     </div>
   );
 };
