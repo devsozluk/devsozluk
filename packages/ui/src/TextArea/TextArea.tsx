@@ -1,7 +1,8 @@
 import { cx } from "class-variance-authority";
 import React from "react";
 
-const baseClasses = "w-full rounded ";
+const baseClasses =
+  "w-full mb-4 border border-gray-200 rounded-lg bg-gray-700 border-gray-600";
 const errorClasses = "!border-red-400 !text-red-400";
 
 export interface TextAreaProps
@@ -35,9 +36,9 @@ export const TextArea = ({
           errorMessage ? cx(baseClasses, errorClasses) : baseClasses
         )}
       >
-        <div className="px-4 py-2 bg-transparent rounded-t border border-placeholder focus-within:border-tertiary">
+        <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
           <textarea
-            className="w-full px-0 text-sm bg-transparent border-0 focus:ring-0 text-white placeholder-gray-400 outline-none"
+            className="w-full px-0 text-sm text-gray-900 outline-none bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             {...props}
           ></textarea>
         </div>

@@ -1,6 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,100&display=swap");
 
 @tailwind base;
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color:rgb(15,23,42);
+
+
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(31,41,55);
+  border-radius: 4px;
+
+}
 @tailwind components;
 @tailwind utilities;
 
