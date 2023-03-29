@@ -14,7 +14,7 @@ const Sidebar = () => {
   }, [router]);
 
   return (
-    <div className="fixed hidden h-screen w-[250px]  flex-col space-y-3 overflow-y-auto rounded px-5 scrollbar scrollbar-track-slate-700  scrollbar-thumb-primary  scrollbar-thumb-rounded scrollbar-w-2 hover:scrollbar-thumb-buttonPrimary md:flex lg:w-[300px]">
+    <div className="fixed hidden h-[84%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded px-5 scrolbarr md:flex lg:w-[300px]">
       {isLoading ? (
         <SidebarLoader />
       ) : (
