@@ -68,7 +68,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
         <div className="flex items-center justify-between">
           <Link
             href={"/topic/" + topic.slug}
-            className="text-lg font-bold text-primary"
+            className="text-lg font-bold text-primary-400"
           >
             {topic.title}
           </Link>
