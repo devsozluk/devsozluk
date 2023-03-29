@@ -37,7 +37,7 @@ Home.EntryCard = (entry: IEntry) => {
       <div className="flex items-center justify-between">
         <Link
           href={"/topic/" + topic.slug}
-          className="mb-1 text-lg font-bold text-primary"
+          className="mb-1 text-lg font-bold text-primary-400"
         >
           {topic.title}
         </Link>

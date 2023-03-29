@@ -27,7 +27,7 @@ const Entry: React.FC<IEntryProps> = ({
       <p className="text-gray-400">{content}</p>
       <footer className="flex justify-between items-center mt-2">
         <div className="flex items-center">
-          <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+          <div className="inline-flex items-center mr-3 select-none">
             <Image
               className="mr-2 w-6 h-6 rounded"
               src={author.avatar_url}
@@ -35,11 +35,14 @@ const Entry: React.FC<IEntryProps> = ({
               height={24}
               alt="Michael Gough"
             />
-            {author.name}
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            <time title="February 8th, 2022">{formattedDate}</time>
-          </p>
+            <div className="text-sm text-white flex items-center">
+              {author.name}
+              <span className="h-1 w-1 rounded-sm bg-gray-400 mx-2"></span>
+              <p className="text-gray-400">
+                <time title="February 8th, 2022">{formattedDate}</time>
+              </p>
+            </div>
+          </div>
         </div>
         <button
           id="dropdownComment1Button"
