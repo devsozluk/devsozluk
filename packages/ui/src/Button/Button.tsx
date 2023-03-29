@@ -4,13 +4,13 @@ import { Spinner } from "../Spinner/Spinner";
 
 const buttonStyles = cva(
   [
-    "flex items-center justify-center gap-x-2 rounded font-medium transition-all disabled:opacity-50",
+    "flex items-center justify-center gap-x-2 rounded border-2 text-lg font-medium transition-all disabled:opacity-50",
   ],
   {
     variants: {
       variant: {
         primary:
-          "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800",
+          "border-blue-700 bg-blue-700 text-white hover:bg-blue-800 hover:border-blue-800",
         outline:
           "border-blue-700 bg-transparent text-blue-700 hover:bg-blue-700 hover:text-white",
         danger:
