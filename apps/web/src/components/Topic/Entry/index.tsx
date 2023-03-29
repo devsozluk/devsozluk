@@ -2,7 +2,6 @@ import type { IEntry } from "@/types";
 import Image from "next/image";
 import React from "react";
 import moment from "moment";
-import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import classNames from "classnames";
 
 export type IEntryProps = IEntry & {
