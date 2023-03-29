@@ -64,7 +64,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
         <meta name="twitter:title" content={topic.title} />
         <meta name="twitter:description" content={entries[0].content} />
       </Head>
-      <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
+      <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10">
         <div className="flex items-center justify-between">
           <Link
             href={"/topic/" + topic.slug}

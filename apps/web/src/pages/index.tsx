@@ -21,7 +21,7 @@ export async function getServerSideProps() {
 const Home = ({ entries }: { entries: IEntry[] }) => {
   return (
     <div className="flex justify-evenly">
-      <div className="flex w-full max-w-3xl flex-col gap-y-10 divide-y divide-opacity-70  divide-gray-700 pb-10">
+      <div className="flex w-full max-w-3xl flex-col  gap-y-10 divide-y-[1px] divide-tertiary divide-opacity-50 pb-10">
         {entries?.map((entry) => (
           <Home.EntryCard key={entry.id} {...entry} />
         ))}
@@ -33,7 +33,7 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
 Home.EntryCard = (entry: IEntry) => {
   const { id, topic } = entry;
   return (
-    <div key={id} className="flex w-full flex-col gap-y-3 pt-3">
+    <div key={id} className="flex w-full flex-col gap-y-5 pt-3">
       <div className="flex items-center justify-between">
         <Link
           href={"/topic/" + topic.slug}
