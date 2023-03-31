@@ -4,16 +4,19 @@
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
+
+  
 }
 
 *::-webkit-scrollbar-track {
-  background-color:rgb(15,23,42);
+  background-color:rgb(41,45,49);
+  padding: 10px;
 
 
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgb(31,41,55);
+  background-color:rgb(107,109,113);
   border-radius: 4px;
 
 }
