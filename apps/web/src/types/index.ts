@@ -41,6 +41,7 @@ export interface ITopic {
   author: Profile;
   slug: string;
   entryCount?: number;
+  viewsCount?: number;
 }
 
 export interface IEntry {

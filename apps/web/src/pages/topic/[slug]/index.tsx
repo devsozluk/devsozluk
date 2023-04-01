@@ -1,22 +1,21 @@
 import TopicAddEntry from "@/components/Topic/AddEntry";
 import Entry from "@/components/Topic/Entry";
+import TopicHeader from "@/components/Topic/Header";
 import supabase from "@/libs/supabase";
 import { setTopic } from "@/store/topic/topicSlice";
 import { IEntry, ITopic } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
-import { IconButton } from "@devsozluk/ui";
 import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
-import { BsBookmarkPlusFill, BsFillBookmarkPlusFill } from "react-icons/bs";
-import { TbBookmark } from "react-icons/tb";
-import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
-import TopicHeader from "@/components/Topic/Header";
+import { useEffect } from "react";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
+
+  await supabase.rpc("increment_view_count", {
+    topic_slug: slug,
+  });
 
   const { data, error } = await supabase
     .from("topics")

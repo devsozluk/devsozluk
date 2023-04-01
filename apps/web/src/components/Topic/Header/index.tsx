@@ -16,7 +16,8 @@ const TopicHeader = (topic: ITopic) => {
       </Link>
       <div className="mt-2 flex gap-x-3 text-xs font-bold">
         <IconButton>
-          <IoMdEye size={18} />0
+          <IoMdEye size={18} />
+          {topic.viewsCount}
         </IconButton>
         <IconButton>
           <MdComment size={18} />

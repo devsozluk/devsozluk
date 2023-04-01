@@ -69,6 +69,7 @@ export interface Database {
           id: number
           slug: string | null
           title: string | null
+          viewsCount: number | null
         }
         Insert: {
           author: string
@@ -77,6 +78,7 @@ export interface Database {
           id?: number
           slug?: string | null
           title?: string | null
+          viewsCount?: number | null
         }
         Update: {
           author?: string
@@ -85,6 +87,7 @@ export interface Database {
           id?: number
           slug?: string | null
           title?: string | null
+          viewsCount?: number | null
         }
       }
       votes_entry: {
@@ -118,7 +121,12 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_view_count: {
+        Args: {
+          topic_slug: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
