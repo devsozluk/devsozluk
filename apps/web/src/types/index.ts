@@ -16,6 +16,12 @@ export interface CreateTopicData {
   author?: string;
 }
 
+export interface UpdateVoteBody {
+  entry: number;
+  author: string;
+  type?: "up" | "down";
+}
+
 export interface AddEntryData {
   content: string;
   topic?: number;
@@ -38,12 +44,21 @@ export interface ITopic {
 }
 
 export interface IEntry {
-  id: string;
+  id: number;
   content: string;
   author: Profile;
   topic: ITopic;
   created_at: Date;
   isPublic: boolean;
+  upvotes: number;
+  downvotes: number;
+}
+
+export interface IVote {
+  entry: number;
+  author: number;
+  upvoted: boolean;
+  downvoted: boolean;
 }
 
 export interface Profile {

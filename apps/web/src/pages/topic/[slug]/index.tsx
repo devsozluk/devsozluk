@@ -4,12 +4,16 @@ import supabase from "@/libs/supabase";
 import { setTopic } from "@/store/topic/topicSlice";
 import { IEntry, ITopic } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { IconButton } from "@devsozluk/ui";
 import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect } from "react";
-import { MdComment } from "react-icons/md";
+import { BsBookmarkPlusFill, BsFillBookmarkPlusFill } from "react-icons/bs";
+import { TbBookmark } from "react-icons/tb";
+import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
+import TopicHeader from "@/components/Topic/Header";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
@@ -65,20 +69,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
         <meta name="twitter:description" content={entries[0].content} />
       </Head>
       <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
-        <div className="flex items-center justify-between">
-          <Link
-            href={"/topic/" + topic.slug}
-            className="text-lg font-bold text-primary-400"
-          >
-            {topic.title}
-          </Link>
-          <div className="mt-2 flex gap-x-3 text-xs font-bold">
-            <span className="flex items-center gap-x-1">
-              <MdComment size={16} />
-              {topic.entryCount}
-            </span>
-          </div>
-        </div>
+        <Topic.Header {...topic} />
         <Topic.Entries />
         {isLoggedIn && <Topic.AddEntry />}
       </div>
@@ -86,13 +77,19 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
   );
 };
 
+Topic.Header = TopicHeader;
+
 Topic.Entries = () => {
   const { entries } = useAppSelector((state) => state.topic);
 
   return (
-    <div className="flex flex-col divide-y-2 divide-opacity-50 divide-gray-800">
+    <div className="flex flex-col divide-y-2  divide-opacity-50 divide-gray-800">
       {entries?.map((entry, index) => (
-        <Entry className="py-5" {...entry} key={index} />
+        <Entry
+          className={index === 0 ? "pb-5" : "py-5"}
+          {...entry}
+          key={index}
+        />
       ))}
     </div>
   );

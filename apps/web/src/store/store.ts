@@ -3,6 +3,7 @@ import { authApi } from "../services/auth";
 import { configureStore } from "@reduxjs/toolkit";
 
 import authReducer from "@/store/auth/authSlice";
+import userReducer from "@/store/user/userSlice";
 import topicReducer from "@/store/topic/topicSlice";
 import { topicApi } from "@/services/topic";
 
@@ -10,6 +11,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     topic: topicReducer,
+    user: userReducer,
     [topicApi.reducerPath]: topicApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [authApi.reducerPath]: authApi.reducer,

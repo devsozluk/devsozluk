@@ -11,25 +11,31 @@ export interface Database {
     Tables: {
       entries: {
         Row: {
-          author: string | null
-          content: string | null
+          author: string
+          content: string
           created_at: string | null
+          downvotes: number | null
           id: number
-          topic: number | null
+          topic: number
+          upvotes: number | null
         }
         Insert: {
-          author?: string | null
-          content?: string | null
+          author: string
+          content: string
           created_at?: string | null
+          downvotes?: number | null
           id?: number
-          topic?: number | null
+          topic: number
+          upvotes?: number | null
         }
         Update: {
-          author?: string | null
-          content?: string | null
+          author?: string
+          content?: string
           created_at?: string | null
+          downvotes?: number | null
           id?: number
-          topic?: number | null
+          topic?: number
+          upvotes?: number | null
         }
       }
       profiles: {
@@ -57,7 +63,7 @@ export interface Database {
       }
       topics: {
         Row: {
-          author: string | null
+          author: string
           created_at: string | null
           entryCount: number | null
           id: number
@@ -65,7 +71,7 @@ export interface Database {
           title: string | null
         }
         Insert: {
-          author?: string | null
+          author: string
           created_at?: string | null
           entryCount?: number | null
           id?: number
@@ -73,12 +79,38 @@ export interface Database {
           title?: string | null
         }
         Update: {
-          author?: string | null
+          author?: string
           created_at?: string | null
           entryCount?: number | null
           id?: number
           slug?: string | null
           title?: string | null
+        }
+      }
+      votes_entry: {
+        Row: {
+          author: string
+          createdat: string | null
+          downvoted: boolean | null
+          entry: number
+          id: number
+          upvoted: boolean | null
+        }
+        Insert: {
+          author: string
+          createdat?: string | null
+          downvoted?: boolean | null
+          entry: number
+          id?: number
+          upvoted?: boolean | null
+        }
+        Update: {
+          author?: string
+          createdat?: string | null
+          downvoted?: boolean | null
+          entry?: number
+          id?: number
+          upvoted?: boolean | null
         }
       }
     }
