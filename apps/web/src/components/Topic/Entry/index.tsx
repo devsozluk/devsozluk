@@ -64,7 +64,7 @@ const Entry: React.FC<IEntryProps> = ({
   useEffect(() => {
     if (status === "fulfilled" && data) {
       if (data.upvoted) setUpvotes((prevCount) => prevCount + 1);
-      else setDownvotes((prevCount) => prevCount - 1);
+      else setDownvotes((prevCount) => prevCount + 1);
     }
   }, [status]);
 
