@@ -103,7 +103,6 @@ export const topicApi = createApi({
           .single();
 
         if (error) {
-          alert("hatayı yakala");
           return { error };
         } else {
           return { data };

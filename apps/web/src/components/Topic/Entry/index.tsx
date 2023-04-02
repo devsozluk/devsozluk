@@ -25,9 +25,12 @@ const Entry: React.FC<IEntryProps> = ({
   upvotes: initialUpvotes,
   downvotes: initialDownvotes,
 }) => {
-  const [handleEntryVote, { data, error, status }] = useEntryVoteMutation();
-  const [deleteEntryVote, { data: deleteData, status: deleteStatus }] =
-    useDeleteEntryVoteMutation();
+  const [handleEntryVote, { data, error, isLoading, status }] =
+    useEntryVoteMutation();
+  const [
+    deleteEntryVote,
+    { data: deleteData, isLoading: deleteIsLoading, status: deleteStatus },
+  ] = useDeleteEntryVoteMutation();
   const referenceDate = moment().startOf("seconds");
   const formattedDate = moment
     .utc(created_at)
@@ -51,17 +54,26 @@ const Entry: React.FC<IEntryProps> = ({
     if (!isLoggedIn)
       return toast.error("Entry'e oy vermek için lütfen önce giriş yapın.");
 
-    if (hasUserVote) {
+    if (
+      (hasUserVote?.downvoted && type === "down") ||
+      (hasUserVote?.upvoted && type === "up")
+    ) {
       await deleteEntryVote({
         author: user?.id as string,
         entry: id as number,
       });
+    } else {
+      if (hasUserVote)
+        await deleteEntryVote({
+          author: user?.id as string,
+          entry: id as number,
+        });
+      await handleEntryVote({
+        author: user?.id as string,
+        entry: id as number,
+        type,
+      });
     }
-    await handleEntryVote({
-      author: user?.id as string,
-      entry: id as number,
-      type,
-    });
   };
 
   useEffect(() => {
@@ -104,11 +116,19 @@ const Entry: React.FC<IEntryProps> = ({
           </div>
         </div>
         <div className="flex items-center gap-x-2 text-xs font-bold">
-          <IconButton isActive={hasUpVote} onClick={() => handleVote("up")}>
+          <IconButton
+            isActive={hasUpVote}
+            disabled={isLoading || deleteIsLoading}
+            onClick={() => handleVote("up")}
+          >
             <GoTriangleUp size={16} />
             {upvotes}
           </IconButton>
-          <IconButton isActive={hasDownVote} onClick={() => handleVote("down")}>
+          <IconButton
+            isActive={hasDownVote}
+            disabled={isLoading || deleteIsLoading}
+            onClick={() => handleVote("down")}
+          >
             <GoTriangleDown size={16} />
             {downvotes}
           </IconButton>

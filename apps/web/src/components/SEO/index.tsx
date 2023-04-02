@@ -65,10 +65,7 @@ export default function CustomHead() {
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://dev.devsozluk.net/" />
       <meta property="og:title" content="Dev Sözlük" />
-      <meta
-        property="og:image"
-        content="https://dev.devsozluk.net/banner.png"
-      />
+      <meta property="og:image" content="https://dev.devsozluk.net/logo.png" />
       <meta
         property="og:description"
         content="Geliştiriciler için açık kaynaklı sosyal platform."
