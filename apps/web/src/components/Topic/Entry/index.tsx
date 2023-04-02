@@ -5,12 +5,12 @@ import moment from "moment";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import classNames from "classnames";
 import { IconButton } from "@devsozluk/ui";
-import supabase from "@/libs/supabase";
 import { useAppSelector } from "@/utils/hooks";
 import {
   useDeleteEntryVoteMutation,
   useEntryVoteMutation,
 } from "@/services/topic";
+import { toast } from "react-hot-toast";
 
 export type IEntryProps = IEntry & {
   className?: string;
@@ -38,7 +38,7 @@ const Entry: React.FC<IEntryProps> = ({
   const [upvotes, setUpvotes] = useState(initialUpvotes);
   const [downvotes, setDownvotes] = useState(initialDownvotes);
 
-  const user = useAppSelector((state) => state.auth.user);
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const userVotes = useAppSelector((state) => state.user.votes);
 
   const hasUserVote = userVotes?.find((vote) => vote.entry == id);
@@ -48,6 +48,9 @@ const Entry: React.FC<IEntryProps> = ({
   );
 
   const handleVote = async (type: "up" | "down") => {
+    if (!isLoggedIn)
+      return toast.error("Entry'e oy vermek için lütfen önce giriş yapın.");
+
     if (hasUserVote) {
       await deleteEntryVote({
         author: user?.id as string,
