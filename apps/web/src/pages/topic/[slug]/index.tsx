@@ -26,6 +26,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { data: entries } = await supabase
     .from("entries")
     .select("*, author(*)")
+    .order("created_at", { ascending: true })
     .eq("topic", data?.id);
 
   if (error && !data) {

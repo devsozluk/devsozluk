@@ -1,7 +1,6 @@
 import { ITopic } from "@/types";
 import { IconButton } from "@devsozluk/ui";
 import Link from "next/link";
-import { AiFillEye } from "react-icons/ai";
 import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
 import { IoMdEye } from "react-icons/io";
 

@@ -3,13 +3,11 @@ import TopicHeader from "@/components/Topic/Header";
 import supabase from "@/libs/supabase";
 import { IEntry } from "@/types";
 import classNames from "classnames";
-import Link from "next/link";
-import { MdComment } from "react-icons/md";
 
 export async function getServerSideProps() {
   const { data, error } = await supabase
     .from("entries")
-    .select("*, author(*), topic(slug, title, entryCount)")
+    .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
     .order("created_at", { ascending: false })
     .limit(10);
 

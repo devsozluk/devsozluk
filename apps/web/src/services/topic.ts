@@ -56,6 +56,7 @@ export const topicApi = createApi({
         const { data: entries } = await supabase
           .from("entries")
           .select("*, author(*)")
+          .order("created_at", { ascending: true })
           .eq("topic", topic);
 
         if (error) {
@@ -83,7 +84,6 @@ export const topicApi = createApi({
           .single();
 
         if (error) {
-          alert("hatayı yakala");
           return { error };
         } else {
           return { data };
@@ -101,8 +101,6 @@ export const topicApi = createApi({
           .eq("entry", entry)
           .select("*")
           .single();
-
-        console.log(data);
 
         if (error) {
           alert("hatayı yakala");
