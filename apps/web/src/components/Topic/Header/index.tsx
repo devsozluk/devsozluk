@@ -3,6 +3,7 @@ import { IconButton } from "@devsozluk/ui";
 import Link from "next/link";
 import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
 import { IoMdEye } from "react-icons/io";
+import SocialShare from "./SocialShare";
 
 const TopicHeader = (topic: ITopic) => {
   return (
@@ -25,6 +26,7 @@ const TopicHeader = (topic: ITopic) => {
         <IconButton>
           <MdOutlineBookmarkAdd size={18} />
         </IconButton>
+        <SocialShare {...topic} />
       </div>
     </div>
   );
