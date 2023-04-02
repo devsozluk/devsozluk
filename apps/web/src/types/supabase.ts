@@ -11,25 +11,31 @@ export interface Database {
     Tables: {
       entries: {
         Row: {
-          author: string | null
-          content: string | null
+          author: string
+          content: string
           created_at: string | null
+          downvotes: number | null
           id: number
-          topic: number | null
+          topic: number
+          upvotes: number | null
         }
         Insert: {
-          author?: string | null
-          content?: string | null
+          author: string
+          content: string
           created_at?: string | null
+          downvotes?: number | null
           id?: number
-          topic?: number | null
+          topic: number
+          upvotes?: number | null
         }
         Update: {
-          author?: string | null
-          content?: string | null
+          author?: string
+          content?: string
           created_at?: string | null
+          downvotes?: number | null
           id?: number
-          topic?: number | null
+          topic?: number
+          upvotes?: number | null
         }
       }
       profiles: {
@@ -57,28 +63,57 @@ export interface Database {
       }
       topics: {
         Row: {
-          author: string | null
+          author: string
           created_at: string | null
           entryCount: number | null
           id: number
           slug: string | null
           title: string | null
+          viewsCount: number | null
         }
         Insert: {
-          author?: string | null
+          author: string
           created_at?: string | null
           entryCount?: number | null
           id?: number
           slug?: string | null
           title?: string | null
+          viewsCount?: number | null
         }
         Update: {
-          author?: string | null
+          author?: string
           created_at?: string | null
           entryCount?: number | null
           id?: number
           slug?: string | null
           title?: string | null
+          viewsCount?: number | null
+        }
+      }
+      votes_entry: {
+        Row: {
+          author: string
+          createdat: string | null
+          downvoted: boolean | null
+          entry: number
+          id: number
+          upvoted: boolean | null
+        }
+        Insert: {
+          author: string
+          createdat?: string | null
+          downvoted?: boolean | null
+          entry: number
+          id?: number
+          upvoted?: boolean | null
+        }
+        Update: {
+          author?: string
+          createdat?: string | null
+          downvoted?: boolean | null
+          entry?: number
+          id?: number
+          upvoted?: boolean | null
         }
       }
     }
@@ -86,7 +121,12 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_view_count: {
+        Args: {
+          topic_slug: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

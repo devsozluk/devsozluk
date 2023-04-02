@@ -1,14 +1,13 @@
 import Entry from "@/components/Topic/Entry";
+import TopicHeader from "@/components/Topic/Header";
 import supabase from "@/libs/supabase";
 import { IEntry } from "@/types";
 import classNames from "classnames";
-import Link from "next/link";
-import { MdComment } from "react-icons/md";
 
 export async function getServerSideProps() {
   const { data, error } = await supabase
     .from("entries")
-    .select("*, author(*), topic(slug, title, entryCount)")
+    .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
     .order("created_at", { ascending: false })
     .limit(10);
 
@@ -40,20 +39,7 @@ Home.EntryCard = ({ entry, index }: { entry: IEntry; index: number }) => {
       key={id}
       className={classNames("flex w-full flex-col gap-y-4", hasFirstEntry)}
     >
-      <div className="flex items-center justify-between">
-        <Link
-          href={"/topic/" + topic.slug}
-          className="mb-1 text-lg font-bold text-primary-400"
-        >
-          {topic.title}
-        </Link>
-        <div className="mt-2 flex gap-x-3 text-xs font-bold">
-          <span className="flex items-center gap-x-1">
-            <MdComment size={16} />
-            {topic.entryCount}
-          </span>
-        </div>
-      </div>
+      <TopicHeader {...topic} />
       <Entry {...entry} />
     </div>
   );

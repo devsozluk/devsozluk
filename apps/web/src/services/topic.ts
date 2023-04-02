@@ -1,4 +1,4 @@
-import { AddEntryData, CreateTopicData } from "@/types/index";
+import { AddEntryData, CreateTopicData, UpdateVoteBody } from "@/types/index";
 import supabase from "@/libs/supabase";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
@@ -27,7 +27,7 @@ export const topicApi = createApi({
           .insert({
             title,
             slug,
-            author,
+            author: author as string,
           })
           .select("*")
           .single();
@@ -35,7 +35,7 @@ export const topicApi = createApi({
         if (error) return { error };
 
         const { data: entryData } = await supabase.from("entries").insert({
-          author,
+          author: author as string,
           topic: data?.id,
           content: body.content,
         });
@@ -48,20 +48,65 @@ export const topicApi = createApi({
         const { content, topic, author } = body;
 
         const { data, error } = await supabase.from("entries").insert({
-          author,
-          topic,
+          author: author as string,
+          topic: topic as number,
           content,
         });
 
         const { data: entries } = await supabase
           .from("entries")
           .select("*, author(*)")
+          .order("created_at", { ascending: true })
           .eq("topic", topic);
 
         if (error) {
           return { error };
         } else {
           return { data: { entries } };
+        }
+      },
+    }),
+    entryVote: builder.mutation({
+      queryFn: async (body: UpdateVoteBody): Promise<any> => {
+        const { type, entry, author } = body;
+        const upvoted = type === "up";
+        const downvoted = type === "down";
+
+        const { error, data } = await supabase
+          .from("votes_entry")
+          .upsert({
+            entry,
+            author,
+            upvoted,
+            downvoted,
+          })
+          .select("*")
+          .single();
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
+    deleteEntryVote: builder.mutation({
+      queryFn: async (body: UpdateVoteBody): Promise<any> => {
+        const { entry, author } = body;
+
+        const { error, data } = await supabase
+          .from("votes_entry")
+          .delete()
+          .eq("author", author)
+          .eq("entry", entry)
+          .select("*")
+          .single();
+
+        if (error) {
+          alert("hatayı yakala");
+          return { error };
+        } else {
+          return { data };
         }
       },
     }),
@@ -89,4 +134,6 @@ export const {
   useAddTopicMutation,
   useAddEntryMutation,
   useSearchTopicsMutation,
+  useEntryVoteMutation,
+  useDeleteEntryVoteMutation,
 } = topicApi;

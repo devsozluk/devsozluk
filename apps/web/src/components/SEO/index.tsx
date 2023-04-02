@@ -62,16 +62,29 @@ export default function CustomHead() {
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="twitter:image" content="https://dev.devsozluk.net/logo.png" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta property="twitter:domain" content="dev.devsozluk.net" />
-      <meta property="og:image" content="/logo.png" />
-      <meta property="og:title" content="DevSözlük" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://dev.devsozluk.net/" />
+      <meta property="og:title" content="Dev Sözlük" />
+      <meta
+        property="og:image"
+        content="https://dev.devsozluk.net/banner.png"
+      />
       <meta
         property="og:description"
         content="Geliştiriciler için açık kaynaklı sosyal platform."
+      ></meta>
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:image"
+        content="https://dev.devsozluk.net/banner.png"
       />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:domain" content="dev.devsozluk.net" />
       <title>Dev Sözlük</title>
+      <meta
+        name="description"
+        content="Geliştiriciler için açık kaynaklı sosyal platform."
+      />
     </Head>
   );
 }

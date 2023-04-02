@@ -43,6 +43,7 @@
     "access": "public"
   },
   "dependencies": {
-    "class-variance-authority": "^0.4.0"
+    "class-variance-authority": "^0.4.0",
+    "classnames": "^2.3.2"
   }
 }

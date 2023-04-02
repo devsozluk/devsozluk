@@ -6,6 +6,21 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
+    getUserVotes: builder.mutation({
+      queryFn: async (): Promise<any> => {
+        const { data: user } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+          .from("votes_entry")
+          .select("*")
+          .eq("author", user.user?.id);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
     updatePhoto: builder.mutation({
       queryFn: async ({ avatarFile }: { avatarFile: File }): Promise<any> => {
         const { data, error } = await supabase.storage
@@ -40,4 +55,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useUpdatePhotoMutation } = userApi;
+export const { useUpdatePhotoMutation, useGetUserVotesMutation } = userApi;

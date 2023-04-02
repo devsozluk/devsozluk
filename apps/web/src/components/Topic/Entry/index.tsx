@@ -1,26 +1,82 @@
 import type { IEntry } from "@/types";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import classNames from "classnames";
+import { IconButton } from "@devsozluk/ui";
+import supabase from "@/libs/supabase";
+import { useAppSelector } from "@/utils/hooks";
+import {
+  useDeleteEntryVoteMutation,
+  useEntryVoteMutation,
+} from "@/services/topic";
 
 export type IEntryProps = IEntry & {
   className?: string;
 };
 
 const Entry: React.FC<IEntryProps> = ({
+  id,
   content,
   created_at,
   author,
   className,
+  upvotes: initialUpvotes,
+  downvotes: initialDownvotes,
 }) => {
+  const [handleEntryVote, { data, error, status }] = useEntryVoteMutation();
+  const [deleteEntryVote, { data: deleteData, status: deleteStatus }] =
+    useDeleteEntryVoteMutation();
   const referenceDate = moment().startOf("seconds");
   const formattedDate = moment
     .utc(created_at)
     .local()
     .startOf("seconds")
     .from(referenceDate);
+
+  const [upvotes, setUpvotes] = useState(initialUpvotes);
+  const [downvotes, setDownvotes] = useState(initialDownvotes);
+
+  const user = useAppSelector((state) => state.auth.user);
+  const userVotes = useAppSelector((state) => state.user.votes);
+
+  const hasUserVote = userVotes?.find((vote) => vote.entry == id);
+  const hasUpVote = userVotes?.find((vote) => vote.entry == id && vote.upvoted);
+  const hasDownVote = userVotes?.find(
+    (vote) => vote.entry == id && vote.downvoted
+  );
+
+  const handleVote = async (type: "up" | "down") => {
+    if (hasUserVote) {
+      await deleteEntryVote({
+        author: user?.id as string,
+        entry: id as number,
+      });
+    }
+    await handleEntryVote({
+      author: user?.id as string,
+      entry: id as number,
+      type,
+    });
+  };
+
+  useEffect(() => {
+    if (status === "fulfilled" && data) {
+      if (data.upvoted) setUpvotes((prevCount) => prevCount + 1);
+      else setDownvotes((prevCount) => prevCount + 1);
+    }
+  }, [status]);
+
+  useEffect(() => {
+    if (deleteStatus === "fulfilled" && deleteData) {
+      if (deleteData.upvoted) {
+        setUpvotes((prevCount) => prevCount - 1);
+      } else if (deleteData.downvoted) {
+        setDownvotes((prevCount) => prevCount - 1);
+      }
+    }
+  }, [deleteStatus]);
 
   return (
     <article className={classNames("text-base rounded-lg", className)}>
@@ -33,7 +89,7 @@ const Entry: React.FC<IEntryProps> = ({
               src={author.avatar_url}
               width={24}
               height={24}
-              alt="Michael Gough"
+              alt={author?.username as string}
             />
             <div className="text-sm text-white flex items-center">
               {author.name}
@@ -44,23 +100,28 @@ const Entry: React.FC<IEntryProps> = ({
             </div>
           </div>
         </div>
-        <button
-          id="dropdownComment1Button"
-          data-dropdown-toggle="dropdownComment1"
-          className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          type="button"
-        >
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-          </svg>
-          <span className="sr-only">Comment settings</span>
-        </button>
+        <div className="flex items-center gap-x-2 text-xs font-bold">
+          <IconButton isActive={hasUpVote} onClick={() => handleVote("up")}>
+            <GoTriangleUp size={16} />
+            {upvotes}
+          </IconButton>
+          <IconButton isActive={hasDownVote} onClick={() => handleVote("down")}>
+            <GoTriangleDown size={16} />
+            {downvotes}
+          </IconButton>
+          <IconButton id="dropdownComment1Button" type="button">
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+            </svg>
+            <span className="sr-only">Comment settings</span>
+          </IconButton>
+        </div>
         <div
           id="dropdownComment1"
           className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
