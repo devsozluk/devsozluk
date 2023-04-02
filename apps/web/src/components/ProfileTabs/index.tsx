@@ -18,7 +18,6 @@ const ProfileTabs = () => {
 
 ProfileTabs.Item = ({ title, link, id, onClick, icon }: Navigation) => {
   const router = useRouter();
-
   const isFocus = router.pathname.includes(link as string);
 
   const classes = classNames({

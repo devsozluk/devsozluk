@@ -106,10 +106,10 @@ const Entry: React.FC<IEntryProps> = ({
               height={24}
               alt={author?.username as string}
             />
-            <div className="text-sm text-white flex items-center">
-              {author.name}
+            <div className="text-sm text-gray-400 flex items-center">
+              <p className="font-semibold text-gray-400">{author.name}</p>
               <span className="h-1 w-1 rounded-sm bg-gray-400 mx-2"></span>
-              <p className="text-gray-400">
+              <p>
                 <time title="February 8th, 2022">{formattedDate}</time>
               </p>
             </div>
