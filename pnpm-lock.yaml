@@ -124,6 +124,7 @@ importers:
       '@headlessui/react': ^1.7.9
       '@reduxjs/toolkit': ^1.9.2
       '@supabase/supabase-js': ^2.11.0
+      '@tippyjs/react': ^4.2.6
       '@types/node': 18.11.18
       '@types/nprogress': ^0.2.0
       '@types/react': 18.0.27
@@ -163,6 +164,7 @@ importers:
       '@headlessui/react': 1.7.9_biqbaboplfbrettd7655fr4n2y
       '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
       '@supabase/supabase-js': 2.11.0
+      '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
       '@types/node': 18.11.18
       '@types/nprogress': 0.2.0
       '@types/react': 18.0.27
@@ -3827,6 +3829,10 @@ packages:
       webpack: 5.75.0
     dev: true
 
+  /@popperjs/core/2.11.7:
+    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
+    dev: false
+
   /@reduxjs/toolkit/1.9.2_k4ae6lp43ej6mezo3ztvx6pykq:
     resolution: {integrity: sha512-5ZAZ7hwAKWSii5T6NTPmgIBUqyVdlDs+6JjThz6J6dmHLDm6zCzv2OjHIFAi3Vvs1qjmXU0bm6eBojukYXjVMQ==}
     peerDependencies:
@@ -5250,6 +5256,17 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tippyjs/react/4.2.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-91RicDR+H7oDSyPycI13q3b7o4O60wa2oRbjlz2fyRLmHImc4vyDwuUP8NtZaN0VARJY5hybvDYrFzhY9+Lbyw==}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tippy.js: 6.3.7
     dev: false
 
   /@tsconfig/node10/1.0.9:
@@ -16249,6 +16266,12 @@ packages:
 
   /tiny-warning/1.0.3:
     resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
+    dev: false
+
+  /tippy.js/6.3.7:
+    resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
+    dependencies:
+      '@popperjs/core': 2.11.7
     dev: false
 
   /tmp/0.0.33:
