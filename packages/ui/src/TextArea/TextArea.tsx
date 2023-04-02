@@ -36,9 +36,9 @@ export const TextArea = ({
           errorMessage ? cx(baseClasses, errorClasses) : baseClasses
         )}
       >
-        <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+        <div className="px-4 py-2 rounded-t-lg bg-gray-800">
           <textarea
-            className="w-full px-0 text-sm text-gray-900 bg-gray-700  outline-none  border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            className="w-full px-0 text-sm outline-none border-0 bg-gray-800 focus:ring-0 text-white placeholder-gray-400"
             {...props}
           ></textarea>
         </div>
