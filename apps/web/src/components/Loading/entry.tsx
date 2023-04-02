@@ -10,7 +10,7 @@ const TopicLoader: React.FC = () => {
           <div className="h-2 w-48 bg-gray-700"></div>
         </div>
         <svg
-          className="h-14 w-14 text-gray-200 dark:text-gray-700"
+          className="h-14 w-14 text-gray-700"
           aria-hidden="true"
           fill="currentColor"
           viewBox="0 0 20 20"

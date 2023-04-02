@@ -25,7 +25,7 @@ export const Alert: React.FC<AlertProps> = ({ children, variant }) => {
 
   return (
     <div
-      className="flex items-center p-4 w-full text-gray-500 bg-white rounded shadow dark:text-gray-400 dark:bg-gray-800"
+      className="flex items-center p-4 w-full text-gray-500 rounded shadowtext-gray-400 bg-gray-800"
       role="alert"
     >
       <div className={alertStyles({ variant })}>
