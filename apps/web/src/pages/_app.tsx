@@ -12,6 +12,7 @@ import moment from "moment";
 import "moment/locale/tr";
 moment.locale("tr");
 import "@/style.css";
+import "tippy.js/dist/tippy.css";
 
 type Props = AppProps & {
   Component: Page;

@@ -5,12 +5,12 @@ import moment from "moment";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import classNames from "classnames";
 import { IconButton } from "@devsozluk/ui";
-import supabase from "@/libs/supabase";
 import { useAppSelector } from "@/utils/hooks";
 import {
   useDeleteEntryVoteMutation,
   useEntryVoteMutation,
 } from "@/services/topic";
+import { toast } from "react-hot-toast";
 
 export type IEntryProps = IEntry & {
   className?: string;
@@ -25,9 +25,12 @@ const Entry: React.FC<IEntryProps> = ({
   upvotes: initialUpvotes,
   downvotes: initialDownvotes,
 }) => {
-  const [handleEntryVote, { data, error, status }] = useEntryVoteMutation();
-  const [deleteEntryVote, { data: deleteData, status: deleteStatus }] =
-    useDeleteEntryVoteMutation();
+  const [handleEntryVote, { data, error, isLoading, status }] =
+    useEntryVoteMutation();
+  const [
+    deleteEntryVote,
+    { data: deleteData, isLoading: deleteIsLoading, status: deleteStatus },
+  ] = useDeleteEntryVoteMutation();
   const referenceDate = moment().startOf("seconds");
   const formattedDate = moment
     .utc(created_at)
@@ -38,7 +41,7 @@ const Entry: React.FC<IEntryProps> = ({
   const [upvotes, setUpvotes] = useState(initialUpvotes);
   const [downvotes, setDownvotes] = useState(initialDownvotes);
 
-  const user = useAppSelector((state) => state.auth.user);
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const userVotes = useAppSelector((state) => state.user.votes);
 
   const hasUserVote = userVotes?.find((vote) => vote.entry == id);
@@ -48,17 +51,29 @@ const Entry: React.FC<IEntryProps> = ({
   );
 
   const handleVote = async (type: "up" | "down") => {
-    if (hasUserVote) {
+    if (!isLoggedIn)
+      return toast.error("Entry'e oy vermek için lütfen önce giriş yapın.");
+
+    if (
+      (hasUserVote?.downvoted && type === "down") ||
+      (hasUserVote?.upvoted && type === "up")
+    ) {
       await deleteEntryVote({
         author: user?.id as string,
         entry: id as number,
       });
+    } else {
+      if (hasUserVote)
+        await deleteEntryVote({
+          author: user?.id as string,
+          entry: id as number,
+        });
+      await handleEntryVote({
+        author: user?.id as string,
+        entry: id as number,
+        type,
+      });
     }
-    await handleEntryVote({
-      author: user?.id as string,
-      entry: id as number,
-      type,
-    });
   };
 
   useEffect(() => {
@@ -91,21 +106,29 @@ const Entry: React.FC<IEntryProps> = ({
               height={24}
               alt={author?.username as string}
             />
-            <div className="text-sm text-white flex items-center">
-              {author.name}
+            <div className="text-sm text-gray-400 flex items-center">
+              <p className="font-semibold text-gray-400">{author.name}</p>
               <span className="h-1 w-1 rounded-sm bg-gray-400 mx-2"></span>
-              <p className="text-gray-400">
+              <p>
                 <time title="February 8th, 2022">{formattedDate}</time>
               </p>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-x-2 text-xs font-bold">
-          <IconButton isActive={hasUpVote} onClick={() => handleVote("up")}>
+          <IconButton
+            isActive={hasUpVote}
+            disabled={isLoading || deleteIsLoading}
+            onClick={() => handleVote("up")}
+          >
             <GoTriangleUp size={16} />
             {upvotes}
           </IconButton>
-          <IconButton isActive={hasDownVote} onClick={() => handleVote("down")}>
+          <IconButton
+            isActive={hasDownVote}
+            disabled={isLoading || deleteIsLoading}
+            onClick={() => handleVote("down")}
+          >
             <GoTriangleDown size={16} />
             {downvotes}
           </IconButton>
@@ -124,16 +147,16 @@ const Entry: React.FC<IEntryProps> = ({
         </div>
         <div
           id="dropdownComment1"
-          className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+          className="hidden z-10 w-36 rounded divide-y shadow bg-gray-700 divide-gray-600"
         >
           <ul
-            className="py-1 text-sm text-gray-700 dark:text-gray-200"
+            className="py-1 text-sm text-gray-200"
             aria-labelledby="dropdownMenuIconHorizontalButton"
           >
             <li>
               <a
                 href="#"
-                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block py-2 px-4 hover:bg-gray-600 hover:text-white"
               >
                 Edit
               </a>
@@ -141,7 +164,7 @@ const Entry: React.FC<IEntryProps> = ({
             <li>
               <a
                 href="#"
-                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block py-2 px-4 hover:bg-gray-600 hover:text-white"
               >
                 Remove
               </a>
@@ -149,7 +172,7 @@ const Entry: React.FC<IEntryProps> = ({
             <li>
               <a
                 href="#"
-                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block py-2 px-4 hover:bg-gray-600 hover:text-white"
               >
                 Report
               </a>

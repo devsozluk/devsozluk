@@ -57,7 +57,7 @@ const TextAreaActions = ({
   className?: string;
 }) => {
   return (
-    <div className="flex items-center justify-between px-3 py-2 border-t  dark:border-gray-600">
+    <div className="flex items-center justify-between px-3 py-2 border-t border-gray-600">
       {children}
     </div>
   );

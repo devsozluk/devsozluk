@@ -6,8 +6,8 @@ const ProfileTabs = () => {
   const navigations = useNavigations();
 
   return (
-    <div className="border-b max-w-sm border-gray-200 dark:border-gray-700">
-      <ul className="flex flex-wrap items-center justify-center -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+    <div className="border-b max-w-sm border-gray-700">
+      <ul className="flex flex-wrap items-center justify-center -mb-px text-sm font-medium text-center text-gray-400">
         {navigations.map((item) => (
           <ProfileTabs.Item key={item.id} {...item} />
         ))}
@@ -18,13 +18,11 @@ const ProfileTabs = () => {
 
 ProfileTabs.Item = ({ title, link, id, onClick, icon }: Navigation) => {
   const router = useRouter();
-
   const isFocus = router.pathname.includes(link as string);
 
   const classes = classNames({
-    "hover:text-gray-600 hover:border--300 dark:hover:text-gray-300":
-      !isFocus,
-    "active dark:text-blue-500 dark:border-blue-500 border-blue-600 text-blue-600 ":
+    "hover:text-gray-600 hover:border--300 hover:text-gray-300": !isFocus,
+    "active text-blue-500 border-blue-500 border-blue-600 text-blue-600 ":
       isFocus,
   });
 
@@ -33,7 +31,6 @@ ProfileTabs.Item = ({ title, link, id, onClick, icon }: Navigation) => {
       router.push("/dashboard/" + link);
     } else onClick!();
   };
-
 
   return (
     <li className="mr-2 cursor-pointer" key={id}>

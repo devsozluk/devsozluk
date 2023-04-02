@@ -2,6 +2,7 @@ import { IVote } from "./../../types/index";
 import { createSlice } from "@reduxjs/toolkit";
 import { userApi } from "@/services/user";
 import { topicApi } from "@/services/topic";
+import { authApi } from "@/services/auth";
 
 interface UserState {
   votes: IVote[];
@@ -34,6 +35,12 @@ const userSlice = createSlice({
         state.votes = state.votes.filter(
           (vote) => vote.entry !== action.payload.entry
         );
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.logout.matchFulfilled,
+      (state, action) => {
+        state.votes = [];
       }
     );
   },

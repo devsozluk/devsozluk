@@ -4,21 +4,16 @@
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
-
-  
 }
 
 *::-webkit-scrollbar-track {
-  background-color:rgb(41,45,49);
+  background-color: rgb(41, 45, 49);
   padding: 10px;
-
-
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color:rgb(107,109,113);
+  background-color: rgb(107, 109, 113);
   border-radius: 4px;
-
 }
 @tailwind components;
 @tailwind utilities;
@@ -32,4 +27,27 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.tippy-box[data-theme~="custom"] {
+  @apply text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm;
+}
+
+.tippy-box[data-theme~="custom"][data-placement^="top"] > .tippy-arrow::before {
+  @apply dark:border-t-gray-700;
+}
+
+.tippy-box[data-theme~="custom"][data-placement^="left"]
+  > .tippy-arrow::before {
+  @apply dark:border-l-gray-700;
+}
+
+.tippy-box[data-theme~="custom"][data-placement^="right"]
+  > .tippy-arrow::before {
+  @apply dark:border-r-gray-700;
+}
+
+.tippy-box[data-theme~="custom"][data-placement^="bottom"]
+  > .tippy-arrow::before {
+  @apply dark:border-b-gray-700;
 }

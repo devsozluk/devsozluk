@@ -19,6 +19,7 @@
     "@headlessui/react": "^1.7.9",
     "@reduxjs/toolkit": "^1.9.2",
     "@supabase/supabase-js": "^2.11.0",
+    "@tippyjs/react": "^4.2.6",
     "@types/node": "18.11.18",
     "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.27",
