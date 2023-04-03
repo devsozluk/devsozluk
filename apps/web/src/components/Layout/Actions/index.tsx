@@ -58,12 +58,7 @@ Actions.Item = ({ title, icon, link, onClick }: IMenu) => {
   };
 
   return (
-    <Tippy
-      content={title}
-      placement="left"
-      animation="perspective"
-      theme="custom"
-    >
+    <Tippy content={title} placement="left" theme="custom">
       <button
         type="button"
         onClick={handleClick}
