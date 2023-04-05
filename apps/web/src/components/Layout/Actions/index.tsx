@@ -1,9 +1,9 @@
+import Tippy from "@tippyjs/react";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 import { useHover } from "usehooks-ts";
-import Tippy from "@tippyjs/react";
 import useActions, { IMenu } from "./Actions.menu";
-import { useRouter } from "next/router";
 
 const Actions = () => {
   const menus = useActions();
@@ -54,16 +54,11 @@ Actions.Item = ({ title, icon, link, onClick }: IMenu) => {
   const handleClick = () => {
     if (link) {
       router.push(link);
-    } else onClick!();
+    } else if (onClick) onClick!();
   };
 
   return (
-    <Tippy
-      content={title}
-      placement="left"
-      animation="perspective"
-      theme="custom"
-    >
+    <Tippy content={title} placement="left" theme="custom">
       <button
         type="button"
         onClick={handleClick}

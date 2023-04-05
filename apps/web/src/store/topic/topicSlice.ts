@@ -10,6 +10,7 @@ const initialState = {
   topic: {} as ITopicState,
   topics: [] as any,
   entries: [] as IEntry[],
+  isOpenTopicModal: false as boolean,
   isLoading: false,
 };
 
@@ -21,6 +22,9 @@ const topicSlice = createSlice({
       state.topic = action.payload.topic;
       state.entries = action.payload.entries;
     },
+    setTopicModal(state, action) {
+      state.isOpenTopicModal = action.payload || !state.isOpenTopicModal;
+    }
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -33,4 +37,4 @@ const topicSlice = createSlice({
 });
 
 export default topicSlice.reducer;
-export const { setTopic } = topicSlice.actions;
+export const { setTopic, setTopicModal } = topicSlice.actions;

@@ -7,6 +7,7 @@ import "nprogress/nprogress.css";
 import { useGetUserVotesMutation } from "@/services/user";
 import Actions from "./Actions";
 import { useAppSelector } from "@/utils/hooks";
+import CreateTopicModal from "../CreateTopicModal";
 
 NProgress.configure({
   minimum: 0.3,
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Spinner size="md" isFullScreen={true} />
       ) : (
         <Fragment>
+          {isLoggedIn && <CreateTopicModal/>}
           {children}
           {isLoggedIn && <Actions />}
         </Fragment>

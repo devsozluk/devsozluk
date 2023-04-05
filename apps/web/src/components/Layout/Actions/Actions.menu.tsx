@@ -1,3 +1,5 @@
+import { setTopicModal } from "@/store/topic/topicSlice";
+import { useAppDispatch } from "@/utils/hooks";
 import { HiDocumentPlus } from "react-icons/hi2";
 import { MdOutlineBookmarks, MdOutlineSettingsSuggest } from "react-icons/md";
 
@@ -10,11 +12,17 @@ export type IMenu = {
 };
 
 export default function Actions(): IMenu[] {
+  const dispatch = useAppDispatch();
+
+  const openTopicModal = () => {
+    dispatch(setTopicModal(true))
+  }
+
   return [
     {
       title: "Konu Oluştur",
       icon: <HiDocumentPlus size={18} />,
-      link: "/dashboard/createTopic",
+      onClick: openTopicModal
     },
     {
       link: "/dashboard/createTopic",
