@@ -1,13 +1,13 @@
 import { useGetUserMeMutation } from "@/services/auth";
+import { useGetUserVotesMutation } from "@/services/user";
+import { useAppSelector } from "@/utils/hooks";
 import { Spinner } from "@devsozluk/ui";
-import { Fragment, PropsWithChildren, useEffect } from "react";
 import Router from "next/router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { useGetUserVotesMutation } from "@/services/user";
-import Actions from "./Actions";
-import { useAppSelector } from "@/utils/hooks";
+import { Fragment, PropsWithChildren, useEffect } from "react";
 import CreateTopicModal from "../CreateTopicModal";
+import Actions from "./Actions";
 
 NProgress.configure({
   minimum: 0.3,
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Spinner size="md" isFullScreen={true} />
       ) : (
         <Fragment>
-          {isLoggedIn && <CreateTopicModal/>}
+          {isLoggedIn && <CreateTopicModal />}
           {children}
           {isLoggedIn && <Actions />}
         </Fragment>

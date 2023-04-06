@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,100&display=swap");
 
 @tailwind base;
+
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
@@ -15,39 +16,48 @@
   background-color: rgb(107, 109, 113);
   border-radius: 4px;
 }
+
 @tailwind components;
 @tailwind utilities;
 
-.min-width {
-  min-width: -moz-available;
-  min-width: -webkit-fill-available;
+@layer base {
+
+  html,
+  body {
+    @apply bg-background;
+  }
 }
 
-/* Change Autocomplete styles in Chrome*/
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
-}
+@layer utilities {
+  .min-width {
+    min-width: -moz-available;
+    min-width: -webkit-fill-available;
+  }
 
-.tippy-box[data-theme~="custom"] {
-  @apply text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm;
-}
+  /* Change Autocomplete styles in Chrome*/
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
 
-.tippy-box[data-theme~="custom"][data-placement^="top"] > .tippy-arrow::before {
-  @apply dark:border-t-gray-700;
-}
+  .tippy-box[data-theme~="custom"] {
+    @apply text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm;
+  }
 
-.tippy-box[data-theme~="custom"][data-placement^="left"]
-  > .tippy-arrow::before {
-  @apply dark:border-l-gray-700;
-}
+  .tippy-box[data-theme~="custom"][data-placement^="top"]>.tippy-arrow::before {
+    @apply dark: border-t-gray-700;
+  }
 
-.tippy-box[data-theme~="custom"][data-placement^="right"]
-  > .tippy-arrow::before {
-  @apply dark:border-r-gray-700;
-}
+  .tippy-box[data-theme~="custom"][data-placement^="left"]>.tippy-arrow::before {
+    @apply dark: border-l-gray-700;
+  }
 
-.tippy-box[data-theme~="custom"][data-placement^="bottom"]
-  > .tippy-arrow::before {
-  @apply dark:border-b-gray-700;
+  .tippy-box[data-theme~="custom"][data-placement^="right"]>.tippy-arrow::before {
+    @apply dark: border-r-gray-700;
+  }
+
+  .tippy-box[data-theme~="custom"][data-placement^="bottom"]>.tippy-arrow::before {
+    @apply dark: border-b-gray-700;
+  }
+
 }

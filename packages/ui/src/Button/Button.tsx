@@ -1,5 +1,5 @@
-import React from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import React from "react";
 import { Spinner } from "../Spinner/Spinner";
 
 const buttonStyles = cva(
@@ -14,7 +14,7 @@ const buttonStyles = cva(
         outline:
           "border-blue-700 bg-transparent text-blue-700 hover:bg-blue-700 hover:text-white",
         danger:
-          "border-red-500 bg-red-500 text-white hover:bg-transparent hover:text-red-500",
+          "border-red-500 bg-red-500 text-white hover:bg-red-600 hover:text-white",
         link: "border-transparent bg-transparent text-white hover:bg-buttonPrimary hover:text-white",
       },
       size: {
@@ -34,7 +34,7 @@ const buttonStyles = cva(
 type ButtonBaseProps = VariantProps<typeof buttonStyles>;
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    ButtonBaseProps {
+  ButtonBaseProps {
   renderLeftIcon?: React.ReactNode;
   renderRigthIcon?: React.ReactNode;
   loading?: boolean;

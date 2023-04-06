@@ -24,8 +24,8 @@ export default function Dropdown(): IMenu[] {
     },
     {
       id: 1,
-      link: "/dashboard/createTopic",
-      title: "Konu Oluştur",
+      link: "/dashboard/bookmarks",
+      title: "Kaydedilenler",
     },
     {
       id: 3,

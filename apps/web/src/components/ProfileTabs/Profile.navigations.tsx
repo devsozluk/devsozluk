@@ -1,5 +1,5 @@
-import { ImProfile } from "react-icons/im"
-import { TfiWrite } from "react-icons/tfi"
+import { ImProfile } from "react-icons/im";
+import { MdOutlineBookmarks } from "react-icons/md";
 
 export type Navigation = {
   id: number;
@@ -20,9 +20,9 @@ export default function Navigations(): Navigation[] {
     },
     {
       id: 1,
-      link: "createTopic",
-      icon: <TfiWrite />,
-      title: "Konu Oluştur",
+      link: "bookmarks",
+      icon: <MdOutlineBookmarks />,
+      title: "Kaydedilenler",
     },
   ];
 }

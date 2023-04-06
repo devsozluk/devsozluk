@@ -3,7 +3,7 @@ import { Button } from "@devsozluk/ui";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import useNavigations, { IMenu } from "./Dropdown.menu";
 
