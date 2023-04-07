@@ -1,6 +1,5 @@
-import ProfileTabs from "@/components/ProfileTabs";
 import { useUpdatePhotoMutation } from "@/services/user";
-import { setAuth, setUser } from "@/store/auth/authSlice";
+import { setUser } from "@/store/auth/authSlice";
 import { UpdateProfileData } from "@/types";
 import getErrorTranslation from "@/utils/errors";
 import {
