@@ -1,6 +1,6 @@
 import { useGetUserMeMutation } from "@/services/auth";
 import { useGetUserVotesMutation } from "@/services/user";
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppSelector } from "@/utils/hooks";
 import { Spinner } from "@devsozluk/ui";
 import Router from "next/router";
 import NProgress from "nprogress";
@@ -21,16 +21,21 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function RootLayout({ children }: PropsWithChildren) {
-  const dispatch = useAppDispatch();
-  const { isLoggedIn, checkSessionloading } = useAppSelector(
+  const { isLoggedIn, checkSessionloading, user } = useAppSelector(
     (state) => state.auth
   );
-  const [getUserMe, { isLoading }] = useGetUserMeMutation();
+  const [getUserMe, { isLoading, status, data }] = useGetUserMeMutation();
   const [getUserVotes] = useGetUserVotesMutation();
 
   useEffect(() => {
     getUserMe("");
   }, []);
+
+  useEffect(() => {
+    if (status === "fulfilled" && user) {
+      getUserVotes({ id: user.id });
+    }
+  }, [status]);
 
   return (
     <div className="min-h-screen bg-background text-secondary font-poppins h-full">

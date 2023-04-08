@@ -4,7 +4,7 @@ import { UpdateProfileSchema } from "@/utils/schemas";
 import { Button, TextArea } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
 import Layout from "../layout";
-import ProfileLinks from "./Profile.links";
+import ProfileLinks from "./links";
 
 const Profile = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -32,7 +32,7 @@ const Profile = () => {
             <div className="space-y-4">
               <div className="">
                 <TextArea
-                  label="Biyoğrafi"
+                  label="Biyografi"
                   rows={4}
                   value={values.bio}
                   onChange={(event) => setFieldValue("bio", event.target.value)}

@@ -11,7 +11,7 @@ export default function OnlyUser({ children }: PropsWithChildren): any {
 
   useEffect(() => {
     if (!isLoggedIn && !checkSessionloading) {
-      router.push("/");
+      router.push("/auth/login");
     }
   }, [isLoggedIn, checkSessionloading]);
 
