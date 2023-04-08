@@ -47,23 +47,23 @@ const CreateTopicModal = () => {
 
   return (
     <Transition.Root show={isOpenTopicModal} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeTopicModal}>
+      <Dialog as="div" className="relative z-50" onClose={closeTopicModal}>
         <Transition.Child
           as={Fragment}
-          enter="ease-in-out duration-500"
-          enterFrom="opacity-0"
+          enter="ease-in-out duration-300"
+          enterFrom="opacity-50"
           enterTo="opacity-100"
-          leave="ease-in-out duration-500"
+          leave="ease-in-out duration-300"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 top-0 bg-black/20 backdrop-blur-sm transition-all" />
         </Transition.Child>
         <div className="fixed inset-0" />
         <div className="fixed inset-0 overflow-hidden z-50">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-              <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full border-t-2 border-primary bg-background shadow-md pl-6 sm:pl-6">
+              <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full bg-background shadow-md">
                 <Transition.Child
                   as={Fragment}
                   enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -73,12 +73,12 @@ const CreateTopicModal = () => {
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="pointer-events-auto z-50 w-screen max-w-xl mt-20 px-6">
+                  <Dialog.Panel className="pointer-events-auto z-50 w-screen max-w-xl pt-3 pl-6 sm:pl-6">
                     <div className="flex-1 h-screen flex-col">
                       {/* Header */}
                       <div className="z-50">
-                        <div className="flex w-full space-x-3 pb-4 mb-4 border-b border-gray-500 border-opacity-30">
-                          <div className="space-y-1  w-full flex justify-between items-center">
+                        <div className="flex absolute top-5 right-0 left-0 border-b left space-x-3 pb-4 mb-4 border-gray-500 border-opacity-30 px-6">
+                          <div className="space-y-1 w-full flex justify-between items-center pl-6 sm:pl-6">
                             <Dialog.Title className="text-lg font-bold leading-6 text-white">Konu Oluştur</Dialog.Title>
                             <IconButton onClick={closeTopicModal}>
                               <RiCloseFill size={20} />
@@ -89,7 +89,7 @@ const CreateTopicModal = () => {
                       <Formik validationSchema={CreateTopicSchema} initialValues={initialValues} onSubmit={handleCreate} validateOnBlur={false} validateOnChange={false}
                       >
                         {({ errors, setFieldValue, values, handleSubmit }) => (
-                          <Form className="">
+                          <Form className="px-6 mt-24">
                             <div className="space-y-6 relative">
                               <Input name="title" placeholder="Konu başlığını yazınız." label="Konu Başlığı" value={values.title} onChange={(event) => setFieldValue("title", event.target.value)} errorMessage={errors.title} />
                               <TextArea
@@ -102,10 +102,15 @@ const CreateTopicModal = () => {
                                 placeholder="Konu içeriğini yazınız."
                               />
                             </div>
-                            <div className="absolute bottom-5 right-5 left-0 border-t border-gray-500 border-opacity-30">
-                              <Button className="mt-5 ml-auto" size="md" loading={isLoading} onClick={() => handleSubmit()}>
-                                Yayınla
-                              </Button>
+                            <div className="absolute bottom-5 right-0 px-4 left-0 border-t left border-gray-500 border-opacity-30">
+                              <div className="flex mt-4 gap-x-4 justify-end">
+                                <Button variant="danger" size="md" type="button" onClick={closeTopicModal}>
+                                  İptal
+                                </Button>
+                                <Button size="md" loading={isLoading} onClick={() => handleSubmit()}>
+                                  Yayınla
+                                </Button>
+                              </div>
                             </div>
                           </Form>
                         )}

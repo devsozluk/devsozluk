@@ -1,9 +1,9 @@
 import SidebarLoader from "@/components/Loading/sidebar";
-import Link from "next/link";
-import React, { Fragment, useEffect } from "react";
-import type { ITopic } from "@/types";
 import { useGetPopularTopicsMutation } from "@/services/topic";
+import type { ITopic } from "@/types";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { Fragment, useEffect } from "react";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -14,7 +14,7 @@ const Sidebar = () => {
   }, [router]);
 
   return (
-    <div className="fixed hidden h-[87%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded px-5 scrolbar md:flex lg:w-[300px]">
+    <div className="fixed hidden h-[85%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded px-5 scrolbar md:flex lg:w-[300px]">
       {isLoading ? (
         <SidebarLoader />
       ) : (

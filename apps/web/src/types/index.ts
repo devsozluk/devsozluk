@@ -28,10 +28,14 @@ export interface AddEntryData {
   author?: string;
 }
 
-export interface UpdateProfileData {
+export interface UpdateAccountData {
+  email: string;
+  user_name: string;
   name?: string;
-  password?: string;
-  passwordConfirmation?: string;
+}
+
+export interface UpdateProfileData {
+  bio: string;
 }
 
 export interface ITopic {
