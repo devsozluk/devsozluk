@@ -1,16 +1,16 @@
-import type { IEntry } from "@/types";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import moment from "moment";
-import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import classNames from "classnames";
-import { IconButton } from "@devsozluk/ui";
-import { useAppSelector } from "@/utils/hooks";
 import {
   useDeleteEntryVoteMutation,
   useEntryVoteMutation,
 } from "@/services/topic";
+import type { IEntry } from "@/types";
+import { useAppSelector } from "@/utils/hooks";
+import { IconButton } from "@devsozluk/ui";
+import classNames from "classnames";
+import moment from "moment";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 
 export type IEntryProps = IEntry & {
   className?: string;

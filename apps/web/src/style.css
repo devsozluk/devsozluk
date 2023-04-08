@@ -4,12 +4,12 @@
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 *::-webkit-scrollbar-track {
   background-color: rgb(41, 45, 49);
-  padding: 10px;
+  padding: 8px;
 }
 
 *::-webkit-scrollbar-thumb {

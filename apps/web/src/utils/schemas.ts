@@ -27,16 +27,16 @@ export const CreateTopicSchema = Yup.object().shape({
     .min(5, "Konu içeriği en az 5 karekterden oluşmalıdır."),
 });
 
+export const UpdateAccountSchema = Yup.object().shape({
+  name: Yup.string().required("Adınızı yazmalısınız."),
+  user_name: Yup.string().required("Kullanıcı adınızı yazmalısınız."),
+  email: Yup.string()
+    .email("Yazdığınız bir mail adresi değil.")
+    .required("Mail adresinizi girin."),
+});
+
 export const UpdateProfileSchema = Yup.object().shape({
-  name: Yup.string().required("Adınızı yazınız."),
-  password: Yup.string().min(
-    5,
-    "Şifreniz en az 5 karekter olması gerekmektedir."
-  ),
-  passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Şifreler eşleşmiyor."
-  ),
+  bio: Yup.string().required("Biyografinizi yazmalısınız."),
 });
 
 export const AddEntrySchema = Yup.object().shape({
