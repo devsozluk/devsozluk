@@ -1,18 +1,51 @@
 import supabase from "@/libs/supabase";
-import { v4 as uuidv4 } from "uuid";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { v4 as uuidv4 } from "uuid";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
-    getUserVotes: builder.mutation({
+    getUserLinks: builder.query({
       queryFn: async (): Promise<any> => {
         const { data: user } = await supabase.auth.getUser();
         const { data, error } = await supabase
+          .from("profiles")
+          .select("links")
+          .eq("id", user.user?.id)
+          .single();
+
+        console.log(data);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data: data.links };
+        }
+      },
+    }),
+    updateUserLinks: builder.mutation({
+      queryFn: async ({ links }: { links: any }): Promise<any> => {
+        const { data: user } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+          .from("profiles")
+          .update({ links: links as any })
+          .eq("id", user.user?.id)
+          .select("*");
+
+        if (error) {
+          return { error };
+        } else {
+          return { data: data };
+        }
+      },
+    }),
+    getUserVotes: builder.mutation({
+      queryFn: async ({ id }: { id: string }): Promise<any> => {
+        const { data, error } = await supabase
           .from("votes_entry")
           .select("*")
-          .eq("author", user.user?.id);
+          .eq("author", id);
 
         if (error) {
           return { error };
@@ -55,4 +88,9 @@ export const userApi = createApi({
   }),
 });
 
-export const { useUpdatePhotoMutation, useGetUserVotesMutation } = userApi;
+export const {
+  useUpdatePhotoMutation,
+  useGetUserVotesMutation,
+  useGetUserLinksQuery,
+  useUpdateUserLinksMutation,
+} = userApi;

@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ["devsozluk"],
+  extends: ["devsozluk", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
   rules: {
     "react/display-name": "off",
     "react-hooks/rules-of-hooks": "off",

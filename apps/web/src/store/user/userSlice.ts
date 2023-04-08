@@ -1,8 +1,8 @@
-import { IVote } from "./../../types/index";
-import { createSlice } from "@reduxjs/toolkit";
-import { userApi } from "@/services/user";
-import { topicApi } from "@/services/topic";
 import { authApi } from "@/services/auth";
+import { topicApi } from "@/services/topic";
+import { userApi } from "@/services/user";
+import { createSlice } from "@reduxjs/toolkit";
+import { IVote } from "./../../types/index";
 
 interface UserState {
   votes: IVote[];

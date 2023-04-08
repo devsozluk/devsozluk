@@ -9,7 +9,7 @@ export default function Layout({ children }: PropsWithChildren) {
   const router = useRouter();
 
   const handleClose = () => {
-    router.push("/")
+    router.push("/");
   };
 
   return (

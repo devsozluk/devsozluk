@@ -23,7 +23,7 @@ export const authApi = createApi({
               data: { session: data.session, user },
             };
           }
-        }
+        } else return { error: { message: "No session" } };
       },
     }),
     authLogin: builder.mutation({

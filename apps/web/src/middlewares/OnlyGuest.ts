@@ -1,6 +1,6 @@
-import { PropsWithChildren, useEffect } from "react";
 import { useAppSelector } from "@/utils/hooks";
 import { useRouter } from "next/router";
+import { PropsWithChildren, useEffect } from "react";
 
 export default function OnlyGuard({ children }: PropsWithChildren): any {
   const router = useRouter();

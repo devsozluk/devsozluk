@@ -21,18 +21,25 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function RootLayout({ children }: PropsWithChildren) {
-  const { isLoggedIn } = useAppSelector((state) => state.auth);
-  const [getUserMe, { isLoading }] = useGetUserMeMutation();
+  const { isLoggedIn, checkSessionloading, user } = useAppSelector(
+    (state) => state.auth
+  );
+  const [getUserMe, { isLoading, status, data }] = useGetUserMeMutation();
   const [getUserVotes] = useGetUserVotesMutation();
 
   useEffect(() => {
     getUserMe("");
-    getUserVotes("");
   }, []);
+
+  useEffect(() => {
+    if (status === "fulfilled" && user) {
+      getUserVotes({ id: user.id });
+    }
+  }, [status]);
 
   return (
     <div className="min-h-screen bg-background text-secondary font-poppins h-full">
-      {isLoading ? (
+      {checkSessionloading || isLoading ? (
         <Spinner size="md" isFullScreen={true} />
       ) : (
         <Fragment>

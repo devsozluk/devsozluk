@@ -43,6 +43,7 @@ export interface Database {
           avatar_url: string | null
           created_at: string | null
           id: string
+          links: Json[] | null
           name: string | null
           username: string | null
         }
@@ -50,6 +51,7 @@ export interface Database {
           avatar_url?: string | null
           created_at?: string | null
           id: string
+          links?: Json[] | null
           name?: string | null
           username?: string | null
         }
@@ -57,6 +59,7 @@ export interface Database {
           avatar_url?: string | null
           created_at?: string | null
           id?: string
+          links?: Json[] | null
           name?: string | null
           username?: string | null
         }
