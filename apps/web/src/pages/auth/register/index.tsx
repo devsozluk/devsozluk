@@ -1,4 +1,3 @@
-import AuthLayout from "../layout";
 import OnlyGuest from "@/middlewares/OnlyGuest";
 import { useAuthRegisterMutation } from "@/services/auth";
 import { RegisterFormData } from "@/types";
@@ -7,10 +6,10 @@ import { getErrorFromPayload } from "@/utils/hooks";
 import { RegisterSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { RiLockPasswordLine, RiMailLine, RiUser3Line } from "react-icons/ri";
-import { useRouter } from "next/router";
+import AuthLayout from "../layout";
 
 const Register = () => {
   const router = useRouter();
@@ -21,7 +20,7 @@ const Register = () => {
     password: "",
   };
 
-  const [handleAuthRegister, { isLoading, status, data, error, isError }] =
+  const [handleAuthRegister, { isLoading, status, error }] =
     useAuthRegisterMutation({});
 
   useEffect(() => {
@@ -52,7 +51,7 @@ const Register = () => {
       validateOnBlur={false}
     >
       {({ errors, values, setFieldValue }) => (
-        <Form className="space-y-6">
+        <Form className="space-y-6 register">
           <div className="space-y-2">
             <div className="flex space-x-6">
               <Input
