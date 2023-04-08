@@ -1,3 +1,5 @@
+import { Link } from "@/utils/links";
+
 export interface LoginFormData {
   email: string;
   password: string;
@@ -35,7 +37,7 @@ export interface UpdateAccountData {
 }
 
 export interface UpdateProfileData {
-  bio: string;
+  biography: string;
 }
 
 export interface ITopic {
@@ -72,4 +74,6 @@ export interface Profile {
   username?: string;
   avatar_url: string;
   name?: string;
+  biography: string;
+  links: Link[];
 }
