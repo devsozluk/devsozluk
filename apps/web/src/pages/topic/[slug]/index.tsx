@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export async function getStaticPaths() {
-  const { data: topics, error } = await supabase.from('topics').select('slug');
+  const { data: topics, error } = await supabase.from("topics").select("slug");
 
   if (error) {
     console.error(error);
@@ -22,6 +22,7 @@ export async function getStaticPaths() {
 
   const paths = topics.map((topic) => ({
     params: { slug: topic?.slug?.toString() },
+    fallback: true,
   }));
 
   return { paths, fallback: false };
