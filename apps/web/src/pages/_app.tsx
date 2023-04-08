@@ -1,18 +1,18 @@
-import RootLayout from "@/components/Layout/Layout";
-import store from "@/store/store";
 import EmptyLayout from "@/components/Layout/EmptyLayout";
+import RootLayout from "@/components/Layout/Layout";
 import MainLayout from "@/components/Layout/MainLayout";
 import Head from "@/components/SEO";
+import store from "@/store/store";
+import "@/style.css";
+import { Analytics } from "@vercel/analytics/react";
+import moment from "moment";
+import "moment/locale/tr";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
-import { Analytics } from "@vercel/analytics/react";
-import type { Page } from "../types/page";
-import moment from "moment";
-import "moment/locale/tr";
-moment.locale("tr");
-import "@/style.css";
 import "tippy.js/dist/tippy.css";
+import type { Page } from "../types/page";
+moment.locale("tr");
 
 type Props = AppProps & {
   Component: Page;

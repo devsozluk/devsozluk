@@ -1,18 +1,30 @@
+import { useUpdateBiographyMutation } from "@/services/user";
 import { UpdateProfileData } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
 import { UpdateProfileSchema } from "@/utils/schemas";
 import { Button, TextArea } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import Layout from "../layout";
 import ProfileLinks from "./links";
 
 const Profile = () => {
-  const user = useAppSelector((state) => state.auth.user);
+  const { profile, user } = useAppSelector((state) => state.auth);
+  const [updateBio, { isLoading, status, data }] = useUpdateBiographyMutation();
   const initialValues: UpdateProfileData = {
-    bio: "",
+    biography: profile?.biography || "",
   };
 
-  const handleUpdateProfile = () => {};
+  useEffect(() => {
+    if (status === "fulfilled") {
+      toast.success("Biyografi güncellendi.");
+    }
+  }, [status]);
+
+  const handleUpdateProfile = (values: UpdateProfileData) => {
+    updateBio({ ...values, userId: user?.id as string });
+  };
 
   return (
     <div className="w-sm flex h-full flex-col divide-y divide-opacity-30 divide-gray-700">
@@ -34,12 +46,22 @@ const Profile = () => {
                 <TextArea
                   label="Biyografi"
                   rows={4}
-                  value={values.bio}
-                  onChange={(event) => setFieldValue("bio", event.target.value)}
+                  value={values.biography}
+                  onChange={(event) =>
+                    setFieldValue("biography", event.target.value)
+                  }
+                  errorMessage={errors.biography}
                 />
               </div>
             </div>
-            <Button size="md" className="w-32" onClick={() => handleSubmit()}>
+            <Button
+              size="md"
+              className="w-32"
+              type="submit"
+              disabled={isLoading}
+              loading={isLoading}
+              onClick={() => handleSubmit()}
+            >
               Kaydet
             </Button>
           </Form>

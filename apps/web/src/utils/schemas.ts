@@ -36,7 +36,9 @@ export const UpdateAccountSchema = Yup.object().shape({
 });
 
 export const UpdateProfileSchema = Yup.object().shape({
-  bio: Yup.string().required("Biyografinizi yazmalısınız."),
+  biography: Yup.string()
+    .required("Biyografinizi yazmalısınız.")
+    .min(5, "Biyografiniz en az 5 karekterden oluşmalıdır."),
 });
 
 export const AddEntrySchema = Yup.object().shape({

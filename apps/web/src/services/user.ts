@@ -40,6 +40,28 @@ export const userApi = createApi({
         }
       },
     }),
+    updateBiography: builder.mutation({
+      queryFn: async ({
+        biography,
+        userId,
+      }: {
+        biography: string;
+        userId: string;
+      }): Promise<any> => {
+        const { data, error } = await supabase
+          .from("profiles")
+          .update({ biography })
+          .eq("id", userId)
+          .select("*")
+          .single();
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
     getUserVotes: builder.mutation({
       queryFn: async ({ id }: { id: string }): Promise<any> => {
         const { data, error } = await supabase
@@ -93,4 +115,5 @@ export const {
   useGetUserVotesMutation,
   useGetUserLinksQuery,
   useUpdateUserLinksMutation,
+  useUpdateBiographyMutation,
 } = userApi;

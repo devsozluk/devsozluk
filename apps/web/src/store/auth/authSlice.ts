@@ -1,4 +1,6 @@
 import { authApi } from "@/services/auth";
+import { userApi } from "@/services/user";
+import { Profile } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { Session, User } from "@supabase/supabase-js";
 
@@ -6,6 +8,7 @@ interface AuthState {
   checkSessionloading: boolean;
   isLoading: boolean;
   user: User | null;
+  profile: Profile | null;
   session: Session | null;
   isLoggedIn: boolean;
 }
@@ -14,6 +17,7 @@ const initialState: AuthState = {
   checkSessionloading: true,
   isLoading: false,
   user: null,
+  profile: null,
   session: null,
   isLoggedIn: !!null,
 } as AuthState;
@@ -37,6 +41,7 @@ const authSlice = createSlice({
       (state, action) => {
         state.checkSessionloading = false;
         if (!action.payload.user) return;
+        state.profile = action.payload.profile;
         state.user = action.payload.user;
         state.session = action.payload.session;
         state.isLoggedIn = true;
@@ -62,6 +67,12 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.session = action.payload.session;
         state.isLoggedIn = true;
+      }
+    );
+    builder.addMatcher(
+      userApi.endpoints.updateBiography.matchFulfilled,
+      (state, action) => {
+        state.profile = action.payload;
       }
     );
     builder.addMatcher(

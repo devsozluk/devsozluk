@@ -16,11 +16,17 @@ export const authApi = createApi({
             error,
           } = await supabase.auth.getUser(data.session?.access_token);
 
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", user?.id)
+            .single();
+
           if (error) {
             return { error };
           } else {
             return {
-              data: { session: data.session, user },
+              data: { session: data.session, user, profile },
             };
           }
         } else return { error: { message: "No session" } };
