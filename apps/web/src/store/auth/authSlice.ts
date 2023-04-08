@@ -1,6 +1,6 @@
 import { authApi } from "@/services/auth";
 import { createSlice } from "@reduxjs/toolkit";
-import type { User, Session } from "@supabase/supabase-js";
+import type { Session, User } from "@supabase/supabase-js";
 
 interface AuthState {
   checkSessionloading: boolean;
@@ -40,6 +40,12 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.session = action.payload.session;
         state.isLoggedIn = true;
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.getUserMe.matchRejected,
+      (state, action) => {
+        state.checkSessionloading = false;
       }
     );
     builder.addMatcher(

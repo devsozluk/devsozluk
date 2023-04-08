@@ -1,6 +1,7 @@
-import { PropsWithChildren, useEffect } from "react";
 import { useAppSelector } from "@/utils/hooks";
+import { Spinner } from "@devsozluk/ui";
 import { useRouter } from "next/router";
+import { Fragment, PropsWithChildren, useEffect } from "react";
 
 export default function OnlyUser({ children }: PropsWithChildren): any {
   const router = useRouter();
@@ -14,5 +15,13 @@ export default function OnlyUser({ children }: PropsWithChildren): any {
     }
   }, [isLoggedIn, checkSessionloading]);
 
-  return children;
+  return (
+    <Fragment>
+      {isLoggedIn && !checkSessionloading ? (
+        children
+      ) : (
+        <Spinner size="md" isFullScreen={true} />
+      )}
+    </Fragment>
+  );
 }
