@@ -22,6 +22,7 @@ export async function getStaticPaths() {
 
   const paths = topics.map((topic) => ({
     params: { slug: topic?.slug?.toString() },
+    fallback: true,
   }));
 
   return { paths, fallback: true };
