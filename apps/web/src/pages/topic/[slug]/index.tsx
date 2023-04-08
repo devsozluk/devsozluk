@@ -10,24 +10,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export async function getStaticPaths() {
-  const { data: topics, error } = await supabase.from("topics").select("slug");
-
-  if (error) {
-    console.error(error);
-    return {
-      notFound: true,
-    };
-  }
-
-  const paths = topics.map((topic) => ({
-    params: { slug: topic?.slug?.toString() },
-  }));
-
-  return { paths, fallback: true };
-}
-
-export async function getStaticProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
 
   await supabase.rpc("increment_view_count", {
