@@ -10,7 +10,24 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticPaths() {
+  const { data: topics, error } = await supabase.from('topics').select('slug');
+
+  if (error) {
+    console.error(error);
+    return {
+      notFound: true,
+    };
+  }
+
+  const paths = topics.map((topic) => ({
+    params: { slug: topic?.slug?.toString() },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
 
   await supabase.rpc("increment_view_count", {
@@ -55,18 +72,20 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
     dispatch(setTopic({ topic, entries }));
   }, [router]);
 
+  const description = entries[0]?.content;
+
   return (
     <div>
       <Head>
         <title>DevSözlük - {topic.title}</title>
         <meta property="og:title" content={topic.title} />
-        <meta property="og:description" content={entries[0].content} />
+        <meta property="og:description" content={description} />
         <meta
           property="twitter:url"
           content={"https://dev.devsozluk.net/topic/" + topic.slug}
         />
         <meta name="twitter:title" content={topic.title} />
-        <meta name="twitter:description" content={entries[0].content} />
+        <meta name="twitter:description" content={description} />
       </Head>
       <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
         <Topic.Header {...topic} />
