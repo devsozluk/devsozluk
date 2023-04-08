@@ -35,12 +35,14 @@ export default function Navigations(): Navigations[] {
           link: "profile",
           icon: <ImProfile size={16} />,
           title: "Profil",
-        }, {
+        },
+        {
           id: 2,
           link: "change-password",
           icon: <MdPassword size={16} />,
           title: "Şifre Değiştir",
-        }]
+        },
+      ],
     },
     {
       id: 1,
@@ -51,8 +53,8 @@ export default function Navigations(): Navigations[] {
           link: "bookmarks",
           icon: <RiBookMarkFill size={16} />,
           title: "Kaydedilenler",
-        }
-      ]
-    }
+        },
+      ],
+    },
   ];
 }

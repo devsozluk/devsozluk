@@ -25,7 +25,7 @@ const Settings = () => {
     name: user?.user_metadata.full_name,
   };
 
-  const handleUpdateProfile = () => { };
+  const handleUpdateProfile = () => {};
 
   return (
     <div className="w-sm flex h-full flex-col gap-y-5">
@@ -57,11 +57,7 @@ const Settings = () => {
                 />
               </div>
               <div className="flex gap-x-6">
-                <Input
-                  name="Ad"
-                  value={values.name}
-                  label="Ad"
-                />
+                <Input name="Ad" value={values.name} label="Ad" />
               </div>
             </div>
             <Button size="md" className="w-32" onClick={() => handleSubmit()}>
@@ -138,7 +134,9 @@ Settings.ChangePhoto = () => {
       </div>
       <div className="flex flex-col justify-center">
         <h4 className="text-medium text-white">Profil Resmi Ayarla</h4>
-        <p className="text-sm text-gray-400">Bir fotoğraf yükleyin ve profil resminizi değiştirin</p>
+        <p className="text-sm text-gray-400">
+          Bir fotoğraf yükleyin ve profil resminizi değiştirin
+        </p>
       </div>
     </div>
   );
