@@ -62,6 +62,8 @@ export const LinksProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
+export default LinksProvider;
+
 export const useLinksContext = () => {
   return useContext(LinksContext);
 };
