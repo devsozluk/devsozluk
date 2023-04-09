@@ -90,7 +90,9 @@ export const userApi = createApi({
             username,
             name,
           })
-          .eq("id", userId);
+          .eq("id", userId)
+          .select("*")
+          .single();
 
         const { data: user, error: userError } = await supabase.auth.updateUser(
           {
@@ -101,7 +103,7 @@ export const userApi = createApi({
         if (error) {
           return { error };
         } else {
-          return { data: { profile, user } };
+          return { data: { profile, user: user.user } };
         }
       },
     }),
