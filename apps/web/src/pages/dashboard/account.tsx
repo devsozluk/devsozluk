@@ -1,4 +1,7 @@
-import { useUpdatePhotoMutation } from "@/services/user";
+import {
+  useUpdatePhotoMutation,
+  useUpdateProfileMutation,
+} from "@/services/user";
 import { setUser } from "@/store/auth/authSlice";
 import { UpdateAccountData } from "@/types";
 import getErrorTranslation from "@/utils/errors";
@@ -19,13 +22,21 @@ import Layout from "./layout";
 
 const Settings = () => {
   const user = useAppSelector((state) => state.auth.user);
+  const [updateAccount, { isLoading, status }] = useUpdateProfileMutation();
   const initialValues: UpdateAccountData = {
-    user_name: user?.user_metadata.user_name,
-    email: user?.email as string,
-    name: user?.user_metadata.full_name,
+    username: user?.user_metadata.user_name,
+    name: user?.user_metadata.name,
   };
 
-  const handleUpdateProfile = () => {};
+  const handleUpdateProfile = (values: UpdateAccountData) => {
+    updateAccount({ ...values, userId: user?.id as string });
+  };
+
+  useEffect(() => {
+    if (status === "fulfilled") {
+      toast.success("Hesap bilgileriniz güncellendi.");
+    }
+  }, [status]);
 
   return (
     <div className="w-sm flex h-full flex-col gap-y-5">
@@ -39,28 +50,43 @@ const Settings = () => {
         initialValues={initialValues}
         onSubmit={handleUpdateProfile}
       >
-        {({ values, errors, handleSubmit }) => (
+        {({ values, errors, setFieldValue, handleSubmit }) => (
           <Form className="w-[700px] space-y-4">
             <div className="space-y-4">
               <div className="flex gap-x-6">
                 <Input
                   name="email"
-                  value={values.email}
-                  errorMessage={errors.email}
+                  value={user?.email}
                   disabled
                   label="Email"
                 />
                 <Input
                   name="name"
-                  value={values.user_name}
+                  value={values.username}
+                  onChange={(event) =>
+                    setFieldValue("username", event.target.value)
+                  }
                   label="Kullanıcı Adı"
                 />
               </div>
               <div className="flex gap-x-6">
-                <Input name="Ad" value={values.name} label="Ad" />
+                <Input
+                  name="Ad"
+                  value={values.name}
+                  onChange={(event) =>
+                    setFieldValue("name", event.target.value)
+                  }
+                  label="Ad"
+                />
               </div>
             </div>
-            <Button size="md" className="w-32" onClick={() => handleSubmit()}>
+            <Button
+              loading={isLoading}
+              disabled={isLoading}
+              size="md"
+              className="w-32"
+              onClick={() => handleSubmit()}
+            >
               Kaydet
             </Button>
           </Form>

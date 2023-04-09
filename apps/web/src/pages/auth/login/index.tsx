@@ -1,4 +1,3 @@
-import AuthLayout from "../layout";
 import OnlyGuest from "@/middlewares/OnlyGuest";
 import { useAuthLoginMutation } from "@/services/auth";
 import { LoginFormData } from "@/types";
@@ -7,10 +6,10 @@ import { getErrorFromPayload, useAppDispatch } from "@/utils/hooks";
 import { LoginSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { RiLockPasswordLine, RiMailLine } from "react-icons/ri";
-import { useRouter } from "next/router";
+import AuthLayout from "../layout";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -45,7 +44,7 @@ const Login = () => {
       validateOnBlur={false}
     >
       {({ errors, values, setFieldValue }) => (
-        <Form className="space-y-2">
+        <Form className="space-y-2 login">
           <Input
             name="email"
             autoComplete="off"

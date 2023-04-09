@@ -31,9 +31,8 @@ export interface AddEntryData {
 }
 
 export interface UpdateAccountData {
-  email: string;
-  user_name: string;
-  name?: string;
+  username: string;
+  name: string;
 }
 
 export interface UpdateProfileData {
