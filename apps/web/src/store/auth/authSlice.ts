@@ -1,6 +1,6 @@
 import { authApi } from "@/services/auth";
 import { userApi } from "@/services/user";
-import { Profile } from "@/types";
+import { IProfile } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { Session, User } from "@supabase/supabase-js";
 
@@ -8,7 +8,7 @@ interface AuthState {
   checkSessionloading: boolean;
   isLoading: boolean;
   user: User | null;
-  profile: Profile | null;
+  profile: IProfile | null;
   session: Session | null;
   isLoggedIn: boolean;
 }

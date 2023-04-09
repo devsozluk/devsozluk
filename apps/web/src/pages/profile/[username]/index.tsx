@@ -10,7 +10,7 @@ import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { HiOutlineLink } from "react-icons/hi2";
-import tabsContent from "./Tabs";
+import useTabsContent from "./profile.tabs";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { username } = context.params as { username: string };
@@ -20,8 +20,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     .select("*")
     .eq("username", username)
     .single();
-
-  console.log(data, error);
 
   if (error && !data) {
     return {
@@ -105,9 +103,10 @@ Profile.Header = ({ username, name, avatar_url }: IProfile) => {
 };
 
 Profile.Tabs = ({}: IProfile) => {
+  const navigations = useTabsContent();
   return (
     <div className="mt-10">
-      <Tabs tabs={tabsContent} />
+      <Tabs tabs={navigations} />
     </div>
   );
 };
