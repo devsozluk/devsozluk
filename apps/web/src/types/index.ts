@@ -43,7 +43,7 @@ export interface ITopic {
   id: number;
   created_at: string;
   title?: string;
-  author: Profile;
+  author: IProfile;
   slug: string;
   entryCount?: number;
   viewsCount?: number;
@@ -52,7 +52,7 @@ export interface ITopic {
 export interface IEntry {
   id: number;
   content: string;
-  author: Profile;
+  author: IProfile;
   topic: ITopic;
   created_at: Date;
   isPublic: boolean;
@@ -67,7 +67,7 @@ export interface IVote {
   downvoted: boolean;
 }
 
-export interface Profile {
+export interface IProfile {
   id: string /* primary key */;
   created_at?: string;
   username?: string;

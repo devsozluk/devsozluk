@@ -11,6 +11,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 export type IEntryProps = IEntry & {
   className?: string;
@@ -132,17 +133,8 @@ const Entry: React.FC<IEntryProps> = ({
             <GoTriangleDown size={16} />
             {downvotes}
           </IconButton>
-          <IconButton id="dropdownComment1Button" type="button">
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-            </svg>
-            <span className="sr-only">Comment settings</span>
+          <IconButton>
+            <HiOutlineDotsHorizontal size={16} />
           </IconButton>
         </div>
         <div

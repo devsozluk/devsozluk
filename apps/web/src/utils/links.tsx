@@ -11,29 +11,29 @@ export interface Link {
   name: LinkType;
   label: string;
   id?: number;
-  icon: React.ReactNode;
+  icon: React.FC<{ className?: string }>;
 }
 
 export const links: Link[] = [
   {
     name: "website",
     label: "Website",
-    icon: <AiFillCompass size={24} />,
+    icon: AiFillCompass,
   },
   {
     name: "github",
     label: "Github",
-    icon: <AiFillGithub size={24} />,
+    icon: AiFillGithub,
   },
   {
     name: "twitter",
     label: "Twitter",
-    icon: <AiFillTwitterCircle size={24} />,
+    icon: AiFillTwitterCircle,
   },
   {
     name: "linkedin",
     label: "Linkedin",
-    icon: <AiFillLinkedin size={24} />,
+    icon: AiFillLinkedin,
   },
 ];
 

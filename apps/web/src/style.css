@@ -21,7 +21,6 @@
 @tailwind utilities;
 
 @layer base {
-
   html,
   body {
     @apply bg-background;
@@ -29,6 +28,15 @@
 }
 
 @layer utilities {
+  .tab-group {
+    @apply border-b border-gray-700 mt-10;
+  }
+  .tab-list {
+    @apply flex flex-wrap -mb-px text-base font-medium text-center text-gray-400;
+  }
+  .tab-item {
+    @apply inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-300;
+  }
   .min-width {
     min-width: -moz-available;
     min-width: -webkit-fill-available;
@@ -44,20 +52,23 @@
     @apply text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm;
   }
 
-  .tippy-box[data-theme~="custom"][data-placement^="top"]>.tippy-arrow::before {
+  .tippy-box[data-theme~="custom"][data-placement^="top"]
+    > .tippy-arrow::before {
     @apply dark: border-t-gray-700;
   }
 
-  .tippy-box[data-theme~="custom"][data-placement^="left"]>.tippy-arrow::before {
+  .tippy-box[data-theme~="custom"][data-placement^="left"]
+    > .tippy-arrow::before {
     @apply dark: border-l-gray-700;
   }
 
-  .tippy-box[data-theme~="custom"][data-placement^="right"]>.tippy-arrow::before {
+  .tippy-box[data-theme~="custom"][data-placement^="right"]
+    > .tippy-arrow::before {
     @apply dark: border-r-gray-700;
   }
 
-  .tippy-box[data-theme~="custom"][data-placement^="bottom"]>.tippy-arrow::before {
+  .tippy-box[data-theme~="custom"][data-placement^="bottom"]
+    > .tippy-arrow::before {
     @apply dark: border-b-gray-700;
   }
-
 }
