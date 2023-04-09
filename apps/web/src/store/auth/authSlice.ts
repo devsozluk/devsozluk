@@ -83,6 +83,15 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       }
     );
+    builder.addMatcher(
+      userApi.endpoints.updateProfile.matchFulfilled,
+      (state, action) => {
+        console.log(action.payload);
+
+        state.user = action.payload.user;
+        state.profile = action.payload.profile;
+      }
+    );
   },
 });
 

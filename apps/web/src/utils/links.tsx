@@ -18,22 +18,22 @@ export const links: Link[] = [
   {
     name: "website",
     label: "Website",
-    icon: <AiFillCompass size={18} />,
+    icon: <AiFillCompass size={24} />,
   },
   {
     name: "github",
     label: "Github",
-    icon: <AiFillGithub size={18} />,
+    icon: <AiFillGithub size={24} />,
   },
   {
     name: "twitter",
     label: "Twitter",
-    icon: <AiFillTwitterCircle size={18} />,
+    icon: <AiFillTwitterCircle size={24} />,
   },
   {
     name: "linkedin",
     label: "Linkedin",
-    icon: <AiFillLinkedin size={18} />,
+    icon: <AiFillLinkedin size={24} />,
   },
 ];
 
