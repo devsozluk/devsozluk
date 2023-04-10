@@ -15,8 +15,6 @@ export const userApi = createApi({
           .eq("id", user.user?.id)
           .single();
 
-        console.log(data);
-
         if (error) {
           return { error };
         } else {
@@ -76,6 +74,39 @@ export const userApi = createApi({
         }
       },
     }),
+    updateProfile: builder.mutation({
+      queryFn: async ({
+        username,
+        name,
+        userId,
+      }: {
+        username: string;
+        name: string;
+        userId: string;
+      }): Promise<any> => {
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .update({
+            username,
+            name,
+          })
+          .eq("id", userId)
+          .select("*")
+          .single();
+
+        const { data: user, error: userError } = await supabase.auth.updateUser(
+          {
+            data: { user_name: username, name },
+          }
+        );
+
+        if (error) {
+          return { error };
+        } else {
+          return { data: { profile, user: user.user } };
+        }
+      },
+    }),
     updatePhoto: builder.mutation({
       queryFn: async ({ avatarFile }: { avatarFile: File }): Promise<any> => {
         const { data, error } = await supabase.storage
@@ -116,4 +147,5 @@ export const {
   useGetUserLinksQuery,
   useUpdateUserLinksMutation,
   useUpdateBiographyMutation,
+  useUpdateProfileMutation,
 } = userApi;

@@ -1,8 +1,8 @@
 import { ITopic } from "@/types";
 import { IconButton } from "@devsozluk/ui";
 import Link from "next/link";
-import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
 import { IoMdEye } from "react-icons/io";
+import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
 import SocialShare from "./SocialShare";
 
 const TopicHeader = (topic: ITopic) => {

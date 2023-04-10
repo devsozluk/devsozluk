@@ -29,10 +29,7 @@ export const CreateTopicSchema = Yup.object().shape({
 
 export const UpdateAccountSchema = Yup.object().shape({
   name: Yup.string().required("Adınızı yazmalısınız."),
-  user_name: Yup.string().required("Kullanıcı adınızı yazmalısınız."),
-  email: Yup.string()
-    .email("Yazdığınız bir mail adresi değil.")
-    .required("Mail adresinizi girin."),
+  username: Yup.string().required("Kullanıcı adınızı yazmalısınız."),
 });
 
 export const UpdateProfileSchema = Yup.object().shape({
