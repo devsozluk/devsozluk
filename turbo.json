@@ -2,8 +2,9 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "outputs": ["dist/**", "storybook-static/**"],
-      "dependsOn": ["^build"]
+      "outputs": [".next/**", "dist/**", "storybook-static/**"],
+      "dependsOn": ["^build"],
+      "env": ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_KEY"]
     },
     "test": {
       "outputs": ["coverage/**"],
