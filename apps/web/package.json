@@ -49,7 +49,6 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@typescript-eslint": "link:prettier/@typescript-eslint",
     "@typescript-eslint/parser": "^5.49.0",
     "autoprefixer": "^10.4.13",
     "eslint-config-devsozluk": "*",
