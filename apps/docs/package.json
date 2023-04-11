@@ -9,15 +9,15 @@
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
-    "@devsozluk/ui": "workspace:*",
+    "@devsozluk/ui": "*",
     "@uiw/react-md-editor": "^3.20.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1"
   },
   "devDependencies": {
-    "@devsozluk/config": "workspace:0.0.0",
-    "@devsozluk/tsconfig": "workspace:0.0.0",
+    "@devsozluk/config": "*",
+    "@devsozluk/tsconfig": "*",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-docs": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",

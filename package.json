@@ -12,6 +12,10 @@
     "version-packages": "changeset version",
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "engines": {
     "node": "16.x"
   },
@@ -21,5 +25,11 @@
     "prettier": "^2.8.0",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@7.15.0"
+  "packageManager": "yarn@1.22.19",
+  "name": "devsozluk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/devsozluk/website.git",
+  "author": "osmandlsmn <dlsmnosman@gmail.com>",
+  "license": "MIT"
 }

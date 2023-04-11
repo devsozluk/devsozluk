@@ -13,9 +13,9 @@
     "node": "16.x"
   },
   "dependencies": {
-    "@devsozluk/config": "workspace:0.0.0",
-    "@devsozluk/tsconfig": "workspace:^0.0.0",
-    "@devsozluk/ui": "workspace:*",
+    "@devsozluk/config": "*",
+    "@devsozluk/tsconfig": "*",
+    "@devsozluk/ui": "*",
     "@headlessui/react": "^1.7.9",
     "@reduxjs/toolkit": "^1.9.2",
     "@supabase/supabase-js": "^2.11.0",
@@ -28,7 +28,7 @@
     "@vercel/analytics": "^0.1.11",
     "classnames": "^2.3.2",
     "eslint": "8.33.0",
-    "eslint-config-devsozluk": "workspace:0.0.0",
+    "eslint-config-devsozluk": "*",
     "eslint-config-next": "13.2.4",
     "formik": "^2.2.9",
     "moment": "^2.29.4",
@@ -52,7 +52,7 @@
     "@typescript-eslint": "link:prettier/@typescript-eslint",
     "@typescript-eslint/parser": "^5.49.0",
     "autoprefixer": "^10.4.13",
-    "eslint-config-devsozluk": "workspace:0.0.0",
+    "eslint-config-devsozluk": "*",
     "next-transpile-modules": "^10.0.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4"
