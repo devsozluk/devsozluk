@@ -6,7 +6,7 @@ import { setTopic } from "@/store/topic/topicSlice";
 import { IEntry, ITopic } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { GetServerSidePropsContext } from "next";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -59,17 +59,16 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
 
   return (
     <div>
-      <Head>
-        <title>DevSözlük - {topic.title}</title>
-        <meta property="og:title" content={topic.title} />
-        <meta property="og:description" content={description} />
-        <meta
-          property="twitter:url"
-          content={"https://dev.devsozluk.net/topic/" + topic.slug}
-        />
-        <meta name="twitter:title" content={topic.title} />
-        <meta name="twitter:description" content={description} />
-      </Head>
+      <NextSeo
+        title={topic.title}
+        description={description}
+        canonical={"https://dev.devsozluk.net/topic/" + topic.slug}
+        openGraph={{
+          url: "https://dev.devsozluk.net/topic/" + topic.slug,
+          title: topic.title,
+          description: description,
+        }}
+      />
       <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
         <Topic.Header {...topic} />
         <Topic.Entries />
