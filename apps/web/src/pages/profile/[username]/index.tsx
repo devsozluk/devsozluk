@@ -6,7 +6,9 @@ import linksConstant, { Link } from "@/utils/links";
 import { Dropdown, IconButton, Tabs } from "@devsozluk/ui";
 import Tippy from "@tippyjs/react";
 import { GetServerSidePropsContext } from "next";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { Fragment } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { HiOutlineLink } from "react-icons/hi2";
 import useTabsContent from "./profile.tabs";
@@ -38,12 +40,23 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 const Profile = ({ profile }: { profile: IProfile }) => {
   return (
-    <div className="flex items-center flex-col">
-      <div className="w-full max-w-2xl px-4">
-        <Profile.Header {...profile} />
-        <Profile.Tabs {...profile} />
+    <Fragment>
+      <NextSeo
+        title={profile.name}
+        canonical={"https://dev.devsozluk.net/profile/" + profile.username}
+        openGraph={{
+          url: "https://dev.devsozluk.net/profile/" + profile.username,
+          title: profile.name,
+          description: profile.position,
+        }}
+      />
+      <div className="flex items-center flex-col">
+        <div className="w-full max-w-2xl px-4">
+          <Profile.Header {...profile} />
+          <Profile.Tabs {...profile} />
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

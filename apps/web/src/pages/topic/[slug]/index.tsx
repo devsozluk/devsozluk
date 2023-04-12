@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
@@ -58,7 +58,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
   const description = entries[0]?.content;
 
   return (
-    <div>
+    <Fragment>
       <NextSeo
         title={topic.title}
         description={description}
@@ -74,7 +74,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
         <Topic.Entries />
         {isLoggedIn && <Topic.AddEntry />}
       </div>
-    </div>
+    </Fragment>
   );
 };
 
