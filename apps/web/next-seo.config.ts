@@ -11,9 +11,7 @@ export default {
       "Dev Sözlük, yazılım geliştiricileri için bir sözlük. Yazılım geliştirme ile ilgili her türlü konuyu burada tartışabilirsiniz.",
     images: [
       {
-        url: "https://dev.devsozluk.net/banner.png",
-        width: 800,
-        height: 420,
+        url: "https://dev.devsozluk.net/logo.png",
         alt: "Dev Sözlük",
       },
     ],
