@@ -1,11 +1,17 @@
 import { ITopic } from "@/types";
 import { IconButton } from "@devsozluk/ui";
 import Link from "next/link";
+import { Fragment } from "react";
 import { IoMdEye } from "react-icons/io";
 import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
 import SocialShare from "./SocialShare";
 
-const TopicHeader = (topic: ITopic) => {
+export interface ITopicHeader {
+  topic: ITopic;
+  showDetail?: boolean;
+}
+
+const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
   return (
     <div className="flex items-center justify-between">
       <Link
@@ -23,10 +29,14 @@ const TopicHeader = (topic: ITopic) => {
           <MdComment size={18} />
           {topic.entryCount}
         </IconButton>
-        <IconButton>
-          <MdOutlineBookmarkAdd size={18} />
-        </IconButton>
-        <SocialShare {...topic} />
+        {showDetail && (
+          <Fragment>
+            <IconButton>
+              <MdOutlineBookmarkAdd size={18} />
+            </IconButton>
+            <SocialShare {...topic} />
+          </Fragment>
+        )}
       </div>
     </div>
   );

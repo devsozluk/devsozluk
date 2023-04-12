@@ -2,8 +2,7 @@ import EmptyLayout from "@/components/Layout/EmptyLayout";
 import Header from "@/components/Layout/Header";
 import supabase from "@/libs/supabase";
 import { IProfile } from "@/types";
-import { useAppSelector } from "@/utils/hooks";
-import links from "@/utils/links";
+import linksConstant, { Link } from "@/utils/links";
 import { Dropdown, IconButton, Tabs } from "@devsozluk/ui";
 import Tippy from "@tippyjs/react";
 import { GetServerSidePropsContext } from "next";
@@ -38,13 +37,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 const Profile = ({ profile }: { profile: IProfile }) => {
-  const { user } = useAppSelector((state) => state.auth);
-
-  console.log(profile);
-
   return (
     <div className="flex items-center flex-col">
-      <div className="w-full max-w-xl">
+      <div className="w-full max-w-2xl px-4">
         <Profile.Header {...profile} />
         <Profile.Tabs {...profile} />
       </div>
@@ -52,9 +47,13 @@ const Profile = ({ profile }: { profile: IProfile }) => {
   );
 };
 
-Profile.Header = ({ username, name, avatar_url }: IProfile) => {
-  const { user } = useAppSelector((state) => state.auth);
-
+Profile.Header = ({
+  username,
+  name,
+  avatar_url,
+  links,
+  position,
+}: IProfile) => {
   const host =
     typeof window !== "undefined" ? window.location.origin : undefined;
   const url = `${host}/profile/${username}`;
@@ -65,29 +64,47 @@ Profile.Header = ({ username, name, avatar_url }: IProfile) => {
     }
   };
 
+  const computedProfileLinks = () => {
+    return links?.map((link) => {
+      const { label, icon } = linksConstant?.find(
+        (item) => item.name === link.name
+      ) as Link;
+
+      return {
+        label,
+        icon,
+        url: link.url,
+      };
+    });
+  };
+
   return (
-    <div className="flex justify-between gap-x-6">
-      <Image
-        width={200}
-        height={200}
-        className="h-40 w-40 rounded-full"
-        src={avatar_url}
-        alt=""
-      />
-      <div className="flex flex-col gap-x-5 justify-center">
-        <h1 className="text-3xl font-semibold text-white">{name}</h1>
-        <p className="text-lg text-gray-400">Frontend Developer</p>
-        <div className="flex gap-x-4 mt-4">
-          {links.map((link) => (
-            <Tippy content={link.label}>
-              <button className="text-gray-400">
-                <link.icon className="h-6 w-6" />
-              </button>
-            </Tippy>
-          ))}
+    <div className="flex flex-col md:flex-row  relative justify-between gap-y-4 md:gap-y-0 md:gap-x-6">
+      <div className="flex gap-x-4 items-center flex-col md:flex-row gap-y-4 md:gap-y-0">
+        <Image
+          width={200}
+          height={200}
+          className="h-52 w-52 md:h-40 md:w-40 rounded-full"
+          src={avatar_url}
+          alt=""
+        />
+        <div className="flex flex-col gap-x-8 md:gap-x-6 justify-center items-center md:items-start">
+          <h1 className="text-3xl font-semibold text-white">{name}</h1>
+          <p className="text-lg text-gray-400">
+            {position || "Pozisyon eklenmemiş."}
+          </p>
+          <div className="flex gap-x-4 mt-4">
+            {computedProfileLinks().map((link) => (
+              <Tippy content={link.label}>
+                <a href={link.url} target="_blank" className="text-gray-400">
+                  <link.icon className="h-6 w-6" />
+                </a>
+              </Tippy>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="ml-auto">
+      <div className="absolute right-0">
         <Dropdown>
           <Dropdown.Button as={IconButton}>
             <HiOutlineDotsHorizontal size={16} />
@@ -102,8 +119,8 @@ Profile.Header = ({ username, name, avatar_url }: IProfile) => {
   );
 };
 
-Profile.Tabs = ({}: IProfile) => {
-  const navigations = useTabsContent();
+Profile.Tabs = (profile: IProfile) => {
+  const navigations = useTabsContent(profile);
   return (
     <div className="mt-10">
       <Tabs tabs={navigations} />
@@ -115,7 +132,7 @@ Profile.getLayout = (page: React.ReactNode) => {
   return (
     <EmptyLayout>
       <Header />
-      <div className="pt-28">{page}</div>
+      <div className="pt-56 md:pt-28">{page}</div>
     </EmptyLayout>
   );
 };

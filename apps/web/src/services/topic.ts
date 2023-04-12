@@ -1,5 +1,5 @@
-import { AddEntryData, CreateTopicData, UpdateVoteBody } from "@/types/index";
 import supabase from "@/libs/supabase";
+import { AddEntryData, CreateTopicData, UpdateVoteBody } from "@/types/index";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
 
@@ -125,6 +125,36 @@ export const topicApi = createApi({
         }
       },
     }),
+    getUserTopics: builder.query({
+      queryFn: async (userId: string): Promise<any> => {
+        const { data, error } = await supabase
+          .from("topics")
+          .select("*")
+          .eq("author", userId);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
+    getUserEntries: builder.query({
+      queryFn: async (userId: string): Promise<any> => {
+        const { data, error } = await supabase
+          .from("entries")
+          .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
+          .order("created_at", { ascending: false })
+          .eq("author", userId)
+          .limit(10);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
   }),
 });
 
@@ -135,4 +165,6 @@ export const {
   useSearchTopicsMutation,
   useEntryVoteMutation,
   useDeleteEntryVoteMutation,
+  useGetUserTopicsQuery,
+  useGetUserEntriesQuery,
 } = topicApi;

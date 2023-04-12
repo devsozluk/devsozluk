@@ -1,8 +1,9 @@
-import { useUpdateBiographyMutation } from "@/services/user";
+import { useUpdateProfileMutation } from "@/services/user";
 import { UpdateProfileData } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
+import positions from "@/utils/positions";
 import { UpdateProfileSchema } from "@/utils/schemas";
-import { Button, TextArea } from "@devsozluk/ui";
+import { Button, Select, TextArea } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
@@ -11,19 +12,24 @@ import ProfileLinks from "./links";
 
 const Profile = () => {
   const { profile, user } = useAppSelector((state) => state.auth);
-  const [updateBio, { isLoading, status, data }] = useUpdateBiographyMutation();
+  const [updateProfile, { isLoading, status, data }] =
+    useUpdateProfileMutation();
   const initialValues: UpdateProfileData = {
+    position: profile?.position || "",
     biography: profile?.biography || "",
   };
 
   useEffect(() => {
     if (status === "fulfilled") {
-      toast.success("Biyografi güncellendi.");
+      toast.success("Profiliniz güncellendi.");
     }
   }, [status]);
 
   const handleUpdateProfile = (values: UpdateProfileData) => {
-    updateBio({ ...values, userId: user?.id as string });
+    updateProfile({
+      ...values,
+      userId: user?.id as string,
+    });
   };
 
   return (
@@ -42,7 +48,14 @@ const Profile = () => {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="">
+              <div className="flex flex-col gap-y-5">
+                <Select
+                  label="Pozisyon"
+                  placeholder="Bir pozisyon seçin."
+                  options={positions}
+                  value={values.position}
+                  onChange={(value) => setFieldValue("position", value)}
+                />
                 <TextArea
                   label="Biyografi"
                   rows={4}
