@@ -8,6 +8,7 @@ import { IconButton } from "@devsozluk/ui";
 import classNames from "classnames";
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
@@ -98,7 +99,10 @@ const Entry: React.FC<IEntryProps> = ({
     <article className={classNames("text-base rounded-lg", className)}>
       <p className="text-gray-400">{content}</p>
       <footer className="flex justify-between items-center mt-2">
-        <div className="flex items-center">
+        <Link
+          href={"/profile/" + author.username}
+          className="flex items-center"
+        >
           <div className="inline-flex items-center mr-3 select-none">
             <Image
               className="mr-2 w-6 h-6 rounded"
@@ -115,7 +119,7 @@ const Entry: React.FC<IEntryProps> = ({
               </p>
             </div>
           </div>
-        </div>
+        </Link>
         <div className="flex items-center gap-x-2 text-xs font-bold">
           <IconButton
             isActive={hasUpVote}
@@ -140,37 +144,7 @@ const Entry: React.FC<IEntryProps> = ({
         <div
           id="dropdownComment1"
           className="hidden z-10 w-36 rounded divide-y shadow bg-gray-700 divide-gray-600"
-        >
-          <ul
-            className="py-1 text-sm text-gray-200"
-            aria-labelledby="dropdownMenuIconHorizontalButton"
-          >
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-600 hover:text-white"
-              >
-                Edit
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-600 hover:text-white"
-              >
-                Remove
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-gray-600 hover:text-white"
-              >
-                Report
-              </a>
-            </li>
-          </ul>
-        </div>
+        ></div>
       </footer>
     </article>
   );

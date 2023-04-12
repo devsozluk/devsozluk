@@ -70,7 +70,7 @@ const authSlice = createSlice({
       }
     );
     builder.addMatcher(
-      userApi.endpoints.updateBiography.matchFulfilled,
+      userApi.endpoints.updateProfile.matchFulfilled,
       (state, action) => {
         state.profile = action.payload;
       }

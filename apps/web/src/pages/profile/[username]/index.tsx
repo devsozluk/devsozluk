@@ -48,7 +48,13 @@ const Profile = ({ profile }: { profile: IProfile }) => {
   );
 };
 
-Profile.Header = ({ username, name, avatar_url, links }: IProfile) => {
+Profile.Header = ({
+  username,
+  name,
+  avatar_url,
+  links,
+  position,
+}: IProfile) => {
   const { user } = useAppSelector((state) => state.auth);
 
   const host =
@@ -86,7 +92,7 @@ Profile.Header = ({ username, name, avatar_url, links }: IProfile) => {
       />
       <div className="flex flex-col gap-x-5 justify-center">
         <h1 className="text-3xl font-semibold text-white">{name}</h1>
-        <p className="text-lg text-gray-400">Frontend Developer</p>
+        <p className="text-lg text-gray-400">{position || ""}</p>
         <div className="flex gap-x-4 mt-4">
           {computedProfileLinks().map((link) => (
             <Tippy content={link.label}>

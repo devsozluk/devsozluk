@@ -1,4 +1,4 @@
-import { useUpdateBiographyMutation } from "@/services/user";
+import { useUpdateProfileMutation } from "@/services/user";
 import { UpdateProfileData } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
 import { UpdateProfileSchema } from "@/utils/schemas";
@@ -8,61 +8,28 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import Layout from "../layout";
 import ProfileLinks from "./links";
-
-const software_branch = [
-  {
-    name: "Frontend Developer",
-    value: "Frontend Developer",
-  },
-  {
-    name: "Backend Developer",
-    value: "Backend Developer",
-  },
-  {
-    name: "Fullstack Developer",
-    value: "Fullstack Developer",
-  },
-  {
-    name: "Mobile Developer",
-    value: "Mobile Developer",
-  },
-  {
-    name: "DevOps",
-    value: "DevOps",
-  },
-  {
-    name: "Game Developer",
-    value: "Game Developer",
-  },
-  {
-    name: "Embedded Developer",
-    value: "Embedded Developer",
-  },
-  {
-    name: "Data Scientist",
-    value: "Data Scientist",
-  },
-  {
-    name: "Machine Learning Engineer",
-    value: "Machine Learning Engineer",
-  },
-];
+import { positions } from "./profile.constants";
 
 const Profile = () => {
   const { profile, user } = useAppSelector((state) => state.auth);
-  const [updateBio, { isLoading, status, data }] = useUpdateBiographyMutation();
+  const [updateProfile, { isLoading, status, data }] =
+    useUpdateProfileMutation();
   const initialValues: UpdateProfileData = {
+    position: profile?.position || "",
     biography: profile?.biography || "",
   };
 
   useEffect(() => {
     if (status === "fulfilled") {
-      toast.success("Biyografi güncellendi.");
+      toast.success("Profiliniz güncellendi.");
     }
   }, [status]);
 
   const handleUpdateProfile = (values: UpdateProfileData) => {
-    updateBio({ ...values, userId: user?.id as string });
+    updateProfile({
+      ...values,
+      userId: user?.id as string,
+    });
   };
 
   return (
@@ -85,7 +52,9 @@ const Profile = () => {
                 <Select
                   label="Pozisyon"
                   placeholder="Bir pozisyon seçin."
-                  options={software_branch}
+                  options={positions}
+                  value={values.position}
+                  onChange={(value) => setFieldValue("position", value)}
                 />
                 <TextArea
                   label="Biyografi"

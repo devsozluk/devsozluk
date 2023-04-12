@@ -1,6 +1,6 @@
 import {
   useUpdatePhotoMutation,
-  useUpdateProfileMutation,
+  useUpdateUserProfileMutation,
 } from "@/services/user";
 import { setUser } from "@/store/auth/authSlice";
 import { UpdateAccountData } from "@/types";
@@ -22,7 +22,7 @@ import Layout from "./layout";
 
 const Settings = () => {
   const user = useAppSelector((state) => state.auth.user);
-  const [updateAccount, { isLoading, status }] = useUpdateProfileMutation();
+  const [updateAccount, { isLoading, status }] = useUpdateUserProfileMutation();
   const initialValues: UpdateAccountData = {
     username: user?.user_metadata.user_name,
     name: user?.user_metadata.name,

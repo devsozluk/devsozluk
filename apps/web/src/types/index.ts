@@ -36,6 +36,7 @@ export interface UpdateAccountData {
 }
 
 export interface UpdateProfileData {
+  position: string;
   biography: string;
 }
 
@@ -69,6 +70,7 @@ export interface IVote {
 
 export interface IProfile {
   id: string /* primary key */;
+  position: string;
   created_at?: string;
   username?: string;
   avatar_url: string;

@@ -9,6 +9,7 @@ export interface Option {
 
 export interface SelectProps {
   options: Option[];
+  value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
   defaultValue?: string;
@@ -23,11 +24,13 @@ const ErrorField = ({ errorMessage }: { errorMessage?: string }) => {
 export const Select: React.FC<SelectProps> = ({
   defaultValue,
   onChange,
+  errorMessage,
+  value,
   options,
   placeholder,
   label,
 }) => {
-  const [selected, setSelected] = useState(defaultValue || "");
+  const [selected, setSelected] = useState(value || "");
 
   const handleOnChange = (value: string) => {
     setSelected(value);
@@ -79,6 +82,7 @@ export const Select: React.FC<SelectProps> = ({
           </div>
         </Listbox>
       </div>
+      <ErrorField errorMessage={errorMessage} />
     </div>
   );
 };
