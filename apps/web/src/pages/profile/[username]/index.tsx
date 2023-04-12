@@ -3,7 +3,7 @@ import Header from "@/components/Layout/Header";
 import supabase from "@/libs/supabase";
 import { IProfile } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
-import links from "@/utils/links";
+import linksConstant, { Link } from "@/utils/links";
 import { Dropdown, IconButton, Tabs } from "@devsozluk/ui";
 import Tippy from "@tippyjs/react";
 import { GetServerSidePropsContext } from "next";
@@ -38,13 +38,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 const Profile = ({ profile }: { profile: IProfile }) => {
-  const { user } = useAppSelector((state) => state.auth);
-
-  console.log(profile);
-
   return (
     <div className="flex items-center flex-col">
-      <div className="w-full max-w-xl">
+      <div className="w-full max-w-2xl">
         <Profile.Header {...profile} />
         <Profile.Tabs {...profile} />
       </div>
@@ -52,7 +48,7 @@ const Profile = ({ profile }: { profile: IProfile }) => {
   );
 };
 
-Profile.Header = ({ username, name, avatar_url }: IProfile) => {
+Profile.Header = ({ username, name, avatar_url, links }: IProfile) => {
   const { user } = useAppSelector((state) => state.auth);
 
   const host =
@@ -63,6 +59,20 @@ Profile.Header = ({ username, name, avatar_url }: IProfile) => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(url as string);
     }
+  };
+
+  const computedProfileLinks = () => {
+    return links.map((link) => {
+      const { label, icon } = linksConstant.find(
+        (item) => item.name === link.name
+      ) as Link;
+
+      return {
+        label,
+        icon,
+        url: link.url,
+      };
+    });
   };
 
   return (
@@ -78,11 +88,11 @@ Profile.Header = ({ username, name, avatar_url }: IProfile) => {
         <h1 className="text-3xl font-semibold text-white">{name}</h1>
         <p className="text-lg text-gray-400">Frontend Developer</p>
         <div className="flex gap-x-4 mt-4">
-          {links.map((link) => (
+          {computedProfileLinks().map((link) => (
             <Tippy content={link.label}>
-              <button className="text-gray-400">
+              <a href={link.url} target="_blank" className="text-gray-400">
                 <link.icon className="h-6 w-6" />
-              </button>
+              </a>
             </Tippy>
           ))}
         </div>
@@ -102,8 +112,8 @@ Profile.Header = ({ username, name, avatar_url }: IProfile) => {
   );
 };
 
-Profile.Tabs = ({}: IProfile) => {
-  const navigations = useTabsContent();
+Profile.Tabs = (profile: IProfile) => {
+  const navigations = useTabsContent(profile);
   return (
     <div className="mt-10">
       <Tabs tabs={navigations} />

@@ -12,6 +12,7 @@ export interface Link {
   label: string;
   id?: number;
   icon: React.FC<{ className?: string }>;
+  url?: string;
 }
 
 export const links: Link[] = [
