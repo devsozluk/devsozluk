@@ -42,7 +42,7 @@ Entries.Card = ({ entry, index }: { entry: IEntry; index: number }) => {
       key={id}
       className={classNames("flex w-full flex-col gap-y-6", hasFirstEntry)}
     >
-      <TopicHeader {...topic} />
+      <TopicHeader topic={topic} />
       <Entry {...entry} />
     </div>
   );
