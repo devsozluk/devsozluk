@@ -1,6 +1,7 @@
 import { useUpdateProfileMutation } from "@/services/user";
 import { UpdateProfileData } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
+import positions from "@/utils/positions";
 import { UpdateProfileSchema } from "@/utils/schemas";
 import { Button, Select, TextArea } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
@@ -8,7 +9,6 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import Layout from "../layout";
 import ProfileLinks from "./links";
-import { positions } from "./profile.constants";
 
 const Profile = () => {
   const { profile, user } = useAppSelector((state) => state.auth);

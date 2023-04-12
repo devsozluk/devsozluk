@@ -1,4 +1,4 @@
-export const positions = [
+export default [
   { name: "Frontend Developer", value: "Frontend Developer" },
   { name: "Backend Developer", value: "Backend Developer" },
   { name: "Fullstack Developer", value: "Fullstack Developer" },
