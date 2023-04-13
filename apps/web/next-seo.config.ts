@@ -13,9 +13,12 @@ export default {
       {
         url: "https://dev.devsozluk.net/logo.png",
         alt: "Dev Sözlük",
+        width: 139,
+        height: 35,
       },
     ],
   },
+
   twitter: {
     handle: "@devsozluk",
     site: "@devsozluk",
