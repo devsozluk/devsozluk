@@ -2,12 +2,14 @@ import EmptyLayout from "@/components/Layout/EmptyLayout";
 import Header from "@/components/Layout/Header";
 import supabase from "@/libs/supabase";
 import { IProfile } from "@/types";
+import { useAppSelector } from "@/utils/hooks";
 import linksConstant, { Link } from "@/utils/links";
-import { Dropdown, IconButton, Tabs } from "@devsozluk/ui";
+import { Button, Dropdown, IconButton, Tabs } from "@devsozluk/ui";
 import Tippy from "@tippyjs/react";
 import { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { HiOutlineLink } from "react-icons/hi2";
@@ -63,10 +65,13 @@ const Profile = ({ profile }: { profile: IProfile }) => {
 Profile.Header = ({
   username,
   name,
+  id,
   avatar_url,
   links,
   position,
 }: IProfile) => {
+  const router = useRouter();
+  const user = useAppSelector((state) => state.auth.user);
   const host =
     typeof window !== "undefined" ? window.location.origin : undefined;
   const url = `${host}/profile/${username}`;
@@ -89,6 +94,10 @@ Profile.Header = ({
         url: link.url,
       };
     });
+  };
+
+  const goAccountPage = () => {
+    router.replace("/dashboard/profile");
   };
 
   return (
@@ -117,7 +126,12 @@ Profile.Header = ({
           </div>
         </div>
       </div>
-      <div className="absolute right-0">
+      <div className="absolute right-0 flex gap-x-2">
+        {user?.id === id && (
+          <Button onClick={goAccountPage} variant="dark" size="sm">
+            Profili Düzenle
+          </Button>
+        )}
         <Dropdown>
           <Dropdown.Button as={IconButton}>
             <HiOutlineDotsHorizontal size={16} />
