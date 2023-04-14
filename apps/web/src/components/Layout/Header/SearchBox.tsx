@@ -1,11 +1,13 @@
-import { Input } from "@devsozluk/ui";
-import React, { Fragment, useEffect, useState } from "react";
-import { useDebounce } from "usehooks-ts";
-import { BsSearch } from "react-icons/bs";
-import { useSearchTopicsMutation } from "@/services/topic";
 import SearchSkeleton from "@/components/Loading/search";
+import { useSearchTopicsMutation } from "@/services/topic";
 import { ITopic } from "@/types";
+import { Input } from "@devsozluk/ui";
+import classNames from "classnames";
 import Link from "next/link";
+import { Fragment, useEffect, useState } from "react";
+import { BsSearch } from "react-icons/bs";
+import { IoMdCloseCircle } from "react-icons/io";
+import { useDebounce } from "usehooks-ts";
 
 const SearchBox = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -24,35 +26,37 @@ const SearchBox = () => {
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Aramak istediğiniz kelimeyi girin."
         renderLeftIcon={
-          <svg
-            aria-hidden="true"
-            className="w-5 h-5 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            ></path>
-          </svg>
+          searchValue.length > 0 ? undefined : (
+            <BsSearch size={14} className="text-gray-400" />
+          )
+        }
+        renderRightIcon={
+          searchValue.length >= 1 ? (
+            <IoMdCloseCircle
+              size={15}
+              className="text-gray-400 cursor-pointer"
+              onClick={() => setSearchValue("")}
+            />
+          ) : undefined
         }
         className="!h-10"
       />
       <div
-        className="group-focus-within:flex bg-gray-800 transition-all z-10 h-56 w-full absolute hidden p-3 gap-y-4 flex-col"
+        className={classNames(
+          "bg-gray-800 transition-all z-10 h-56 w-full absolute hidden p-3 gap-y-4 flex-col",
+          { "group-focus-within:flex": searchValue.length > 0 }
+        )}
         tabIndex={0}
       >
         {isLoading ? (
           <SearchBox.Loader />
         ) : (
           <Fragment>
-            {data?.map((topic: ITopic) => (
-              <SearchBox.Item {...topic} />
-            ))}
+            {data?.length === 0 ? (
+              <SearchBox.NotFound />
+            ) : (
+              data?.map((topic: ITopic) => <SearchBox.Item {...topic} />)
+            )}
           </Fragment>
         )}
       </div>
@@ -69,6 +73,14 @@ SearchBox.Item = ({ slug, entryCount, title }: ITopic) => {
       <p className="truncate">{title}</p>
       <span className="ml-5 text-sm">{entryCount || 0}</span>
     </Link>
+  );
+};
+
+SearchBox.NotFound = () => {
+  return (
+    <div className="flex items-center justify-center h-full">
+      <p className="text-gray-400">Sonuç bulunamadı.</p>
+    </div>
   );
 };
 
