@@ -14,7 +14,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="fixed hidden h-[85%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded px-5 scrolbar md:flex lg:w-[300px]">
+    <div className="absolute hidden h-[85%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded pr-5 scrolbar md:flex lg:w-[300px]">
       {isLoading ? (
         <SidebarLoader />
       ) : (
@@ -30,7 +30,7 @@ const Sidebar = () => {
 
 Sidebar.Item = ({ slug, title, entryCount }: ITopic) => (
   <Link
-    className="flex items-center text-gray-400 justify-between break-words rounded px-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
+    className="flex items-center text-gray-400 justify-between break-words rounded pr-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
     href={"/topic/" + slug}
   >
     <p className="truncate">{title}</p>

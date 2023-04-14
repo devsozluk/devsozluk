@@ -25,7 +25,7 @@ const Profile = () => {
     }
   }, [status]);
 
-  const handleUpdateProfile = (values: UpdateProfileData) => {
+  const handleUpdateProfile = async (values: UpdateProfileData) => {
     updateProfile({
       ...values,
       userId: user?.id as string,

@@ -2,11 +2,15 @@ import EmptyLayout from "@/components/Layout/EmptyLayout";
 import Header from "@/components/Layout/Header";
 import supabase from "@/libs/supabase";
 import { IProfile } from "@/types";
+import { useAppSelector } from "@/utils/hooks";
 import linksConstant, { Link } from "@/utils/links";
-import { Dropdown, IconButton, Tabs } from "@devsozluk/ui";
+import { Button, Dropdown, IconButton, Tabs } from "@devsozluk/ui";
 import Tippy from "@tippyjs/react";
 import { GetServerSidePropsContext } from "next";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { Fragment } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { HiOutlineLink } from "react-icons/hi2";
 import useTabsContent from "./profile.tabs";
@@ -38,22 +42,36 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 const Profile = ({ profile }: { profile: IProfile }) => {
   return (
-    <div className="flex items-center flex-col">
-      <div className="w-full max-w-2xl px-4">
-        <Profile.Header {...profile} />
-        <Profile.Tabs {...profile} />
+    <Fragment>
+      <NextSeo
+        title={profile.name}
+        canonical={"https://dev.devsozluk.net/profile/" + profile.username}
+        openGraph={{
+          url: "https://dev.devsozluk.net/profile/" + profile.username,
+          title: profile.name,
+          description: profile.position,
+        }}
+      />
+      <div className="flex items-center flex-col">
+        <div className="w-full max-w-2xl px-4">
+          <Profile.Header {...profile} />
+          <Profile.Tabs {...profile} />
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
 Profile.Header = ({
   username,
   name,
+  id,
   avatar_url,
   links,
   position,
 }: IProfile) => {
+  const router = useRouter();
+  const user = useAppSelector((state) => state.auth.user);
   const host =
     typeof window !== "undefined" ? window.location.origin : undefined;
   const url = `${host}/profile/${username}`;
@@ -78,6 +96,10 @@ Profile.Header = ({
     });
   };
 
+  const goAccountPage = () => {
+    router.replace("/dashboard/profile");
+  };
+
   return (
     <div className="flex flex-col md:flex-row  relative justify-between gap-y-4 md:gap-y-0 md:gap-x-6">
       <div className="flex gap-x-4 items-center flex-col md:flex-row gap-y-4 md:gap-y-0">
@@ -94,7 +116,7 @@ Profile.Header = ({
             {position || "Pozisyon eklenmemiş."}
           </p>
           <div className="flex gap-x-4 mt-4">
-            {computedProfileLinks().map((link) => (
+            {computedProfileLinks()?.map((link) => (
               <Tippy content={link.label}>
                 <a href={link.url} target="_blank" className="text-gray-400">
                   <link.icon className="h-6 w-6" />
@@ -104,7 +126,12 @@ Profile.Header = ({
           </div>
         </div>
       </div>
-      <div className="absolute right-0">
+      <div className="absolute right-0 flex gap-x-2">
+        {user?.id === id && (
+          <Button onClick={goAccountPage} variant="dark" size="sm">
+            Profili Düzenle
+          </Button>
+        )}
         <Dropdown>
           <Dropdown.Button as={IconButton}>
             <HiOutlineDotsHorizontal size={16} />
