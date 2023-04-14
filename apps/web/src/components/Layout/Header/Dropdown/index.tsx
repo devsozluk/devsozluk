@@ -58,7 +58,7 @@ const Dropdown = () => {
 
         <hr className="border-gray-700 border-opacity-70" />
 
-        <Menu.Items className="flex w-full flex-col space-y-2 rounded text-center font-medium">
+        <Menu.Items className="flex w-full flex-col rounded text-center font-medium">
           {navigations.map((item) => (
             <Dropdown.Item {...item} />
           ))}

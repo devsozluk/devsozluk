@@ -126,7 +126,7 @@ const Entry: React.FC<IEntryProps> = ({
             disabled={isLoading || deleteIsLoading}
             onClick={() => handleVote("up")}
           >
-            <GoTriangleUp size={16} />
+            <GoTriangleUp size={14} />
             {upvotes}
           </IconButton>
           <IconButton
@@ -134,11 +134,11 @@ const Entry: React.FC<IEntryProps> = ({
             disabled={isLoading || deleteIsLoading}
             onClick={() => handleVote("down")}
           >
-            <GoTriangleDown size={16} />
+            <GoTriangleDown size={14} />
             {downvotes}
           </IconButton>
           <IconButton>
-            <HiOutlineDotsHorizontal size={16} />
+            <HiOutlineDotsHorizontal size={14} />
           </IconButton>
         </div>
         <div

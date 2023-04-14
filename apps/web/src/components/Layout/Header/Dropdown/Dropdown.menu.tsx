@@ -35,7 +35,7 @@ export default function Dropdown(): IMenu[] {
     },
     {
       id: 3,
-      className: "border-t border-gray-700 border-opacity-70",
+      className: "!text-red-400",
       icon: <FiLogOut />,
       title: "Çıkış Yap",
       onClick: handleLogout,
