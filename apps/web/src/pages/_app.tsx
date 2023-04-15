@@ -6,8 +6,9 @@ import "@/style.css";
 import { Analytics } from "@vercel/analytics/react";
 import moment from "moment";
 import "moment/locale/tr";
-import { DefaultSeo } from "next-seo";
+import { NextSeo } from "next-seo";
 import type { AppProps } from "next/app";
+import { Fragment } from "react";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import "tippy.js/dist/tippy.css";
@@ -28,8 +29,8 @@ const App = ({ Component, pageProps }: Props) => {
   const ComponentLayout = getRootLayout(Component);
 
   return (
-    <div>
-      <DefaultSeo {...seo} />
+    <Fragment>
+      <NextSeo {...seo} />
       <Provider store={store}>
         <RootLayout>
           <ComponentLayout>
@@ -39,7 +40,7 @@ const App = ({ Component, pageProps }: Props) => {
         <Toaster />
       </Provider>
       <Analytics />
-    </div>
+    </Fragment>
   );
 };
 

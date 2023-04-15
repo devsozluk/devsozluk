@@ -15,8 +15,10 @@ export default {
         alt: "Dev Sözlük",
       },
     ],
+    site_name: "DevSözlük",
+    type: "website",
+    locale: "tr_TR",
   },
-
   twitter: {
     handle: "@devsozluk",
     site: "@devsozluk",
