@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { HiChevronUpDown } from "react-icons/hi2";
 
 export interface Option {
-  name: string;
+  label: string;
   value: string;
 }
 
@@ -32,6 +32,8 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
   const [selected, setSelected] = useState(value || "");
 
+  const computedSelected = options.find((option) => option.value === selected);
+
   const handleOnChange = (value: string) => {
     setSelected(value);
     if (onChange) {
@@ -52,7 +54,7 @@ export const Select: React.FC<SelectProps> = ({
           <div className="relative mt-1 w-full">
             <Listbox.Button className="relative placeholder-gray-400 w-full cursor-default rounded-lg py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
               <span className="block truncate">
-                {selected ? selected : placeholder}
+                {selected ? computedSelected?.label : placeholder}
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <HiChevronUpDown
@@ -74,7 +76,7 @@ export const Select: React.FC<SelectProps> = ({
                     key={index}
                     value={option.value}
                   >
-                    {option.name}
+                    {option.label}
                   </Listbox.Option>
                 ))}
               </Listbox.Options>
