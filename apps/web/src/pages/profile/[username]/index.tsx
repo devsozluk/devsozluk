@@ -11,8 +11,8 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
+import { BsLink45Deg } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { HiOutlineLink } from "react-icons/hi2";
 import useTabsContent from "./profile.tabs";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -137,7 +137,7 @@ Profile.Header = ({
             <HiOutlineDotsHorizontal size={16} />
           </Dropdown.Button>
           <Dropdown.Item onClick={copyToClipboard}>
-            <HiOutlineLink />
+            <BsLink45Deg />
             profil linkini kopyala
           </Dropdown.Item>
         </Dropdown>

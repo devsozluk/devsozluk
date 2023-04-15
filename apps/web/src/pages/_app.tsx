@@ -6,13 +6,11 @@ import "@/style.css";
 import { Analytics } from "@vercel/analytics/react";
 import moment from "moment";
 import "moment/locale/tr";
-import { NextSeo } from "next-seo";
 import type { AppProps } from "next/app";
 import { Fragment } from "react";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import "tippy.js/dist/tippy.css";
-import seo from "../../next-seo.config";
 import type { Page } from "../types/page";
 moment.locale("tr");
 
@@ -30,7 +28,6 @@ const App = ({ Component, pageProps }: Props) => {
 
   return (
     <Fragment>
-      <NextSeo {...seo} />
       <Provider store={store}>
         <RootLayout>
           <ComponentLayout>

@@ -1,10 +1,9 @@
 import { ITopic } from "@/types";
 import { Dropdown, IconButton } from "@devsozluk/ui";
 import React, { PropsWithChildren } from "react";
-import { BsTwitter } from "react-icons/bs";
+import { BsLink45Deg, BsLinkedin, BsTwitter } from "react-icons/bs";
 import { FiShare } from "react-icons/fi";
-import { HiOutlineLink } from "react-icons/hi";
-import { TwitterShareButton } from "react-share";
+import { LinkedinShareButton, TwitterShareButton } from "react-share";
 
 const SocialShare = ({ title, slug }: ITopic) => {
   const host =
@@ -32,8 +31,19 @@ const SocialShare = ({ title, slug }: ITopic) => {
           twitter da paylaş
         </TwitterShareButton>
       </Dropdown.Item>
+      <Dropdown.Item>
+        <LinkedinShareButton
+          className="w-full flex gap-x-2 items-center"
+          url={url as string}
+          source="DevSözlük"
+          title={title}
+        >
+          <BsLinkedin />
+          linkedin da paylaş
+        </LinkedinShareButton>
+      </Dropdown.Item>
       <Dropdown.Item onClick={copyToClipboard}>
-        <HiOutlineLink />
+        <BsLink45Deg />
         linki kopyala
       </Dropdown.Item>
     </Dropdown>
