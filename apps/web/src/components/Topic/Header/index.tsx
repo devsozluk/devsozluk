@@ -16,7 +16,7 @@ const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
     <div className="flex items-center justify-between">
       <Link
         href={"/topic/" + topic.slug}
-        className="text-lg font-bold text-primary-400"
+        className="text-lg font-bold text-primary-400 truncate"
       >
         {topic.title}
       </Link>

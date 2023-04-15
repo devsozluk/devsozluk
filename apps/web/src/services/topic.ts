@@ -9,10 +9,14 @@ export const topicApi = createApi({
   endpoints: (builder) => ({
     getPopularTopics: builder.mutation({
       queryFn: async () => {
+        const weekly = new Date();
+        weekly.setDate(weekly.getDate() - 7);
+
         const { data, error } = await supabase
           .from("topics")
-          .select("*")
-          .order("entryCount", { ascending: false });
+          .select("*, viewsCount")
+          .gte("created_at", weekly.toISOString())
+          .order("viewsCount", { ascending: false });
 
         return { data };
       },

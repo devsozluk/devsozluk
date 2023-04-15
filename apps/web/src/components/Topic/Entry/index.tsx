@@ -97,7 +97,22 @@ const Entry: React.FC<IEntryProps> = ({
 
   return (
     <article className={classNames("text-base rounded-lg", className)}>
-      <p className="text-gray-400">{content}</p>
+      <p className="text-gray-400">
+        {content.split(" ").map((word, index) => {
+          if (word.startsWith("@")) {
+            return (
+              <Link
+                key={index}
+                href={"/profile/" + word.replace("@", "")}
+                className="text-primary-400 hover:text-primary-500 transition-all"
+              >
+                {word}
+              </Link>
+            );
+          }
+          return word + " ";
+        })}
+      </p>
       <footer className="flex justify-between items-center mt-2">
         <Link
           href={"/profile/" + author.username}
