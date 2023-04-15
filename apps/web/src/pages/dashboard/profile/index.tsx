@@ -40,7 +40,7 @@ const Profile = () => {
         onSubmit={handleUpdateProfile}
       >
         {({ values, errors, handleSubmit, setFieldValue }) => (
-          <Form className="w-[500px] space-y-4 pb-10">
+          <Form className="w-[500px] space-y-4 pb-6">
             <div>
               <h3 className="text-lg font-semibold">Profil</h3>
               <p className="text-sm text-gray-400">

@@ -1,5 +1,6 @@
 import supabase from "@/libs/supabase";
 import { AddEntryData, CreateTopicData, UpdateVoteBody } from "@/types/index";
+import getPagination from "@/utils/getPagination";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
 
@@ -15,7 +16,7 @@ export const topicApi = createApi({
         const { data, error } = await supabase
           .from("topics")
           .select("*, viewsCount")
-          .gte("created_at", weekly.toISOString())
+          // .gte("created_at", weekly.toISOString())
           .order("viewsCount", { ascending: false });
 
         return { data };
@@ -175,6 +176,24 @@ export const topicApi = createApi({
         }
       },
     }),
+    getMoreEntries: builder.mutation({
+      queryFn: async ({ page }: { page: number }): Promise<any> => {
+        const { to, from } = getPagination(page, 10);
+        const { data, error } = await supabase
+          .from("entries")
+          .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
+          .order("created_at", { ascending: false })
+          .range(from, to);
+
+        console.log(data);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
   }),
 });
 
@@ -188,4 +207,5 @@ export const {
   useGetUserTopicsQuery,
   useGetUserEntriesQuery,
   useDeleteEntryMutation,
+  useGetMoreEntriesMutation,
 } = topicApi;

@@ -60,7 +60,7 @@ const Dropdown = () => {
 
         <Menu.Items className="flex w-full flex-col rounded text-center font-medium">
           {navigations.map((item) => (
-            <Dropdown.Item {...item} />
+            <Dropdown.Item key={item.id} {...item} />
           ))}
         </Menu.Items>
       </Transition>

@@ -49,6 +49,12 @@ const topicSlice = createSlice({
         );
       }
     );
+    builder.addMatcher(
+      topicApi.endpoints.getMoreEntries.matchFulfilled,
+      (state, action) => {
+        state.entries = [...state.entries, ...action.payload];
+      }
+    );
   },
 });
 
