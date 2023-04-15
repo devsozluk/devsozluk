@@ -1,8 +1,11 @@
 import Entry from "@/components/Topic/Entry";
 import TopicHeader from "@/components/Topic/Header";
 import supabase from "@/libs/supabase";
+import { setTopic } from "@/store/topic/topicSlice";
 import { IEntry } from "@/types";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import classNames from "classnames";
+import { useEffect } from "react";
 
 export async function getServerSideProps() {
   const { data, error } = await supabase
@@ -19,10 +22,17 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ entries }: { entries: IEntry[] }) => {
+  const dispatch = useAppDispatch();
+  const topic = useAppSelector((state) => state.topic);
+
+  useEffect(() => {
+    dispatch(setTopic({ entries }));
+  }, []);
+
   return (
     <div className="flex justify-between">
       <div className="flex w-full max-w-3xl flex-col divide-y divide-opacity-30 divide-gray-700">
-        {entries?.map((entry, index) => (
+        {topic.entries?.map((entry, index) => (
           <Home.EntryCard key={entry.id} entry={entry} index={index} />
         ))}
       </div>

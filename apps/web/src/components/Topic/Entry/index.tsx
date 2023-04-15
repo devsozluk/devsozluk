@@ -1,18 +1,11 @@
-import {
-  useDeleteEntryVoteMutation,
-  useEntryVoteMutation,
-} from "@/services/topic";
 import type { IEntry } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
-import { IconButton } from "@devsozluk/ui";
 import classNames from "classnames";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
-import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import React from "react";
+import EntryActions from "./Entry.actions";
 
 export type IEntryProps = IEntry & {
   className?: string;
@@ -24,15 +17,9 @@ const Entry: React.FC<IEntryProps> = ({
   created_at,
   author,
   className,
-  upvotes: initialUpvotes,
-  downvotes: initialDownvotes,
+  upvotes,
+  downvotes,
 }) => {
-  const [handleEntryVote, { data, error, isLoading, status }] =
-    useEntryVoteMutation();
-  const [
-    deleteEntryVote,
-    { data: deleteData, isLoading: deleteIsLoading, status: deleteStatus },
-  ] = useDeleteEntryVoteMutation();
   const referenceDate = moment().startOf("seconds");
   const formattedDate = moment
     .utc(created_at)
@@ -40,79 +27,15 @@ const Entry: React.FC<IEntryProps> = ({
     .startOf("seconds")
     .from(referenceDate);
 
-  const [upvotes, setUpvotes] = useState(initialUpvotes);
-  const [downvotes, setDownvotes] = useState(initialDownvotes);
-
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-  const userVotes = useAppSelector((state) => state.user.votes);
-
-  const hasUserVote = userVotes?.find((vote) => vote.entry == id);
-  const hasUpVote = userVotes?.find((vote) => vote.entry == id && vote.upvoted);
-  const hasDownVote = userVotes?.find(
-    (vote) => vote.entry == id && vote.downvoted
-  );
-
-  const handleVote = async (type: "up" | "down") => {
-    if (!isLoggedIn)
-      return toast.error("Entry'e oy vermek için lütfen önce giriş yapın.");
-
-    if (
-      (hasUserVote?.downvoted && type === "down") ||
-      (hasUserVote?.upvoted && type === "up")
-    ) {
-      await deleteEntryVote({
-        author: user?.id as string,
-        entry: id as number,
-      });
-    } else {
-      if (hasUserVote)
-        await deleteEntryVote({
-          author: user?.id as string,
-          entry: id as number,
-        });
-      await handleEntryVote({
-        author: user?.id as string,
-        entry: id as number,
-        type,
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (status === "fulfilled" && data) {
-      if (data.upvoted) setUpvotes((prevCount) => prevCount + 1);
-      else setDownvotes((prevCount) => prevCount + 1);
-    }
-  }, [status]);
-
-  useEffect(() => {
-    if (deleteStatus === "fulfilled" && deleteData) {
-      if (deleteData.upvoted) {
-        setUpvotes((prevCount) => prevCount - 1);
-      } else if (deleteData.downvoted) {
-        setDownvotes((prevCount) => prevCount - 1);
-      }
-    }
-  }, [deleteStatus]);
 
   return (
     <article className={classNames("text-base rounded-lg", className)}>
-      <p className="text-gray-400">
-        {content.split(" ").map((word, index) => {
-          if (word.startsWith("@")) {
-            return (
-              <Link
-                key={index}
-                href={"/profile/" + word.replace("@", "")}
-                className="text-primary-400 hover:text-primary-500 transition-all"
-              >
-                {word}
-              </Link>
-            );
-          }
-          return word + " ";
-        })}
-      </p>
+      <div>
+        <p className="text-gray-400 whitespace-pre-wrap line-clamp-3">
+          {content}
+        </p>
+      </div>
       <footer className="flex justify-between items-center mt-2">
         <Link
           href={"/profile/" + author.username}
@@ -135,31 +58,12 @@ const Entry: React.FC<IEntryProps> = ({
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-x-2 text-xs font-bold">
-          <IconButton
-            isActive={hasUpVote}
-            disabled={isLoading || deleteIsLoading}
-            onClick={() => handleVote("up")}
-          >
-            <GoTriangleUp size={14} />
-            {upvotes}
-          </IconButton>
-          <IconButton
-            isActive={hasDownVote}
-            disabled={isLoading || deleteIsLoading}
-            onClick={() => handleVote("down")}
-          >
-            <GoTriangleDown size={14} />
-            {downvotes}
-          </IconButton>
-          <IconButton>
-            <HiOutlineDotsHorizontal size={14} />
-          </IconButton>
-        </div>
-        <div
-          id="dropdownComment1"
-          className="hidden z-10 w-36 rounded divide-y shadow bg-gray-700 divide-gray-600"
-        ></div>
+        <EntryActions
+          downvotes={downvotes}
+          upvotes={upvotes}
+          author={author}
+          id={id}
+        />
       </footer>
     </article>
   );

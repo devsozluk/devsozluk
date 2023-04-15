@@ -3,10 +3,12 @@ import Entry from "@/components/Topic/Entry";
 import TopicHeader from "@/components/Topic/Header";
 import { useGetUserEntriesQuery } from "@/services/topic";
 import { IEntry, IProfile } from "@/types";
+import { useAppSelector } from "@/utils/hooks";
 import classNames from "classnames";
 
 export const Entries = ({ id }: IProfile) => {
-  const { data: entries, isLoading } = useGetUserEntriesQuery(id);
+  const { isLoading } = useGetUserEntriesQuery(id);
+  const entries = useAppSelector((state) => state.topic.entries);
 
   if (isLoading) return <TopicLoader />;
   else if (entries.length === 0) return <Entries.NoData />;

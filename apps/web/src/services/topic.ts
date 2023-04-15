@@ -113,6 +113,22 @@ export const topicApi = createApi({
         }
       },
     }),
+    deleteEntry: builder.mutation({
+      queryFn: async ({ id }: { id: number }): Promise<any> => {
+        const { error, data } = await supabase
+          .from("entries")
+          .delete()
+          .eq("id", id)
+          .select("*")
+          .single();
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
     searchTopics: builder.mutation({
       queryFn: async (body: { text: string }): Promise<any> => {
         const { text } = body;
@@ -171,4 +187,5 @@ export const {
   useDeleteEntryVoteMutation,
   useGetUserTopicsQuery,
   useGetUserEntriesQuery,
+  useDeleteEntryMutation,
 } = topicApi;

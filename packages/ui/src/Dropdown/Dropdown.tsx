@@ -29,7 +29,7 @@ export const Dropdown = ({ children }: DropdownProps) => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute"
+        className="absolute z-50"
       >
         <Menu.Items className="absolute -right-10 mt-2 w-56 rounded shadow bg-gray-700 text-sm text-gray-200 font-normal">
           {dropdownItems}
