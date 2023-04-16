@@ -1,3 +1,4 @@
+import MainLayout from "@/components/Layout/MainLayout";
 import TopicAddEntry from "@/components/Topic/AddEntry";
 import Entry from "@/components/Topic/Entry";
 import TopicHeader from "@/components/Topic/Header";
@@ -8,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.params as { slug: string };
@@ -58,7 +59,7 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
   const description = entries[0]?.content;
 
   return (
-    <Fragment>
+    <>
       <NextSeo
         title={topic.title}
         description={description}
@@ -69,12 +70,14 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
           description: description,
         }}
       />
-      <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
-        <Topic.Header topic={topic} showDetail />
-        <Topic.Entries />
-        {isLoggedIn && <Topic.AddEntry />}
-      </div>
-    </Fragment>
+      <MainLayout>
+        <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
+          <Topic.Header topic={topic} showDetail />
+          <Topic.Entries />
+          {isLoggedIn && <Topic.AddEntry />}
+        </div>
+      </MainLayout>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import EmptyLayout from "@/components/Layout/EmptyLayout";
 import Header from "@/components/Layout/Header";
+import useTabsContent from "@/components/Profile/Profile.tabs";
 import supabase from "@/libs/supabase";
 import { IProfile } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
@@ -11,9 +12,8 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
+import { BsLink45Deg } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { HiOutlineLink } from "react-icons/hi2";
-import useTabsContent from "./profile.tabs";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { username } = context.params as { username: string };
@@ -48,16 +48,30 @@ const Profile = ({ profile }: { profile: IProfile }) => {
         canonical={"https://dev.devsozluk.net/profile/" + profile.username}
         openGraph={{
           url: "https://dev.devsozluk.net/profile/" + profile.username,
-          title: profile.name,
-          description: profile.position,
+          title: profile.name + "- DevSözlük",
+          description: profile.position || "",
+          images: [
+            {
+              url: profile.avatar_url,
+              alt: profile.name,
+              width: 265,
+              height: 265,
+            },
+          ],
+          site_name: "Devsozluk",
         }}
       />
-      <div className="flex items-center flex-col">
-        <div className="w-full max-w-2xl px-4">
-          <Profile.Header {...profile} />
-          <Profile.Tabs {...profile} />
+      <EmptyLayout>
+        <Header />
+        <div className="pt-56 md:pt-28">
+          <div className="flex items-center flex-col ">
+            <div className="w-full max-w-2xl px-4">
+              <Profile.Header {...profile} />
+              <Profile.Tabs {...profile} />
+            </div>
+          </div>
         </div>
-      </div>
+      </EmptyLayout>
     </Fragment>
   );
 };
@@ -137,7 +151,7 @@ Profile.Header = ({
             <HiOutlineDotsHorizontal size={16} />
           </Dropdown.Button>
           <Dropdown.Item onClick={copyToClipboard}>
-            <HiOutlineLink />
+            <BsLink45Deg />
             profil linkini kopyala
           </Dropdown.Item>
         </Dropdown>
@@ -148,19 +162,11 @@ Profile.Header = ({
 
 Profile.Tabs = (profile: IProfile) => {
   const navigations = useTabsContent(profile);
+
   return (
     <div className="mt-10">
       <Tabs tabs={navigations} />
     </div>
-  );
-};
-
-Profile.getLayout = (page: React.ReactNode) => {
-  return (
-    <EmptyLayout>
-      <Header />
-      <div className="pt-56 md:pt-28">{page}</div>
-    </EmptyLayout>
   );
 };
 

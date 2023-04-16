@@ -27,7 +27,7 @@ const CreateTopicModal = () => {
 
   useEffect(() => {
     if (status === "fulfilled") {
-      dispatch(setTopicModal(false))
+      dispatch(setTopicModal(false));
       toast.success("Konu oluşturuldu, yönlendiriliyorsunuz.");
       router.push(`/topic/${data.topic.slug}`);
     } else if (status === "rejected") {
@@ -79,35 +79,63 @@ const CreateTopicModal = () => {
                       <div className="z-50">
                         <div className="flex absolute top-5 right-0 left-0 border-b left space-x-3 pb-4 mb-4 border-gray-500 border-opacity-30 px-6">
                           <div className="space-y-1 w-full flex justify-between items-center pl-6 sm:pl-6">
-                            <Dialog.Title className="text-lg font-bold leading-6 text-white">Konu Oluştur</Dialog.Title>
+                            <Dialog.Title className="text-lg font-bold leading-6 text-white">
+                              Konu Oluştur
+                            </Dialog.Title>
                             <IconButton onClick={closeTopicModal}>
                               <RiCloseFill size={20} />
                             </IconButton>
                           </div>
                         </div>
                       </div>
-                      <Formik validationSchema={CreateTopicSchema} initialValues={initialValues} onSubmit={handleCreate} validateOnBlur={false} validateOnChange={false}
+                      <Formik
+                        validationSchema={CreateTopicSchema}
+                        initialValues={initialValues}
+                        onSubmit={handleCreate}
+                        validateOnBlur={false}
+                        validateOnChange={false}
                       >
                         {({ errors, setFieldValue, values, handleSubmit }) => (
                           <Form className="px-6 mt-24">
                             <div className="space-y-6 relative">
-                              <Input name="title" placeholder="Konu başlığını yazınız." label="Konu Başlığı" value={values.title} onChange={(event) => setFieldValue("title", event.target.value)} errorMessage={errors.title} />
+                              <Input
+                                className="!bg-gray-700"
+                                name="title"
+                                placeholder="Konu başlığını yazınız."
+                                label="Konu Başlığı"
+                                value={values.title}
+                                onChange={(event) =>
+                                  setFieldValue("title", event.target.value)
+                                }
+                                errorMessage={errors.title}
+                              />
                               <TextArea
                                 name="content"
                                 errorMessage={errors.content}
                                 label="Konu İçeriği"
                                 value={values.content}
                                 rows={6}
-                                onChange={(event) => setFieldValue("content", event.target.value)}
+                                onChange={(event) =>
+                                  setFieldValue("content", event.target.value)
+                                }
                                 placeholder="Konu içeriğini yazınız."
                               />
                             </div>
                             <div className="absolute bottom-5 right-0 px-4 left-0 border-t left border-gray-500 border-opacity-30">
                               <div className="flex mt-4 gap-x-4 justify-end">
-                                <Button variant="danger" size="md" type="button" onClick={closeTopicModal}>
+                                <Button
+                                  variant="danger"
+                                  size="md"
+                                  type="button"
+                                  onClick={closeTopicModal}
+                                >
                                   İptal
                                 </Button>
-                                <Button size="md" loading={isLoading} onClick={() => handleSubmit()}>
+                                <Button
+                                  size="md"
+                                  loading={isLoading}
+                                  onClick={() => handleSubmit()}
+                                >
                                   Yayınla
                                 </Button>
                               </div>

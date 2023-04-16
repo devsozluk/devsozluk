@@ -1,5 +1,6 @@
 import supabase from "@/libs/supabase";
 import { AddEntryData, CreateTopicData, UpdateVoteBody } from "@/types/index";
+import getPagination from "@/utils/getPagination";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
 
@@ -8,13 +9,20 @@ export const topicApi = createApi({
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
     getPopularTopics: builder.mutation({
-      queryFn: async () => {
+      queryFn: async ({ page }: { page: number }): Promise<any> => {
+        const { to, from } = getPagination(page, 20);
         const { data, error } = await supabase
           .from("topics")
           .select("*")
-          .order("entryCount", { ascending: false });
+          .order("viewsCount", { ascending: false })
+          .order("entryCount", { ascending: false })
+          .range(from, to);
 
-        return { data };
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
       },
     }),
     addTopic: builder.mutation({
@@ -109,6 +117,22 @@ export const topicApi = createApi({
         }
       },
     }),
+    deleteEntry: builder.mutation({
+      queryFn: async ({ id }: { id: number }): Promise<any> => {
+        const { error, data } = await supabase
+          .from("entries")
+          .delete()
+          .eq("id", id)
+          .select("*")
+          .single();
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
     searchTopics: builder.mutation({
       queryFn: async (body: { text: string }): Promise<any> => {
         const { text } = body;
@@ -155,6 +179,22 @@ export const topicApi = createApi({
         }
       },
     }),
+    getMoreEntries: builder.mutation({
+      queryFn: async ({ page }: { page: number }): Promise<any> => {
+        const { to, from } = getPagination(page, 10);
+        const { data, error } = await supabase
+          .from("entries")
+          .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
+          .order("created_at", { ascending: false })
+          .range(from, to);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
   }),
 });
 
@@ -167,4 +207,6 @@ export const {
   useDeleteEntryVoteMutation,
   useGetUserTopicsQuery,
   useGetUserEntriesQuery,
+  useDeleteEntryMutation,
+  useGetMoreEntriesMutation,
 } = topicApi;

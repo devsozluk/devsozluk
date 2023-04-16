@@ -16,23 +16,23 @@ const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
     <div className="flex items-center justify-between">
       <Link
         href={"/topic/" + topic.slug}
-        className="text-lg font-bold text-primary-400"
+        className="text-lg font-bold text-primary-400 truncate"
       >
         {topic.title}
       </Link>
       <div className="mt-2 flex gap-x-3 text-xs font-bold">
         <IconButton>
-          <IoMdEye size={18} />
+          <IoMdEye size={16} />
           {topic.viewsCount}
         </IconButton>
         <IconButton>
-          <MdComment size={18} />
+          <MdComment size={16} />
           {topic.entryCount}
         </IconButton>
         {showDetail && (
           <Fragment>
             <IconButton>
-              <MdOutlineBookmarkAdd size={18} />
+              <MdOutlineBookmarkAdd size={16} />
             </IconButton>
             <SocialShare {...topic} />
           </Fragment>

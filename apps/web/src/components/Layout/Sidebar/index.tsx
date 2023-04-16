@@ -1,36 +1,50 @@
 import SidebarLoader from "@/components/Loading/sidebar";
 import { useGetPopularTopicsMutation } from "@/services/topic";
 import type { ITopic } from "@/types";
+import { useAppSelector } from "@/utils/hooks";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
+import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Sidebar = () => {
   const router = useRouter();
-  const [getPopularTopics, { data, isLoading }] = useGetPopularTopicsMutation();
-
+  const [page, setPage] = useState(0);
+  const [getPopularTopics, { isLoading }] = useGetPopularTopicsMutation();
+  const { sidebarTopics } = useAppSelector((state) => state.topic);
   useEffect(() => {
-    getPopularTopics("");
+    getPopularTopics({ page });
   }, []);
 
+  const fetchMoreData = async () => {
+    setPage((prevPage) => prevPage + 1);
+    getPopularTopics({ page: page + 1 });
+  };
+
   return (
-    <div className="absolute hidden h-[85%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded pr-5 scrolbar md:flex lg:w-[300px]">
-      {isLoading ? (
-        <SidebarLoader />
-      ) : (
-        <Fragment>
-          {data?.map((topic: any) => (
-            <Sidebar.Item key={topic.id} {...topic} />
-          ))}
-        </Fragment>
-      )}
+    <div
+      className="fixed hidden h-[87%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded pr-5 scrolbar md:flex lg:w-[300px]"
+      id="scrollableSidebar"
+    >
+      <InfiniteScroll
+        className="flex flex-col space-y-3 overflow-y-scroll rounded pr-5"
+        loader={isLoading && <SidebarLoader />}
+        next={fetchMoreData}
+        dataLength={sidebarTopics?.length}
+        hasMore={true}
+        scrollableTarget="scrollableSidebar"
+      >
+        {sidebarTopics?.map((topic: any) => (
+          <Sidebar.Item key={topic.id} {...topic} />
+        ))}
+      </InfiniteScroll>
     </div>
   );
 };
 
 Sidebar.Item = ({ slug, title, entryCount }: ITopic) => (
   <Link
-    className="flex items-center text-gray-400 justify-between break-words rounded pr-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
+    className="flex items-center text-gray-400 justify-between break-words rounded pr-2 py-1 pl-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
     href={"/topic/" + slug}
   >
     <p className="truncate">{title}</p>

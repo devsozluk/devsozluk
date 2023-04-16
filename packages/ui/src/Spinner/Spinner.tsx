@@ -4,7 +4,7 @@ const spinnerStyles = cva(["animate-spin"], {
   variants: {
     variant: {
       light: "text-white",
-      primary: "text-primary",
+      primary: "text-primary-500",
     },
     size: {
       sm: "h-4 w-4",

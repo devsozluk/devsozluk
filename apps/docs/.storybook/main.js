@@ -1,19 +1,26 @@
 const path = require("path");
 
 module.exports = {
-  stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.tsx"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "storybook-dark-mode",
-  {
-    name: '@storybook/addon-postcss',
-    options: {
-      cssLoaderOptions: {
-        importLoaders: 1,
-      },
-      postcssLoaderOptions: {
-        implementation: require('postcss'),
+  stories: [
+    "../stories/*.stories.mdx",
+    "../stories/**/*.stories.mdx",
+    "../stories/**/*.stories.tsx",
+  ],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        cssLoaderOptions: {
+          importLoaders: 1,
+        },
+        postcssLoaderOptions: {
+          implementation: require("postcss"),
+        },
       },
     },
-  }],
+  ],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-vite",
@@ -26,10 +33,7 @@ module.exports = {
         alias: [
           {
             find: "@devsozluk/ui",
-            replacement: path.resolve(
-              __dirname,
-              "../../../packages/ui"
-            ),
+            replacement: path.resolve(__dirname, "../../../packages/ui"),
           },
         ],
       },

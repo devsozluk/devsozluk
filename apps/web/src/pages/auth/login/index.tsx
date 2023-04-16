@@ -36,50 +36,51 @@ const Login = () => {
   );
 
   return (
-    <Formik
-      validationSchema={LoginSchema}
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validateOnChange={false}
-      validateOnBlur={false}
-    >
-      {({ errors, values, setFieldValue }) => (
-        <Form className="space-y-2 login">
-          <Input
-            name="email"
-            autoComplete="off"
-            errorMessage={errors.email}
-            value={values.email}
-            onChange={(event) => setFieldValue("email", event.target.value)}
-            placeholder="Email"
-          />
-          <Input
-            name="password"
-            type="password"
-            errorMessage={errors.password}
-            value={values.password}
-            onChange={(event) => setFieldValue("password", event.target.value)}
-            placeholder="Şifre"
-            autoComplete="current-password"
-          />
-          <Button className="w-full !mt-4" loading={isLoading} type="submit">
-            Giriş
-          </Button>
-        </Form>
-      )}
-    </Formik>
-  );
-};
-
-Login.getLayout = (page: React.ReactElement) => {
-  return (
     <OnlyGuest>
       <AuthLayout>
         <AuthLayout.Title>Giriş</AuthLayout.Title>
         <AuthLayout.Description link="/auth/register" linkText="Kayıt Ol">
           Hesabınız yok mu?
         </AuthLayout.Description>
-        {page}
+
+        <Formik
+          validationSchema={LoginSchema}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validateOnChange={false}
+          validateOnBlur={false}
+        >
+          {({ errors, values, setFieldValue }) => (
+            <Form className="space-y-2 login">
+              <Input
+                name="email"
+                autoComplete="off"
+                errorMessage={errors.email}
+                value={values.email}
+                onChange={(event) => setFieldValue("email", event.target.value)}
+                placeholder="Email"
+              />
+              <Input
+                name="password"
+                type="password"
+                errorMessage={errors.password}
+                value={values.password}
+                onChange={(event) =>
+                  setFieldValue("password", event.target.value)
+                }
+                placeholder="Şifre"
+                autoComplete="current-password"
+              />
+              <Button
+                className="w-full !mt-4"
+                loading={isLoading}
+                type="submit"
+              >
+                Giriş
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </AuthLayout>
     </OnlyGuest>
   );
