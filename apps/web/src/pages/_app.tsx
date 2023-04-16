@@ -1,6 +1,4 @@
-import EmptyLayout from "@/components/Layout/EmptyLayout";
 import RootLayout from "@/components/Layout/Layout";
-import MainLayout from "@/components/Layout/MainLayout";
 import store from "@/store/store";
 import "@/style.css";
 import { Analytics } from "@vercel/analytics/react";
@@ -20,22 +18,13 @@ type Props = AppProps & {
   Component: Page;
 };
 
-const getRootLayout = (Component: any) => {
-  return Component.getLayout ? EmptyLayout : MainLayout;
-};
-
 const App = ({ Component, pageProps }: Props) => {
-  const getLayout = Component.getLayout ?? ((page: any) => page);
-  const ComponentLayout = getRootLayout(Component);
-
   return (
     <Fragment>
       <DefaultSeo {...seo} />
       <Provider store={store}>
         <RootLayout>
-          <ComponentLayout>
-            {getLayout(<Component {...pageProps} />)}
-          </ComponentLayout>
+          <Component {...pageProps} />
         </RootLayout>
         <Toaster />
       </Provider>

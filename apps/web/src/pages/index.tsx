@@ -1,3 +1,4 @@
+import MainLayout from "@/components/Layout/MainLayout";
 import Entry from "@/components/Topic/Entry";
 import TopicHeader from "@/components/Topic/Header";
 import supabase from "@/libs/supabase";
@@ -40,27 +41,29 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
   };
 
   return (
-    <div className="flex justify-between">
-      <div className="max-w-3xl w-full">
-        <InfiniteScroll
-          loader={
-            isLoading && (
-              <div className="flex justify-center pt-5 items-center">
-                <Spinner />
-              </div>
-            )
-          }
-          next={fetchMoreData}
-          dataLength={topic?.entries?.length}
-          hasMore={true}
-          className="flex w-full flex-col divide-y divide-opacity-30 divide-gray-700 !overflow-hidden"
-        >
-          {topic?.entries?.map((entry, index) => (
-            <Home.EntryCard key={entry.id} entry={entry} index={index} />
-          ))}
-        </InfiniteScroll>
+    <MainLayout>
+      <div className="flex justify-between">
+        <div className="max-w-3xl w-full">
+          <InfiniteScroll
+            loader={
+              isLoading && (
+                <div className="flex justify-center pt-5 items-center">
+                  <Spinner />
+                </div>
+              )
+            }
+            next={fetchMoreData}
+            dataLength={topic?.entries?.length}
+            hasMore={true}
+            className="flex w-full flex-col divide-y divide-opacity-30 divide-gray-700 !overflow-hidden"
+          >
+            {topic?.entries?.map((entry, index) => (
+              <Home.EntryCard key={entry.id} entry={entry} index={index} />
+            ))}
+          </InfiniteScroll>
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 
