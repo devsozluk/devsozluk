@@ -49,7 +49,14 @@ const Profile = ({ profile }: { profile: IProfile }) => {
         openGraph={{
           url: "https://dev.devsozluk.net/profile/" + profile.username,
           title: profile.name,
-          description: profile.position,
+          description: profile.biography || "",
+          images: [
+            {
+              url: profile.avatar_url,
+              alt: profile.name,
+            },
+          ],
+          site_name: "Devsozluk",
         }}
       />
       <EmptyLayout>
