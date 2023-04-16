@@ -51,11 +51,11 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
             )
           }
           next={fetchMoreData}
-          dataLength={topic.entries.length}
+          dataLength={topic?.entries?.length}
           hasMore={true}
           className="flex w-full flex-col divide-y divide-opacity-30 divide-gray-700 !overflow-hidden"
         >
-          {topic.entries?.map((entry, index) => (
+          {topic?.entries?.map((entry, index) => (
             <Home.EntryCard key={entry.id} entry={entry} index={index} />
           ))}
         </InfiniteScroll>

@@ -9,17 +9,20 @@ export const topicApi = createApi({
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
     getPopularTopics: builder.mutation({
-      queryFn: async () => {
-        const weekly = new Date();
-        weekly.setDate(weekly.getDate() - 7);
-
+      queryFn: async ({ page }: { page: number }): Promise<any> => {
+        const { to, from } = getPagination(page, 20);
         const { data, error } = await supabase
           .from("topics")
-          .select("*, viewsCount")
-          // .gte("created_at", weekly.toISOString())
-          .order("viewsCount", { ascending: false });
+          .select("*")
+          .order("viewsCount", { ascending: false })
+          .order("entryCount", { ascending: false })
+          .range(from, to);
 
-        return { data };
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
       },
     }),
     addTopic: builder.mutation({
@@ -184,8 +187,6 @@ export const topicApi = createApi({
           .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
           .order("created_at", { ascending: false })
           .range(from, to);
-
-        console.log(data);
 
         if (error) {
           return { error };

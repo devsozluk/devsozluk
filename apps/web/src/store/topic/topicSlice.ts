@@ -10,6 +10,7 @@ interface ITopicState extends ITopic {
 const initialState = {
   topic: {} as ITopicState,
   topics: [] as any,
+  sidebarTopics: [] as ITopic[],
   entries: [] as IEntry[],
   isOpenTopicModal: false as boolean,
   isLoading: false,
@@ -53,6 +54,12 @@ const topicSlice = createSlice({
       topicApi.endpoints.getMoreEntries.matchFulfilled,
       (state, action) => {
         state.entries = [...state.entries, ...action.payload];
+      }
+    );
+    builder.addMatcher(
+      topicApi.endpoints.getPopularTopics.matchFulfilled,
+      (state, action: any) => {
+        state.sidebarTopics = [...state.sidebarTopics, ...action.payload];
       }
     );
   },
