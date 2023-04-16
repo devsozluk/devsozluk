@@ -14,7 +14,7 @@ import LinksSkeleton from "./links.skeleton";
 const ProfileLinks = () => {
   return (
     <LinksProvider>
-      <div className="flex flex-col gap-y-2 pt-10">
+      <div className="flex flex-col gap-y-2 pt-6">
         <div>
           <h3 className="text-lg font-semibold">Bağlantılar</h3>
           <p className="text-sm text-gray-400">
