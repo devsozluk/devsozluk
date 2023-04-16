@@ -44,7 +44,7 @@ const Sidebar = () => {
 
 Sidebar.Item = ({ slug, title, entryCount }: ITopic) => (
   <Link
-    className="flex items-center text-gray-400 justify-between break-words rounded pr-2 py-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
+    className="flex items-center text-gray-400 justify-between break-words rounded pr-2 py-1 pl-1 text-base transition-all hover:bg-buttonPrimary hover:text-white "
     href={"/topic/" + slug}
   >
     <p className="truncate">{title}</p>
