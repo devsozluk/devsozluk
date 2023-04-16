@@ -1,5 +1,6 @@
 import EmptyLayout from "@/components/Layout/EmptyLayout";
 import Header from "@/components/Layout/Header";
+import useTabsContent from "@/components/Profile/Profile.tabs";
 import supabase from "@/libs/supabase";
 import { IProfile } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
@@ -13,7 +14,6 @@ import { useRouter } from "next/router";
 import { Fragment } from "react";
 import { BsLink45Deg } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import useTabsContent from "./profile.tabs";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { username } = context.params as { username: string };
@@ -153,6 +153,7 @@ Profile.Header = ({
 
 Profile.Tabs = (profile: IProfile) => {
   const navigations = useTabsContent(profile);
+
   return (
     <div className="mt-10">
       <Tabs tabs={navigations} />
