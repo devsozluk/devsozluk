@@ -48,8 +48,8 @@ const Profile = ({ profile }: { profile: IProfile }) => {
         canonical={"https://dev.devsozluk.net/profile/" + profile.username}
         openGraph={{
           url: "https://dev.devsozluk.net/profile/" + profile.username,
-          title: profile.name + "- DevSözlük",
-          description: profile.position || "",
+          title: `${profile.name} | DevSözlük`,
+          description: profile.biography || " ",
           images: [
             {
               url: profile.avatar_url,
