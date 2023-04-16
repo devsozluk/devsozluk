@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 
-export default function Layout({ children }: PropsWithChildren) {
+export default function DashboardLayout({ children }: PropsWithChildren) {
   const router = useRouter();
 
   const handleClose = () => {

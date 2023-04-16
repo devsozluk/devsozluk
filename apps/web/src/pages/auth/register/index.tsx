@@ -43,72 +43,73 @@ const Register = () => {
       .replace(/([A-Z])/g, (match) => match.toLowerCase());
 
   return (
-    <Formik
-      validationSchema={RegisterSchema}
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validateOnChange={false}
-      validateOnBlur={false}
-    >
-      {({ errors, values, setFieldValue }) => (
-        <Form className="space-y-6 register">
-          <div className="space-y-2">
-            <div className="flex space-x-6">
-              <Input
-                name="name"
-                errorMessage={errors.name}
-                value={values.name}
-                onChange={(event) => setFieldValue("name", event.target.value)}
-                placeholder="İsim"
-              />
-              <Input
-                name="username"
-                errorMessage={errors.username}
-                value={values.username}
-                onChange={(event) =>
-                  setFieldValue("username", checkUsername(event.target.value))
-                }
-                placeholder="Kullanıcı Adı"
-              />
-            </div>
-            <Input
-              name="email"
-              autoComplete="on"
-              errorMessage={errors.email}
-              value={values.email}
-              onChange={(event) => setFieldValue("email", event.target.value)}
-              placeholder="Email"
-            />
-            <Input
-              name="password"
-              type="password"
-              value={values.password}
-              onChange={(event) =>
-                setFieldValue("password", event.target.value)
-              }
-              errorMessage={errors.password}
-              placeholder="Şifre"
-              autoComplete="new-password"
-            />
-          </div>
-          <Button className="w-full" loading={isLoading} type="submit">
-            Kaydol
-          </Button>
-        </Form>
-      )}
-    </Formik>
-  );
-};
-
-Register.getLayout = (page: React.ReactElement) => {
-  return (
     <OnlyGuest>
       <AuthLayout>
         <AuthLayout.Title>Yeni hesap oluştur</AuthLayout.Title>
         <AuthLayout.Description link="/auth/login" linkText="Giriş Yap">
           Zaten hesabınız var mı?
         </AuthLayout.Description>
-        {page}
+        <Formik
+          validationSchema={RegisterSchema}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validateOnChange={false}
+          validateOnBlur={false}
+        >
+          {({ errors, values, setFieldValue }) => (
+            <Form className="space-y-6 register">
+              <div className="space-y-2">
+                <div className="flex space-x-6">
+                  <Input
+                    name="name"
+                    errorMessage={errors.name}
+                    value={values.name}
+                    onChange={(event) =>
+                      setFieldValue("name", event.target.value)
+                    }
+                    placeholder="İsim"
+                  />
+                  <Input
+                    name="username"
+                    errorMessage={errors.username}
+                    value={values.username}
+                    onChange={(event) =>
+                      setFieldValue(
+                        "username",
+                        checkUsername(event.target.value)
+                      )
+                    }
+                    placeholder="Kullanıcı Adı"
+                  />
+                </div>
+                <Input
+                  name="email"
+                  autoComplete="on"
+                  errorMessage={errors.email}
+                  value={values.email}
+                  onChange={(event) =>
+                    setFieldValue("email", event.target.value)
+                  }
+                  placeholder="Email"
+                />
+                <Input
+                  name="password"
+                  type="password"
+                  value={values.password}
+                  onChange={(event) =>
+                    setFieldValue("password", event.target.value)
+                  }
+                  errorMessage={errors.password}
+                  placeholder="Şifre"
+                  autoComplete="new-password"
+                />
+              </div>
+              <Button className="w-full" loading={isLoading} type="submit">
+                Kaydol
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </AuthLayout>
     </OnlyGuest>
   );

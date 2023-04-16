@@ -18,7 +18,7 @@ import Image from "next/image";
 import { ChangeEvent, Fragment, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { RiImageEditFill } from "react-icons/ri";
-import Layout from "./layout";
+import { default as DashboardLayout } from "./layout";
 
 const Settings = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -39,60 +39,64 @@ const Settings = () => {
   }, [status]);
 
   return (
-    <div className="w-sm flex h-full flex-col gap-y-5">
-      <div>
-        <h3 className="text-lg font-semibold">Hesap</h3>
-        <p className="text-sm text-gray-400">Hesap bilgilerinizi düzenleyin.</p>
+    <DashboardLayout>
+      <div className="w-sm flex h-full flex-col gap-y-5">
+        <div>
+          <h3 className="text-lg font-semibold">Hesap</h3>
+          <p className="text-sm text-gray-400">
+            Hesap bilgilerinizi düzenleyin.
+          </p>
+        </div>
+        <Settings.ChangePhoto />
+        <Formik
+          validationSchema={UpdateAccountSchema}
+          initialValues={initialValues}
+          onSubmit={handleUpdateProfile}
+        >
+          {({ values, errors, setFieldValue, handleSubmit }) => (
+            <Form className="w-[700px] space-y-4">
+              <div className="space-y-4">
+                <div className="flex gap-x-6">
+                  <Input
+                    name="email"
+                    value={user?.email}
+                    disabled
+                    label="Email"
+                  />
+                  <Input
+                    name="name"
+                    value={values.username}
+                    onChange={(event) =>
+                      setFieldValue("username", event.target.value)
+                    }
+                    label="Kullanıcı Adı"
+                  />
+                </div>
+                <div className="flex gap-x-6">
+                  <Input
+                    name="Ad"
+                    value={values.name}
+                    onChange={(event) =>
+                      setFieldValue("name", event.target.value)
+                    }
+                    label="Ad"
+                  />
+                </div>
+              </div>
+              <Button
+                loading={isLoading}
+                disabled={isLoading}
+                size="md"
+                className="w-32"
+                onClick={() => handleSubmit()}
+              >
+                Kaydet
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </div>
-      <Settings.ChangePhoto />
-      <Formik
-        validationSchema={UpdateAccountSchema}
-        initialValues={initialValues}
-        onSubmit={handleUpdateProfile}
-      >
-        {({ values, errors, setFieldValue, handleSubmit }) => (
-          <Form className="w-[700px] space-y-4">
-            <div className="space-y-4">
-              <div className="flex gap-x-6">
-                <Input
-                  name="email"
-                  value={user?.email}
-                  disabled
-                  label="Email"
-                />
-                <Input
-                  name="name"
-                  value={values.username}
-                  onChange={(event) =>
-                    setFieldValue("username", event.target.value)
-                  }
-                  label="Kullanıcı Adı"
-                />
-              </div>
-              <div className="flex gap-x-6">
-                <Input
-                  name="Ad"
-                  value={values.name}
-                  onChange={(event) =>
-                    setFieldValue("name", event.target.value)
-                  }
-                  label="Ad"
-                />
-              </div>
-            </div>
-            <Button
-              loading={isLoading}
-              disabled={isLoading}
-              size="md"
-              className="w-32"
-              onClick={() => handleSubmit()}
-            >
-              Kaydet
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+    </DashboardLayout>
   );
 };
 
@@ -167,7 +171,5 @@ Settings.ChangePhoto = () => {
     </div>
   );
 };
-
-Settings.getLayout = (page: React.ReactElement) => <Layout>{page}</Layout>;
 
 export default Settings;

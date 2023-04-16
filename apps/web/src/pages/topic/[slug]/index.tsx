@@ -1,3 +1,4 @@
+import MainLayout from "@/components/Layout/MainLayout";
 import TopicAddEntry from "@/components/Topic/AddEntry";
 import Entry from "@/components/Topic/Entry";
 import TopicHeader from "@/components/Topic/Header";
@@ -69,11 +70,13 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
           description: description,
         }}
       />
-      <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
-        <Topic.Header topic={topic} showDetail />
-        <Topic.Entries />
-        {isLoggedIn && <Topic.AddEntry />}
-      </div>
+      <MainLayout>
+        <div className="flex mt-3 md:mt-0 flex-col gap-y-5 pb-10 max-w-[750px]">
+          <Topic.Header topic={topic} showDetail />
+          <Topic.Entries />
+          {isLoggedIn && <Topic.AddEntry />}
+        </div>
+      </MainLayout>
     </>
   );
 };

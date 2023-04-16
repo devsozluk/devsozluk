@@ -13,7 +13,7 @@ export default {
       {
         url: "https://dev.devsozluk.net/logo.png",
         alt: "Dev Sözlük",
-        width: 400,
+        width: 360,
         height: 80,
       },
     ],

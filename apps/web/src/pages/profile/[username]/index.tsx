@@ -52,12 +52,17 @@ const Profile = ({ profile }: { profile: IProfile }) => {
           description: profile.position,
         }}
       />
-      <div className="flex items-center flex-col">
-        <div className="w-full max-w-2xl px-4">
-          <Profile.Header {...profile} />
-          <Profile.Tabs {...profile} />
+      <EmptyLayout>
+        <Header />
+        <div className="pt-56 md:pt-28">
+          <div className="flex items-center flex-col ">
+            <div className="w-full max-w-2xl px-4">
+              <Profile.Header {...profile} />
+              <Profile.Tabs {...profile} />
+            </div>
+          </div>
         </div>
-      </div>
+      </EmptyLayout>
     </Fragment>
   );
 };
@@ -152,15 +157,6 @@ Profile.Tabs = (profile: IProfile) => {
     <div className="mt-10">
       <Tabs tabs={navigations} />
     </div>
-  );
-};
-
-Profile.getLayout = (page: React.ReactNode) => {
-  return (
-    <EmptyLayout>
-      <Header />
-      <div className="pt-56 md:pt-28">{page}</div>
-    </EmptyLayout>
   );
 };
 
