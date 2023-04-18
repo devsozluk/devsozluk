@@ -30,6 +30,7 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
   const dispatch = useAppDispatch();
   const topic = useAppSelector((state) => state.topic);
   const [handleFetchMore, { isLoading }] = useGetMoreEntriesMutation();
+  const [filer, setFilter] = useState("latest");
 
   useEffect(() => {
     dispatch(setTopic({ entries }));
@@ -42,7 +43,7 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
 
   return (
     <MainLayout>
-      <div className="flex justify-between">
+      <div className="mb-6 flex gap-x-2 flex-wrap gap-y-2">
         <div className="max-w-3xl w-full">
           <InfiniteScroll
             loader={

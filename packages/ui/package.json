@@ -43,6 +43,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "class-variance-authority": "^0.4.0",
     "classnames": "^2.3.2"
   }
