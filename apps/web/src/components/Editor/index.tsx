@@ -7,7 +7,6 @@ import React, { PropsWithChildren } from "react";
 import Link from "@tiptap/extension-link";
 import { SpoilerEditor, SpoilerOutput } from "@n8body/tiptap-spoiler";
 import EditorMenu from "./Menu.editor";
-import { EditorProps } from "@tiptap/pm/view";
 
 export interface ICEditorProps {
   children?: React.ReactNode;
@@ -17,7 +16,7 @@ export interface ICEditorProps {
   content?: string;
   label?: string;
   className?: string;
-  onUpdate: any;
+  onUpdate: (content: string) => void;
 }
 
 const ErrorField = ({ errorMessage }: { errorMessage?: string }) => {
@@ -35,7 +34,7 @@ const CEditor = ({
 }: ICEditorProps) => {
   const editor = useEditor({
     onUpdate: () => {
-      onUpdate(editor?.getHTML());
+      onUpdate(editor?.getHTML() as string);
     },
     editorProps: {
       attributes: {
@@ -83,7 +82,7 @@ const CEditor = ({
           />
         </div>
         <div className="flex items-center  px-2 py-2 w-full">
-          <CEditor.Menu editor={editor as Editor} />
+          <CEditor.Menu editor={editor} />
           {children}
         </div>
       </div>

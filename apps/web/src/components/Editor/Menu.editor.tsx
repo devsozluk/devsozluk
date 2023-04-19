@@ -1,5 +1,5 @@
 import { Button, IconButton, Input } from "@devsozluk/ui";
-import { Editor } from "@tiptap/react";
+import type { Editor } from "@tiptap/react";
 import { Fragment, useState } from "react";
 import { BiBold, BiItalic } from "react-icons/bi";
 import { TbLink, TbLinkOff } from "react-icons/tb";
@@ -10,7 +10,7 @@ import { Transition } from "@headlessui/react";
 import { CgClose } from "react-icons/cg";
 import toast from "react-hot-toast";
 
-const MenuBar = ({ editor }: { editor: Editor }) => {
+const MenuBar = ({ editor }: { editor: Editor | null }) => {
   const [isOpenLinkModal, setIsOpenLinkModal] = useState(false);
 
   if (!editor) {
@@ -85,7 +85,7 @@ MenuBar.LinkModal = ({
 }: {
   editor: Editor;
   isOpenLinkModal: boolean;
-  setIsOpenLinkModal: any;
+  setIsOpenLinkModal: (isOpen: boolean) => void;
 }) => {
   const [link, setLink] = useState("");
 
