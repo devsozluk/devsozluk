@@ -10,7 +10,7 @@ import { Transition } from "@headlessui/react";
 import { CgClose } from "react-icons/cg";
 import toast from "react-hot-toast";
 
-const MenuBar = ({ editor }: { editor: Editor }) => {
+const MenuBar = ({ editor }: { editor: any }) => {
   const [isOpenLinkModal, setIsOpenLinkModal] = useState(false);
 
   if (!editor) {
