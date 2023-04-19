@@ -1,6 +1,6 @@
 import { Button, IconButton, Input } from "@devsozluk/ui";
 import { Editor } from "@tiptap/react";
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useState } from "react";
 import { BiBold, BiItalic } from "react-icons/bi";
 import { TbLink, TbLinkOff } from "react-icons/tb";
 import { CiCircleAlert } from "react-icons/ci";
