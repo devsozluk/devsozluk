@@ -7,6 +7,7 @@ import React, { PropsWithChildren } from "react";
 import Link from "@tiptap/extension-link";
 import { SpoilerEditor, SpoilerOutput } from "@n8body/tiptap-spoiler";
 import EditorMenu from "./Menu.editor";
+import Placeholder from "@tiptap/extension-placeholder";
 
 export interface ICEditorProps {
   children?: React.ReactNode;
@@ -30,6 +31,7 @@ const CEditor = ({
   className,
   content,
   onUpdate,
+  placeholder,
   ...rest
 }: ICEditorProps) => {
   const editor = useEditor({
@@ -42,6 +44,9 @@ const CEditor = ({
       },
     },
     extensions: [
+      Placeholder.configure({
+        placeholder: placeholder || "Yazmaya başla...",
+      }),
       Link.configure({
         openOnClick: false,
       }),

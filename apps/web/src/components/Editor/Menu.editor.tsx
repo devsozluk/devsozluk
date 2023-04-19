@@ -43,28 +43,28 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         <TbLink size={20} />
       </IconButton>
       <IconButton
-        onClick={() => editor.chain().focus().unsetLink().run()}
+        onClick={() => editor.chain().focus()?.unsetLink()?.run()}
         disabled={!editor.isActive("link")}
       >
         <TbLinkOff size={20} />
       </IconButton>
       <IconButton
-        onClick={() => editor.chain().setSpoiler().run()}
+        onClick={() => editor.chain()?.setSpoiler()?.run()}
         disabled={editor.isActive("spoiler")}
       >
         <CiCircleAlert size={20} />
       </IconButton>
       {!editor.isActive("code") ? (
         <IconButton
-          onClick={() => editor.chain().focus().setCodeBlock().run()}
+          onClick={() => editor.chain().focus()?.setCodeBlock()?.run()}
           disabled={!editor.can().chain().focus().setCodeBlock().run()}
         >
           <IoMdCode size={20} />
         </IconButton>
       ) : (
         <IconButton
-          onClick={() => editor.chain().focus().unsetCode().run()}
-          disabled={!editor.can().chain().focus().unsetCode().run()}
+          onClick={() => editor.chain().focus()?.unsetCode()?.run()}
+          disabled={!editor.can().chain().focus()?.unsetCode()?.run()}
         >
           <MdCodeOff size={20} />
         </IconButton>
