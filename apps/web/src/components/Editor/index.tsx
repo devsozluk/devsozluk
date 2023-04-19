@@ -82,7 +82,7 @@ const CEditor = ({
           />
         </div>
         <div className="flex items-center  px-2 py-2 w-full">
-          <CEditor.Menu editor={editor} />
+          <CEditor.Menu editor={editor as Editor} />
           {children}
         </div>
       </div>

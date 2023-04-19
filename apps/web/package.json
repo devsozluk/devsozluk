@@ -23,6 +23,7 @@
     "@tippyjs/react": "^4.2.6",
     "@tiptap/extension-placeholder": "^2.0.3",
     "@tiptap/react": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
     "@types/node": "18.11.18",
     "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.27",
