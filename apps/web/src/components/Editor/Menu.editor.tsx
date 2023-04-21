@@ -1,6 +1,6 @@
 import { Button, IconButton, Input } from "@devsozluk/ui";
 import { Fragment, useState } from "react";
-import { BiBold, BiItalic } from "react-icons/bi";
+import { BiBold, BiImageAdd, BiItalic } from "react-icons/bi";
 import { TbLink, TbLinkOff } from "react-icons/tb";
 import { CiCircleAlert } from "react-icons/ci";
 import { IoMdCode } from "react-icons/io";
@@ -9,6 +9,7 @@ import { Transition } from "@headlessui/react";
 import { CgClose } from "react-icons/cg";
 import toast from "react-hot-toast";
 import { Editor } from "@tiptap/react";
+import Tippy from "@tippyjs/react";
 
 const MenuBar = ({ editor }: { editor: Editor }) => {
   const [isOpenLinkModal, setIsOpenLinkModal] = useState(false);
@@ -28,11 +29,14 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         disabled={!editor.can().chain().focus().toggleBold().run()}
         isActive={editor.isActive("bold")}
       >
-        <BiBold size={20} />
+        <Tippy content="Kalın">
+          <BiBold size={20} />
+        </Tippy>
       </IconButton>
       <IconButton
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        disabled={!editor.can().chain().focus().toggleBold().run()}
+        className="mr-4"
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+        disabled={!editor.can().chain().focus().toggleItalic().run()}
       >
         <BiItalic size={20} />
       </IconButton>
@@ -54,21 +58,22 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
       >
         <CiCircleAlert size={20} />
       </IconButton>
-      {!editor.isActive("code") ? (
-        <IconButton
-          onClick={() => editor.chain().focus()?.setCodeBlock()?.run()}
-          disabled={!editor.can().chain().focus().setCodeBlock().run()}
-        >
+      <IconButton
+        className="mr-4"
+        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+        disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
+      >
+        {!editor.can().chain().focus().exitCode().run() ? (
           <IoMdCode size={20} />
-        </IconButton>
-      ) : (
-        <IconButton
-          onClick={() => editor.chain().focus()?.unsetCode()?.run()}
-          disabled={!editor.can().chain().focus()?.unsetCode()?.run()}
-        >
+        ) : (
           <MdCodeOff size={20} />
+        )}
+      </IconButton>
+      <Tippy content="Yakında">
+        <IconButton disabled={true}>
+          <BiImageAdd size={20} />
         </IconButton>
-      )}
+      </Tippy>
       <MenuBar.LinkModal
         editor={editor}
         isOpenLinkModal={isOpenLinkModal}

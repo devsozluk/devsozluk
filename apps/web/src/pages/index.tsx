@@ -36,7 +36,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const query = supabase
     .from("entries_views")
-    .select(`*, author(username, avatar_url, name), topic(*)`);
+    .select(`*, author(id, username, avatar_url, name), topic(*)`);
 
   selectedFilters.forEach((filter) => {
     query.order(filter.order, filter.options);

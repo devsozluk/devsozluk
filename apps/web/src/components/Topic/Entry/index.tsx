@@ -31,7 +31,7 @@ const Entry: React.FC<IEntryProps> = ({
     <article className={classNames("text-base rounded-lg", className)}>
       <div>
         <div
-          className="whitespace-pre-wrap line-clamp-3 format prose lg:format-lg dark:format-invert !text-base"
+          className="whitespace-pre-wrap line-clamp-3 !text-base w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-a:text-primary-400 format-strong:text-gray-400 format:font-normal format-invert"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
       </div>

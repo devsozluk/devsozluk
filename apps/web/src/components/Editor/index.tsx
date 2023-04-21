@@ -21,7 +21,7 @@ export interface ICEditorProps {
 }
 
 const ErrorField = ({ errorMessage }: { errorMessage?: string }) => {
-  return <p className="pt-2 text-md text-red-400">{errorMessage}</p>;
+  return <p className="pt-1 text-md text-red-400">{errorMessage}</p>;
 };
 
 const CEditor = ({
@@ -40,7 +40,8 @@ const CEditor = ({
     },
     editorProps: {
       attributes: {
-        class: "format lg:format-lg dark:format-invert !text-base",
+        class:
+          "min-w-full whitespace-pre-wrap line-clamp-3 !text-base w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-a:text-primary-400 format-strong:text-gray-400 format:font-normal format-invert",
       },
     },
     extensions: [
@@ -83,7 +84,7 @@ const CEditor = ({
       <div className={baseClasess}>
         <div className="px-4 py-2 bg-gray-800 rounded-t-lg">
           <EditorContent
-            className="outline-none w-full px-0 text-sm text-white placeholder-gray-400 !border-0"
+            className="outline-none min-w-full  w-full px-0 text-sm text-white placeholder-gray-400 !border-0"
             editor={editor}
             {...rest}
           />
