@@ -27,14 +27,13 @@ const Entry: React.FC<IEntryProps> = ({
     .startOf("seconds")
     .from(referenceDate);
 
-  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-
   return (
     <article className={classNames("text-base rounded-lg", className)}>
       <div>
-        <p className="text-gray-400 whitespace-pre-wrap line-clamp-3">
-          {content}
-        </p>
+        <div
+          className="whitespace-pre-wrap line-clamp-3 format prose lg:format-lg dark:format-invert !text-base"
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
       </div>
       <footer className="flex justify-between items-center mt-2">
         <Link

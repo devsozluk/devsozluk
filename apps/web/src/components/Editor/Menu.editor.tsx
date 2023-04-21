@@ -8,8 +8,9 @@ import { MdCodeOff } from "react-icons/md";
 import { Transition } from "@headlessui/react";
 import { CgClose } from "react-icons/cg";
 import toast from "react-hot-toast";
+import { Editor } from "@tiptap/react";
 
-const MenuBar = ({ editor }: { editor: any }) => {
+const MenuBar = ({ editor }: { editor: Editor }) => {
   const [isOpenLinkModal, setIsOpenLinkModal] = useState(false);
 
   if (!editor) {
@@ -82,7 +83,7 @@ MenuBar.LinkModal = ({
   isOpenLinkModal,
   setIsOpenLinkModal,
 }: {
-  editor: any;
+  editor: Editor;
   isOpenLinkModal: boolean;
   setIsOpenLinkModal: (isOpen: boolean) => void;
 }) => {

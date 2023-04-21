@@ -51,7 +51,6 @@ const TopicAddEntry = () => {
             errorMessage={errors.content}
             onUpdate={(value: any) => {
               setFieldValue("content", value);
-              console.log(values.content);
             }}
             placeholder="İçerik yazınız."
           >

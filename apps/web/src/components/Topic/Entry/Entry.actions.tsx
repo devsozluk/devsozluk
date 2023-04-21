@@ -33,6 +33,11 @@ const EntryActions = ({
   const [upvotes, setUpvotes] = useState(initialUpvotes);
   const [downvotes, setDownvotes] = useState(initialDownvotes);
 
+  useEffect(() => {
+    setUpvotes(initialUpvotes);
+    setDownvotes(initialDownvotes);
+  }, [initialUpvotes, initialDownvotes]);
+
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const userVotes = useAppSelector((state) => state.user.votes);
 
