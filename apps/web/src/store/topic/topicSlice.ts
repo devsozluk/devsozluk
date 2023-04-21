@@ -24,6 +24,9 @@ const topicSlice = createSlice({
       state.topic = action.payload.topic;
       state.entries = action.payload.entries;
     },
+    setEntries(state, action) {
+      state.entries = action.payload;
+    },
     setTopicModal(state, action) {
       state.isOpenTopicModal = action.payload || !state.isOpenTopicModal;
     },
@@ -66,4 +69,4 @@ const topicSlice = createSlice({
 });
 
 export default topicSlice.reducer;
-export const { setTopic, setTopicModal } = topicSlice.actions;
+export const { setTopic, setEntries, setTopicModal } = topicSlice.actions;

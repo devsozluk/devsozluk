@@ -83,7 +83,7 @@ MenuBar.LinkModal = ({
   isOpenLinkModal,
   setIsOpenLinkModal,
 }: {
-  editor: Editor;
+  editor: any;
   isOpenLinkModal: boolean;
   setIsOpenLinkModal: (isOpen: boolean) => void;
 }) => {

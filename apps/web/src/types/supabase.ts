@@ -46,6 +46,7 @@ export interface Database {
           id: string
           links: Json[] | null
           name: string | null
+          position: string | null
           username: string | null
         }
         Insert: {
@@ -55,6 +56,7 @@ export interface Database {
           id: string
           links?: Json[] | null
           name?: string | null
+          position?: string | null
           username?: string | null
         }
         Update: {
@@ -64,6 +66,7 @@ export interface Database {
           id?: string
           links?: Json[] | null
           name?: string | null
+          position?: string | null
           username?: string | null
         }
       }
@@ -124,7 +127,51 @@ export interface Database {
       }
     }
     Views: {
-      [_ in never]: never
+      entries_views: {
+        Row: {
+          author: string | null
+          content: string | null
+          created_at: string | null
+          downvotes: number | null
+          entryCount: number | null
+          id: number | null
+          slug: string | null
+          title: string | null
+          topic: number | null
+          upvotes: number | null
+          viewsCount: number | null
+        }
+      }
+      entries_views_distinct: {
+        Row: {
+          author: string | null
+          content: string | null
+          created_at: string | null
+          downvotes: number | null
+          entryCount: number | null
+          id: number | null
+          slug: string | null
+          title: string | null
+          topic: number | null
+          upvotes: number | null
+          viewsCount: number | null
+        }
+      }
+      test_entries: {
+        Row: {
+          author: string | null
+          content: string | null
+          created_at: string | null
+          downvotes: number | null
+          entryCount: number | null
+          id: number | null
+          slug: string | null
+          title: string | null
+          topic: number | null
+          upvotes: number | null
+          viewsCount: number | null
+        }
+      }
     }
     Functions: {
       increment_view_count: {

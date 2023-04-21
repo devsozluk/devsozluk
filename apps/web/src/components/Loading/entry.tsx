@@ -2,7 +2,7 @@ import React from "react";
 
 const TopicLoader: React.FC = () => {
   return (
-    <div role="status" className="max-w-2xl animate-pulse">
+    <div role="status" className="max-w-3xl w-full animate-pulse">
       <div className="mt-5 mb-2.5 h-20 bg-gray-700"></div>
       <div className="mt-8 flex items-center justify-end space-x-1">
         <div className="">

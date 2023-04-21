@@ -22,14 +22,7 @@ const EntryActions = ({
   upvotes: number;
   downvotes: number;
 }) => {
-  const [
-    deleteEntry,
-    {
-      data: deleteEntryData,
-      isLoading: deleteEntryLoading,
-      status: deleteEntryStatus,
-    },
-  ] = useDeleteEntryMutation();
+  const [deleteEntry] = useDeleteEntryMutation();
   const [handleEntryVote, { data, error, isLoading, status }] =
     useEntryVoteMutation();
   const [

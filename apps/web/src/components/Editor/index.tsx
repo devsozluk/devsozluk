@@ -60,8 +60,10 @@ const CEditor = ({
         spoilerClass: "beautiful-spoiler",
         spoilerOpenClass: "open-spoiler",
         spoilerCloseClass: "closed-spoiler",
-        as: "code",
-        inline: false,
+        HTMLAttributes: {
+          title: "Click / tap to reveal",
+        },
+        as: "a",
       }),
       StarterKit.configure({}),
     ],

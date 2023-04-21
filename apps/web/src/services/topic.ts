@@ -1,8 +1,17 @@
 import supabase from "@/libs/supabase";
-import { AddEntryData, CreateTopicData, UpdateVoteBody } from "@/types/index";
+import {
+  AddEntryData,
+  CreateTopicData,
+  IGetMoreEntries,
+  UpdateVoteBody,
+} from "@/types/index";
 import getPagination from "@/utils/getPagination";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
+import entriesFilter, {
+  IFilterItem,
+} from "@/components/Home/Filter/Filter.items";
+import FilterItems from "@/components/Home/Filter/Filter.items";
 
 export const topicApi = createApi({
   reducerPath: "topicApi",
@@ -180,12 +189,19 @@ export const topicApi = createApi({
       },
     }),
     getMoreEntries: builder.mutation({
-      queryFn: async ({ page }: { page: number }): Promise<any> => {
+      queryFn: async ({ page, filter }: IGetMoreEntries): Promise<any> => {
         const { to, from } = getPagination(page, 10);
+
+        const selectedFilter = (
+          FilterItems.find((item) => item.name === filter) as IFilterItem
+        ).filters;
+
+        console.log(from, to);
+
         const { data, error } = await supabase
-          .from("entries")
-          .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
-          .order("created_at", { ascending: false })
+          .from("entries_views")
+          .select(`*, author(username, avatar_url, name), topic(*)`)
+          .order(selectedFilter.order, selectedFilter.options)
           .range(from, to);
 
         if (error) {
