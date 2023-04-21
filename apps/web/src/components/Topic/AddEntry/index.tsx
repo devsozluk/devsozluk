@@ -4,8 +4,7 @@ import { AddEntryData } from "@/types";
 import getErrorTranslation from "@/utils/errors";
 import { getErrorFromPayload, useAppSelector } from "@/utils/hooks";
 import { AddEntrySchema } from "@/utils/schemas";
-import { Button, TextArea } from "@devsozluk/ui";
-import { Editor } from "@tiptap/react";
+import { Button } from "@devsozluk/ui";
 import { Formik } from "formik";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
@@ -32,7 +31,6 @@ const TopicAddEntry = () => {
       topic: topic.id,
       author: user?.id as string,
     });
-    formikActions.setFieldValue("content", "");
     formikActions.resetForm();
   };
 
@@ -47,7 +45,7 @@ const TopicAddEntry = () => {
       {({ errors, values, setFieldValue, handleSubmit }) => (
         <div>
           <CEditor
-            content={values.content}
+            value={values.content}
             errorMessage={errors.content}
             onUpdate={(value: any) => {
               setFieldValue("content", value);

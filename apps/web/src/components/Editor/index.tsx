@@ -3,7 +3,7 @@
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import classNames from "classnames";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import Link from "@tiptap/extension-link";
 import { SpoilerEditor, SpoilerOutput } from "@n8body/tiptap-spoiler";
 import EditorMenu from "./Menu.editor";
@@ -14,10 +14,10 @@ export interface ICEditorProps {
   placeholder?: string;
   errorMessage?: string;
   disabled?: boolean;
-  content?: string;
+  value?: string;
   label?: string;
   className?: string;
-  onUpdate: (content: string) => void;
+  onUpdate: (value: string) => void;
 }
 
 const ErrorField = ({ errorMessage }: { errorMessage?: string }) => {
@@ -29,7 +29,7 @@ const CEditor = ({
   label,
   children,
   className,
-  content,
+  value,
   onUpdate,
   placeholder,
   ...rest
@@ -51,25 +51,20 @@ const CEditor = ({
       Link.configure({
         openOnClick: false,
       }),
-      SpoilerEditor.configure({
-        spoilerClass: "beautiful-spoiler",
-        inputRegex: /(?:^|\s)((?:\[spoiler\])((?:[^||]+))(?:\[\/spoiler\]))$/,
-        pasteRegex: /(?:^|\s)((?:\[spoiler\])((?:[^||]+))(?:\[\/spoiler\]))/g,
-        inclusive: true,
-      }),
+      SpoilerEditor.configure({}),
       SpoilerOutput.configure({
-        spoilerClass: "beautiful-spoiler",
-        spoilerOpenClass: "open-spoiler",
-        spoilerCloseClass: "closed-spoiler",
-        HTMLAttributes: {
-          title: "Click / tap to reveal",
-        },
-        as: "a",
+        spoilerOpenClass: "rounded-sm bg-gray-200 cursor-text",
+        spoilerCloseClass:
+          "rounded-sm bg-gray-600 text-transparent [&_*]:invisible cursor-pointer select-none",
       }),
       StarterKit.configure({}),
     ],
-    content,
+    content: value || "",
   });
+
+  useEffect(() => {
+    editor?.commands.setContent(value || "");
+  }, [value]);
 
   const baseClasess = classNames({
     className: true,
@@ -89,7 +84,7 @@ const CEditor = ({
             {...rest}
           />
         </div>
-        <div className="flex items-center  px-2 py-2 w-full">
+        <div className="flex items-center px-2 py-2 w-full">
           <CEditor.Menu editor={editor as Editor} />
           {children}
         </div>

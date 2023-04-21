@@ -37,6 +37,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         className="mr-4"
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
+        isActive={editor.isActive("italic")}
       >
         <BiItalic size={20} />
       </IconButton>
@@ -53,7 +54,8 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         <TbLinkOff size={20} />
       </IconButton>
       <IconButton
-        onClick={() => editor.chain()?.setSpoiler()?.run()}
+        onClick={() => editor.chain().toggleSpoiler().run()}
+        isActive={editor.isActive("spoiler")}
         disabled={editor.isActive("spoiler")}
       >
         <CiCircleAlert size={20} />
@@ -62,6 +64,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         className="mr-4"
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
         disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
+        isActive={editor.isActive("codeBlock")}
       >
         {!editor.can().chain().focus().exitCode().run() ? (
           <IoMdCode size={20} />
