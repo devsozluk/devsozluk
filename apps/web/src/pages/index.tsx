@@ -30,15 +30,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 
-  const selectedFilter = (
+  const selectedFilters = (
     filterItems.find((item) => item.name === filter) as IFilterItem
-  ).filters;
+  )?.filters;
 
-  const { data, error } = await supabase
+  const query = supabase
     .from("entries_views")
-    .select(`*, author(username, avatar_url, name), topic(*)`)
-    .order(selectedFilter.order, selectedFilter.options)
-    .range(0, 10);
+    .select(`*, author(username, avatar_url, name), topic(*)`);
+
+  selectedFilters.forEach((filter) => {
+    query.order(filter.order, filter.options);
+  });
+
+  const { data, error } = await query.range(0, 10);
 
   return {
     props: {

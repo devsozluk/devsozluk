@@ -12,6 +12,7 @@ import entriesFilter, {
   IFilterItem,
 } from "@/components/Home/Filter/Filter.items";
 import FilterItems from "@/components/Home/Filter/Filter.items";
+import filterItems from "@/components/Home/Filter/Filter.items";
 
 export const topicApi = createApi({
   reducerPath: "topicApi",
@@ -192,17 +193,19 @@ export const topicApi = createApi({
       queryFn: async ({ page, filter }: IGetMoreEntries): Promise<any> => {
         const { to, from } = getPagination(page, 10);
 
-        const selectedFilter = (
-          FilterItems.find((item) => item.name === filter) as IFilterItem
-        ).filters;
+        const selectedFilters = (
+          filterItems.find((item) => item.name === filter) as IFilterItem
+        )?.filters;
 
-        console.log(from, to);
-
-        const { data, error } = await supabase
+        const query = supabase
           .from("entries_views")
-          .select(`*, author(username, avatar_url, name), topic(*)`)
-          .order(selectedFilter.order, selectedFilter.options)
-          .range(from, to);
+          .select(`*, author(username, avatar_url, name), topic(*)`);
+
+        selectedFilters.forEach((filter) => {
+          query.order(filter.order, filter.options);
+        });
+
+        const { data, error } = await query.range(from, to);
 
         if (error) {
           return { error };

@@ -14,44 +14,64 @@ export interface IFilterItem {
       nullsFirst?: boolean;
       foreignTable?: undefined;
     };
-  };
+  }[];
 }
 
-export default [
+const filterItems: IFilterItem[] = [
   {
     id: 0,
     name: "latest",
     title: "Güncel",
     icon: <BsFillCalendarDateFill size={14} />,
-    filters: {
-      order: "created_at",
-      options: {
-        ascending: false,
+    filters: [
+      {
+        order: "created_at",
+        options: {
+          ascending: false,
+        },
       },
-    },
+    ],
   },
   {
     id: 1,
     name: "popular",
     title: "Popüler",
     icon: <IoNewspaper size={14} />,
-    filters: {
-      order: "viewsCount",
-      options: {
-        ascending: false,
+    filters: [
+      {
+        order: "viewsCount",
+        options: {
+          ascending: false,
+        },
       },
-    },
+      {
+        order: "created_at",
+        options: {
+          ascending: false,
+        },
+      },
+    ],
   },
   {
     id: 2,
     name: "trend",
     title: "Trend",
     icon: <MdInsertChart size={14} />,
-    filters: {
-      order: "entryCount",
-      options: {
-        ascending: false,
+    filters: [
+      {
+        order: "upvotes",
+        options: {
+          ascending: false,
+        },
       },
-    },
+      {
+        order: "created_at",
+        options: {
+          ascending: false,
+        },
+      },
+    ],
   },
-] as IFilterItem[];
+];
+
+export default filterItems;
