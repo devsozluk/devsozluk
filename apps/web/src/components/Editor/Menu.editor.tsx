@@ -1,5 +1,4 @@
 import { Button, IconButton, Input } from "@devsozluk/ui";
-import type { Editor } from "@tiptap/react";
 import { Fragment, useState } from "react";
 import { BiBold, BiItalic } from "react-icons/bi";
 import { TbLink, TbLinkOff } from "react-icons/tb";

@@ -17,6 +17,7 @@
     "@devsozluk/tsconfig": "*",
     "@devsozluk/ui": "*",
     "@headlessui/react": "^1.7.9",
+    "@n8body/tiptap-spoiler": "^1.0.4",
     "@reduxjs/toolkit": "^1.9.2",
     "@supabase/supabase-js": "^2.11.0",
     "@tailwindcss/typography": "^0.5.9",

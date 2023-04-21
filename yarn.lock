@@ -1617,6 +1617,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@n8body/tiptap-spoiler@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@n8body/tiptap-spoiler/-/tiptap-spoiler-1.0.4.tgz#cec7a403cfa9af0871216f9140faf089b41eaa0e"
+  integrity sha512-qHuk/rfHAjNzYQlMRkQPaewRcBOflszSd6K1t2KMc2xJ8nVcVcUh6L0WC36w/T0UPoTt8ME6mbuht4P33OdJyQ==
+  dependencies:
+    react "^18.2.0"
+
 "@next/env@13.2.4":
   version "13.2.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.2.4.tgz#8b763700262b2445140a44a8c8d088cef676dbae"
