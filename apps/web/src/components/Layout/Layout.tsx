@@ -20,10 +20,8 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function RootLayout({ children }: PropsWithChildren) {
-  const { isLoggedIn, checkSessionloading, user } = useAppSelector(
-    (state) => state.auth
-  );
-  const [getUserMe, { isLoading, status, data }] = useGetUserMeMutation();
+  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  const [getUserMe, { status }] = useGetUserMeMutation();
   const [getUserVotes] = useGetUserVotesMutation();
 
   useEffect(() => {

@@ -54,9 +54,12 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         <TbLinkOff size={20} />
       </IconButton>
       <IconButton
-        onClick={() => editor.chain().toggleSpoiler().run()}
+        onClick={() =>
+          editor.isActive("spoiler")
+            ? editor.chain().focus().unsetSpoiler().run()
+            : editor.chain().focus().setSpoiler().run()
+        }
         isActive={editor.isActive("spoiler")}
-        disabled={editor.isActive("spoiler")}
       >
         <CiCircleAlert size={20} />
       </IconButton>

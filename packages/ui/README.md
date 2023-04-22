@@ -20,7 +20,6 @@
 
 </div>
 
-
 This library is a React component library developed for the user interface of the DevSozluk project. The library includes many useful components such as Alert, Button, IconButton, Input, Spinner, and TextArea components.
 
 ## Installation
@@ -30,22 +29,22 @@ You can use npm or yarn package managers for installation:
 ```
 npm install @devsozluk/ui
 ```
+
 ```
 yarn add @devsozluk/ui
 ```
-
 
 ## Usage
 
 Each component in this library can be imported separately. For example, for the Button component:
 
 ```jsx
-import { Button } from '@devsozluk/ui';
+import { Button } from "@devsozluk/ui";
 
 function App() {
   return (
     <div>
-      <Button onClick={() => console.log('clicked')}>Click me!</Button>
+      <Button onClick={() => console.log("clicked")}>Click me!</Button>
     </div>
   );
 }

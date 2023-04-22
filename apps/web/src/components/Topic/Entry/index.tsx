@@ -1,5 +1,5 @@
+import useSpoiler from "@/hooks/useSpoiler";
 import type { IEntry } from "@/types";
-import { useAppSelector } from "@/utils/hooks";
 import classNames from "classnames";
 import moment from "moment";
 import Image from "next/image";
@@ -20,6 +20,7 @@ const Entry: React.FC<IEntryProps> = ({
   upvotes,
   downvotes,
 }) => {
+  const spoiler = useSpoiler();
   const referenceDate = moment().startOf("seconds");
   const formattedDate = moment
     .utc(created_at)

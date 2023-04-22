@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "@devsozluk/config": "*",
+    "@devsozluk/tiptap-spoiler": "*",
     "@devsozluk/tsconfig": "*",
     "@devsozluk/ui": "*",
     "@headlessui/react": "^1.7.9",
     "@n8body/tiptap-spoiler": "^1.0.4",
     "@reduxjs/toolkit": "^1.9.2",
+    "@supabase/auth-helpers-nextjs": "^0.6.1",
     "@supabase/supabase-js": "^2.11.0",
     "@tippyjs/react": "^4.2.6",
     "@tiptap/extension-link": "^2.0.3",
