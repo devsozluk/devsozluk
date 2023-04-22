@@ -51,11 +51,18 @@ const CEditor = ({
       Link.configure({
         openOnClick: false,
       }),
-      SpoilerEditor.configure({}),
+      SpoilerEditor.configure({
+        spoilerClass: "beautiful-spoiler",
+        inputRegex: /(?:^|\s)((?:\[spoiler\])((?:[^||]+))(?:\[\/spoiler\]))$/, // to match [spoiler]text[/spoiler]
+        pasteRegex: /(?:^|\s)((?:\[spoiler\])((?:[^||]+))(?:\[\/spoiler\]))/g, // same here
+        inclusive: true,
+      }),
       SpoilerOutput.configure({
-        spoilerOpenClass: "rounded-sm bg-gray-200 cursor-text",
-        spoilerCloseClass:
-          "rounded-sm bg-gray-600 text-transparent [&_*]:invisible cursor-pointer select-none",
+        spoilerClass: "etest",
+        spoilerOpenClass: "open-spoiler",
+        spoilerCloseClass: "closed-spoiler",
+        as: "code",
+        inline: false,
       }),
       StarterKit.configure({}),
     ],
