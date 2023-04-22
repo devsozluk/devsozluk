@@ -22,14 +22,7 @@ const EntryActions = ({
   upvotes: number;
   downvotes: number;
 }) => {
-  const [
-    deleteEntry,
-    {
-      data: deleteEntryData,
-      isLoading: deleteEntryLoading,
-      status: deleteEntryStatus,
-    },
-  ] = useDeleteEntryMutation();
+  const [deleteEntry] = useDeleteEntryMutation();
   const [handleEntryVote, { data, error, isLoading, status }] =
     useEntryVoteMutation();
   const [
@@ -39,6 +32,11 @@ const EntryActions = ({
 
   const [upvotes, setUpvotes] = useState(initialUpvotes);
   const [downvotes, setDownvotes] = useState(initialDownvotes);
+
+  useEffect(() => {
+    setUpvotes(initialUpvotes);
+    setDownvotes(initialDownvotes);
+  }, [initialUpvotes, initialDownvotes]);
 
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const userVotes = useAppSelector((state) => state.user.votes);

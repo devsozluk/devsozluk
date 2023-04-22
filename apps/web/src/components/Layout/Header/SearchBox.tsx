@@ -52,6 +52,9 @@ const SearchBox = () => {
           <SearchBox.Loader />
         ) : (
           <Fragment>
+            <div>
+              <p className="text-gray-400 text-sm">Konular</p>
+            </div>
             {data?.length === 0 ? (
               <SearchBox.NotFound />
             ) : (

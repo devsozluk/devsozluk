@@ -46,12 +46,15 @@ const errors = [
     code: "42501",
     message: "Konu oluşturmak için giriş yapmalısınız",
   },
+  {
+    code: "Too many entry insertions in the last minute. Try again later.",
+    message:
+      "Çok fazla istek gönderiyorsunuz. Lütfen daha sonra tekrar deneyin.",
+  },
 ];
 
 export default function getErrorTranslation(code: string | undefined): string {
-  const error =
-    errors.find((error) => error.code === code) ||
-    errors.find((error) => error.code === code);
+  const error = errors.find((error) => error.code === code);
 
   return error?.message as string;
 }

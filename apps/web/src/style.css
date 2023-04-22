@@ -27,6 +27,22 @@
   }
 }
 
+.ProseMirror {
+  min-height: 150px;
+  max-height: 200px;
+  overflow-y: auto;
+  outline: none;
+}
+
+/* Custom CSS Needed for TipTap PlaceHolder */
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
 @layer utilities {
   .tab-group {
     @apply border-b border-gray-700 mt-10;
