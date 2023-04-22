@@ -11,14 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Install yarn
+        run: npm install -g yarn
 
       - name: Install dependencies
-        run: pnpm install
+        run: yarn
 
       - name: Build package
-        run: pnpm run build --filter ui
+        run: yarn run build --filter ui
 
       - name: Publish package
         run: |
