@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://dev.devsozluk.net">
+  <a href="https://devsozluk.net">
     <img
       src="https://avatars.githubusercontent.com/u/119908676?s=200&v=4"
       alt="DevSozluk Logo"
@@ -11,7 +11,7 @@
   @devsozluk/ui
 </h3>
 
-[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.dev.devsozluk.net/)
+[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.devsozluk.net/)
 [![Storybook](https://img.shields.io/website?url=https://www.devsozluk.net)](https://storybook.devsozluk.net/)
 ![GitHub stars](https://img.shields.io/github/stars/devsozluk/website?logo=github)
 ![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)

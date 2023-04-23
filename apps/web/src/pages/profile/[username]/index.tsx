@@ -45,9 +45,9 @@ const Profile = ({ profile }: { profile: IProfile }) => {
     <Fragment>
       <NextSeo
         title={profile.name}
-        canonical={"https://dev.devsozluk.net/profile/" + profile.username}
+        canonical={"https://devsozluk.net/profile/" + profile.username}
         openGraph={{
-          url: "https://dev.devsozluk.net/profile/" + profile.username,
+          url: "https://devsozluk.net/profile/" + profile.username,
           title: `${profile.name} | DevSözlük`,
           description: profile.biography || " ",
           images: [

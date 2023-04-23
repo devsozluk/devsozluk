@@ -63,20 +63,17 @@ export default function CustomHead() {
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://dev.devsozluk.net/" />
+      <meta property="og:url" content="https://devsozluk.net/" />
       <meta property="og:title" content="Dev Sözlük" />
-      <meta property="og:image" content="https://dev.devsozluk.net/logo.png" />
+      <meta property="og:image" content="https://devsozluk.net/logo.png" />
       <meta
         property="og:description"
         content="Geliştiriciler için açık kaynaklı sosyal platform."
       ></meta>
       <meta property="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:image"
-        content="https://dev.devsozluk.net/banner.png"
-      />
+      <meta name="twitter:image" content="https://devsozluk.net/banner.png" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta property="twitter:domain" content="dev.devsozluk.net" />
+      <meta property="twitter:domain" content="devsozluk.net" />
       <title>Dev Sözlük</title>
       <meta
         name="description"
