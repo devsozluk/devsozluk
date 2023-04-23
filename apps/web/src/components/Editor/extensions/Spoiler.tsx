@@ -92,9 +92,6 @@ export const TiptapSpoiler = Mark.create<SpoilerOptions>({
     return [
       {
         tag: "span",
-        attrs: {
-          class: "test",
-        },
         getAttrs: (node) =>
           (node as HTMLElement).ariaLabel?.toLowerCase() === "spoiler" && null,
       },

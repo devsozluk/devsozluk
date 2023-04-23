@@ -33,7 +33,7 @@ const CEditor = ({
   ...rest
 }: ICEditorProps) => {
   const editor = useEditor({
-    onUpdate: () => {
+    onBlur: () => {
       onUpdate(editor?.getHTML() as string);
     },
     editorProps: {
@@ -55,6 +55,9 @@ const CEditor = ({
       }),
       StarterKit.configure({}),
     ],
+    parseOptions: {
+      preserveWhitespace: "full",
+    },
     content: value || "",
   });
 
