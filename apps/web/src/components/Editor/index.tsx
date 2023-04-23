@@ -1,13 +1,11 @@
-"use client";
-
+import Link from "@tiptap/extension-link";
+import Placeholder from "@tiptap/extension-placeholder";
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import classNames from "classnames";
 import React, { PropsWithChildren, useEffect } from "react";
-import Link from "@tiptap/extension-link";
-import { SpoilerEditor, SpoilerOutput } from "@n8body/tiptap-spoiler";
 import EditorMenu from "./Menu.editor";
-import Placeholder from "@tiptap/extension-placeholder";
+import { TiptapSpoiler } from "./extensions/Spoiler";
 
 export interface ICEditorProps {
   children?: React.ReactNode;
@@ -35,37 +33,31 @@ const CEditor = ({
   ...rest
 }: ICEditorProps) => {
   const editor = useEditor({
-    onUpdate: () => {
+    onBlur: () => {
       onUpdate(editor?.getHTML() as string);
     },
     editorProps: {
       attributes: {
         class:
-          "min-w-full whitespace-pre-wrap line-clamp-3 !text-base w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-a:text-primary-400 format-strong:text-gray-400 format:font-normal format-invert",
+          "min-w-full !text-base w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-a:text-primary-400 format-strong:text-gray-400 format:font-normal format-invert",
       },
     },
     extensions: [
       Placeholder.configure({
         placeholder: placeholder || "Yazmaya başla...",
       }),
+      TiptapSpoiler.configure({
+        spoilerOpenClass: "spoiler-open",
+        spoilerCloseClass: "spoiler-close",
+      }),
       Link.configure({
         openOnClick: false,
       }),
-      SpoilerEditor.configure({
-        spoilerClass: "beautiful-spoiler",
-        inputRegex: /(?:^|\s)((?:\[spoiler\])((?:[^||]+))(?:\[\/spoiler\]))$/, // to match [spoiler]text[/spoiler]
-        pasteRegex: /(?:^|\s)((?:\[spoiler\])((?:[^||]+))(?:\[\/spoiler\]))/g, // same here
-        inclusive: true,
-      }),
-      SpoilerOutput.configure({
-        spoilerClass: "etest",
-        spoilerOpenClass: "open-spoiler",
-        spoilerCloseClass: "closed-spoiler",
-        as: "code",
-        inline: false,
-      }),
       StarterKit.configure({}),
     ],
+    parseOptions: {
+      preserveWhitespace: "full",
+    },
     content: value || "",
   });
 

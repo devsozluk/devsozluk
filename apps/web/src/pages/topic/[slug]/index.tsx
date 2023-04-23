@@ -63,9 +63,9 @@ const Topic = ({ topic, entries }: { topic: ITopic; entries: IEntry[] }) => {
       <NextSeo
         title={topic.title}
         description={description}
-        canonical={"https://dev.devsozluk.net/topic/" + topic.slug}
+        canonical={"https://devsozluk.net/topic/" + topic.slug}
         openGraph={{
-          url: "https://dev.devsozluk.net/topic/" + topic.slug,
+          url: "https://devsozluk.net/topic/" + topic.slug,
           title: topic.title,
           description: description,
         }}

@@ -58,7 +58,9 @@ const SearchBox = () => {
             {data?.length === 0 ? (
               <SearchBox.NotFound />
             ) : (
-              data?.map((topic: ITopic) => <SearchBox.Item {...topic} />)
+              data?.map((topic: ITopic) => (
+                <SearchBox.Item key={topic.id} {...topic} />
+              ))
             )}
           </Fragment>
         )}

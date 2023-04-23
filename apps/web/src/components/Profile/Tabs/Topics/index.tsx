@@ -14,7 +14,7 @@ export const Topics = ({ id }: IProfile) => {
     return (
       <div className="w-ful mt-4 flex gap-y-4 flex-col">
         {data.map((topic: ITopic) => (
-          <Topics.Item {...topic} />
+          <Topics.Item key={topic.id} {...topic} />
         ))}
       </div>
     );

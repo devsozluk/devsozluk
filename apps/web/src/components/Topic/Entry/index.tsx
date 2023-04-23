@@ -1,5 +1,5 @@
+import useSpoiler from "@/hooks/useSpoiler";
 import type { IEntry } from "@/types";
-import { useAppSelector } from "@/utils/hooks";
 import classNames from "classnames";
 import moment from "moment";
 import Image from "next/image";
@@ -20,6 +20,7 @@ const Entry: React.FC<IEntryProps> = ({
   upvotes,
   downvotes,
 }) => {
+  const spoiler = useSpoiler();
   const referenceDate = moment().startOf("seconds");
   const formattedDate = moment
     .utc(created_at)
@@ -42,15 +43,15 @@ const Entry: React.FC<IEntryProps> = ({
         >
           <div className="inline-flex items-center mr-3 select-none">
             <Image
-              className="mr-2 w-6 h-6 rounded"
+              className="mr-2 w-7 h-7 rounded"
               src={author.avatar_url}
-              width={24}
-              height={24}
+              width={50}
+              height={50}
               alt={author?.username as string}
             />
-            <div className="text-sm text-gray-400 flex items-center">
+            <div className="text-sm text-gray-400 flex flex-col md:flex-row md:items-center">
               <p className="font-semibold text-gray-400">{author.name}</p>
-              <span className="h-1 w-1 rounded-sm bg-gray-400 mx-2"></span>
+              <span className="h-1 w-1 rounded-sm bg-gray-400 mx-2 hidden md:block"></span>
               <p>
                 <time title="February 8th, 2022">{formattedDate}</time>
               </p>

@@ -43,7 +43,18 @@
   pointer-events: none;
 }
 
+.ProseMirror * {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
 @layer utilities {
+  .spoiler-open {
+    @apply rounded-sm cursor-text;
+  }
+  .spoiler-close {
+    @apply rounded-sm  text-transparent [&_*]:invisible cursor-pointer select-none bg-gray-600;
+  }
   .tab-group {
     @apply border-b border-gray-700 mt-10;
   }

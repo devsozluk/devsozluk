@@ -7,4 +7,3 @@ export { Select, type SelectProps } from "./Select/Select";
 export { Spinner, type SpinnerProps } from "./Spinner/Spinner";
 export { Tabs, type TabType, type TabsProps } from "./Tabs/Tabs";
 export { TextArea, type TextAreaProps } from "./TextArea/TextArea";
-

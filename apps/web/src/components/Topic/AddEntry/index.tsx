@@ -46,10 +46,8 @@ const TopicAddEntry = () => {
         <div>
           <CEditor
             value={values.content}
+            onUpdate={(value) => setFieldValue("content", value)}
             errorMessage={errors.content}
-            onUpdate={(value: any) => {
-              setFieldValue("content", value);
-            }}
             placeholder="İçerik yazınız."
           >
             <CEditor.Actions>

@@ -1,24 +1,35 @@
 import Tippy from "@tippyjs/react";
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useHover } from "usehooks-ts";
+import { useMediaQuery } from "react-responsive";
 import useActions, { IMenu } from "./Actions.menu";
 
 const Actions = () => {
   const menus = useActions();
-  const hoverRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const hoverRef = useRef<HTMLDivElement>(null);
   const isHover = useHover(hoverRef);
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 768 });
 
   const classes = classNames(
     "flex flex-col items-center hidden mb-4 space-y-2",
     {
-      "!flex": isHover,
+      "!flex": (!isTabletOrMobile && isHover) || isOpen,
     }
   );
 
+  const handleOpenActions = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
   return (
-    <div ref={hoverRef} className="fixed right-8 bottom-8 group">
+    <div
+      ref={hoverRef}
+      onClick={handleOpenActions}
+      className="fixed right-8 bottom-8 group"
+    >
       <div id="speed-dial-menu-square" className={classes}>
         {menus.map((action, index) => (
           <Actions.Item {...action} key={index} />
