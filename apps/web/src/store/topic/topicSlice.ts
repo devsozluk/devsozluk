@@ -20,6 +20,9 @@ const topicSlice = createSlice({
   name: "topic",
   initialState,
   reducers: {
+    setSidebarTopics: (state, action) => {
+      state.sidebarTopics = action.payload;
+    },
     setTopic(state, action) {
       state.topic = action.payload.topic;
       state.entries = action.payload.entries;
@@ -69,4 +72,5 @@ const topicSlice = createSlice({
 });
 
 export default topicSlice.reducer;
-export const { setTopic, setEntries, setTopicModal } = topicSlice.actions;
+export const { setTopic, setEntries, setTopicModal, setSidebarTopics } =
+  topicSlice.actions;

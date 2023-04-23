@@ -109,6 +109,23 @@ export const userApi = createApi({
         }
       },
     }),
+    searchProfile: builder.mutation({
+      queryFn: async (body: { text: string }): Promise<any> => {
+        const { text } = body;
+
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("username, name, avatar_url")
+          .textSearch("name", text)
+          .textSearch("usernamae", text);
+
+        if (error) {
+          return { error };
+        } else {
+          return { data };
+        }
+      },
+    }),
     updatePhoto: builder.mutation({
       queryFn: async ({ avatarFile }: { avatarFile: File }): Promise<any> => {
         const { data, error } = await supabase.storage
@@ -150,4 +167,5 @@ export const {
   useUpdateUserLinksMutation,
   useUpdateUserProfileMutation,
   useUpdateProfileMutation,
+  useSearchProfileMutation,
 } = userApi;
