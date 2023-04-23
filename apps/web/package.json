@@ -49,6 +49,7 @@
     "react-icons": "^4.7.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "7.2.9",
+    "react-responsive": "^9.0.2",
     "react-share": "^4.4.1",
     "redux": "^4.2.1",
     "slugify": "^1.6.5",

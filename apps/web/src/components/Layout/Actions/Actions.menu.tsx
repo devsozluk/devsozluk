@@ -13,15 +13,11 @@ export type IMenu = {
 export default function Actions(): IMenu[] {
   const dispatch = useAppDispatch();
 
-  const openTopicModal = () => {
-    dispatch(setTopicModal(true))
-  }
-
   return [
     {
       title: "Konu Oluştur",
       icon: <HiDocumentPlus size={18} />,
-      onClick: openTopicModal
+      link: "/create-topic",
     },
   ];
 }

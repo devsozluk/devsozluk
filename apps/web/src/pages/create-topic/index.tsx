@@ -57,9 +57,10 @@ const CreateTopic = () => {
                     }
                   />
                   <Editor
-                    onUpdate={() => {}}
+                    onUpdate={(value) => setFieldValue("content", value)}
                     label="İçerik"
                     placeholder="İçerik yazınız."
+                    errorMessage={errors.content}
                   />
                 </div>
                 <div className="flex justify-end space-x-4">
