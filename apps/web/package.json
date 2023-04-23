@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@devsozluk/config": "*",
-    "@devsozluk/tiptap-spoiler": "*",
     "@devsozluk/tsconfig": "*",
     "@devsozluk/ui": "*",
     "@headlessui/react": "^1.7.9",
