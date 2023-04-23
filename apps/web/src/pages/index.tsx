@@ -1,22 +1,48 @@
+import EntriesFilter from "@/components/Home/Filter";
+import filterItems, {
+  type IFilterItem,
+} from "@/components/Home/Filter/Filter.items";
 import MainLayout from "@/components/Layout/MainLayout";
+import EntryLoader from "@/components/Loading/entry";
 import Entry from "@/components/Topic/Entry";
 import TopicHeader from "@/components/Topic/Header";
 import supabase from "@/libs/supabase";
 import { useGetMoreEntriesMutation } from "@/services/topic";
-import { setTopic } from "@/store/topic/topicSlice";
+import { setEntries } from "@/store/topic/topicSlice";
 import { IEntry } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { Spinner } from "@devsozluk/ui";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
+import { Fragment, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export async function getServerSideProps() {
-  const { data, error } = await supabase
-    .from("entries")
-    .select("*, author(*), topic(slug, title, entryCount, viewsCount)")
-    .order("created_at", { ascending: false })
-    .range(0, 10);
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { filter } = context.query as { filter: string };
+
+  if (!filter) {
+    return {
+      redirect: {
+        destination: "/?filter=latest",
+        statusCode: 302,
+      },
+    };
+  }
+
+  const selectedFilters = (
+    filterItems.find((item) => item.name === filter) as IFilterItem
+  )?.filters;
+
+  const query = supabase
+    .from("entries_views")
+    .select(`*, author(id, username, avatar_url, name), topic(*)`);
+
+  selectedFilters.forEach((filter) => {
+    query.order(filter.order, filter.options);
+  });
+
+  const { data, error } = await query.range(0, 10);
 
   return {
     props: {
@@ -26,23 +52,37 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ entries }: { entries: IEntry[] }) => {
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const dispatch = useAppDispatch();
   const topic = useAppSelector((state) => state.topic);
   const [handleFetchMore, { isLoading }] = useGetMoreEntriesMutation();
+  const filter = router.query.filter as string;
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    dispatch(setTopic({ entries }));
+    setMounted(true);
+    dispatch(setEntries(entries));
   }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      setPage(0);
+      dispatch(setEntries([]));
+      handleFetchMore({ page, filter });
+    }
+  }, [router.query.filter]);
 
   const fetchMoreData = async () => {
     setPage((prevPage) => prevPage + 1);
-    handleFetchMore({ page: page + 1 });
+    handleFetchMore({ page: page + 1, filter });
   };
 
   return (
     <MainLayout>
-      <div className="flex justify-between">
+      <EntriesFilter />
+      {page === 0 && isLoading && <Home.EntryLoader />}
+      <div className="mb-6 flex gap-x-2 flex-wrap gap-y-2">
         <div className="max-w-3xl w-full">
           <InfiniteScroll
             loader={
@@ -76,9 +116,20 @@ Home.EntryCard = ({ entry, index }: { entry: IEntry; index: number }) => {
       key={id}
       className={classNames("flex w-full flex-col gap-y-6", hasFirstEntry)}
     >
-      <TopicHeader topic={topic} showDetail={true} />
+      <TopicHeader topic={entry.topic} showDetail={true} />
       <Entry {...entry} />
     </div>
+  );
+};
+
+Home.EntryLoader = () => {
+  return (
+    <Fragment>
+      <EntryLoader />
+      <EntryLoader />
+      <EntryLoader />
+      <EntryLoader />
+    </Fragment>
   );
 };
 

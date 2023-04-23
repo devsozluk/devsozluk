@@ -1,21 +1,13 @@
 {
-  "name": "@devsozluk/ui",
-  "description": "This library is a React component library developed for the user interface of the DevSozluk project",
-  "version": "0.0.7",
+  "name": "@devsozluk/tiptap-spoiler",
+  "description": "Spoiler extension for tiptap editor",
+  "version": "0.0.6",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
-  "keywords": [
-    "react",
-    "uikit",
-    "opensource",
-    "tailwindcss",
-    "vite",
-    "turbo",
-    "next"
-  ],
+  "keywords": [],
   "files": [
     "README.md",
     "dist/**"
@@ -42,8 +34,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "class-variance-authority": "^0.4.0",
-    "classnames": "^2.3.2"
-  }
+  "dependencies": {}
 }

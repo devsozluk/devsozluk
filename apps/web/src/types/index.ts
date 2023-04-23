@@ -78,3 +78,8 @@ export interface IProfile {
   biography: string;
   links: Link[];
 }
+
+export interface IGetMoreEntries {
+  page: number;
+  filter: string;
+}
