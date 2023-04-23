@@ -10,15 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Install yarn
+        run: npm install -g yarn
 
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
 
       - name: Build package
-        run: pnpm run build --filter ui
+        run: yarn run build --filter ui
 
       - name: Publish package
         run: |
