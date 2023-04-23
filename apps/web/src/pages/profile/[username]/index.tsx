@@ -130,8 +130,8 @@ Profile.Header = ({
             {position || "Pozisyon eklenmemiş."}
           </p>
           <div className="flex gap-x-4 mt-4">
-            {computedProfileLinks()?.map((link) => (
-              <Tippy content={link.label}>
+            {computedProfileLinks()?.map((link, index) => (
+              <Tippy key={index} content={link.label}>
                 <a href={link.url} target="_blank" className="text-gray-400">
                   <link.icon className="h-6 w-6" />
                 </a>

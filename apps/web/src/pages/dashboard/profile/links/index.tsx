@@ -54,7 +54,7 @@ ProfileLinks.Content = () => {
     return (
       <div>
         {links.map((link, index) => (
-          <ProfileLinks.Item {...link} index={index} />
+          <ProfileLinks.Item key={index} {...link} index={index} />
         ))}
         <div className="flex flex-col gap-y-3">
           <Button onClick={newAddLink} size="sm" variant="dark">
