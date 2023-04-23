@@ -11,10 +11,10 @@
 
 <a href="https://storybook.devsozluk.net/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
 [![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://devsozluk.net/)
-![GitHub stars](https://img.shields.io/github/stars/devsozluk/website?logo=github)
-![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)
-[![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://github.com/devsozluk/website/commits)
-![GitHub contributors](https://img.shields.io/github/contributors/devsozluk/website?logo=github)
+![GitHub stars](https://img.shields.io/github/stars/devsozluk/website)
+[![commits](https://badgen.net/github/commits/devsozluk/website/development)](https://github.com/devsozluk/website/commits/development?icon=github&color=green)
+![GitHub contributors](https://badgen.net/github/contributors/devsozluk/website)
+![GitHub forks](https://badgen.net/github/forks/devsozluk/website)
 
 <hr/>
 </div>
