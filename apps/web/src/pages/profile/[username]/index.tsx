@@ -45,9 +45,9 @@ const Profile = ({ profile }: { profile: IProfile }) => {
     <Fragment>
       <NextSeo
         title={profile.name}
-        canonical={"https://dev.devsozluk.net/profile/" + profile.username}
+        canonical={"https://devsozluk.net/profile/" + profile.username}
         openGraph={{
-          url: "https://dev.devsozluk.net/profile/" + profile.username,
+          url: "https://devsozluk.net/profile/" + profile.username,
           title: `${profile.name} | DevSözlük`,
           description: profile.biography || " ",
           images: [
@@ -130,8 +130,8 @@ Profile.Header = ({
             {position || "Pozisyon eklenmemiş."}
           </p>
           <div className="flex gap-x-4 mt-4">
-            {computedProfileLinks()?.map((link) => (
-              <Tippy content={link.label}>
+            {computedProfileLinks()?.map((link, index) => (
+              <Tippy key={index} content={link.label}>
                 <a href={link.url} target="_blank" className="text-gray-400">
                   <link.icon className="h-6 w-6" />
                 </a>

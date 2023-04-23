@@ -3,15 +3,15 @@ export default {
   defaultTitle: "Dev Sözlük",
   description:
     "Dev Sözlük, yazılım geliştiricileri için bir sözlük. Yazılım geliştirme ile ilgili her türlü konuyu burada tartışabilirsiniz.",
-  canonical: "https://dev.devsozuk.net",
+  canonical: "https://devsozluk.net",
   openGraph: {
-    url: "https://dev.devsozuk.net",
+    url: "https://devsozluk.net",
     title: "Dev Sözlük",
     description:
       "Dev Sözlük, yazılım geliştiricileri için bir sözlük. Yazılım geliştirme ile ilgili her türlü konuyu burada tartışabilirsiniz.",
     images: [
       {
-        url: "https://dev.devsozluk.net/banner.png",
+        url: "https://devsozluk.net/banner.png",
         alt: "Dev Sözlük",
       },
     ],

@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://dev.devsozluk.net">
+  <a href="https://devsozluk.net">
     <img
       src="https://avatars.githubusercontent.com/u/119908676?s=200&v=4"
       alt="DevSozluk Logo"
@@ -11,7 +11,7 @@
   @devsozluk/ui
 </h3>
 
-[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.dev.devsozluk.net/)
+[![Website](https://img.shields.io/website?url=https://www.devsozluk.net)](https://www.devsozluk.net/)
 [![Storybook](https://img.shields.io/website?url=https://www.devsozluk.net)](https://storybook.devsozluk.net/)
 ![GitHub stars](https://img.shields.io/github/stars/devsozluk/website?logo=github)
 ![GitHub forks](https://img.shields.io/github/forks/devsozluk/website?logo=github)
@@ -19,7 +19,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/devsozluk/website?logo=github)
 
 </div>
-
 
 This library is a React component library developed for the user interface of the DevSozluk project. The library includes many useful components such as Alert, Button, IconButton, Input, Spinner, and TextArea components.
 
@@ -30,22 +29,22 @@ You can use npm or yarn package managers for installation:
 ```
 npm install @devsozluk/ui
 ```
+
 ```
 yarn add @devsozluk/ui
 ```
-
 
 ## Usage
 
 Each component in this library can be imported separately. For example, for the Button component:
 
 ```jsx
-import { Button } from '@devsozluk/ui';
+import { Button } from "@devsozluk/ui";
 
 function App() {
   return (
     <div>
-      <Button onClick={() => console.log('clicked')}>Click me!</Button>
+      <Button onClick={() => console.log("clicked")}>Click me!</Button>
     </div>
   );
 }

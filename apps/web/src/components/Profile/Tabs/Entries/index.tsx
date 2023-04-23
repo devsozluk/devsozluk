@@ -16,7 +16,7 @@ export const Entries = ({ id }: IProfile) => {
     return (
       <div className="flex w-full flex-col divide-y divide-opacity-30 divide-gray-700">
         {entries.map((entry: IEntry, index: number) => (
-          <Entries.Card entry={entry} index={index} />
+          <Entries.Card key={index} entry={entry} index={index} />
         ))}
       </div>
     );

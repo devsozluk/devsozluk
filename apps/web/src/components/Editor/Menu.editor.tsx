@@ -29,12 +29,10 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         disabled={!editor.can().chain().focus().toggleBold().run()}
         isActive={editor.isActive("bold")}
       >
-        <Tippy content="Kalın">
-          <BiBold size={20} />
-        </Tippy>
+        <BiBold size={20} />
       </IconButton>
       <IconButton
-        className="mr-4"
+        className="md:mr-4"
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         isActive={editor.isActive("italic")}
@@ -54,14 +52,17 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         <TbLinkOff size={20} />
       </IconButton>
       <IconButton
-        onClick={() => editor.chain().toggleSpoiler().run()}
+        onClick={() =>
+          editor.isActive("spoiler")
+            ? editor.chain().focus().unsetSpoiler().run()
+            : editor.chain().focus().setSpoiler().run()
+        }
         isActive={editor.isActive("spoiler")}
-        disabled={editor.isActive("spoiler")}
       >
         <CiCircleAlert size={20} />
       </IconButton>
       <IconButton
-        className="mr-4"
+        className="md:mr-4"
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
         disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
         isActive={editor.isActive("codeBlock")}
