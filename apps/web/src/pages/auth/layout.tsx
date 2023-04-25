@@ -1,4 +1,5 @@
 import supabase from "@/libs/supabase";
+import getUrl from "@/utils/getUrl";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -19,7 +20,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: getURL(),
+        redirectTo: getUrl(),
       },
     });
   };
