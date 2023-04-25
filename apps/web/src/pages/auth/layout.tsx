@@ -15,14 +15,11 @@ interface AuthLayoutDescription {
 }
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
-  const host =
-    typeof window !== "undefined" ? window.location.origin : undefined;
-
   const githubLogin = () => {
     supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: host,
+        redirectTo: getURL(),
       },
     });
   };
