@@ -32,7 +32,7 @@ TopicsFilter.Item = ({ title, icon, name }: IFilterItem) => {
   const hasSeletected = router.query.filter === name;
 
   const classes = classNames(
-    "flex items-center gap-x-2",
+    "flex items-center gap-x-2 !px-2 !md:px-4",
     hasSeletected ? "text-white !bg-gray-700" : "text-gray-400"
   );
 
