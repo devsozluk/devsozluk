@@ -1,4 +1,5 @@
 import { useGetUserMeMutation } from "@/services/auth";
+import { useGetPopularTopicsMutation } from "@/services/topic";
 import { useGetUserVotesMutation } from "@/services/user";
 import { useAppSelector } from "@/utils/hooks";
 import Router from "next/router";
@@ -21,11 +22,13 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function RootLayout({ children }: PropsWithChildren) {
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  const [getPopularTopics] = useGetPopularTopicsMutation();
   const [getUserMe, { status }] = useGetUserMeMutation();
   const [getUserVotes] = useGetUserVotesMutation();
 
   useEffect(() => {
     getUserMe("");
+    getPopularTopics({ page: 0 });
   }, []);
 
   useEffect(() => {
