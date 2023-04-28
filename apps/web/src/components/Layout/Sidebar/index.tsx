@@ -3,18 +3,13 @@ import { useGetPopularTopicsMutation } from "@/services/topic";
 import type { ITopic } from "@/types";
 import { useAppSelector } from "@/utils/hooks";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Sidebar = () => {
-  const router = useRouter();
   const [page, setPage] = useState(0);
   const [getPopularTopics, { isLoading }] = useGetPopularTopicsMutation();
   const { sidebarTopics } = useAppSelector((state) => state.topic);
-  useEffect(() => {
-    getPopularTopics({ page });
-  }, []);
 
   const fetchMoreData = async () => {
     setPage((prevPage) => prevPage + 1);

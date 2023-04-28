@@ -8,11 +8,9 @@ import {
 import getPagination from "@/utils/getPagination";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import slugify from "slugify";
-import entriesFilter, {
+import filterItems, {
   IFilterItem,
 } from "@/components/Home/Filter/Filter.items";
-import FilterItems from "@/components/Home/Filter/Filter.items";
-import filterItems from "@/components/Home/Filter/Filter.items";
 
 export const topicApi = createApi({
   reducerPath: "topicApi",
