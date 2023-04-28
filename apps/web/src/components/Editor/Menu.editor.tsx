@@ -10,6 +10,7 @@ import { CgClose } from "react-icons/cg";
 import toast from "react-hot-toast";
 import { Editor } from "@tiptap/react";
 import Tippy from "@tippyjs/react";
+import InsertEmojiButton from "./extensions/Emoji";
 
 const MenuBar = ({ editor }: { editor: Editor }) => {
   const [isOpenLinkModal, setIsOpenLinkModal] = useState(false);
@@ -39,18 +40,21 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
       >
         <BiItalic size={20} />
       </IconButton>
-      <IconButton
-        onClick={handleOpenLinkModal}
-        disabled={editor.isActive("link")}
-      >
-        <TbLink size={20} />
-      </IconButton>
-      <IconButton
-        onClick={() => editor.chain().focus()?.unsetLink()?.run()}
-        disabled={!editor.isActive("link")}
-      >
-        <TbLinkOff size={20} />
-      </IconButton>
+      {!editor.isActive("link") ? (
+        <IconButton
+          onClick={handleOpenLinkModal}
+          disabled={editor.isActive("link")}
+        >
+          <TbLink size={20} />
+        </IconButton>
+      ) : (
+        <IconButton
+          onClick={() => editor.chain().focus()?.unsetLink()?.run()}
+          disabled={!editor.isActive("link")}
+        >
+          <TbLinkOff size={20} />
+        </IconButton>
+      )}
       <IconButton
         onClick={() =>
           editor.isActive("spoiler")
@@ -83,6 +87,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         isOpenLinkModal={isOpenLinkModal}
         setIsOpenLinkModal={setIsOpenLinkModal}
       />
+      <InsertEmojiButton editor={editor} />
     </Fragment>
   );
 };
