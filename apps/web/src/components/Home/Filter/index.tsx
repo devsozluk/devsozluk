@@ -6,7 +6,7 @@ import filterItems, { IFilterItem } from "./Filter.items";
 
 const TopicsFilter = () => {
   return (
-    <div className="flex items-center justify-center md:justify-start  max-w-3xl p-2 gap-x-3 w-full bg-gray-800 shadow-lg border-gray-700 border-opacity-25 rounded mb-4">
+    <div className="flex items-center justify-center md:justify-start max-w-3xl py-2 gap-x-4 w-full mb-4 overflow-x-auto">
       {filterItems.map((item) => (
         <TopicsFilter.Item key={item.id} {...item} />
       ))}
@@ -37,8 +37,11 @@ TopicsFilter.Item = ({ title, icon, name }: IFilterItem) => {
   );
 
   return (
-    <Button variant="dark" size="sm" className={classes} onClick={handleSelect}>
-      {icon}
+    <Button
+      variant={hasSeletected ? "primary" : "dark"}
+      size="sm"
+      onClick={handleSelect}
+    >
       {title}
     </Button>
   );
