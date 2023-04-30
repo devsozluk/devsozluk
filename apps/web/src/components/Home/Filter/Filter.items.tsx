@@ -21,7 +21,7 @@ const filterItems: IFilterItem[] = [
   {
     id: 0,
     name: "latest",
-    title: "Güncel",
+    title: "En Son Paylaşılanlar",
     icon: <BsFillCalendarDateFill size={14} />,
     filters: [
       {
@@ -35,8 +35,28 @@ const filterItems: IFilterItem[] = [
   {
     id: 1,
     name: "popular",
-    title: "Popüler",
+    title: "En Çok Beğenilenler",
     icon: <IoNewspaper size={14} />,
+    filters: [
+      {
+        order: "upvotes",
+        options: {
+          ascending: false,
+        },
+      },
+      {
+        order: "created_at",
+        options: {
+          ascending: false,
+        },
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "trend",
+    title: "En Çok Okunanlar",
+    icon: <MdInsertChart size={14} />,
     filters: [
       {
         order: "viewsCount",
@@ -53,13 +73,13 @@ const filterItems: IFilterItem[] = [
     ],
   },
   {
-    id: 2,
-    name: "trend",
-    title: "Trend",
+    id: 3,
+    name: "comments",
+    title: "En Çok Yorumlananlar",
     icon: <MdInsertChart size={14} />,
     filters: [
       {
-        order: "upvotes",
+        order: "entryCount",
         options: {
           ascending: false,
         },
