@@ -34,6 +34,7 @@
     "@types/uuid": "^9.0.1",
     "@vercel/analytics": "^0.1.11",
     "classnames": "^2.3.2",
+    "emoji-picker-react": "^4.4.9",
     "eslint": "8.33.0",
     "eslint-config-devsozluk": "*",
     "eslint-config-next": "13.2.4",
