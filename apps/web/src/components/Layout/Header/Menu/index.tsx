@@ -2,6 +2,7 @@ import { useAppSelector } from "@/utils/hooks";
 import Link from "next/link";
 import { Fragment } from "react";
 import Dropdown from "../Dropdown";
+import { Button } from "@devsozluk/ui";
 
 const Menu = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
@@ -12,7 +13,7 @@ const Menu = () => {
 };
 
 const Navigations = () => (
-  <div className="flex space-x-2 ">
+  <div className="flex space-x-4">
     <Link href="/auth/login">giriş</Link>
     <Link href="/auth/register">kaydol</Link>
   </div>
