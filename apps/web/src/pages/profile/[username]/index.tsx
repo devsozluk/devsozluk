@@ -98,8 +98,8 @@ Profile.Header = ({
 
   const computedProfileLinks = () => {
     return links
-      .filter((link) => link.name)
-      .map((link) => {
+      ?.filter((link) => link.name)
+      ?.map((link) => {
         const { label, icon } = linksConstant?.find(
           (item) => item.name === link.name
         ) as Link;

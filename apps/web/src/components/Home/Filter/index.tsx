@@ -1,5 +1,4 @@
 import { Button } from "@devsozluk/ui";
-import classNames from "classnames";
 import { useRouter } from "next/router";
 import { ChangeEvent } from "react";
 import filterItems, { IFilterItem } from "./Filter.items";

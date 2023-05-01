@@ -22,17 +22,17 @@ const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
       </Link>
       <div className="mt-2 flex gap-x-3 text-xs font-bold">
         <IconButton>
-          <IoMdEye size={16} />
+          <IoMdEye size={14} />
           {topic.viewsCount}
         </IconButton>
         <IconButton>
-          <MdComment size={16} />
+          <MdComment size={14} />
           {topic.entryCount}
         </IconButton>
         {showDetail && (
           <Fragment>
             <IconButton>
-              <MdOutlineBookmarkAdd size={16} />
+              <MdOutlineBookmarkAdd size={14} />
             </IconButton>
             <SocialShare {...topic} />
           </Fragment>
