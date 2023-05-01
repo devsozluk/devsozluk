@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import AuthLayout from "../layout";
+import { NextSeo } from "next-seo";
 
 const Register = () => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const Register = () => {
 
   return (
     <OnlyGuest>
+      <NextSeo title="Topluluğa katılın" />
       <AuthLayout>
         <AuthLayout.Title>Yeni hesap oluştur</AuthLayout.Title>
         <AuthLayout.Description link="/auth/login" linkText="Giriş Yap">
