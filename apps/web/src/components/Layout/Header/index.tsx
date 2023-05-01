@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Menu from "./Menu";
-import SearchBox from "./SearchBox";
+import SearchBox from "./Search";
 
 const Header: React.FC = () => {
   return (

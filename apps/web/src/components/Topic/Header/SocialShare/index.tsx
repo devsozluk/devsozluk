@@ -19,7 +19,7 @@ const SocialShare = ({ title, slug }: ITopic) => {
   return (
     <Dropdown>
       <Dropdown.Button as={IconButton}>
-        <FiShare size={16} />
+        <FiShare size={14} />
       </Dropdown.Button>
       <Dropdown.Item>
         <TwitterShareButton

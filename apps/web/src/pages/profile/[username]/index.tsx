@@ -97,17 +97,19 @@ Profile.Header = ({
   };
 
   const computedProfileLinks = () => {
-    return links?.map((link) => {
-      const { label, icon } = linksConstant?.find(
-        (item) => item.name === link.name
-      ) as Link;
+    return links
+      ?.filter((link) => link.name)
+      ?.map((link) => {
+        const { label, icon } = linksConstant?.find(
+          (item) => item.name === link.name
+        ) as Link;
 
-      return {
-        label,
-        icon,
-        url: link.url,
-      };
-    });
+        return {
+          label,
+          icon,
+          url: link.url,
+        };
+      });
   };
 
   const goAccountPage = () => {
