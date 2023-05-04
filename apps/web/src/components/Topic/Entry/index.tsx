@@ -9,6 +9,7 @@ import EntryActions from "./Entry.actions";
 
 export type IEntryProps = IEntry & {
   className?: string;
+  isDetail?: boolean;
 };
 
 const Entry: React.FC<IEntryProps> = ({
@@ -19,6 +20,7 @@ const Entry: React.FC<IEntryProps> = ({
   className,
   upvotes,
   downvotes,
+  isDetail = false,
 }) => {
   const spoiler = useSpoiler();
   const referenceDate = moment().startOf("seconds");
@@ -32,7 +34,10 @@ const Entry: React.FC<IEntryProps> = ({
     <article className={classNames("text-base rounded-lg", className)}>
       <div>
         <div
-          className="whitespace-pre-wrap line-clamp-3 !text-base w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-a:text-primary-400 format-strong:text-gray-400 format:font-normal format-invert"
+          className={classNames(
+            "whitespace-pre-wrap !text-base w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-a:text-primary-400 format-strong:text-gray-400 format:font-normal format-invert",
+            { "line-clamp-3": !isDetail }
+          )}
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
       </div>

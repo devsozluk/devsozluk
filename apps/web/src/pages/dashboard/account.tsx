@@ -19,6 +19,7 @@ import { ChangeEvent, Fragment, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { RiImageEditFill } from "react-icons/ri";
 import { default as DashboardLayout } from "./layout";
+import { NextSeo } from "next-seo";
 
 const Settings = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -40,6 +41,7 @@ const Settings = () => {
 
   return (
     <DashboardLayout>
+      <NextSeo title="Hesap Ayarları" />
       <div className="w-sm flex h-full flex-col gap-y-5">
         <div>
           <h3 className="text-lg font-semibold">Hesap</h3>

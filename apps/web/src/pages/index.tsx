@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { Spinner } from "@devsozluk/ui";
 import classNames from "classnames";
 import { GetServerSidePropsContext } from "next";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -80,6 +81,7 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
 
   return (
     <MainLayout>
+      <NextSeo title="Geliştiriciler için açık kaynaklı sosyal platform" />
       <EntriesFilter />
       {page === 0 && isLoading && <Home.EntryLoader />}
       <div className="mb-6 flex gap-x-2 flex-wrap gap-y-2">

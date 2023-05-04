@@ -90,6 +90,7 @@ Topic.Entries = () => {
     <div className="flex flex-col divide-y-2  divide-opacity-50 divide-gray-800">
       {entries?.map((entry, index) => (
         <Entry
+          isDetail={true}
           className={index === 0 ? "pb-5" : "py-5"}
           {...entry}
           key={index}
