@@ -46,7 +46,7 @@ const CreateTopic = () => {
         >
           {({ errors, setFieldValue, values, handleSubmit }) => (
             <>
-              <Form className="px-4">
+              <Form className="px-4" onSubmit={() => {}}>
                 <div className="flex flex-col space-y-4">
                   <Input
                     name="title"
@@ -66,7 +66,11 @@ const CreateTopic = () => {
                   />
                 </div>
                 <div className="flex justify-end space-x-4">
-                  <Button size="sm" loading={isLoading}>
+                  <Button
+                    onClick={() => handleSubmit()}
+                    size="sm"
+                    loading={isLoading}
+                  >
                     Yayınla
                   </Button>
                 </div>
