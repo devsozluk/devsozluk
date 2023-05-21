@@ -14,7 +14,7 @@ const Header: React.FC = () => {
         <div className="md:absolute w-full md:w-96 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
           <SearchBox />
         </div>
-        <div>
+        <div className="relative">
           <Menu />
         </div>
       </div>
