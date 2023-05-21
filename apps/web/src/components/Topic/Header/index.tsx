@@ -31,7 +31,7 @@ const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
         </IconButton>
         {showDetail && (
           <Fragment>
-            <IconButton>
+            <IconButton disabled>
               <MdOutlineBookmarkAdd size={14} />
             </IconButton>
             <SocialShare {...topic} />
