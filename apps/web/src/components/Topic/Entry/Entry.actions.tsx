@@ -119,7 +119,7 @@ const EntryActions = ({
         {author.id === user?.id && (
           <Dropdown.Item onClick={handleDeleteEntry}>Yanıtı Sil</Dropdown.Item>
         )}
-        <Dropdown.Item>Şikayet Et</Dropdown.Item>
+        <Dropdown.Item disabled={true}>Şikayet Et</Dropdown.Item>
       </Dropdown>
     </div>
   );

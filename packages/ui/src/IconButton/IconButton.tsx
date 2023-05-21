@@ -18,7 +18,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
 }) => {
   const classes = classNames(
     className,
-    "inline-flex justify-center p-1 md:p-2 gap-x-2 transition-all disabled:opacity-50 disabled:cursor-auto  rounded cursor-pointe text-gray-400 hover:text-white hover:bg-gray-600 disabled:cursor-not-allowed",
+    "inline-flex justify-center p-1 md:p-2 gap-x-2 transition-all disabled:opacity-50 disabled:cursor-auto disabled:pointer-events-none rounded cursor-pointer text-gray-400 hover:text-white hover:bg-gray-600 disabled:cursor-not-allowed",
     { "!text-white bg-gray-800": isActive }
   );
 
