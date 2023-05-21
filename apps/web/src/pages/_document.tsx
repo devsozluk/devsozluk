@@ -5,6 +5,7 @@ const Document = () => {
     <>
       <Html lang={"en"} dir={"ltr"}>
         <Head>
+          <link rel="manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#2d89ef" />
           <meta
             name="msapplication-config"
@@ -84,6 +85,15 @@ const Document = () => {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
+          <meta name="description" content="Projenizin açıklaması" />
+          <meta
+            name="keywords"
+            content="yazılım, programlama, geliştirici, kodlama, veritabanı, algoritma, framework, web geliştirme, mobil uygulama, API, MVC, ORM, debugging, testing, version control, git, front-end, back-end, full-stack, responsive design, security, cloud computing, machine learning, artificial intelligence, data science, agile development, scrum, DevOps, continuous integration, deployment"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
         </Head>
         <body>
           <Main />

@@ -103,7 +103,7 @@ ProfileLinks.Item = ({ index, name, url }: ProfileLink) => {
       <div className="relative">
         <Listbox
           as="div"
-          className="bg-white rounded-lg shadow w-14 dark:bg-gray-700"
+          className="rounded-lg shadow w-14 bg-gray-700"
           onChange={handleSelectLink}
           value={name}
         >
