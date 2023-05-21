@@ -5,15 +5,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { AiFillCaretDown } from "react-icons/ai";
 import useNavigations, { IMenu } from "./Dropdown.menu";
+import Link from "next/link";
 
 const Dropdown = () => {
   const user = useAppSelector((state) => state.auth.user);
   const navigations = useNavigations();
   const router = useRouter();
-
-  const goProfile = () => {
-    router.replace(`/profile/${user?.user_metadata.user_name}`);
-  };
 
   return (
     <Menu>
@@ -42,9 +39,9 @@ const Dropdown = () => {
         leaveTo="transform scale-95 opacity-0"
         className="absolute right-14 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
       >
-        <div
+        <Link
+          href={`/profile/${user?.user_metadata.user_name}`}
           tabIndex={0}
-          onClick={goProfile}
           className="flex items-center cursor-pointer p-3 -mt-2 text-sm rounded-md truncate transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 hover:text-white"
         >
           <Image
@@ -55,13 +52,13 @@ const Dropdown = () => {
             alt={user?.user_metadata?.avatar_url}
           />
           <div className="mx-1">
-            <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+            <h1 className="text-sm font-semibold text-gray-200">
               {user?.user_metadata?.name}
             </h1>
-            <p className="text-xs truncate text-gray-500 dark:text-gray-400"></p>
+            <p className="text-xs truncate text-gray-400"></p>
             @{user?.user_metadata?.user_name}
           </div>
-        </div>
+        </Link>
 
         <hr className="border-gray-700 border-opacity-70" />
 
