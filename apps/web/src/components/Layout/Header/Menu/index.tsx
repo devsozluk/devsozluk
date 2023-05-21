@@ -5,10 +5,15 @@ import Dropdown from "../Dropdown";
 import { Button } from "@devsozluk/ui";
 
 const Menu = () => {
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, checkSessionloading } = useAppSelector(
+    (state) => state.auth
+  );
 
   return (
-    <Fragment>{isLoggedIn ? <Dropdown /> : <Menu.Navigations />}</Fragment>
+    <Fragment>
+      {!checkSessionloading &&
+        (isLoggedIn ? <Dropdown /> : <Menu.Navigations />)}
+    </Fragment>
   );
 };
 
