@@ -2,8 +2,6 @@
 
 const withPWA = require("next-pwa")({
   dest: "public",
-  register: true,
-  skipWaiting: true,
 });
 
 const nextConfig = withPWA({
@@ -20,7 +18,7 @@ const nextConfig = withPWA({
     ],
     formats: ["image/webp"],
   },
-    reactStrictMode: true,
+  reactStrictMode: true,
 });
 
 module.exports = nextConfig;

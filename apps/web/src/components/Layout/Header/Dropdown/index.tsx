@@ -37,7 +37,7 @@ const Dropdown = () => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute right-14 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
+        className="absolute -right-10 md:right-0 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
       >
         <Link
           href={`/profile/${user?.user_metadata.user_name}`}
@@ -55,8 +55,8 @@ const Dropdown = () => {
             <h1 className="text-sm font-semibold text-gray-200">
               {user?.user_metadata?.name}
             </h1>
-            <p className="text-xs truncate text-gray-400"></p>
-            @{user?.user_metadata?.user_name}
+            <p className="text-xs truncate text-gray-400"></p>@
+            {user?.user_metadata?.user_name}
           </div>
         </Link>
 

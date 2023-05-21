@@ -197,7 +197,7 @@ export const topicApi = createApi({
 
         const query = supabase
           .from("entries_views")
-          .select(`*, author(username, avatar_url, name), topic(*)`);
+          .select(`*, author(username, avatar_url, name, id), topic(*)`);
 
         selectedFilters.forEach((filter) => {
           query.order(filter.order, filter.options);
