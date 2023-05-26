@@ -39,7 +39,7 @@ const Navigations = () => {
           size={15}
           className="text-gray-400 group-hover:text-yellow-400 duration-300 transition-all"
         />
-        Github'da bizi destekleyin
+        Github&apos;da bizi destekleyin
       </IconButton>
       <Button
         onClick={goLoginPage}
