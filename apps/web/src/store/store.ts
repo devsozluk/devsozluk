@@ -6,11 +6,13 @@ import authReducer from "@/store/auth/authSlice";
 import userReducer from "@/store/user/userSlice";
 import topicReducer from "@/store/topic/topicSlice";
 import { topicApi } from "@/services/topic";
+import commonReducer from "./common/commonSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     topic: topicReducer,
+    common: commonReducer,
     user: userReducer,
     [topicApi.reducerPath]: topicApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
