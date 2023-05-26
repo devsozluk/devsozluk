@@ -1,9 +1,7 @@
 import SearchSkeleton from "@/components/Loading/search";
-import { topicApi, useSearchTopicsMutation } from "@/services/topic";
-import { ITopic } from "@/types";
-import { Input, Spinner } from "@devsozluk/ui";
+import { useSearchTopicsMutation } from "@/services/topic";
+import { Input } from "@devsozluk/ui";
 import classNames from "classnames";
-import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { IoMdCloseCircle } from "react-icons/io";
@@ -58,7 +56,9 @@ const SearchBox = () => {
       >
         {topicsLoading || topicsLoading ? (
           <SearchBox.Loader />
-        ) : topics?.length === 0 && users?.length === 0 ? (
+        ) : searchValue.length >= 1 &&
+          topics?.length === 0 &&
+          users?.length === 0 ? (
           <SearchBox.NotFound />
         ) : (
           <Fragment>
