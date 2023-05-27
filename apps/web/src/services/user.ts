@@ -116,7 +116,9 @@ export const userApi = createApi({
         const { data, error } = await supabase
           .from("profiles")
           .select("username, name, avatar_url")
-          .textSearch("name", text);
+          .or(`name.ilike.%${text}%`)
+          .or(`username.ilike.%${text}%`)
+          .limit(10);
 
         if (error) {
           return { error };

@@ -16,7 +16,7 @@ const Notification: React.FC = () => {
   useEffect(() => {
     const downloadStatus = localStorage.getItem("isDownloadApplication");
 
-    if (width >= 700 && downloadStatus === "false") {
+    if (width >= 1000 && downloadStatus === "false") {
       dispatch(setDownloadApplication(false));
     }
   }, [width]);

@@ -1,8 +1,8 @@
 import SearchSkeleton from "@/components/Loading/search";
-import { IProfile, ITopic } from "@/types";
+import { IProfile } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 
 export interface IprofilesProps {
   className?: string;
@@ -29,7 +29,7 @@ const Profiles = ({ profiles }: IprofilesProps) => {
 Profiles.Item = ({ name, username, avatar_url }: IProfile) => {
   return (
     <Link
-      className="flex items-center gap-x-1 break-words rounded text-base py-1"
+      className="flex items-center gap-x-1 break-words rounded text-base py-1 text-gray-200"
       href={"/profile/" + username}
     >
       <Image
