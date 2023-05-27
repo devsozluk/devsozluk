@@ -5,21 +5,11 @@ import { Button, IconButton } from "@devsozluk/ui";
 import { AiOutlineStar } from "react-icons/ai";
 import { useRouter } from "next/router";
 
-const Menu = () => {
+const Navigations = () => {
+  const router = useRouter();
   const { isLoggedIn, checkSessionloading } = useAppSelector(
     (state) => state.auth
   );
-
-  return (
-    <Fragment>
-      {!checkSessionloading &&
-        (isLoggedIn ? <Dropdown /> : <Menu.Navigations />)}
-    </Fragment>
-  );
-};
-
-const Navigations = () => {
-  const router = useRouter();
 
   const goGithubStar = () => {
     window.open("https://github.com/devsozluk/website/stargazers", "_blank");
@@ -30,10 +20,10 @@ const Navigations = () => {
   };
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex flex-col-reverse lg:flex-row gap-4">
       <IconButton
         onClick={goGithubStar}
-        className="hidden md:flex items-center justify-center !text-xs !text-gray-300 group"
+        className="hidden lg:inline-flex items-center justify-center py-2 !text-xs !text-gray-300 group"
       >
         <AiOutlineStar
           size={15}
@@ -41,18 +31,23 @@ const Navigations = () => {
         />
         Github&apos;da bizi destekleyin
       </IconButton>
-      <Button
-        onClick={goLoginPage}
-        className="text-xs font-normal !px-6"
-        size="sm"
-        variant="dark"
-      >
-        Giriş
-      </Button>
+      {!checkSessionloading &&
+        (isLoggedIn ? (
+          <Dropdown />
+        ) : (
+          <Fragment>
+            <Button
+              onClick={goLoginPage}
+              className="text-xs font-normal !px-6"
+              size="sm"
+              variant="dark"
+            >
+              Giriş
+            </Button>
+          </Fragment>
+        ))}
     </div>
   );
 };
 
-Menu.Navigations = Navigations;
-
-export default Menu;
+export default Navigations;

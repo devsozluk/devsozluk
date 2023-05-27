@@ -33,29 +33,9 @@ const filterItems: IFilterItem[] = [
     ],
   },
   {
-    id: 1,
-    name: "popular",
-    title: "En Çok Beğenilenler",
-    icon: <IoNewspaper size={14} />,
-    filters: [
-      {
-        order: "upvotes",
-        options: {
-          ascending: false,
-        },
-      },
-      {
-        order: "created_at",
-        options: {
-          ascending: false,
-        },
-      },
-    ],
-  },
-  {
     id: 2,
     name: "trend",
-    title: "En Çok Okunanlar",
+    title: "En Çok Görüntülenenler",
     icon: <MdInsertChart size={14} />,
     filters: [
       {
