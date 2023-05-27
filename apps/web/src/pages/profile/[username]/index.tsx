@@ -62,7 +62,7 @@ const Profile = ({ profile }: { profile: IProfile }) => {
         }}
       />
       <EmptyLayout>
-        <Header />
+        <Header notificationShow={false} />
         <div className="pt-56 md:pt-28">
           <div className="flex items-center flex-col ">
             <div className="w-full max-w-2xl px-4">

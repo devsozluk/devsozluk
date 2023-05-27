@@ -10,7 +10,6 @@ import Link from "next/link";
 const Dropdown = () => {
   const user = useAppSelector((state) => state.auth.user);
   const navigations = useNavigations();
-  const router = useRouter();
 
   return (
     <Menu>

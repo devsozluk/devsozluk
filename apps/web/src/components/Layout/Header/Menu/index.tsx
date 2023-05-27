@@ -5,21 +5,11 @@ import { Button, IconButton } from "@devsozluk/ui";
 import { AiOutlineStar } from "react-icons/ai";
 import { useRouter } from "next/router";
 
-const Menu = () => {
+const Navigations = () => {
+  const router = useRouter();
   const { isLoggedIn, checkSessionloading } = useAppSelector(
     (state) => state.auth
   );
-
-  return (
-    <Fragment>
-      {!checkSessionloading &&
-        (isLoggedIn ? <Dropdown /> : <Menu.Navigations />)}
-    </Fragment>
-  );
-};
-
-const Navigations = () => {
-  const router = useRouter();
 
   const goGithubStar = () => {
     window.open("https://github.com/devsozluk/website/stargazers", "_blank");
@@ -41,18 +31,21 @@ const Navigations = () => {
         />
         Github&apos;da bizi destekleyin
       </IconButton>
-      <Button
-        onClick={goLoginPage}
-        className="text-xs font-normal !px-6"
-        size="sm"
-        variant="dark"
-      >
-        Giriş
-      </Button>
+      {!checkSessionloading &&
+        (isLoggedIn ? (
+          <Dropdown />
+        ) : (
+          <Button
+            onClick={goLoginPage}
+            className="text-xs font-normal !px-6"
+            size="sm"
+            variant="dark"
+          >
+            Giriş
+          </Button>
+        ))}
     </div>
   );
 };
 
-Menu.Navigations = Navigations;
-
-export default Menu;
+export default Navigations;

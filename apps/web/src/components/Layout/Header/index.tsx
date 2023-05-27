@@ -6,7 +6,11 @@ import SearchBox from "./Search";
 import { useAppSelector } from "@/utils/hooks";
 import classNames from "classnames";
 
-const Header: React.FC = () => {
+export interface IHeaderProps {
+  notificationShow?: boolean;
+}
+
+const Header: React.FC<IHeaderProps> = ({ notificationShow = true }) => {
   const { isDownloadApplication } = useAppSelector((state) => state.common);
 
   return (
@@ -14,7 +18,7 @@ const Header: React.FC = () => {
       className={classNames(
         "fixed top-14 left-0 right-0 z-30 flex items-center justify-center bg-gray-900 px-8 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.30)]",
         {
-          "!top-0": isDownloadApplication,
+          "!top-0": isDownloadApplication || !notificationShow,
         }
       )}
     >
