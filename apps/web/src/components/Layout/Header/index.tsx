@@ -16,13 +16,14 @@ import SearchBox from "./Search";
 import { Button } from "@devsozluk/ui";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-
 interface HeaderContextProps {
   open: boolean;
   setOpen: Function;
 }
 
-const HeaderContext = createContext<HeaderContextProps>({} as HeaderContextProps);
+const HeaderContext = createContext<HeaderContextProps>(
+  {} as HeaderContextProps
+);
 
 const MobileMenu = () => {
   const { open, setOpen } = useContext(HeaderContext);
@@ -31,7 +32,7 @@ const MobileMenu = () => {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-50"
+        className="relative block lg:hidden z-50"
         onClose={() => setOpen(false)}
       >
         <Transition.Child
@@ -80,10 +81,9 @@ const MobileMenu = () => {
                     </div>
                   </Transition.Child>
                   <div className="flex h-full flex-col overflow-y-scroll bg-gray-900 py-6 shadow-xl">
-                    <div className="px-4 sm:px-6">
-                      <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                        Panel title
-                      </Dialog.Title>
+                    <div className="w-full space-y-4 px-4 sm:px-6">
+                      <SearchBox />
+                      <Menu />
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6"></div>
                   </div>
@@ -116,9 +116,9 @@ const Header: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-30 flex items-center justify-center bg-gray-900 px-8 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.30)] ">
-      <div className="container w-full flex flex-col items-center md:flex-row py-4 space-y-3 md:justify-between md:space-y-0">
+      <div className="container w-full flex justify-between py-4 md:justify-between md:space-y-0">
         <Link href="/">
-          <Image width={170} height={80} src="/logo.png" alt="DevSözlük Logo" />
+          <Image width={170} height={70} src="/logo.png" alt="DevSözlük Logo" />
         </Link>
         <div className="hidden lg:flex">
           <div className="md:absolute w-full md:w-96 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
