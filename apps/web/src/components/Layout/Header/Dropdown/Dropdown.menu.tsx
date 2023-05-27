@@ -33,6 +33,7 @@ export default function Dropdown(): IMenu[] {
       link: "/dashboard/bookmarks",
       icon: <BsBookmarks />,
       title: "Kaydedilenler",
+      disabled: true,
     },
     {
       id: 2,
