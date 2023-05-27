@@ -3,13 +3,23 @@ import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { Button, IconButton } from "@devsozluk/ui";
 import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
+import { useWindowSize } from "usehooks-ts";
 
 let deferredPrompt: Event | null = null;
 
 const Notification: React.FC = () => {
+  const { width } = useWindowSize();
   const dispatch = useAppDispatch();
   const { isDownloadApplication } = useAppSelector((state) => state.common);
   const [showInstallButton, setShowInstallButton] = useState(false);
+
+  useEffect(() => {
+    const downloadStatus = localStorage.getItem("isDownloadApplication");
+
+    if (width >= 700 && downloadStatus === "false") {
+      dispatch(setDownloadApplication(false));
+    }
+  }, [width]);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -30,7 +40,7 @@ const Notification: React.FC = () => {
         handleBeforeInstallPrompt
       );
     };
-  }, []);
+  }, [dispatch]);
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
