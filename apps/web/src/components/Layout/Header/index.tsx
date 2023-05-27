@@ -17,6 +17,12 @@ import { Button } from "@devsozluk/ui";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useAppSelector } from "@/utils/hooks";
 import classNames from "classnames";
+import { useRouter } from "next/router";
+import { FiDownload, FiLogOut } from "react-icons/fi";
+import { useLogoutMutation } from "@/services/auth";
+import { setDownloadApplication } from "@/store/common/commonSlice";
+
+let deferredPrompt: Event | null = null;
 
 interface HeaderContextProps {
   open: boolean;
@@ -28,7 +34,53 @@ const HeaderContext = createContext<HeaderContextProps>(
 );
 
 const MobileMenu = () => {
+  const router = useRouter();
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
   const { open, setOpen } = useContext(HeaderContext);
+  const [logout] = useLogoutMutation();
+
+  const goLoginPage = () => {
+    router.push("/auth/login");
+  };
+
+  const goRegisterPage = () => {
+    router.push("/auth/register");
+  };
+
+  const handleLogout = () => {
+    logout("");
+  };
+
+  const [showInstallButton, setShowInstallButton] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      setShowInstallButton(true);
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      (deferredPrompt as any).prompt();
+      const { outcome } = await (deferredPrompt as any).userChoice;
+      console.log(outcome === "accepted");
+
+      if (outcome === "accepted") {
+        setShowInstallButton(false);
+      }
+    }
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -83,11 +135,51 @@ const MobileMenu = () => {
                     </div>
                   </Transition.Child>
                   <div className="flex h-full flex-col overflow-y-scroll bg-gray-900 py-6 shadow-xl">
-                    <div className="w-full space-y-4 px-4 sm:px-6">
+                    <div className="flex flex-col w-full space-y-4 px-4 sm:px-6">
                       <SearchBox />
-                      <Menu />
+                      {!isLoggedIn && (
+                        <Fragment>
+                          <Button
+                            onClick={goLoginPage}
+                            className="text-xs font-normal !px-6 w-full"
+                            size="sm"
+                            variant="dark"
+                          >
+                            Giriş
+                          </Button>
+                          <Button
+                            onClick={goRegisterPage}
+                            className="text-xs font-normal !px-6 w-full"
+                            size="sm"
+                            variant="primary"
+                          >
+                            Kayıt Ol
+                          </Button>
+                        </Fragment>
+                      )}
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6"></div>
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6 flex gap-y-4 flex-col justify-end">
+                      {showInstallButton && (
+                        <Button
+                          onClick={handleInstallClick}
+                          size="sm"
+                          variant="primary"
+                        >
+                          <FiDownload />
+                          Uygulamayı Yükle
+                        </Button>
+                      )}
+                      {isLoggedIn && (
+                        <Button
+                          onClick={handleLogout}
+                          size="sm"
+                          variant="danger"
+                        >
+                          <FiLogOut />
+                          Çıkış Yap
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
