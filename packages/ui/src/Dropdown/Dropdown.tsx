@@ -53,13 +53,20 @@ Dropdown.Button = ({
 export type ItemProps = PropsWithChildren &
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-Dropdown.Item = ({ className, children, onClick, ...props }: ItemProps) => {
+Dropdown.Item = ({
+  className,
+  children,
+  onClick,
+  disabled,
+  ...props
+}: ItemProps) => {
   return (
     <Menu.Item
       as="button"
       onClick={onClick}
       className={classNames(
         "px-4 py-2 w-full rounded flex gap-x-2 items-center hover:bg-gray-600 hover:text-white",
+        { "opacity-50 cursor-auto pointer-events-none": disabled },
         className
       )}
       {...props}

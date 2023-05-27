@@ -7,6 +7,7 @@ import { getErrorFromPayload, useAppSelector } from "@/utils/hooks";
 import { CreateTopicSchema } from "@/utils/schemas";
 import { Button, Input } from "@devsozluk/ui";
 import { Form, Formik } from "formik";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { toast } from "react-hot-toast";
@@ -34,6 +35,7 @@ const CreateTopic = () => {
 
   return (
     <MainLayout>
+      <NextSeo title="Konu Oluştur" />
       <div className="w-[600px]">
         <Formik
           validationSchema={CreateTopicSchema}
@@ -44,7 +46,7 @@ const CreateTopic = () => {
         >
           {({ errors, setFieldValue, values, handleSubmit }) => (
             <>
-              <Form className="px-4">
+              <Form className="px-4" onSubmit={() => {}}>
                 <div className="flex flex-col space-y-4">
                   <Input
                     name="title"
@@ -64,7 +66,11 @@ const CreateTopic = () => {
                   />
                 </div>
                 <div className="flex justify-end space-x-4">
-                  <Button size="sm" loading={isLoading}>
+                  <Button
+                    onClick={() => handleSubmit()}
+                    size="sm"
+                    loading={isLoading}
+                  >
                     Yayınla
                   </Button>
                 </div>

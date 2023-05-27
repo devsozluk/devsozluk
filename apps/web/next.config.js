@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
+
+const nextConfig = withPWA({
   experimental: {
     appDir: false,
   },
@@ -13,6 +18,7 @@ const nextConfig = {
     ],
     formats: ["image/webp"],
   },
-};
+  reactStrictMode: true,
+});
 
 module.exports = nextConfig;

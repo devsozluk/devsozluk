@@ -1,5 +1,5 @@
 export default {
-  titleTemplate: "%s | Dev Sözlük",
+  titleTemplate: "%s - Dev Sözlük",
   defaultTitle: "Dev Sözlük",
   description:
     "Dev Sözlük, yazılım geliştiricileri için bir sözlük. Yazılım geliştirme ile ilgili her türlü konuyu burada tartışabilirsiniz.",

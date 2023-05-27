@@ -16,9 +16,6 @@
     "apps/*",
     "packages/*"
   ],
-  "engines": {
-    "node": "16.x"
-  },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "eslint": "^8.29.0",

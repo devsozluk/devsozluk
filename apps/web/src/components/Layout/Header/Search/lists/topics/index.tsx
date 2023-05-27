@@ -1,13 +1,6 @@
-import SearchSkeleton from "@/components/Loading/search";
-import { useSearchTopicsMutation } from "@/services/topic";
 import { ITopic } from "@/types";
-import { Input } from "@devsozluk/ui";
-import classNames from "classnames";
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
-import { BsSearch } from "react-icons/bs";
-import { IoMdCloseCircle } from "react-icons/io";
-import { useDebounce } from "usehooks-ts";
 
 export interface ITopicsProps {
   className?: string;
@@ -34,7 +27,7 @@ const Topics = ({ topics }: ITopicsProps) => {
 Topics.Item = ({ slug, entryCount, title }: ITopic) => {
   return (
     <Link
-      className="flex items-center justify-between break-words rounded py-1 text-base"
+      className="flex items-center justify-between break-words rounded py-1 text-base text-gray-200"
       href={"/topic/" + slug}
     >
       <p className="truncate">{title}</p>

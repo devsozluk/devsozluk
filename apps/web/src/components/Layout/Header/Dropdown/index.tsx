@@ -5,15 +5,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { AiFillCaretDown } from "react-icons/ai";
 import useNavigations, { IMenu } from "./Dropdown.menu";
+import Link from "next/link";
 
 const Dropdown = () => {
   const user = useAppSelector((state) => state.auth.user);
   const navigations = useNavigations();
-  const router = useRouter();
-
-  const goProfile = () => {
-    router.replace(`/profile/${user?.user_metadata.user_name}`);
-  };
 
   return (
     <Menu>
@@ -23,15 +19,15 @@ const Dropdown = () => {
       >
         <div className="flex items-center cursor-pointer gap-x-2">
           <Image
-            className="flex-shrink-0 object-cover mx-1 rounded w-5 h-5"
+            className="flex-shrink-0 object-cover mx-1 rounded w-5 h-5 flex gap-x-2"
             width={100}
             height={100}
             src={user?.user_metadata?.avatar_url}
             alt={user?.user_metadata?.avatar_url}
           />
-          {user?.user_metadata?.name}
+          <span className="hidden lg:block">{user?.user_metadata?.name}</span>
         </div>
-        <AiFillCaretDown />
+        <AiFillCaretDown className="hidden lg:block" />
       </Menu.Button>
       <Transition
         enter="transition duration-100 ease-out"
@@ -40,11 +36,11 @@ const Dropdown = () => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute right-14 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
+        className="absolute right-4 top-14 md:top-10 md:right-0 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
       >
-        <div
+        <Link
+          href={`/profile/${user?.user_metadata.user_name}`}
           tabIndex={0}
-          onClick={goProfile}
           className="flex items-center cursor-pointer p-3 -mt-2 text-sm rounded-md truncate transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 hover:text-white"
         >
           <Image
@@ -55,13 +51,13 @@ const Dropdown = () => {
             alt={user?.user_metadata?.avatar_url}
           />
           <div className="mx-1">
-            <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+            <h1 className="text-sm font-semibold text-gray-200">
               {user?.user_metadata?.name}
             </h1>
-            <p className="text-xs truncate text-gray-500 dark:text-gray-400"></p>
-            @{user?.user_metadata?.user_name}
+            <p className="text-xs truncate text-gray-400"></p>@
+            {user?.user_metadata?.user_name}
           </div>
-        </div>
+        </Link>
 
         <hr className="border-gray-700 border-opacity-70" />
 
@@ -75,7 +71,15 @@ const Dropdown = () => {
   );
 };
 
-Dropdown.Item = ({ id, title, onClick, link, icon, className }: IMenu) => {
+Dropdown.Item = ({
+  id,
+  title,
+  onClick,
+  link,
+  icon,
+  className,
+  disabled,
+}: IMenu) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -84,15 +88,19 @@ Dropdown.Item = ({ id, title, onClick, link, icon, className }: IMenu) => {
     } else onClick!();
   };
 
+  const classes = classNames(
+    "flex items-center py-2 px-4 text-sm disabled:bg-gray-500 capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 hover:text-white",
+    { "opacity-50 cursor-auto pointer-events-none": disabled },
+    className
+  );
+
   return (
     <Menu.Item
       key={id}
       as="button"
       onClick={handleClick}
-      className={classNames(
-        "flex items-center py-2 px-4 text-sm capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 hover:text-white",
-        className
-      )}
+      disabled={disabled}
+      className={classes}
     >
       <span className="w-6 h-6 mx-1 flex items-center justify-center">
         {icon}

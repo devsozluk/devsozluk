@@ -148,7 +148,8 @@ export const topicApi = createApi({
         const { data, error } = await supabase
           .from("topics")
           .select("*")
-          .textSearch("title", text);
+          .or(`title.ilike.%${text}%`)
+          .limit(10)
 
         if (error) {
           return { error };
@@ -197,7 +198,7 @@ export const topicApi = createApi({
 
         const query = supabase
           .from("entries_views")
-          .select(`*, author(username, avatar_url, name), topic(*)`);
+          .select(`*, author(username, avatar_url, name, id), topic(*)`);
 
         selectedFilters.forEach((filter) => {
           query.order(filter.order, filter.options);

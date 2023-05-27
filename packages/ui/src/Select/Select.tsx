@@ -47,7 +47,7 @@ export const Select: React.FC<SelectProps> = ({
       <div className="w-full">
         <Listbox
           as="div"
-          className="bg-white rounded-lg z-50  w-full shadow  dark:bg-gray-700"
+          className="rounded-lg z-50  w-full shadow  bg-gray-700"
           value={selected}
           onChange={handleOnChange}
         >

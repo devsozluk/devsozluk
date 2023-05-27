@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="fixed hidden h-[87%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded pr-5 scrolbar md:flex lg:w-[300px]"
+      className="fixed hidden h-[87%] w-[250px] flex-col space-y-3 overflow-y-scroll rounded pr-5 scrolbar lg:flex lg:w-[300px]"
       id="scrollableSidebar"
     >
       <InfiniteScroll
