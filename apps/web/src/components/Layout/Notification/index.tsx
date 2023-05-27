@@ -46,8 +46,6 @@ const Notification: React.FC = () => {
     if (deferredPrompt) {
       (deferredPrompt as any).prompt();
       const { outcome } = await (deferredPrompt as any).userChoice;
-      console.log(outcome === "accepted");
-
       if (outcome === "accepted") {
         dispatch(setDownloadApplication(true));
         setShowInstallButton(false);
