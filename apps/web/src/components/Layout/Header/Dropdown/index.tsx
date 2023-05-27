@@ -19,15 +19,15 @@ const Dropdown = () => {
       >
         <div className="flex items-center cursor-pointer gap-x-2">
           <Image
-            className="flex-shrink-0 object-cover mx-1 rounded w-5 h-5"
+            className="flex-shrink-0 object-cover mx-1 rounded w-5 h-5 flex gap-x-2"
             width={100}
             height={100}
             src={user?.user_metadata?.avatar_url}
             alt={user?.user_metadata?.avatar_url}
           />
-          {user?.user_metadata?.name}
+          <span className="hidden lg:block">{user?.user_metadata?.name}</span>
         </div>
-        <AiFillCaretDown />
+        <AiFillCaretDown className="hidden lg:block" />
       </Menu.Button>
       <Transition
         enter="transition duration-100 ease-out"
@@ -36,7 +36,7 @@ const Dropdown = () => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute -right-10 top-7 md:right-0 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
+        className="absolute right-4 top-14 md:top-10 md:right-0 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
       >
         <Link
           href={`/profile/${user?.user_metadata.user_name}`}

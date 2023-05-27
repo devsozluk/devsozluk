@@ -148,7 +148,8 @@ export const topicApi = createApi({
         const { data, error } = await supabase
           .from("topics")
           .select("*")
-          .textSearch("title", text);
+          .or(`title.ilike.%${text}%`)
+          .limit(10)
 
         if (error) {
           return { error };

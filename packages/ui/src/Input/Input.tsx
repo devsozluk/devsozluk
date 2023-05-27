@@ -25,7 +25,7 @@ export const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   const baseClasses = `text-sm border outline-none transition-all h-12 border-gray-200 rounded-lg bg-gray-700 border-gray-600 rounded-lg block w-full p-2.5 bg-gray-800 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 ${
-    renderLeftIcon ? "pl-10" : ""
+    renderLeftIcon ? "pl-8" : ""
   }`;
   const InputClasses = cx(
     className,

@@ -16,7 +16,7 @@ const Notification: React.FC = () => {
   useEffect(() => {
     const downloadStatus = localStorage.getItem("isDownloadApplication");
 
-    if (width >= 700 && downloadStatus === "false") {
+    if (width >= 1000 && downloadStatus === "false") {
       dispatch(setDownloadApplication(false));
     }
   }, [width]);
@@ -46,8 +46,6 @@ const Notification: React.FC = () => {
     if (deferredPrompt) {
       (deferredPrompt as any).prompt();
       const { outcome } = await (deferredPrompt as any).userChoice;
-      console.log(outcome === "accepted");
-
       if (outcome === "accepted") {
         dispatch(setDownloadApplication(true));
         setShowInstallButton(false);

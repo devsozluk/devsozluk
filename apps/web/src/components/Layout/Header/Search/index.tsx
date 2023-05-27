@@ -21,8 +21,10 @@ const SearchBox = () => {
     useSearchProfileMutation();
 
   useEffect(() => {
-    handleSearchTopic({ text: debouncedValue });
-    handleSearchProfile({ text: debouncedValue });
+    if (searchValue.length >= 2) {
+      handleSearchTopic({ text: debouncedValue });
+      handleSearchProfile({ text: debouncedValue });
+    }
   }, [debouncedValue]);
 
   return (
@@ -45,7 +47,7 @@ const SearchBox = () => {
             />
           )
         }
-        className="!h-10"
+        className="!h-10 !text-sm"
       />
       <div
         className={classNames(
@@ -56,7 +58,7 @@ const SearchBox = () => {
       >
         {topicsLoading || topicsLoading ? (
           <SearchBox.Loader />
-        ) : searchValue.length >= 1 &&
+        ) : searchValue.length >= 2 &&
           topics?.length === 0 &&
           users?.length === 0 ? (
           <SearchBox.NotFound />
