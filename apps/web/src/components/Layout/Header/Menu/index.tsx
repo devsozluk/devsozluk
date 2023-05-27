@@ -38,14 +38,6 @@ const Navigations = () => {
           <Fragment>
             <Button
               onClick={goLoginPage}
-              className="inline-flex lg:hidden text-xs font-normal !px-6"
-              size="sm"
-              variant="primary"
-            >
-              Kayit Ol
-            </Button>
-            <Button
-              onClick={goLoginPage}
               className="text-xs font-normal !px-6"
               size="sm"
               variant="dark"
