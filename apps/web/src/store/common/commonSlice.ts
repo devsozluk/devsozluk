@@ -14,9 +14,7 @@ const commonSlice = createSlice({
   reducers: {
     setDownloadApplication(state, action: PayloadAction<boolean>) {
       state.isDownloadApplication = action.payload;
-      if (typeof window !== "undefined") {
-        localStorage.setItem("isDownloadApplication", action.payload.toString());
-      }
+      localStorage.setItem("isDownloadApplication", action.payload.toString());
     },
   },
 });
