@@ -10,7 +10,6 @@ import Link from "next/link";
 const Dropdown = () => {
   const user = useAppSelector((state) => state.auth.user);
   const navigations = useNavigations();
-  const router = useRouter();
 
   return (
     <Menu>
@@ -37,7 +36,7 @@ const Dropdown = () => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute -right-10 md:right-0 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
+        className="absolute -right-10 top-7 md:right-0 z-20 w-56 py-2 mt-2 origin-top-right rounded-md shadow-xl bg-gray-800"
       >
         <Link
           href={`/profile/${user?.user_metadata.user_name}`}
@@ -72,7 +71,15 @@ const Dropdown = () => {
   );
 };
 
-Dropdown.Item = ({ id, title, onClick, link, icon, className }: IMenu) => {
+Dropdown.Item = ({
+  id,
+  title,
+  onClick,
+  link,
+  icon,
+  className,
+  disabled,
+}: IMenu) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -81,15 +88,19 @@ Dropdown.Item = ({ id, title, onClick, link, icon, className }: IMenu) => {
     } else onClick!();
   };
 
+  const classes = classNames(
+    "flex items-center py-2 px-4 text-sm disabled:bg-gray-500 capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 hover:text-white",
+    { "opacity-50 cursor-auto pointer-events-none": disabled },
+    className
+  );
+
   return (
     <Menu.Item
       key={id}
       as="button"
       onClick={handleClick}
-      className={classNames(
-        "flex items-center py-2 px-4 text-sm capitalize transition-colors duration-300 transform text-gray-300 hover:bg-gray-700 hover:text-white",
-        className
-      )}
+      disabled={disabled}
+      className={classes}
     >
       <span className="w-6 h-6 mx-1 flex items-center justify-center">
         {icon}
