@@ -20,10 +20,10 @@ const Navigations = () => {
   };
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex flex-col-reverse lg:flex-row gap-4">
       <IconButton
         onClick={goGithubStar}
-        className="hidden md:flex items-center justify-center !text-xs !text-gray-300 group"
+        className="items-center justify-center py-2 !text-xs !text-gray-300 group"
       >
         <AiOutlineStar
           size={15}

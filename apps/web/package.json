@@ -9,9 +9,6 @@
     "lint": "next lint",
     "update-types": "npx supabase gen types typescript --project-id 'hbtqnagzrlfxnfdugkvr' --schema public > src/types/supabase.ts"
   },
-  "engines": {
-    "node": "16.x"
-  },
   "dependencies": {
     "@devsozluk/config": "*",
     "@devsozluk/tsconfig": "*",
