@@ -31,7 +31,7 @@ const Entry: React.FC<IEntryProps> = ({
     .from(referenceDate);
 
   return (
-    <article className={classNames("text-base rounded-lg", className)}>
+    <article className={classNames("text-base", className)}>
       <div>
         <div
           className={classNames(

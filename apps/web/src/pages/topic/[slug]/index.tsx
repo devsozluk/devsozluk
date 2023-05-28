@@ -87,7 +87,7 @@ Topic.Entries = () => {
   const { entries } = useAppSelector((state) => state.topic);
 
   return (
-    <div className="flex flex-col divide-y-2  divide-opacity-50 divide-gray-800">
+    <div className="flex flex-col divide-y divide-opacity-50 divide-gray-700">
       {entries?.map((entry, index) => (
         <Entry
           isDetail={true}
