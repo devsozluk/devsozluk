@@ -78,4 +78,4 @@ Thank you for your contributions! We appreciate all the contributions from the c
 
 <a href="https://github.com/devsozluk/website/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=devsozluk/website" />
-</a>
+</a> 
