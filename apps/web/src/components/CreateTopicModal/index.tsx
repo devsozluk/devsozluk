@@ -36,12 +36,12 @@ const CreateTopicModal = () => {
     }
   }, [status]);
 
-  const closeTopicModal = async (event: any) => {
+  const closeTopicModal = (event: any) => {
     if (event) event.preventDefault();
     dispatch(setTopicModal(false));
   };
 
-  const handleCreate = useCallback(async (values: CreateTopicData) => {
+  const handleCreate = useCallback((values: CreateTopicData) => {
     handleAddTopic({ ...values, author: user?.id });
   }, []);
 

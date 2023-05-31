@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import React from "react";
 import SearchBox from "../Search";
 import { Button } from "@devsozluk/ui";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineStar } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { useRouter } from "next/router";
 import { FiDownload, FiLogOut } from "react-icons/fi";
@@ -62,6 +62,10 @@ const MobileMenu = () => {
         setShowInstallButton(false);
       }
     }
+  };
+
+  const goGithubStar = () => {
+    window.open("https://github.com/devsozluk/website/stargazers", "_blank");
   };
 
   return (
@@ -141,6 +145,17 @@ const MobileMenu = () => {
                       )}
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6 flex gap-y-4 flex-col justify-end">
+                      <Button
+                        variant="dark"
+                        onClick={goGithubStar}
+                        className="items-center justify-center py-2 !text-xs !text-gray-300 group"
+                      >
+                        <AiOutlineStar
+                          size={15}
+                          className="text-gray-400 group-hover:text-yellow-400 duration-300 transition-all"
+                        />
+                        Github&apos;da bizi destekleyin
+                      </Button>
                       {showInstallButton && (
                         <Button
                           onClick={handleInstallClick}

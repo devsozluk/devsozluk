@@ -149,7 +149,7 @@ export const topicApi = createApi({
           .from("topics")
           .select("*")
           .or(`title.ilike.%${text}%`)
-          .limit(10)
+          .limit(5);
 
         if (error) {
           return { error };
