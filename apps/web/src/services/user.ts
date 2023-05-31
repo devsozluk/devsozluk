@@ -117,8 +117,7 @@ export const userApi = createApi({
           .from("profiles")
           .select("username, name, avatar_url")
           .or(`name.ilike.%${text}%`)
-          .or(`username.ilike.%${text}%`)
-          .limit(10);
+          .limit(5);
 
         if (error) {
           return { error };
