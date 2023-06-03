@@ -33,7 +33,7 @@ const CEditor = ({
   ...rest
 }: ICEditorProps) => {
   const editor = useEditor({
-    onBlur: () => {
+    onUpdate: () => {
       onUpdate(editor?.getHTML() as string);
     },
     editorProps: {

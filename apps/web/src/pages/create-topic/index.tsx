@@ -29,14 +29,17 @@ const CreateTopic = () => {
     }
   }, [status]);
 
-  const handleCreate = useCallback(async (values: CreateTopicData) => {
+  const handleCreate = async (values: CreateTopicData) => {
     handleAddTopic({ ...values, author: user?.id });
-  }, []);
+  };
 
   return (
     <MainLayout>
       <NextSeo title="Konu Oluştur" />
-      <div className="w-[600px]">
+      <div className="flex flex-col gap-y-4 max-w-[600px]">
+        <div className="border-b border-opacity-50 pb-3 border-gray-700">
+          <h3 className="font-medium">Konu Oluştur</h3>
+        </div>
         <Formik
           validationSchema={CreateTopicSchema}
           initialValues={initialValues}
@@ -45,37 +48,35 @@ const CreateTopic = () => {
           validateOnChange={false}
         >
           {({ errors, setFieldValue, values, handleSubmit }) => (
-            <>
-              <Form className="px-4" onSubmit={() => {}}>
-                <div className="flex flex-col space-y-4">
-                  <Input
-                    name="title"
-                    placeholder="Konu başlığını yazınız."
-                    label="Konu Başlığı"
-                    errorMessage={errors.title}
-                    value={values.title}
-                    onChange={(event) =>
-                      setFieldValue("title", event.target.value)
-                    }
-                  />
-                  <Editor
-                    onUpdate={(value) => setFieldValue("content", value)}
-                    label="İçerik"
-                    placeholder="İçerik yazınız."
-                    errorMessage={errors.content}
-                  />
-                </div>
-                <div className="flex justify-end space-x-4">
-                  <Button
-                    onClick={() => handleSubmit()}
-                    size="sm"
-                    loading={isLoading}
-                  >
-                    Yayınla
-                  </Button>
-                </div>
-              </Form>
-            </>
+            <Form onSubmit={(event) => event.preventDefault()}>
+              <div className="flex flex-col space-y-4">
+                <Input
+                  name="title"
+                  placeholder="Konu başlığını yazınız."
+                  label="Konu Başlığı"
+                  errorMessage={errors.title}
+                  value={values.title}
+                  onChange={(event) =>
+                    setFieldValue("title", event.target.value)
+                  }
+                />
+                <Editor
+                  onUpdate={(value) => setFieldValue("content", value)}
+                  label="İçerik"
+                  placeholder="İçerik yazınız."
+                  errorMessage={errors.content}
+                />
+              </div>
+              <div className="flex justify-end space-x-4">
+                <Button
+                  onClick={() => handleSubmit()}
+                  size="sm"
+                  loading={isLoading}
+                >
+                  Yayınla
+                </Button>
+              </div>
+            </Form>
           )}
         </Formik>
       </div>
