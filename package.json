@@ -1,10 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "dev:web": "turbo run dev --filter=docs^... --filter=web --no-cache --continue",
+    "dev:web": "dotenv -- turbo run dev --filter=docs^... --filter=web --no-cache --continue",
     "dev:docs": "turbo run dev --filter=web^... --filter=docs --no-cache --continue",
     "dev": "turbo run dev --no-cache --continue",
-    "build": "turbo run build",
+    "build": "turbo run build --filter=docs^... --filter=web",
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -17,10 +17,12 @@
     "packages/*"
   ],
   "devDependencies": {
+    "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.3.0",
     "@changesets/cli": "^2.25.2",
     "eslint": "^8.29.0",
     "prettier": "^2.8.0",
-    "turbo": "latest"
+    "turbo": "^1.10.13"
   },
   "packageManager": "yarn@1.22.19",
   "name": "devsozluk",

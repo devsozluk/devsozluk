@@ -42,6 +42,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <Fragment>
         {isLoggedIn && <CreateTopicModal />}
         {children}
+        <a href="https://www.producthunt.com/products/devsozluk/reviews?utm_source=badge-product_review&utm_medium=badge&utm_souce=badge-devsozluk" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=549647&theme=light" alt="DevS&#0246;zl&#0252;k - Open&#0032;source&#0032;social&#0032;platform&#0032;for&#0032;developers&#0046; | Product Hunt" style={{position: "fixed", right: isLoggedIn ? 100 : 50, bottom: 30, width: 250, height: 50}} width="250" height="50" /></a>
         {isLoggedIn && <Actions />}
       </Fragment>
     </div>

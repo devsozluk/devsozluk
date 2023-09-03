@@ -2,6 +2,8 @@
 
 const withPWA = require("next-pwa")({
   dest: "public",
+  mode: "production",
+  swSrc: "service-worker.js",
 });
 
 const nextConfig = withPWA({
@@ -18,6 +20,7 @@ const nextConfig = withPWA({
     ],
     formats: ["image/webp"],
   },
+  
   reactStrictMode: true,
 });
 

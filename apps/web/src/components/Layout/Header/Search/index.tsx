@@ -21,10 +21,8 @@ const SearchBox = () => {
     useSearchProfileMutation();
 
   useEffect(() => {
-    if (searchValue.length >= 2) {
-      handleSearchTopic({ text: debouncedValue });
-      handleSearchProfile({ text: debouncedValue });
-    }
+    handleSearchTopic({ text: debouncedValue });
+    handleSearchProfile({ text: debouncedValue });
   }, [debouncedValue]);
 
   return (
@@ -64,8 +62,8 @@ const SearchBox = () => {
           <SearchBox.NotFound />
         ) : (
           <Fragment>
-            <Topics topics={topics} />
             <Profiles profiles={users} />
+            <Topics topics={topics} />
           </Fragment>
         )}
       </div>
