@@ -3,13 +3,7 @@
   "pipeline": {
     "build": {
       "outputs": [".next/**", "dist/**", "storybook-static/**"],
-      "dependsOn": ["^build"],
-      "env": [
-        "NEXT_PUBLIC_SUPABASE_URL",
-        "NEXT_PUBLIC_SUPABASE_KEY",
-        "NEXT_PUBLIC_SITE_URL",
-        "NEXT_PUBLIC_VERCEL_URL"
-      ]
+      "dependsOn": ["^build"]
     },
     "test": {
       "outputs": ["coverage/**"],
@@ -23,5 +17,11 @@
     "clean": {
       "cache": false
     }
-  }
+  },
+  "globalEnv": [
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "NEXT_PUBLIC_SUPABASE_KEY",
+      "NEXT_PUBLIC_SITE_URL",
+      "NEXT_PUBLIC_VERCEL_URL"
+  ]
 }
