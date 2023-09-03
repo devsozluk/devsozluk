@@ -58,11 +58,10 @@ const CEditor = ({
     parseOptions: {
       preserveWhitespace: "full",
     },
-    content: value || "",
   });
-
+  
   useEffect(() => {
-    editor?.commands.setContent(value || "");
+    if (value === "") editor?.commands.setContent(value || "");
   }, [value]);
 
   const baseClasess = classNames({
