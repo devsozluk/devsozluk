@@ -20,6 +20,7 @@ const nextConfig = withPWA({
     ],
     formats: ["image/webp"],
   },
+  
   reactStrictMode: true,
 });
 
