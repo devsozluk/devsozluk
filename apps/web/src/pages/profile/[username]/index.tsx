@@ -11,7 +11,6 @@ import { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Fragment } from "react";
 import { BsLink45Deg } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
@@ -42,7 +41,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 const Profile = ({ profile }: { profile: IProfile }) => {
   return (
-    <Fragment>
+    <>
       <NextSeo
         title={profile.name}
         canonical={"https://devsozluk.net/profile/" + profile.username}
@@ -64,7 +63,7 @@ const Profile = ({ profile }: { profile: IProfile }) => {
       <EmptyLayout>
         <Header notificationShow={false} />
         <div className="pt-56 md:pt-28">
-          <div className="flex items-center flex-col ">
+          <div className="flex flex-col items-center ">
             <div className="w-full max-w-2xl px-4">
               <Profile.Header {...profile} />
               <Profile.Tabs {...profile} />
@@ -72,7 +71,7 @@ const Profile = ({ profile }: { profile: IProfile }) => {
           </div>
         </div>
       </EmptyLayout>
-    </Fragment>
+    </>
   );
 };
 
@@ -117,25 +116,25 @@ Profile.Header = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row  relative justify-between gap-y-4 md:gap-y-0 md:gap-x-6">
-      <div className="flex gap-x-4 items-center flex-col md:flex-row gap-y-4 md:gap-y-0">
+    <div className="relative flex flex-col justify-between md:flex-row gap-y-4 md:gap-y-0 md:gap-x-6">
+      <div className="flex flex-col items-center gap-x-4 md:flex-row gap-y-4 md:gap-y-0">
         <Image
           width={200}
           height={200}
-          className="h-52 w-52 md:h-40 md:w-40 rounded-full"
+          className="rounded-full h-52 w-52 md:h-40 md:w-40"
           src={avatar_url}
           alt=""
         />
-        <div className="flex flex-col gap-x-8 md:gap-x-6 justify-center items-center md:items-start">
+        <div className="flex flex-col items-center justify-center gap-x-8 md:gap-x-6 md:items-start">
           <h1 className="text-3xl font-semibold text-white">{name}</h1>
           <p className="text-lg text-gray-400">
             {position || "Pozisyon eklenmemiş."}
           </p>
-          <div className="flex gap-x-4 mt-4">
+          <div className="flex mt-4 gap-x-4">
             {computedProfileLinks()?.map((link, index) => (
               <Tippy key={index} content={link.label}>
                 <a href={link.url} target="_blank" className="text-gray-400">
-                  <link.icon className="h-6 w-6" />
+                  <link.icon className="w-6 h-6" />
                 </a>
               </Tippy>
             ))}

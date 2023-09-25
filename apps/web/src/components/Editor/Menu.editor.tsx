@@ -1,5 +1,5 @@
 import { Button, IconButton, Input } from "@devsozluk/ui";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { BiBold, BiImageAdd, BiItalic } from "react-icons/bi";
 import { TbLink, TbLinkOff } from "react-icons/tb";
 import { CiCircleAlert } from "react-icons/ci";
@@ -24,7 +24,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <IconButton
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
@@ -88,7 +88,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         setIsOpenLinkModal={setIsOpenLinkModal}
       />
       <InsertEmojiButton editor={editor} />
-    </Fragment>
+    </>
   );
 };
 
@@ -133,11 +133,11 @@ MenuBar.LinkModal = ({
       leaveFrom="transform scale-100 opacity-100"
       leaveTo="transform scale-95 opacity-0"
       show={isOpenLinkModal}
-      className="absolute z-20 w-72 rounded-md shadow-xl bg-gray-800"
+      className="absolute z-20 bg-gray-800 rounded-md shadow-xl w-72"
     >
       <div
         tabIndex={0}
-        className="flex items-center cursor-pointer p-3 flex-col text-sm rounded-md truncate transition-colors duration-300 transform text-gray-300 hover:text-white"
+        className="flex flex-col items-center p-3 text-sm text-gray-300 truncate transition-colors duration-300 transform rounded-md cursor-pointer hover:text-white"
       >
         <div className="flex items-center justify-between w-full">
           <h3>Link Ekle</h3>

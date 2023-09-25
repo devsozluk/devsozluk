@@ -19,7 +19,7 @@ export interface ICEditorProps {
 }
 
 const ErrorField = ({ errorMessage }: { errorMessage?: string }) => {
-  return <p className="pt-1 text-md text-red-400">{errorMessage}</p>;
+  return <p className="pt-1 text-red-400 text-md">{errorMessage}</p>;
 };
 
 const CEditor = ({
@@ -59,7 +59,7 @@ const CEditor = ({
       preserveWhitespace: "full",
     },
   });
-  
+
   useEffect(() => {
     if (value === "") editor?.commands.setContent(value || "");
   }, [value]);
@@ -72,7 +72,7 @@ const CEditor = ({
   });
 
   return (
-    <div className="group relative">
+    <div className="relative group">
       <p className="block mb-2 text-sm font-medium text-white">{label}</p>
       <div className={baseClasess}>
         <div className="px-4 py-2 bg-gray-800 rounded-t-lg">
@@ -82,7 +82,7 @@ const CEditor = ({
             {...rest}
           />
         </div>
-        <div className="flex items-center px-2 py-2 w-full">
+        <div className="flex items-center w-full px-2 py-2">
           <CEditor.Menu editor={editor as Editor} />
           {children}
         </div>
@@ -95,7 +95,7 @@ const CEditor = ({
 CEditor.Menu = EditorMenu;
 
 CEditor.Actions = ({ children }: PropsWithChildren) => {
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 };
 
 export default CEditor;

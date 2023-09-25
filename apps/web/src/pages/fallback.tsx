@@ -2,7 +2,6 @@ import { Button } from "@devsozluk/ui";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
 
 const Fallback = () => {
   const handlePageRefresh = () => {
@@ -10,9 +9,9 @@ const Fallback = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <NextSeo title="İnternet bağlantınız yok." />
-      <div className="flex h-full flex-col items-center md:justify-center">
+      <div className="flex flex-col items-center h-full md:justify-center">
         <div className="fixed top-0 left-0 right-0 z-30 flex flex-col items-center bg-background py-4 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] md:flex-row md:justify-center md:space-y-0">
           <Link href="/">
             <Image
@@ -23,13 +22,13 @@ const Fallback = () => {
             />
           </Link>
         </div>
-        <section className="h-screen flex justify-center items-center">
-          <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div className="mx-auto max-w-screen-sm text-center">
-              <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-500">
+        <section className="flex items-center justify-center h-screen">
+          <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
+            <div className="max-w-screen-sm mx-auto text-center">
+              <h1 className="mb-4 font-extrabold tracking-tight text-7xl lg:text-9xl text-primary-500">
                 404
               </h1>
-              <p className="mb-4 text-3xl tracking-tight font-bold text-white">
+              <p className="mb-4 text-3xl font-bold tracking-tight text-white">
                 İnternete bağlı değilsiniz.
               </p>
               <p className="mb-4 text-lg font-light text-gray-400">
@@ -46,7 +45,7 @@ const Fallback = () => {
           </div>
         </section>
       </div>
-    </Fragment>
+    </>
   );
 };
 

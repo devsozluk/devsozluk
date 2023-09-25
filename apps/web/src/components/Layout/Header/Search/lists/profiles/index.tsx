@@ -2,45 +2,44 @@ import SearchSkeleton from "@/components/Loading/search";
 import { IProfile } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
 
-export interface IprofilesProps {
+export interface IProfilesProps {
   className?: string;
   profiles: IProfile[];
 }
 
-const Profiles = ({ profiles }: IprofilesProps) => {
+const Profiles = ({ profiles }: IProfilesProps) => {
   return (
-    <Fragment>
+    <>
       {profiles?.length >= 1 && (
         <div>
           <div className="mb-1">
-            <p className="text-gray-400 text-sm">Kullanıcılar</p>
+            <p className="text-sm text-gray-400">Kullanıcılar</p>
           </div>
           {profiles?.map((topic: IProfile) => (
             <Profiles.Item key={topic.id} {...topic} />
           ))}
         </div>
       )}
-    </Fragment>
+    </>
   );
 };
 
 Profiles.Item = ({ name, username, avatar_url }: IProfile) => {
   return (
     <Link
-      className="flex items-center gap-x-1 break-words rounded text-base py-1 text-gray-200"
+      className="flex items-center py-1 text-base text-gray-200 break-words rounded gap-x-1"
       href={"/profile/" + username}
     >
       <Image
-        className="flex-shrink-0 object-cover mx-1 rounded-full w-6 h-6"
+        className="flex-shrink-0 object-cover w-6 h-6 mx-1 rounded-full"
         width={100}
         height={100}
         src={avatar_url}
         alt={avatar_url}
       />
-      <p className="truncate hover:underline mr-1">{name}</p>
-      <p className="text-gray-400 text-sm">@{username}</p>
+      <p className="mr-1 truncate hover:underline">{name}</p>
+      <p className="text-sm text-gray-400">@{username}</p>
     </Link>
   );
 };
@@ -55,10 +54,10 @@ Profiles.NotFound = () => {
 
 Profiles.Loader = () => {
   return (
-    <Fragment>
+    <>
       <SearchSkeleton />
       <SearchSkeleton />
-    </Fragment>
+    </>
   );
 };
 

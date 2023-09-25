@@ -1,7 +1,6 @@
 import { ITopic } from "@/types";
 import { IconButton } from "@devsozluk/ui";
 import Link from "next/link";
-import { Fragment } from "react";
 import { IoMdEye } from "react-icons/io";
 import { MdComment, MdOutlineBookmarkAdd } from "react-icons/md";
 import SocialShare from "./SocialShare";
@@ -16,11 +15,11 @@ const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
     <div className="flex items-center justify-between">
       <Link
         href={"/topic/" + topic.slug}
-        className="text-lg font-bold text-primary-400 truncate"
+        className="text-lg font-bold truncate text-primary-400"
       >
         {topic.title}
       </Link>
-      <div className="mt-2 flex gap-x-3 text-xs font-bold">
+      <div className="flex mt-2 text-xs font-bold gap-x-3">
         <IconButton>
           <IoMdEye size={14} />
           {topic.viewsCount}
@@ -30,12 +29,12 @@ const TopicHeader = ({ topic, showDetail }: ITopicHeader) => {
           {topic.entryCount}
         </IconButton>
         {showDetail && (
-          <Fragment>
+          <>
             <IconButton disabled>
               <MdOutlineBookmarkAdd size={14} />
             </IconButton>
             <SocialShare {...topic} />
-          </Fragment>
+          </>
         )}
       </div>
     </div>

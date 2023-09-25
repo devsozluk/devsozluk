@@ -2,7 +2,7 @@ import SearchSkeleton from "@/components/Loading/search";
 import { useSearchTopicsMutation } from "@/services/topic";
 import { Input } from "@devsozluk/ui";
 import classNames from "classnames";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useDebounce } from "usehooks-ts";
@@ -26,7 +26,7 @@ const SearchBox = () => {
   }, [debouncedValue]);
 
   return (
-    <div className="group relative">
+    <div className="relative group">
       <Input
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
@@ -61,10 +61,10 @@ const SearchBox = () => {
           users?.length === 0 ? (
           <SearchBox.NotFound />
         ) : (
-          <Fragment>
+          <>
             <Profiles profiles={users} />
             <Topics topics={topics} />
-          </Fragment>
+          </>
         )}
       </div>
     </div>
@@ -81,14 +81,14 @@ SearchBox.NotFound = () => {
 
 SearchBox.Loader = () => {
   return (
-    <Fragment>
+    <>
       <SearchSkeleton />
       <SearchSkeleton />
       <SearchSkeleton />
       <SearchSkeleton />
       <SearchSkeleton />
       <SearchSkeleton />
-    </Fragment>
+    </>
   );
 };
 

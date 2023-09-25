@@ -72,7 +72,7 @@ const MobileMenu = () => {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="relative block lg:hidden z-50"
+        className="relative z-50 block lg:hidden"
         onClose={() => setOpen(false)}
       >
         <Transition.Child
@@ -84,12 +84,12 @@ const MobileMenu = () => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-950 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 transition-opacity bg-opacity-75 bg-gray-950" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div className="fixed inset-y-0 right-0 flex max-w-full pl-10 pointer-events-none">
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -99,7 +99,7 @@ const MobileMenu = () => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
+                <Dialog.Panel className="relative w-screen max-w-md pointer-events-auto">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-500"
@@ -109,10 +109,10 @@ const MobileMenu = () => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                    <div className="absolute top-0 left-0 flex pt-4 pr-2 -ml-8 sm:-ml-10 sm:pr-4">
                       <button
                         type="button"
-                        className="rounded-md text-gray-300 hover:text-white focus:outline-none"
+                        className="text-gray-300 rounded-md hover:text-white focus:outline-none"
                         onClick={() => setOpen(false)}
                       >
                         <span className="sr-only">Close panel</span>
@@ -120,11 +120,11 @@ const MobileMenu = () => {
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex h-full flex-col overflow-y-scroll bg-gray-900 py-6 shadow-xl">
-                    <div className="flex flex-col w-full space-y-4 px-4 sm:px-6">
+                  <div className="flex flex-col h-full py-6 overflow-y-scroll bg-gray-900 shadow-xl">
+                    <div className="flex flex-col w-full px-4 space-y-4 sm:px-6">
                       <SearchBox />
                       {!checkSessionloading && !isLoggedIn && (
-                        <Fragment>
+                        <>
                           <Button
                             onClick={goLoginPage}
                             className="text-xs font-normal !px-6 w-full"
@@ -141,10 +141,10 @@ const MobileMenu = () => {
                           >
                             Kayıt Ol
                           </Button>
-                        </Fragment>
+                        </>
                       )}
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6 flex gap-y-4 flex-col justify-end">
+                    <div className="relative flex flex-col justify-end flex-1 px-4 mt-6 sm:px-6 gap-y-4">
                       <Button
                         variant="dark"
                         onClick={goGithubStar}
@@ -152,7 +152,7 @@ const MobileMenu = () => {
                       >
                         <AiOutlineStar
                           size={15}
-                          className="text-gray-400 group-hover:text-yellow-400 duration-300 transition-all"
+                          className="text-gray-400 transition-all duration-300 group-hover:text-yellow-400"
                         />
                         Github&apos;da bizi destekleyin
                       </Button>
