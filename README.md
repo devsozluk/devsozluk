@@ -71,7 +71,7 @@ To get started with the DevSözlük project, follow these steps:
 - Go to the apps/web directory: `cd apps/web`
 - Create a copy of the .env.example file and rename it to .env, then update the file with your Supabase API keys.
 - Go back to the project root directory: `cd ../..`
-- Start the web application: `yarn run dev:web`
+- Start the web application: `yarn dev:web`
 
 This will start the web application in the `apps/web` directory, as well as the UI components in the `packages/ui` directory.
 
