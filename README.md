@@ -23,7 +23,7 @@
 
 ## **About**
 
-**DevSözlük** is a platform that aims to facilitate communication, knowledge sharing, and a question-and-answer-esque-style opportunities among software developers. It allows other software developers to contribute as well—enabling software developers to share their ideas, answer questions, and help each other.
+**DevSözlük** is a platform that aims to facilitate communication and share knowledge among software developers. It allows other software developers to contribute as well—enabling software developers to share their ideas, answer questions, and help each other.
 
 ## **Folder Structure**
 
