@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 export default function useSpoiler() {
-  const addSpoilerCloseClickListener = () => {
-    const spoilerClose = document.querySelector(".spoiler-close");
+  const spoilerClose = document.querySelector(".spoiler-close");
 
+  const addSpoilerCloseClickListener = () => {
     spoilerClose?.addEventListener("click", (event) => {
       const targetElement = event.target;
 
@@ -18,7 +18,6 @@ export default function useSpoiler() {
     addSpoilerCloseClickListener();
 
     return () => {
-      const spoilerClose = document.querySelector(".spoiler-close");
       spoilerClose?.removeEventListener("click", addSpoilerCloseClickListener);
     };
   }, []);

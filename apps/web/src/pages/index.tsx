@@ -16,7 +16,7 @@ import classNames from "classnames";
 import { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -84,12 +84,12 @@ const Home = ({ entries }: { entries: IEntry[] }) => {
       <NextSeo title="Geliştiriciler için açık kaynaklı sosyal platform" />
       <EntriesFilter />
       {page === 0 && isLoading && <Home.EntryLoader />}
-      <div className="mb-6 flex gap-x-2 flex-wrap gap-y-2">
-        <div className="max-w-3xl w-full">
+      <div className="flex flex-wrap mb-6 gap-x-2 gap-y-2">
+        <div className="w-full max-w-3xl">
           <InfiniteScroll
             loader={
               isLoading && (
-                <div className="flex justify-center pt-5 items-center">
+                <div className="flex items-center justify-center pt-5">
                   <Spinner />
                 </div>
               )
@@ -126,12 +126,12 @@ Home.EntryCard = ({ entry, index }: { entry: IEntry; index: number }) => {
 
 Home.EntryLoader = () => {
   return (
-    <Fragment>
+    <>
       <EntryLoader />
       <EntryLoader />
       <EntryLoader />
       <EntryLoader />
-    </Fragment>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Editor } from "@tiptap/react";
-import React, { Fragment, useState } from "react";
+import { useState } from "react";
 import EmojiSelector from "./EmojiPicker";
 import { IconButton } from "@devsozluk/ui";
 import { BsFillEmojiSmileFill } from "react-icons/bs";
@@ -34,7 +34,7 @@ const InsertEmojiButton = ({ editor }: InsertEmojiButtonProps) => {
   const isDisabled = !editor || !editor.can().insertContent("");
 
   return (
-    <Fragment>
+    <>
       <IconButton
         onClick={openDialog}
         disabled={isDisabled}
@@ -47,7 +47,7 @@ const InsertEmojiButton = ({ editor }: InsertEmojiButtonProps) => {
         onClose={closeDialog}
         onEmojiClick={insertEmoji}
       />
-    </Fragment>
+    </>
   );
 };
 

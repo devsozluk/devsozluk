@@ -1,5 +1,4 @@
 import { useAppSelector } from "@/utils/hooks";
-import { Fragment } from "react";
 import Dropdown from "../Dropdown";
 import { Button, IconButton } from "@devsozluk/ui";
 import { AiOutlineStar } from "react-icons/ai";
@@ -20,14 +19,14 @@ const Navigations = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-4">
+    <div className="flex flex-col-reverse gap-4 lg:flex-row">
       <IconButton
         onClick={goGithubStar}
         className="hidden xl:inline-flex items-center justify-center py-2 !text-xs !text-gray-300 group"
       >
         <AiOutlineStar
           size={15}
-          className="text-gray-400 group-hover:text-yellow-400 duration-300 transition-all"
+          className="text-gray-400 transition-all duration-300 group-hover:text-yellow-400"
         />
         Github&apos;da bizi destekleyin
       </IconButton>
@@ -35,7 +34,7 @@ const Navigations = () => {
         (isLoggedIn ? (
           <Dropdown />
         ) : (
-          <Fragment>
+          <>
             <Button
               onClick={goLoginPage}
               className="text-xs font-normal !px-6"
@@ -44,7 +43,7 @@ const Navigations = () => {
             >
               Giriş
             </Button>
-          </Fragment>
+          </>
         ))}
     </div>
   );

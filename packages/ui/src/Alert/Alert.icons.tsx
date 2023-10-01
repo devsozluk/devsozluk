@@ -52,8 +52,4 @@ const warning: React.FC = () => {
   );
 };
 
-export default {
-  danger,
-  success,
-  warning,
-};
+export { danger, success, warning };

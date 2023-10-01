@@ -1,6 +1,6 @@
 import { ITopic } from "@/types";
 import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface ITopicsProps {
   className?: string;
@@ -9,25 +9,25 @@ export interface ITopicsProps {
 
 const Topics = ({ topics }: ITopicsProps) => {
   return (
-    <Fragment>
+    <>
       {topics?.length >= 1 && (
         <div>
           <div>
-            <p className="text-gray-400 text-sm">Konular</p>
+            <p className="text-sm text-gray-400">Konular</p>
           </div>
           {topics?.map((topic: ITopic) => (
             <Topics.Item key={topic.id} {...topic} />
           ))}
         </div>
       )}
-    </Fragment>
+    </>
   );
 };
 
 Topics.Item = ({ slug, entryCount, title }: ITopic) => {
   return (
     <Link
-      className="flex items-center justify-between break-words rounded py-1 text-base text-gray-200"
+      className="flex items-center justify-between py-1 text-base text-gray-200 break-words rounded"
       href={"/topic/" + slug}
     >
       <p className="truncate">{title}</p>

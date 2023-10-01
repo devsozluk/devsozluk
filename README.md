@@ -6,7 +6,7 @@
       height="64"
     />
   </a>
-  <br />
+  <br/>
   <br/>
 
 <a href="https://storybook.devsozluk.net/" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
@@ -23,39 +23,40 @@
 
 ## **About**
 
-**DevSözlük**, The project I have created is a platform that aims to facilitate communication, knowledge sharing, and question and answer opportunities among software developers. In this project, I have built a structure that allows other software developers to contribute as well. This platform enables software developers to share their ideas, answer questions, and help each other.
+**DevSözlük** is a platform that aims to facilitate communication and share knowledge among software developers. It allows other software developers to contribute as well—enabling software developers to share their ideas, answer questions, and help each other.
 
 ## **Folder Structure**
 
-```devsozluk/
+```
+devsozluk/
   ├── apps/
-  │   ├── web/                # Web application codebase.
-  │   ├── docs/               # Documentation codebase.
+  │   ├── web/                          # Web application codebase.
+  │   ├── docs/                         # Documentation codebase.
   ├── packages/
-  │   ├── ui/                 # Reusable UI component library.
-  │   ├── config/             # Configuration files and utilities.
-  │   ├── eslint-config-devsozluk/  # Custom ESLint configuration.
-  │   ├── tsconfig/           # Shared TypeScript configuration.
+  │   ├── ui/                           # Reusable UI component library.
+  │   ├── config/                       # Configuration files and utilities.
+  │   ├── eslint-config-devsozluk/      # Custom ESLint configuration.
+  │   ├── tsconfig/                     # Shared TypeScript configuration.
   ├── .github/
   │   ├── workflows/
   │   │   └── devsozluk-ui-publish.yml  # GitHub Actions workflow for publishing the UI package.
-  ├── .env.example             # Example configuration file for .env.
-  ├── .gitignore               # List of files to be ignored by Git.
-  ├── LICENSE                  # Project's license file.
-  ├── package.json             # JSON file containing project's dependencies and scripts.
-  ├── yarn.lock                # Project dependencies lock file.
-  ├── README.md                # Markdown file containing information about the project.
-  ├── prettierrc.json          # Configuration file for Prettier code formatter.
-  └── turbo.json               # Configuration file for Turbo, a tool for managing monorepos.
+  ├── .env.example                      # Example configuration file for .env.
+  ├── .gitignore                        # List of files to be ignored by Git.
+  ├── LICENSE                           # Project's license file.
+  ├── package.json                      # JSON file containing project's dependencies and scripts.
+  ├── yarn.lock                         # Project dependencies lock file.
+  ├── README.md                         # Markdown file containing information about the project.
+  ├── prettierrc.json                   # Configuration file for Prettier code formatter.
+  └── turbo.json                        # Configuration file for Turbo, a tool for managing monorepos.
 ```
 
-## Teechnologies
+## Technologies
 
 - **Turbo**: A tool for managing monorepos.
 - **React**: A JavaScript library for building user interfaces.
 - **Next.js**: A React framework for building server-side rendered and static web applications.
 - **TypeScript**: A statically typed superset of JavaScript that provides enhanced code reliability and scalability.
-- **Tailwind** CSS: A utility-first CSS framework for rapidly building custom user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces.
 - **Storybook**: An open-source tool for building and testing UI components in isolation.
 - **Supabase**: An open-source alternative to Firebase that provides a set of tools and services for building scalable backend applications.
 - **Yarn**: A package manager that doubles down as project manager.
@@ -70,9 +71,9 @@ To get started with the DevSözlük project, follow these steps:
 - Go to the apps/web directory: `cd apps/web`
 - Create a copy of the .env.example file and rename it to .env, then update the file with your Supabase API keys.
 - Go back to the project root directory: `cd ../..`
-- Start the web application: `yarn run dev:web`
+- Start the web application: `yarn dev:web`
 
-This will start the web application using the Next.js framework in the `apps/web` directory, as well as the UI components in the `packages/ui` directory.
+This will start the web application in the `apps/web` directory, as well as the UI components in the `packages/ui` directory.
 
 ## Contributors
 

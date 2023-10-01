@@ -6,7 +6,6 @@ import moment from "moment";
 import "moment/locale/tr";
 import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
-import { Fragment } from "react";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import "tippy.js/dist/tippy.css";
@@ -20,7 +19,7 @@ type Props = AppProps & {
 
 const App = ({ Component, pageProps }: Props) => {
   return (
-    <Fragment>
+    <>
       <DefaultSeo {...seo} />
       <Provider store={store}>
         <RootLayout>
@@ -29,7 +28,7 @@ const App = ({ Component, pageProps }: Props) => {
         <Toaster />
       </Provider>
       <Analytics />
-    </Fragment>
+    </>
   );
 };
 

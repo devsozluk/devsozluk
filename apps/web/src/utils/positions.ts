@@ -1,4 +1,4 @@
-export default [
+const positions = [
   { label: "Frontend Developer", value: "Frontend Developer" },
   { label: "Backend Developer", value: "Backend Developer" },
   { label: "Fullstack Developer", value: "Fullstack Developer" },
@@ -11,3 +11,5 @@ export default [
   { label: "UI/UX Designer", value: "UI/UX Designer" },
   { label: "QA Engineer", value: "QA Engineer" },
 ];
+
+export default positions;

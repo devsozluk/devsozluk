@@ -15,7 +15,7 @@ import { Button, Input, Spinner } from "@devsozluk/ui";
 import classNames from "classnames";
 import { Form, Formik } from "formik";
 import Image from "next/image";
-import { ChangeEvent, Fragment, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { RiImageEditFill } from "react-icons/ri";
 import { default as DashboardLayout } from "./layout";
@@ -42,7 +42,7 @@ const Settings = () => {
   return (
     <DashboardLayout>
       <NextSeo title="Hesap Ayarları" />
-      <div className="w-sm flex h-full flex-col gap-y-5">
+      <div className="flex flex-col h-full w-sm gap-y-5">
         <div>
           <h3 className="text-lg font-semibold">Hesap</h3>
           <p className="text-sm text-gray-400">
@@ -129,7 +129,7 @@ Settings.ChangePhoto = () => {
 
   return (
     <div className="flex gap-x-4">
-      <div className="relative group w-24">
+      <div className="relative w-24 group">
         <input
           type="file"
           id="changePhoto"
@@ -158,14 +158,14 @@ Settings.ChangePhoto = () => {
           {isLoading ? (
             <Spinner className="mr-1" />
           ) : (
-            <Fragment>
+            <>
               <RiImageEditFill size={24} />
-            </Fragment>
+            </>
           )}
         </label>
       </div>
       <div className="flex flex-col justify-center">
-        <h4 className="text-medium text-white">Profil Resmi Ayarla</h4>
+        <h4 className="text-white text-medium">Profil Resmi Ayarla</h4>
         <p className="text-sm text-gray-400">
           Bir fotoğraf yükleyin ve profil resminizi değiştirin
         </p>

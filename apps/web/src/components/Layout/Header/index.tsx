@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useContext,
-  Fragment,
-  useState,
-  useEffect,
-  useRef,
-} from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
@@ -62,12 +55,12 @@ const Header: React.FC<IHeaderProps> = ({ notificationShow = true }) => {
         }
       )}
     >
-      <div className="container w-full flex justify-between py-4 md:justify-between md:space-y-0">
+      <div className="container flex justify-between w-full py-4 md:justify-between md:space-y-0">
         <Link href="/">
           <Image width={170} height={50} src="/logo.png" alt="DevSözlük Logo" />
         </Link>
         <div className="hidden lg:flex">
-          <div className="md:absolute w-full md:w-96 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
+          <div className="w-full md:absolute md:w-96 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
             <SearchBox />
           </div>
           <div className="relative">
@@ -83,7 +76,7 @@ const Header: React.FC<IHeaderProps> = ({ notificationShow = true }) => {
           >
             <AiOutlineMenu
               size={18}
-              className="text-gray-400 group-hover:text-yellow-400 duration-300 transition-all"
+              className="text-gray-400 transition-all duration-300 group-hover:text-yellow-400"
             />
           </Button>
         </div>
