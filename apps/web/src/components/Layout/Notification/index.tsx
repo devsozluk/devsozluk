@@ -63,7 +63,7 @@ const Notification: React.FC = () => {
   return (
     <div
       id="banner"
-      className="hidden lg:flex fixed z-50 gap-y-8 left-0 right-0 justify-between px-16 py-3 sm:items-center lg:py-3 bg-gray-800"
+      className="flex fixed z-50 gap-y-8 left-0 right-0 justify-between px-16 py-3 sm:items-center lg:py-3 bg-gray-800"
     >
       <div className="flex items-center justify-center">
         <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
