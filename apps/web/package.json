@@ -32,7 +32,7 @@
     "@vercel/analytics": "^0.1.11",
     "classnames": "^2.3.2",
     "emoji-picker-react": "^4.4.9",
-    "eslint": "8.33.0",
+    "eslint": "9.26.0",
     "eslint-config-devsozluk": "*",
     "eslint-config-next": "13.2.4",
     "flowbite-typography": "^1.0.3",
